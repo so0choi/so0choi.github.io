@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Node-js13 - Node.js 동작 방식 (EventLoop) | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Node-js13 - Node.js 동작 방식 (EventLoop)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">9월 15, 2020&nbsp;&nbsp;14:41:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Node-js/">Node.js</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Node-js-동작-방식"><a href="#Node-js-동작-방식" class="headerlink" title="Node.js 동작 방식"></a>Node.js 동작 방식</h1><p>Node.js를 창시한 라이언 달이 노드를 만든 이유로 꼽은 것은, 기존에 많이 사용되고 있는 WAS라고 불리는 Apache, Tomcat 같은 서버들은 오래걸리는 blocking 작업에서 원활한 사용에 문제가 생겨 동시성 프로그래밍을 위해 Node.js를 만들었다고 한다.</p>
+<p>Node를 사용하는 이유 중 가장 큰 특징을 뽑아보면,</p>
+<ol>
+<li>처리 속도가 빠르다.</li>
+<li>모든 동작이 비동기 기반이다.</li>
+<li>Event driven 이다.</li>
+</ol>
+<p>이렇게 두가지가 있다.<br>처리 속도가 빠른 이유는 Node의 동작 방식에서 찾아볼 수 있다.</p>
+<p>Node.js 는<code>Event Loop</code> 중심으로 동작한다. 구글에서 여러 구조 사진을 볼 수 있지만 대부분의 사진이 틀린 정보라고 한다.</p>
+<p><img src="/images/2020-09-15-15-59-51.png"></p>
+<p>이런 구조가 굉장히 보편적이었는데, 이 구조는 틀린 구조라고 한다.</p>
+<p><img src="/images/2020-09-15-16-03-13.png"></p>
+<p>이 구조가 더 Node.js 개발자가 밝힌 내용과 부합한 내용이라고 한다.</p>
+<h2 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h2><p>메인 스레드 겸 싱글 스레드로서 비즈니스 로직을 수행한다. 모든 작업이 이벤트 루프를 중심으로 일어나기 때문에 이벤트 루프가 멈추면 아무 작업도 수행하지 못한다.</p>
+<p>싱글스레드 방식을 사용함에도 여러가지 작업을 동시에 처리할 수 있는 이유가 이벤트 루프에있다.</p>
+<p><a target="_blank" rel="noopener" href="https://vimeo.com/96425312">Help, I’m stuck in an event-loop.</a></p>
+<p>이 영상은 전에도 한 번 본 적이 있었는데, 공부를 조금 더 하고 지금 다시보니 얼마나 잘 설명하고 있는 영상인지 확실히 알게되었다.</p>
+<p>프로그램이 수행해야 할 작업들은 순서대로 stack에 쌓이게된다.<br>그리고 이때 다른 서버에 접속해 데이터를 fetch 하거나 하는 오래 걸리는 작업들을 <code>blocking</code>된다고 한다.<br>이벤트 루프는 그런 오래 걸리는 작업들을 워커에 할당한다. 그리고 스택에서 해당 작업을 내리고 다음 작업을 계속해서 진행한다.</p>
+<p>다른 연산 결과가 필요하지 않고 병렬적으로 실행될 수 있는 작업들은 <code>non-blocking</code> 이라고 한다. 이 때문에 자바스크립트의 동작 속도가 빠를 수 있는 것이다.</p>
+<p>오래걸리는 blocking 작업이 끝나게 되면 그 결과는 event queue에 들어온다. Evnet loop는 RR 방식으로 각 큐를 돌면서 작업들을 처리하는데 이 때 stack이 비어있어야 Event queue의 작업들을 stack에 올릴 수 있다.</p>
+<h3 id="Event-driven"><a href="#Event-driven" class="headerlink" title="Event driven"></a>Event driven</h3><p>자바스크립트는 이벤트 기반의 동작을 한다.<br>이벤트 기반의 반대는 일반적인 <code>스레드 풀</code> 기반의 동작이라고 할 수 있는데, 이 구조에서는 사용자의 I/O 요청에서 오래 걸리는 작업이 있을 경우 한 가지 작업이 끝날 때까지 (즉 동기적으로) 대기하며 이것이 완료되면 다음 작업이 순차적으로 진행되는 방식이다.</p>
+<p>반면 이벤트 기반의 동작 방식이란, 순차적인 이벤트 진행이 아닌 사용자가 이벤트를 실행시켰을 때 이에 대한 callback을 호출하는 방식으로 비동기적으로 동작하는 방식이다.<br>이것은 자바스크립트가 원래 나온것이 웹에서 사용되기 위함이었기 때문이다.</p>
+<p><a target="_blank" rel="noopener" href="http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4=">loupe</a><br>자바스크립트 동작 과정을 눈으로 볼 수 있는 사이트이다. 위 동영상 강연자분이 실제로 사용했던 사이트라고 한다.</p>
+<h2 id="후기"><a href="#후기" class="headerlink" title="후기"></a>후기</h2><p>사실 더 깊이 들어가면 더욱 복잡한 구조가 존재한다. 내가 제대로 이해한 것인지 아직 감이 오지 않는다. 작성한 내용에도 잘못된 정보가 있을지도 모른다. 언젠가 꼭 완벽하게 이해할 수 있었으면 좋겠다. 😅</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://tk-one.github.io/2019/02/07/nodejs-event-loop/">Node.js 이벤트루프 제대로 이해하기</a></p>
+<p><a target="_blank" rel="noopener" href="https://sjh836.tistory.com/149">nodejs의 내부 동작 원리 (libuv, 이벤트루프, 워커쓰레드, 비동기)</a></p>
+<p><a target="_blank" rel="noopener" href="https://meetup.toast.com/posts/89">TOAST Meetup - 자바스크립트와 이벤트 루프</a></p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Node-js/"># Node.js</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/18/Algorithm/BOJ-14888/">BOJ-14888 - 연산자 끼워넣기</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/13/Javascript/promise/">Promise</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

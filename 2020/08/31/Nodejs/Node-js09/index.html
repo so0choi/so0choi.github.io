@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Node js09 - Nunjucks | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Node js09 - Nunjucks</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 31, 2020&nbsp;&nbsp;15:47:25</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Node-js/">Node.js</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="View-Engine-Nunjucks"><a href="#View-Engine-Nunjucks" class="headerlink" title="View Engine - Nunjucks"></a>View Engine - Nunjucks</h1><p>Node.js로 응답 페이지를 구성하는 방법은 여러가지가 있다. 그 중 하나는 아래 코드처럼 <code>write()</code>로 html을 하나씩 써주는것이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line">http</span><br><span class="line">  .createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;text/html;charset=utf8&quot;</span> &#125;);</span><br><span class="line">    res.write(<span class="string">&#x27;&lt;!DOCTYPE html&gt;&#x27;</span>)</span><br><span class="line">    res.write(<span class="string">&#x27;&lt;html&gt;&#x27;</span>)</span><br><span class="line">    res.write(<span class="string">&#x27;&lt;head&gt;&lt;meta charset=&quot;UTF8&quot;&gt;&lt;title&gt;title&lt;/title&gt;&lt;/head&gt;&#x27;</span>);</span><br><span class="line">    res.write(<span class="string">&#x27;&lt;body&gt;&#x27;</span>);</span><br><span class="line">    res.write(<span class="string">&quot;&lt;h1&gt;Hello Server&lt;/h1&gt;&quot;</span>);</span><br><span class="line">    res.write(<span class="string">&quot;helllllo&quot;</span>);</span><br><span class="line">    res.write(<span class="string">&#x27;&lt;/body&gt;);</span></span><br><span class="line"><span class="string">    res.write(&#x27;</span>&lt;/html&gt;<span class="string">&#x27;);</span></span><br><span class="line"><span class="string">    res.end();</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">  .listen(3000);</span></span><br></pre></td></tr></table></figure>
+
+<p>이렇게 한줄씩 쓸 수는 있지만 모든 작업을 이렇게 한다고 생각하면 정말 막막할 것이다. 이를 대신해서 쓸 수 있는 방법이, <strong>데이터 처리 로직 부분</strong>과 <strong>화면에 보여주는 부분</strong>을 분리하는 방법이다.<br>이런 방식을 <strong>MVC 패턴</strong>이라고 하는데, 다양한 프레임워크에서 통용되는 패턴이다.<br><a target="_blank" rel="noopener" href="https://studyeong.blogspot.com/2020/04/web-spring-mvc-model.html">MVC 패턴 이전 블로그 정리글</a><br>은 Java Spring Framework를 기반으로 한 정리글이지만 기본 아이디어는 같기 때문에 이해하는데 도움이 된다.</p>
+<p><strong>View Engine</strong>이 바로 Node.js에서 MVC 패턴을 가능하게 해주는 시스템이다. 뷰 엔진을 사용해 템플릿 문서에서 변수를 입력해 렌더링한 페이지를 출력하게 하도록 할 수 있다.</p>
+<p><img src="/images/2020-08-31-16-41-38.png"><br><a target="_blank" rel="noopener" href="https://expressjs.com/en/resources/template-engines.html">Express</a> 사이트에서 Express가 지원하는 다양한 뷰엔진들을 확인할 수 있는데 이번에는 <code>Nunjucks</code>를 사용해 프로젝트를 진행한다.<br>(<code>EJS</code>의 경우 html 파일을 작성하는 것과 똑같이 작성하면서 변수가 필요한 부분에 간단한 문법을 적용시키면 되어 사용하기 편했다. 하지만 문법에 결함이 있기 때문에 사용을 지양하는게 좋다고 한다..)</p>
+<h2 id="Nunjucks"><a href="#Nunjucks" class="headerlink" title="Nunjucks"></a>Nunjucks</h2><p>Nunjucks는 <code>Mozila</code> 재단에서 개발한 자바스크립트 뷰엔진이다. 눈적스를 소개할 때는 항상 <code>rich</code>라는 수식어를 달고 다니는데 개발을 편리하게 해주는 기능이 많다고 한다.</p>
+<h3 id="사용방법"><a href="#사용방법" class="headerlink" title="사용방법"></a>사용방법</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$npm i nunjucks</span><br></pre></td></tr></table></figure>
+
+<p>먼저 Numjucks 모듈을 npm으로 설치한다.</p>
+<p><code>app.js</code>에서 <code>nunjucks</code> 모듈을 불러와 템플릿 파일의 경로를 설정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nunjucks = <span class="built_in">require</span>(<span class="string">&quot;nunjucks&quot;</span>);</span><br><span class="line">nunjucks.configure(<span class="string">&quot;template folder name&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">autoescape</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">express</span>: express object name,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>여기서 <code>autoescape</code>를 <code>true</code>로 지정한 이유는 XSS 공격을 방지하기 위해 <code>text</code>로 입력된 html 태그는 모두 무효화 하기 위해서 한 설정이다. <code>false</code>로 지정할 경우 게시글에 입력된 html 코드도 모두 동작하게 된다.</p>
+<p><code>response</code> 객체의 <code>render()</code> 메서드를 사용해 뷰 엔진을 적용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">&quot;/products&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//   res.send(&quot;admin products&quot;);</span></span><br><span class="line">  res.render(<span class="string">&quot;admin/products.html&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;soyeong&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">100</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>app.js</code>에서 지정한 템플릿 폴더 뒤의 경로만 적어주면 된다. 그리고 렌더링할 변수의 값들을 작성한다.</p>
+<p>html 파일에는 다음과 같이 작성했다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">안녕하세요 이름은 &#123;&#123;name&#125;&#125;. 나이는 &#123;&#123;age&#125;&#125;살 입니다.</span><br></pre></td></tr></table></figure>
+
+<p><code>&#123;&#123;&#125;&#125;</code> 연산자로 변수를 나타낸다.</p>
+<p><img src="/images/2020-08-31-17-19-44.png"><br>화면에 변수가 렌더링 되어 잘 출력된다.</p>
+<p>가끔 nodemon이 변수가 변경된것을 감지하지 못해 업데이트가 되지 않을 때가 있는데, script에서 그 변경도 항상 감지하도록 옵션을 걸어주면 편하다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;start&quot;: &quot;nodemon -e js,html app.js&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="template-상속"><a href="#template-상속" class="headerlink" title="template 상속"></a>template 상속</h2><p>상단의 메뉴와 같은 부분은 모든 페이지에 출력되는 공통 사항이다. 모든 페이지에 같은 메뉴 코드를 작성해놓는 것보다 Nunjucks의 템플릿 상속 기능을 사용하면 깔끔하게 관리 할 수 있다.</p>
+<p>base가 될 html 파일을 생성한다. 그리고 body 부분을 아래 코드처럼 짠다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--something--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">&quot;menu&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- something something....--&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding-top: 10px;&quot;</span>&gt;</span></span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>이런식으로 base template을 만들어 놓고 이제 다른 페이지 레이아웃에서 이를 상속받아 사용하면 된다.<br>상속은 다음과 같이 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% set title = <span class="string">&quot;관리자 페이지&quot;</span> %&#125;</span><br><span class="line">&#123;% <span class="keyword">extends</span> <span class="string">&quot;layout/base.html&quot;</span> %&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Macro-기능"><a href="#Macro-기능" class="headerlink" title="Macro 기능"></a>Macro 기능</h2><p>Nunjucks의 유용한 기능중 하나는 Macro 기능이다.</p>
+<p>웹 페이지의 메뉴 탭에서 현재 들어와있는 메뉴의 탭 색깔을 변경하는 경우 <code>if</code>문을 사용해 아래와 같이 쓸 수 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">li</span> &#123;% <span class="attr">if</span> <span class="attr">req_path</span>==<span class="string">&#x27;/admin/products&#x27;</span>%&#125; <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> &#123;% <span class="attr">endif</span> %&#125;&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/admin/products&quot;</span>&gt;</span>List<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> &#123;% <span class="attr">if</span> <span class="attr">req_path</span>==<span class="string">&#x27;/admin/products/write&#x27;</span>%&#125; <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> &#123;% <span class="attr">endif</span> %&#125;&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 중략 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 이런 작업을 해야하는 엘리먼트의 수가 계속해서 늘어난다면 엄청나게 피곤해질 것이다. 이런 작업을 도와주는 기능이 Nunjucks의 Macro 기능이다.</p>
+<h2 id="Macro-사용법"><a href="#Macro-사용법" class="headerlink" title="Macro 사용법"></a>Macro 사용법</h2><p>먼저 현재 url을 통해 어느 메뉴를 활성화 시켜야 하는지 알 수 있기 때문에 클라이언트의 요청 url을 전역 변수로 지정해놓는다. <code>request.path</code> 변수가 url을 가리키는 변수이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  app.locals.req_path = req.path;</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>매크로를 정의하기 위한 폴더와 내부에 파일을 새로 생성해 정의한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro link( href, text, current_url) %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> &#123;% <span class="attr">if</span> <span class="attr">href</span> == <span class="string">current_url</span> %&#125; <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> &#123;% <span class="attr">endif</span> %&#125;&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;&#123; href &#125;&#125;&quot;</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>그리고 매크로를 적용할 html 파일에 매크로를 불러와 적용하면 된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% from &quot;macro/link.html&quot; import link %&#125; &#123;&#123; link(&#x27;/admin/products&#x27;, &quot;List&quot;,</span><br><span class="line">req_path) &#125;&#125; &#123;&#123; link(&#x27;/admin/products/write&#x27;, &quot;Write&quot;, req_path) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위에 작성했던 코드보다 훨씬 깔끔하게 정리되었다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://colorlib.com/wp/top-templating-engines-for-javascript/">Top 17 Templating Engines for JavaScript 2020</a><br><a target="_blank" rel="noopener" href="https://css-tricks.com/killer-features-of-nunjucks/#:~:text=run%20in%20Node.-,js%20and%20used%20to%20compile%20templates%20server%20side.,templates%20with%20quite%20small%20footprint.">killer feature of nunjucks</a></p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Node-js/"># Node.js</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/31/Nodejs/Node-js10/">Node js10 - POST 처리하기</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/31/Nodejs/Node-js08/">Node js09 - Routing과 Middleware</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

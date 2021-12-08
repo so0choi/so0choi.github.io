@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Algorithm - Sorting | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Algorithm - Sorting</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 23, 2020&nbsp;&nbsp;20:03:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithm/">Algorithm</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><span class="github-emoji" alias="rotating_light" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png?v8">&#x1f6a8;</span> ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
+<h1 id="정렬"><a href="#정렬" class="headerlink" title="정렬"></a>정렬</h1><p>정렬을 위한 알고리즘은 여러가지가 있다. 대부분 언어의 라이브러리에는 이미 효율적인 정렬 라이브러리를 제공하고 있지만 기본적으로 정렬 알고리즘의 원리를 이해하고 있는 것도 기업 면접에도 많이 등장하는 문제이기 때문에 중요하다고 한다.</p>
+<h2 id="선택-정렬"><a href="#선택-정렬" class="headerlink" title="선택 정렬"></a>선택 정렬</h2><p>가장 단순하고 직관적으로 떠올릴 수 있는 정렬 방법이다. 배열에서 가장 작은 값을 선택해 차례대로 정렬하는 알고리즘이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selection_sort</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        idx = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,<span class="built_in">len</span>(data)):</span><br><span class="line">            <span class="keyword">if</span> data[idx] &gt; data[j]:</span><br><span class="line">                idx = j</span><br><span class="line">        data[idx],data[i] = data[i],data[idx]</span><br><span class="line">selection_sort()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<p>선택정렬의 시간 복잡도는 O(N^2)이다. 효율적이라고는 할 수 없다.</p>
+<h2 id="삽입-정렬"><a href="#삽입-정렬" class="headerlink" title="삽입 정렬"></a>삽입 정렬</h2><p>삽입 정렬은 앞에서 부터 정렬하여 각 원소가 들어갈 자리를 찾아 해당 위치에 삽입하는 정렬 알고리즘이다. n번재 원소가 들어갈 위치를 찾는다면 0 부터 n-1 번째 까지의 원소를 차례대로 확인한다. 앞에서부터 정렬이 진행되기 때문에 <code>data[:n]</code> 의 원소들은 이미 정렬된 상태이다. 따라서 n번재 원소가 들어갈 위치는 해당 원소보다 큰 수를 만나 그 위치에 넣는다고 생각하면 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertion_sort</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,<span class="number">0</span>,-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> data[j] &lt; data[j-<span class="number">1</span>]:</span><br><span class="line">                data[j],data[j-<span class="number">1</span>] = data[j-<span class="number">1</span>],data[j]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">insertion_sort()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<p>for문이 2번 중첩되고 있기 때문에 시간 복잡도는 O(N^2)이다. 하지만 삽입정렬의 경우 데이터가 거의 되어있는 상황에서는 매우 빠르게 동작한다. 최선의 경우 O(N)의 시간 복잡도를 가진다. 따라서 그럴 경우 퀵 정렬보다 빠르게 동작한다.</p>
+<h2 id="퀵-정렬"><a href="#퀵-정렬" class="headerlink" title="퀵 정렬"></a>퀵 정렬</h2><p>퀵 정렬은 <em>가장 빠른 정렬 알고리즘</em>이다. 주 아이디어는 기준 값을 정해 그 기준보다 큰 값과 작은 값의 위치를 바꾸는 것이다. 이 기준 값을 <code>pivot</code>이라고 한다.<br>pivot 값 보다 작은 그룹과 pivot 값 보다 큰 그룹을 분할하면 두 그룹은 pivot 값을 기준으로 정렬된다. 그렇게 분할된 두 그룹에 대해서 다시한번 정렬을 수행하는 방식이다.<br>pivot을 어떤 값으로 정하는 것이 적절한지는 다양한 알고리즘 논문에서 설명하고 있다. 이번에는 배열의 첫번째 값을 pivot으로 설정하는 ‘호어 분할 방식’으로 포스팅을 한다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span>(<span class="params">start, end</span>):</span></span><br><span class="line">    <span class="keyword">if</span> start &gt;= end:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    pivot = start</span><br><span class="line">    left = start+<span class="number">1</span></span><br><span class="line">    right = end</span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        <span class="comment"># pivot 보다 큰 값이 왼쪽에 있는 경우를 찾는다</span></span><br><span class="line">        <span class="keyword">while</span> left &lt;= end <span class="keyword">and</span> data[pivot] &gt; data[left]:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        <span class="comment"># pivot 보다 작은 값이 오른쪽에 있는 경우를 찾는다</span></span><br><span class="line">        <span class="keyword">while</span> right &gt; start <span class="keyword">and</span> data[pivot] &lt; data[right]:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        <span class="comment"># pivot을 기준으로 정렬이 끝난 상태</span></span><br><span class="line">        <span class="keyword">if</span> left &gt; right:</span><br><span class="line">            data[pivot], data[right] = data[right], data[pivot]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            data[left], data[right] = data[right], data[left]</span><br><span class="line">    <span class="comment"># 왼쪽과 오른쪽 그룹 재정렬</span></span><br><span class="line">    quick_sort(start, right-<span class="number">1</span>)</span><br><span class="line">    quick_sort(right+<span class="number">1</span>, end)</span><br><span class="line">quick_sort(<span class="number">0</span>,<span class="built_in">len</span>(data)-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<p>부분 sorting이 한 번 발생하면 최종적으로 <code>right</code>위치에 pivot값이 이동하므로 다음 그룹 sorting은 pivot 값을 제외한 왼쪽과 오른쪽 그룹에 시행하면 된다.</p>
+<h3 id="파이썬을-최대로-활용한-퀵소트-코드"><a href="#파이썬을-최대로-활용한-퀵소트-코드" class="headerlink" title="파이썬을 최대로 활용한 퀵소트 코드"></a>파이썬을 최대로 활용한 퀵소트 코드</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_python</span>(<span class="params">data</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(data) &lt;=<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    pivot = data[<span class="number">0</span>]</span><br><span class="line">    tail = data[<span class="number">1</span>:]</span><br><span class="line">    left = [x <span class="keyword">for</span> x <span class="keyword">in</span> data <span class="keyword">if</span> x &lt; pivot]</span><br><span class="line">    right = [x <span class="keyword">for</span> x <span class="keyword">in</span> data <span class="keyword">if</span> x &gt; pivot]</span><br><span class="line">    <span class="keyword">return</span> quick_sort_python(left) + [pivot] + quick_sort_python(right)</span><br><span class="line"><span class="built_in">print</span>(quick_sort_python(data))</span><br></pre></td></tr></table></figure>
+
+<p>퀵 정렬의 시간 복잡도는 O(NlogN) 이다. 상당히 빠르다. 라이브러리에 내장되어있는 정렬 함수도 퀵소트를 기반으로 한다. 하지만 퀵소트는 데이터가 이미 정렬되어있을 경우 pivot 값에 따라 매우 느리게 동작할 수 있다. 라이브러리에서는 빠른 정렬을 위해 최적의 pivot값을 선택함을 보장해주기 때문에 걱정하지 않아도 된다.</p>
+<h2 id="계수-정렬"><a href="#계수-정렬" class="headerlink" title="계수 정렬"></a>계수 정렬</h2><p>계수정렬은 백준에서 문제를 풀다가 몇 번 본적이 있는데, (<a target="_blank" rel="noopener" href="https://www.acmicpc.net/problem/10989">백준 문제 링크</a>) 다른 알고리즘 책에서 다루는 것은 보지 못했다. 하지만 경우에 따라 매우 빠르게 동작하기 때문에 알아 두는 것이 좋을 것 같다. 계수 정렬은 <strong>데이터의 크기 범위가 제한되어 정수 형태로 표현할 수 있을 때</strong>만 사용할 수 있다. 일반적으로 가장 큰 데이터와 가장 작은 데이터의 차이가 1,000,000을 넘지 않을 때 효과적이다.</p>
+<p>알고리즘 아이디어는 n 개의 숫자가 있다면 가장 큰 수 만큼 크기의 배열을 만들어 0으로 채우고 반복문을 한 번 수행하면서 해당 숫자에 해당하는 index를 증가시켜 이 배열을 출력하는 것이다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line">count = [<span class="number">0</span>]*(<span class="built_in">max</span>(data)+<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data:</span><br><span class="line">    count[i]+=<span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(count)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(count[i]):</span><br><span class="line">        <span class="built_in">print</span>(i,end=<span class="string">&#x27; &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>매우 간단하다! 계수 정렬의 시간 복잡도는 O(N+K)이다. (K는 데이터의 최대값) 데이터의 크기가 많이 중복되어 있을 수록 유리하다.</p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>정렬 라이브러리는 항상 O(NlogN)을 보장한다. 따라서 단순 정렬 작업에는 기본 라이브러리를 사용하고, 데이터의 범위가 한정적이고 더 빠르게 동작해야 할 때는 계수 정렬을 사용하자.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Algorithm/"># Algorithm</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/24/Web_Programming/web01/">css 배치</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/23/Else/Blogger-to-Hexo/">Blogger to Hexo</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

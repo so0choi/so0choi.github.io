@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>BOJ 14502 - 연구소 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">BOJ 14502 - 연구소</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">9월 11, 2020&nbsp;&nbsp;23:25:52</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="연구소"><a href="#연구소" class="headerlink" title="연구소"></a>연구소</h1><p><a target="_blank" rel="noopener" href="https://www.acmicpc.net/problem/14502">문제 링크</a></p>
+<h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>인체에 치명적인 바이러스를 연구하던 연구소에서 바이러스가 유출되었다. 다행히 바이러스는 아직 퍼지지 않았고, 바이러스의 확산을 막기 위해서 연구소에 벽을 세우려고 한다.</p>
+<p>연구소는 크기가 N×M인 직사각형으로 나타낼 수 있으며, 직사각형은 1×1 크기의 정사각형으로 나누어져 있다. 연구소는 빈 칸, 벽으로 이루어져 있으며, 벽은 칸 하나를 가득 차지한다.</p>
+<p>일부 칸은 바이러스가 존재하며, 이 바이러스는 상하좌우로 인접한 빈 칸으로 모두 퍼져나갈 수 있다. 새로 세울 수 있는 벽의 개수는 3개이며, 꼭 3개를 세워야 한다.</p>
+<h2 id="입력"><a href="#입력" class="headerlink" title="입력"></a>입력</h2><p>첫째 줄에 지도의 세로 크기 N과 가로 크기 M이 주어진다. (3 ≤ N, M ≤ 8)</p>
+<p>둘째 줄부터 N개의 줄에 지도의 모양이 주어진다. 0은 빈 칸, 1은 벽, 2는 바이러스가 있는 위치이다. 2의 개수는 2보다 크거나 같고, 10보다 작거나 같은 자연수이다.</p>
+<p>빈 칸의 개수는 3개 이상이다.</p>
+<h2 id="출력"><a href="#출력" class="headerlink" title="출력"></a>출력</h2><p>첫째 줄에 얻을 수 있는 안전 영역의 최대 크기를 출력한다.</p>
+<h2 id="예제-입출력"><a href="#예제-입출력" class="headerlink" title="예제 입출력"></a>예제 입출력</h2><p>예제 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 입력</span><br><span class="line">7 7</span><br><span class="line">2 0 0 0 1 1 0</span><br><span class="line">0 0 1 0 1 2 0</span><br><span class="line">0 1 1 0 1 0 0</span><br><span class="line">0 1 0 0 0 0 0</span><br><span class="line">0 0 0 0 0 1 1</span><br><span class="line">0 1 0 0 0 0 0</span><br><span class="line">0 1 0 0 0 0 0</span><br><span class="line"># 출력</span><br><span class="line">27</span><br></pre></td></tr></table></figure>
+
+<p>예제 2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 입력</span><br><span class="line">4 6</span><br><span class="line">0 0 0 0 0 0</span><br><span class="line">1 0 0 0 0 2</span><br><span class="line">1 1 1 0 0 2</span><br><span class="line">0 0 0 0 0 2</span><br><span class="line"># 출력</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+
+<h2 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h2><p>전형적인 DFS/BFS 문제이다. 전체 맵의 크기가 크지 않다. 최대 <code>8X8</code> 크기의 맵에서 바이러스의 최소 갯수는 <code>2</code> 이므로, 벽을 세울 수 있는 최대 연산해야 하는 조합의 수는 61C3 = 35990 이다. <code>100000</code>번 보다 작은 수 이기 때문에 제한시간 <code>2초</code>안에 충분히 모든 경우를 계산해 풀 수 있는 부르트 포스 알고리즘 문제이다.</p>
+<p><em>실제로 예전에 몇 번 코딩테스트를 봤을 때 자주 봤던 유형이다. 필수적으로 풀 줄 알아야 하는 유형이라고 생각한다!</em></p>
+<p>벽을 놓는 조합을 구하는 방법과 바이러스를 퍼지게 하는 방법에 모두 BFS 또는 DFS를 사용할 수 있다. 파이썬을 사용하는 경우 조합을 구하는 <code>Permutations</code> 모듈을 사용할 수도 있다.</p>
+<p>나는 혼자 풀이할 때 벽을 놓는데 DFS, 바이러스 확산에 BFS를 사용하고 조합 라이브러리를 이용한 풀이도 제출해봤다. 라이브러리를 이용하는 것이 약간 더 빨랐다.</p>
+<p>하지만 다른 사람들의 코드를 보니 내 코드가 현저히 느리게 동작했다. 일단 조합을 구하는 내 코드가 비효율적인 것 같다.</p>
+<h2 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h2><h3 id="조합-직접-구현"><a href="#조합-직접-구현" class="headerlink" title="조합 직접 구현"></a>조합 직접 구현</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">n, m = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split())</span><br><span class="line">no_safe = <span class="number">3</span></span><br><span class="line">board = []</span><br><span class="line">virus = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    board.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, sys.stdin.readline().rstrip().split())))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">if</span> board[i][j] == <span class="number">2</span>:</span><br><span class="line">            virus.append((i,j))</span><br><span class="line">            no_safe +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> board[i][j] == <span class="number">1</span>:</span><br><span class="line">            no_safe +=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">dx = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>]</span><br><span class="line">dy = [<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">board</span>):</span></span><br><span class="line">    visited = [[<span class="literal">False</span>]*m <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    result = n*m - no_safe</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> virus:</span><br><span class="line">        vx,vy = v[<span class="number">0</span>],v[<span class="number">1</span>]</span><br><span class="line">        q = deque([(vx,vy)])</span><br><span class="line">        visited[vx][vy]==<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            cur = q.popleft()</span><br><span class="line">            x,y = cur[<span class="number">0</span>],cur[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                nx,ny = x+dx[d], y+dy[d]</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span>&lt;=nx&lt;n <span class="keyword">and</span> <span class="number">0</span>&lt;=ny&lt;m <span class="keyword">and</span> board[nx][ny]==<span class="number">0</span> <span class="keyword">and</span> visited[nx][ny]==<span class="literal">False</span>:</span><br><span class="line">                    visited[nx][ny] = <span class="literal">True</span></span><br><span class="line">                    result-=<span class="number">1</span></span><br><span class="line">                    q.append((nx,ny))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol</span>(<span class="params">board,n_wall,last_i,last_j,ans</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n_wall == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> check(board)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(last_j,m):</span><br><span class="line">        <span class="keyword">if</span> board[last_i][j]==<span class="number">0</span>:</span><br><span class="line">            board[last_i][j]=<span class="number">1</span></span><br><span class="line">            new_ans= sol(board, n_wall-<span class="number">1</span>, last_i, j,ans)</span><br><span class="line">            ans = <span class="built_in">max</span>(ans, new_ans)</span><br><span class="line">            board[last_i][j] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(last_i+<span class="number">1</span>,n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">            <span class="keyword">if</span> board[i][j]==<span class="number">0</span>:</span><br><span class="line">                board[i][j]=<span class="number">1</span></span><br><span class="line">                new_ans= sol(board, n_wall-<span class="number">1</span>, i, j,ans)</span><br><span class="line">                ans = <span class="built_in">max</span>(ans, new_ans)</span><br><span class="line">                board[i][j]=<span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(sol(board,<span class="number">3</span>,<span class="number">0</span>,<span class="number">0</span>,-<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<h3 id="itertools-combinations-사용"><a href="#itertools-combinations-사용" class="headerlink" title="itertools.combinations 사용"></a>itertools.combinations 사용</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> combinations</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">n, m = <span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split())</span><br><span class="line">no_safe = <span class="number">3</span></span><br><span class="line">board = []</span><br><span class="line">virus = []</span><br><span class="line">safe = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">    board.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>, sys.stdin.readline().rstrip().split())))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">        <span class="keyword">if</span> board[i][j] == <span class="number">2</span>:</span><br><span class="line">            virus.append((i,j))</span><br><span class="line">            no_safe +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> board[i][j] == <span class="number">1</span>:</span><br><span class="line">            no_safe +=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            safe.append((i,j))</span><br><span class="line"></span><br><span class="line">dx = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>]</span><br><span class="line">dy = [<span class="number">1</span>,<span class="number">0</span>,-<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">board</span>):</span></span><br><span class="line">    visited = [[<span class="literal">False</span>]*m <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(n)]</span><br><span class="line">    result = n*m - no_safe</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> virus:</span><br><span class="line">        vx,vy = v[<span class="number">0</span>],v[<span class="number">1</span>]</span><br><span class="line">        q = deque([(vx,vy)])</span><br><span class="line">        visited[vx][vy]==<span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> q:</span><br><span class="line">            cur = q.popleft()</span><br><span class="line">            x,y = cur[<span class="number">0</span>],cur[<span class="number">1</span>]</span><br><span class="line">            <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                nx,ny = x+dx[d], y+dy[d]</span><br><span class="line">                <span class="keyword">if</span> <span class="number">0</span>&lt;=nx&lt;n <span class="keyword">and</span> <span class="number">0</span>&lt;=ny&lt;m <span class="keyword">and</span> board[nx][ny]==<span class="number">0</span> <span class="keyword">and</span> visited[nx][ny]==<span class="literal">False</span>:</span><br><span class="line">                    visited[nx][ny] = <span class="literal">True</span></span><br><span class="line">                    result-=<span class="number">1</span></span><br><span class="line">                    q.append((nx,ny))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sol</span>():</span></span><br><span class="line">    ans = -<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> permu <span class="keyword">in</span> combinations(safe, <span class="number">3</span>):</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> permu:</span><br><span class="line">            board[p[<span class="number">0</span>]][p[<span class="number">1</span>]] = <span class="number">2</span></span><br><span class="line">        cal = check(board)</span><br><span class="line">        ans = <span class="built_in">max</span>(cal, ans)</span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> permu:</span><br><span class="line">            board[p[<span class="number">0</span>]][p[<span class="number">1</span>]] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(sol())</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/BOJ/"># BOJ</a>
+                    
+                        <a href="/tags/BFS-DFS/"># BFS/DFS</a>
+                    
+                        <a href="/tags/Algorithm/"># Algorithm</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/13/Web_Programming/web08/">반응형 웹</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/10/Algorithm/BOJ-18428/">BOJ-18428 감시피하기</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

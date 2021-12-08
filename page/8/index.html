@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            
+    <div class="container">
+  <div class="intro">
+    <div class="avatar">
+      <a href="/archives"
+        ><img src="/image/avatar.jpeg"
+      /></a>
+    </div>
+    <div class="nickname">Soyeong Choi</div>
+    <div class="description"><p><i>💫 </i> Web Developer<br><i>LGTM 🎄</i></p>
+</div>
+    <div class="links">
+       
+      <a class="link-item" title="Blog" href="/archives">
+        
+        
+        <i class="iconfont icon-blog"></i>
+        
+      </a>
+      
+      <a class="link-item" title="Resume" target="_blank" rel="noopener" href="https://www.notion.so/dvpsy/RESUME-7f80d3a1881644ea88c7d8036351a5bc">
+        
+        
+        <i class="iconfont icon-resume"></i>
+        
+      </a>
+      
+      <a class="link-item" title="Instagram" target="_blank" rel="noopener" href="https://instagram.com/so02hi">
+        
+        
+        <i class="iconfont icon-instagram"></i>
+        
+      </a>
+      
+      <a class="link-item" title="Github" target="_blank" rel="noopener" href="https://github.com/so0choi">
+        
+        
+        <i class="iconfont icon-github"></i>
+        
+      </a>
+       
+    </div>
+    <div id="github_widget" style="margin-top: 15px;">
+      <!-- Include the library. -->
+      <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
+
+      <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
+      />
+
+      <div>
+        <!-- Prepare a container for your calendar. -->
+        <div class="calendar" style="width: 650px;">
+          <!-- Loading stuff -->
+          Loading data ...
+        </div>
+      </div>
+
+      <script>
+        GitHubCalendar(".calendar", "so0choi", {
+          responsive: true,
+          tooltips: false,
+          global_stats: false,
+        }).then(function () {
+          // delete the space underneath the module bar which is caused by minheight
+          document.getElementsByClassName("calendar")[0].style.minHeight =
+            "120px";
+          // remove calendar border
+          document.getElementsByClassName("calendar")[0].style.border = 'none';
+          // hide more and less legen below the contribution graph
+          document.getElementsByClassName("contrib-legend")[0].style.display =
+            "none";
+        });
+      </script>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

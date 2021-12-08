@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Javascript 30 Day 17 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Javascript 30 Day 17</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">10월 3, 2020&nbsp;&nbsp;21:17:55</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Javascript/">Javascript</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Day-17-Sort-Without-Articles"><a href="#Day-17-Sort-Without-Articles" class="headerlink" title="Day 17 - Sort Without Articles"></a>Day 17 - Sort Without Articles</h1><p>Articles : 관사, 즉 관사 없이 영어 문자열을 배열하는 방법이다.</p>
+<h2 id="완성본"><a href="#완성본" class="headerlink" title="완성본"></a>완성본</h2><p>기존 데이터</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bands = [</span><br><span class="line">  <span class="string">&quot;The Plot in You&quot;</span>,</span><br><span class="line">  <span class="string">&quot;The Devil Wears Prada&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Pierce the Veil&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Norma Jean&quot;</span>,</span><br><span class="line">  <span class="string">&quot;The Bled&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Say Anything&quot;</span>,</span><br><span class="line">  <span class="string">&quot;The Midway State&quot;</span>,</span><br><span class="line">  <span class="string">&quot;We Came as Romans&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Counterparts&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Oh, Sleeper&quot;</span>,</span><br><span class="line">  <span class="string">&quot;A Skylit Drive&quot;</span>,</span><br><span class="line">  <span class="string">&quot;Anywhere But Here&quot;</span>,</span><br><span class="line">  <span class="string">&quot;An Old Dog&quot;</span>,</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+<p>sorting 이후</p>
+<p><img src="/images/2020-10-03-21-20-31.png"></p>
+<h2 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h2><p>sort를 하기 위해서 <code>Array.ProtoType.sort()</code>를 사용한다.<br><code>sort()</code>는 두개의 인자를 받는다. <code>a</code>, <code>b</code>를 받는다고 했을 때 <code>a</code>가 더 크면 <code>1</code>을 반환하고 그렇지 않은 경우 <code>-1</code>을 반환한다. 이는 숫자 뿐만아니라 <code>&gt;</code>/ <code>&lt;</code> 연산자를 사용해 문자열에도 그대로 적용할 수 있다.</p>
+<p>문자열이 ‘a’, ‘an’, ‘the’로 시작하는 경우 관사를 없애고 비교해야 하기 때문에 관사를 없애는 함수 <code>strip</code>을 생성해준다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strip</span>(<span class="params">bandName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> bandName.replace(<span class="regexp">/^(a |the |an )/i</span>, <span class="string">&quot;&quot;</span>).trim();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>문자열의 조작은 정규식을 사용하는 것이 간편하다. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D">MDN</a>에서 사용법을 찾아볼 수 있다. 짧게 설명하자면 아래와 같다.</p>
+<ul>
+<li>^ : 문자열의 시작 문자를 찾는다</li>
+<li>x|y : x혹은 y에 대응하는 문자를 찾는다</li>
+<li>i : 소문자 대문자 구분없이 모두 찾는다</li>
+</ul>
+<p>이에 해당하는 문자열을 찾을 경우 <code>replace()</code>로 관사를 없애고 관사뒤에 있던 공백은 <code>trim()</code>으로 지워준다.</p>
+<p>이 <code>strip()</code> 함수를 각 bandName 들에 적용시킨 값을 sort 함수에 적어주면 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sortedBands = bands.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> (strip(a) &gt; strip(b) ? <span class="number">1</span> : -<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<p>sorting이 끝난 값들을 화면에 프린트시킨다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">&quot;#bands&quot;</span>).innerHTML = sortedBands</span><br><span class="line">  .map(<span class="function">(<span class="params">band</span>) =&gt;</span> <span class="string">`&lt;li&gt;<span class="subst">$&#123;band&#125;</span>&lt;/li&gt;`</span>)</span><br><span class="line">  .join(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>여기서 주의할 점은 뒤에 <code>join(&#39;&#39;)</code>을 붙인다는 것이다. <code>innerHTML</code>을 지정할 때 자바스크립트는 <code>toString()</code>을 사용하는데 배열에 <code>toString()</code>이 사용되면 default로 각 요소 사이에 <code>,</code>를 붙인다. 그래서 <code>join(&#39;&#39;)</code>없이 출력하면 <code>&lt;/li&gt;</code> 뒤에 <code>,</code>가 추가되어있는 것을 볼 수 있다.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Javascript/"># Javascript</a>
+                    
+                        <a href="/tags/Javascript30/"># Javascript30</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/10/04/Nodejs/Node-js16/">Node js16 - Node.js operation not permitted 오류</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/03/Javascript/JS30/Javascript-30-Day-16/">Javascript 30 Day 16</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

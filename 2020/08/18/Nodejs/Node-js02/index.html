@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Node js02 - Node.js의 CRUD | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Node js02 - Node.js의 CRUD</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 18, 2020&nbsp;&nbsp;22:20:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Node-js/">Node.js</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="fs-module-File-System"><a href="#fs-module-File-System" class="headerlink" title="fs module - File System"></a>fs module - File System</h2><p>파일을 읽고 쓰는데 필요한 많은 메서드가 포함되어있는 모듈이다.</p>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><p>프로그래밍에서 CRUD란 정보를 처리하는 4가지의 기본 기능을 말한다. CRUD를 할 수 있다는 것은 그 언어의 75%는 섭렵했다고 봐도 무방하다.<br>C - Create<br>R - Read<br>U - Update<br>D - Delete</p>
+<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p>데이터 파일을 생성하는 기능이다. 사용자가 입력한 데이터로 파일을 생성한다.</p>
+<p>사용자의 입력을 받기 위해서 <code>&lt;form&gt;</code>을 이용한다. 또한 form data를 request 객체로 부터 받아와서 이용할 수 있다.</p>
+<h3 id="request-on"><a href="#request-on" class="headerlink" title="request.on()"></a>request.on()</h3><p>클라이언트로부터 전송되는 입력값을 다룰 수 있는 메서드이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> body = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">request.on(<span class="string">&#x27;data&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    body += data;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>data가 한번에 많이 들어오거나 너무 많은 양의 데이터가 들어오면 오류가 발생할 수 있기 때문에 <code>request.on(&#39;data&#39;)</code>는 데이터를 일정 크기로 잘라서 전송받는다. callback function 은 한 부분의 전송이 끝나면 무조건 실행되는 함수이므로 <code>body</code> 변수에 계속해서 값이 누적되어 저장되는 것이다.</p>
+<p>전송이 끝나면 <code>request.on(&#39;end&#39;)</code>를 실행하면 된다. 전송받은 값으로 할 작업들을 callback 함수에 명시해주면 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">request.on(<span class="string">&#x27;end&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> post = qs.parse(body);</span><br><span class="line">      <span class="keyword">var</span> title = post.title;</span><br><span class="line">      <span class="keyword">var</span> description = post.description;</span><br><span class="line">      fs.writeFile(<span class="string">`data/<span class="subst">$&#123;title&#125;</span>`</span>, description, <span class="string">&quot;utf8&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        response.writeHead(<span class="number">302</span>, &#123; <span class="attr">Location</span>: <span class="string">`/?id=<span class="subst">$&#123;title&#125;</span>`</span> &#125;);</span><br><span class="line">        response.end();</span><br><span class="line">      &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>여기서 <code>302</code> header는 클라이언트를 redirect 시킨다는 의미이다. 이 프로그램은 사용자가 작성한 form으로 글을 생성하고 생성된 글을 출력하는 페이지로 redirect 시키고 있다.</p>
+<h3 id="fs-writeFile"><a href="#fs-writeFile" class="headerlink" title="fs.writeFile()"></a>fs.writeFile()</h3><p>위 <code>request.on(&#39;end)</code>의 callback으로 들어가있는 함수이다. <code>fs.writeFile(&#39;data 이름&#39;, data, encoding 정보, callback)</code> 문법으로 사용한다. </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFile(<span class="string">`data/<span class="subst">$&#123;title&#125;</span>`</span>, description, <span class="string">&quot;utf8&quot;</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        response.writeHead(<span class="number">302</span>, &#123; <span class="attr">Location</span>: <span class="string">`/?id=<span class="subst">$&#123;title&#125;</span>`</span> &#125;);</span><br><span class="line">        response.end();</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h2><p>데이터를 읽는 기능이다. Node.js는 다양한 데이터를 읽기위한 메서드를 제공하고 있다.<br>코드를 짜면서 항상 고려해야 할 사항은, 바뀌는 부분이 있을 때 그 변화가 다른 코드에 미치는 영향이 최소화 되도록 하는 것이다.</p>
+<h3 id="fs-readdir"><a href="#fs-readdir" class="headerlink" title="fs.readdir"></a>fs.readdir</h3><p>지정된 디렉토리 경로에 있는 파일들을 읽고 Array 형태로 반환한다.<br>문법</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.readdir(<span class="string">&#x27;경로&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, fileList</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(fileList);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="fs-readfile"><a href="#fs-readfile" class="headerlink" title="fs.readfile"></a>fs.readfile</h3><p>지정된 파일을 text 형태로 읽는다.<br>문법</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.readfile(<span class="string">`data/<span class="subst">$&#123;queryData.id&#125;</span>`</span>, <span class="string">&#x27;utf8&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, description</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(description);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><em>utf8</em> 은 인코딩 방식을 메서드에 알려준 것이다. 이를 지정하지 않으면 파일을 정상적으로 읽을 수 없다.</p>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2><p>파일을 수정/갱신하는 기능을 말한다.<br>파일을 수정할 때 주의해야 할 점은, 각 파일을 구분하는 고유한 <code>id</code>와 같은 속성이 있어야 한다는 점이다.</p>
+<h3 id="fs-rename"><a href="#fs-rename" class="headerlink" title="fs.rename()"></a>fs.rename()</h3><p>파일명을 바꾸는 메서드이다.<br><code>현재 파일명</code>,<code>변경할 파일명</code>, <code>callback</code>으로 구성된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fs.rename(<span class="string">`data/<span class="subst">$&#123;id&#125;</span>`</span>, <span class="string">`data/<span class="subst">$&#123;title&#125;</span>`</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><p>파일을 삭제하는 기능이다. 이 또한 파일 고유 속성을 가지고 다뤄야 한다.</p>
+<h3 id="fs-unlink"><a href="#fs-unlink" class="headerlink" title="fs.unlink()"></a>fs.unlink()</h3><p>파일이나 link를 삭제하는 메서드이다.<br><code>파일 경로, callback</code>으로 구성된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fs.unlink(<span class="string">`data/<span class="subst">$&#123;id&#125;</span>`</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">        response.writeHead(<span class="number">302</span>, &#123; <span class="attr">Location</span>: <span class="string">&quot;/&quot;</span> &#125;);</span><br><span class="line">        response.end();</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Node-js/"># Node.js</a>
+                    
+                        <a href="/tags/Javascript/"># Javascript</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/19/Nodejs/Node-js03/">Node js03 - 동기 & 비동기</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/18/Javascript/JS30/Javascript-30-Day-6/">Javascript 30 - Day 6</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

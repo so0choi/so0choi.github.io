@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Promise | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Promise</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">9월 13, 2020&nbsp;&nbsp;22:05:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Javascript/">Javascript</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p><code>Promise</code>는 비동기 로직을 구현할 때 유용하게 사용되는 기능이다. ES6부터 도입된 기능으로 JS의 다양한 비동기 함수들을 쉽게 컨트롤 할 수 있게 되었는데, Node.js 등에서 Promise를 사용하지 않으면 callback 지옥에 빠지게 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">doSomething(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">  doSomethingElse(</span><br><span class="line">    result,</span><br><span class="line">    <span class="function"><span class="keyword">function</span> (<span class="params">newResult</span>) </span>&#123;</span><br><span class="line">      doThirdThing(</span><br><span class="line">        newResult,</span><br><span class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">finalResult</span>) </span>&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">&quot;Got the final result: &quot;</span> + finalResult);</span><br><span class="line">        &#125;,</span><br><span class="line">        failureCallback</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">    failureCallback</span><br><span class="line">  );</span><br><span class="line">&#125;, failureCallback);</span><br></pre></td></tr></table></figure>
+
+<p><em>구식 구현 방식.. 가독성이 정말 많이 떨어진다</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">doSomething()</span><br><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> doSomethingElse(result))</span><br><span class="line">  .then(<span class="function">(<span class="params">newResult</span>) =&gt;</span> doThirdThing(newResult))</span><br><span class="line">  .then(<span class="function">(<span class="params">finalResult</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Got the final result: <span class="subst">$&#123;finalResult&#125;</span>`</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(failureCallback);</span><br></pre></td></tr></table></figure>
+
+<p>ES6의 Promise와 Arrow function을 사용해 작성된 최신 문법의 js 코드이다. 훨씬 깔끔해졌다.</p>
+<p><code>Promise</code>는 객체이다.<br><img src="/images/2020-09-13-22-17-53.png"></p>
+<p>세가지 작업 상태가 있다.</p>
+<ul>
+<li><code>pending</code> : Promise 객체를 생성하면 적용되는 초기 상태</li>
+<li><code>fulfilled</code> : operation이 성공적으로 끝난 상태</li>
+<li><code>rejected</code> : operation이 실패한 상태</li>
+</ul>
+<p>기본적으로 지시한 동작이 <code>fulfilled</code>가 된 이후에 <code>.then</code> 키워드로 <code>chaining</code> 한 다음 작업이 순차적으로 실행된다.</p>
+<p>작업이 실패해 <code>rejected</code>가 될 경우 <code>.catch</code>를 사용해 처리할 수도 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myPromise = <span class="keyword">new</span> <span class="built_in">Promise</span>(myExecutorFunc)</span><br><span class="line">  .then(handleFulfilledA)</span><br><span class="line">  .then(handleFulfilledB)</span><br><span class="line">  .then(handleFulfilledC)</span><br><span class="line">  .catch(handleRejectedAny);</span><br></pre></td></tr></table></figure>
+
+<p>좀 더 현실적인 예시는 다음과 같다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseA = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolutionFunc, rejectionFunc</span>) =&gt;</span> &#123;</span><br><span class="line">  resolutionFunc(<span class="number">777</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// At this point, &quot;promiseA&quot; is already settled.</span></span><br><span class="line">promiseA.then(<span class="function">(<span class="params">val</span>) =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;asynchronous logging has val:&quot;</span>, val));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;immediate logging&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><p>Promise로 인자를 넘겨주면서 실행해본다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">p</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i, <span class="string">&quot;번째&quot;</span>);</span><br><span class="line">      resolve(i);</span><br><span class="line">    &#125;, <span class="number">1000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p(<span class="number">1</span>)</span><br><span class="line">  .then(<span class="function">(<span class="params">i</span>) =&gt;</span> p(i + <span class="number">1</span>))</span><br><span class="line">  .then(<span class="function">(<span class="params">i</span>) =&gt;</span> p(i + <span class="number">1</span>))</span><br><span class="line">  .then(<span class="function">(<span class="params">i</span>) =&gt;</span> p(i + <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+<p>1초가 지날 때 마다 <code>1</code>씩 증가된 <code>i</code>가 출력된다.</p>
+<p>이렇게 프로미스를 연결 할 때는 반드시 프로미스 객체를 반환해야 한다.</p>
+<h2 id="Promise-선언-방식"><a href="#Promise-선언-방식" class="headerlink" title="Promise 선언 방식"></a>Promise 선언 방식</h2><p>Promise의 선언 방식에는 <em>1. 객체 선언</em>, <em>2. 함수 리턴</em> 이렇게 두가지가 있다.<br>위의 예시들에서 두가지 방법을 모두 보여주고 있다.</p>
+<p>같아 보이지만 사실 수행할 수 있는 기능이 조금씩 다르다.</p>
+<p>항상 새로운 프로미스 객체를 생성해 반환하는 함수를 사용하는 경우, 함수를 호출할 때마다 프로미스 내부 작업이 실행된다.</p>
+<p>하지만 한번 생성한 프로미스 객체를 계속해서 호출할 경우, 이미 내부 로직이 실행되었기 때문에 아무리 다시 호출한다고 해도 <code>resolve()</code>만 실행된다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN-Promise</a></p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Javascript/"># Javascript</a>
+                    
+                        <a href="/tags/Promise/"># Promise</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/09/15/Nodejs/Node-js13/">Node-js13 - Node.js 동작 방식 (EventLoop)</a>
+            
+            
+            <a class="next" rel="next" href="/2020/09/13/Javascript/hoisting/">Hoisting</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

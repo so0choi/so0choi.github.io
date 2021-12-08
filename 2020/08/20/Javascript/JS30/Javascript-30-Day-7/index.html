@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Javascript 30 - Day 7 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Javascript 30 - Day 7</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 20, 2020&nbsp;&nbsp;22:40:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Javascript/">Javascript</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Javascript30-Day7-Array-Cardio-Day-2"><a href="#Javascript30-Day7-Array-Cardio-Day-2" class="headerlink" title="Javascript30 Day7 - Array Cardio Day 2"></a>Javascript30 Day7 - Array Cardio Day 2</h2><p>Array 자료형의 유용한 메서드를 공부한다.<br>test data는 아래와 같다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> people = [</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;Wes&quot;</span>, <span class="attr">year</span>: <span class="number">1988</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;Kait&quot;</span>, <span class="attr">year</span>: <span class="number">1986</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;Irv&quot;</span>, <span class="attr">year</span>: <span class="number">1970</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;Lux&quot;</span>, <span class="attr">year</span>: <span class="number">2015</span> &#125;,</span><br><span class="line">      ];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> comments = [</span><br><span class="line">        &#123; <span class="attr">text</span>: <span class="string">&quot;Love this!&quot;</span>, <span class="attr">id</span>: <span class="number">523423</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">text</span>: <span class="string">&quot;Super good&quot;</span>, <span class="attr">id</span>: <span class="number">823423</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">text</span>: <span class="string">&quot;You are the best&quot;</span>, <span class="attr">id</span>: <span class="number">2039842</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">text</span>: <span class="string">&quot;Ramen is my fav food ever&quot;</span>, <span class="attr">id</span>: <span class="number">123523</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">text</span>: <span class="string">&quot;Nice Nice Nice!&quot;</span>, <span class="attr">id</span>: <span class="number">542328</span> &#125;,</span><br><span class="line">      ];</span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-some"><a href="#Array-prototype-some" class="headerlink" title="Array.prototype.some()"></a>Array.prototype.some()</h2><p>function을 인자로 받아 조건을 만족하는 원소가 Array에 적어도 하나 있는지를 bool 형식으로 반환한다.</p>
+<ul>
+<li>Is at least one person 19 or older?<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isAdult = people.some(<span class="function"><span class="keyword">function</span> (<span class="params">person</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">const</span> currentYear = <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear();</span><br><span class="line">        <span class="keyword">if</span> (currentYear - person.year &gt;= <span class="number">19</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;);</span><br><span class="line"><span class="built_in">console</span>.log(isAdult);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>Arrow function을 사용하면 다음과 같이 간단하게 나타낼수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isAdult = people.some(</span><br><span class="line">        <span class="function">(<span class="params">person</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - person.year &gt;= <span class="number">19</span></span><br><span class="line">      );</span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-every"><a href="#Array-prototype-every" class="headerlink" title="Array.prototype.every()"></a>Array.prototype.every()</h2><p>function을 인자로 받아 Array의 모든 원소가 조건을 만족하는지 여부를 bool로 반환한다.</p>
+<ul>
+<li>Is everyone 19 or older?</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> allAdult = people.every(</span><br><span class="line">        <span class="function">(<span class="params">person</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - person.year &gt;= <span class="number">19</span></span><br><span class="line">      );</span><br><span class="line"><span class="built_in">console</span>.log(allAdult);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Array-prototype-find"><a href="#Array-prototype-find" class="headerlink" title="Array.prototype.find()"></a>Array.prototype.find()</h2><p>원하는 값을 찾을 때 사용한다. filter() 메서드와 비슷하지만 find는 찾고자 하는 조건에 부합하는 단 하나의 element를 반환한다.</p>
+<ul>
+<li>find the comment with the ID of 823423<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> findId = comments.find(<span class="function">(<span class="params">comment</span>) =&gt;</span> comment.id === <span class="number">823423</span>);</span><br><span class="line"><span class="built_in">console</span>.log(findId);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Array-prototype-findIndex"><a href="#Array-prototype-findIndex" class="headerlink" title="Array.prototype.findIndex()"></a>Array.prototype.findIndex()</h2><p>원하는 값의 Array내 인덱스를 찾을 때 사용한다. </p>
+<ul>
+<li> <code>Array.prototype.splice()</code><br>함수와 함께 사용할 수 있다. <code>splice</code>는 Array 객체에 원하는 위치에 element를 추가하거나 삭제하는 메서드다.</li>
+</ul>
+<h2 id="Array-prototype-splice"><a href="#Array-prototype-splice" class="headerlink" title="Array.prototype.splice()"></a>Array.prototype.splice()</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">공식 문서</a></p>
+<ul>
+<li><p>문법<br><code>splice(start[, delete_count, item])</code> </p>
+</li>
+<li><p><code>start</code> : Array에서 변화를 줄 시작 인덱스</p>
+</li>
+<li><p><code>delete_count</code> : <code>start</code> 인덱스에서 시작해 배열에서 지울 element의 갯수<br>만약 <code>0</code>이거나 음수라면 아무 요소도 지워지지 않는다.</p>
+</li>
+<li><p><code>item</code> : <code>start</code> 인덱스부터 배열에 새로 채워질 item</p>
+</li>
+<li><p>Find the comment with ID of 823423 and delete the comment</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> index = comments.findIndex(<span class="function">(<span class="params">comment</span>) =&gt;</span> comment.id === <span class="number">823423</span>);</span><br><span class="line">comments.splice(index, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>찾고자 했던 ID 값에 해당하는 <code>comment</code>의 index를 찾아 <code>splice</code>메소드를 이용해 해당 index부터 한 개의 element를 삭제한다.</p>
+</li>
+</ul>
+<h3 id="Array-prototype-slice"><a href="#Array-prototype-slice" class="headerlink" title="Array.prototype.slice()"></a>Array.prototype.slice()</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice">공식 문서</a><br>배열을 슬라이싱하는 메서드이다. </p>
+<ul>
+<li>문법<br><code>Array.slice(start[, end])</code></li>
+</ul>
+<p>위의 문제를 <code>slice()</code>를 이용해서 풀 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newComments = [</span><br><span class="line">    ...comments.slice(<span class="number">0</span>,index)</span><br><span class="line">    ...comments.slice(index+<span class="number">1</span>)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p><code>end</code> index의 요소는 포함하지 않기 때문에 <code>index</code>의 요소는 삭제 된 새로운 Array 가 <code>newComments</code>에 들어간다. <code>...</code> 키워드를 사용하지 않으면 nested 되므로 주의하자.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Javascript/"># Javascript</a>
+                    
+                        <a href="/tags/Javascript30/"># Javascript30</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/20/Javascript/JS30/Javascript-30-Day-8/">Javascript 30 - Day 8</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/20/Nodejs/Node-js05/">Node js05 - API</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

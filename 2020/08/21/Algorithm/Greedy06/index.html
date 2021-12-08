@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>[이코테] Greedy - 무지의 먹방 라이브 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[이코테] Greedy - 무지의 먹방 라이브</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 21, 2020&nbsp;&nbsp;18:53:51</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithm/">Algorithm</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><span class="github-emoji" alias="rotating_light" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png?v8">&#x1f6a8;</span> ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
+<h1 id="무지의-먹방-라이브"><a href="#무지의-먹방-라이브" class="headerlink" title="무지의 먹방 라이브"></a>무지의 먹방 라이브</h1><p><em>2019 카카오 신입 공채</em> <a target="_blank" rel="noopener" href="https://programmers.co.kr/learn/courses/30/lessons/42891">프로그래머스</a></p>
+<h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>평소 식욕이 왕성한 무지는 자신의 재능을 뽐내고 싶어 졌고 고민 끝에 카카오 TV 라이브로 방송을 하기로 마음먹었다.</p>
+<p>그냥 먹방을 하면 다른 방송과 차별성이 없기 때문에 무지는 아래와 같이 독특한 방식을 생각해냈다.</p>
+<p>회전판에 먹어야 할 N 개의 음식이 있다.<br>각 음식에는 1부터 N 까지 번호가 붙어있으며, 각 음식을 섭취하는데 일정 시간이 소요된다.<br>무지는 다음과 같은 방법으로 음식을 섭취한다.</p>
+<p>무지는 1번 음식부터 먹기 시작하며, 회전판은 번호가 증가하는 순서대로 음식을 무지 앞으로 가져다 놓는다.<br>마지막 번호의 음식을 섭취한 후에는 회전판에 의해 다시 1번 음식이 무지 앞으로 온다.<br>무지는 음식 하나를 1초 동안 섭취한 후 남은 음식은 그대로 두고, 다음 음식을 섭취한다.<br>다음 음식이란, 아직 남은 음식 중 다음으로 섭취해야 할 가장 가까운 번호의 음식을 말한다.<br>회전판이 다음 음식을 무지 앞으로 가져오는데 걸리는 시간은 없다고 가정한다.<br>무지가 먹방을 시작한 지 K 초 후에 네트워크 장애로 인해 방송이 잠시 중단되었다.<br>무지는 네트워크 정상화 후 다시 방송을 이어갈 때, 몇 번 음식부터 섭취해야 하는지를 알고자 한다.<br>각 음식을 모두 먹는데 필요한 시간이 담겨있는 배열 food_times, 네트워크 장애가 발생한 시간 K 초가 매개변수로 주어질 때 몇 번 음식부터 다시 섭취하면 되는지 return 하도록 solution 함수를 완성하라.</p>
+<h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul>
+<li><code>food_times</code> 는 각 음식을 모두 먹는데 필요한 시간이 음식의 번호 순서대로 들어있는 배열이다.</li>
+<li><code>k</code> 는 방송이 중단된 시간을 나타낸다.</li>
+<li>만약 더 섭취해야 할 음식이 없다면 <code>-1</code>을 반환하면 된다.</li>
+<li><code>food_times</code>의 길이는 1이상 200,000 이하이다.</li>
+<li><code>food_times</code>의 원소는 1이상 100,000,000 이하의 자연수이다.</li>
+<li><code>k</code>는 1이상 2x10^13 이하의 자연수이다.</li>
+</ul>
+<h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><table>
+<thead>
+<tr>
+<th>food_times</th>
+<th>k</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[3,1,2]</td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h2 id="풀이"><a href="#풀이" class="headerlink" title="풀이"></a>풀이</h2><p>가장 먹는 시간이 적게 소요되는 음식부터 계산하는 그리디 문제이다. 시간초과를 해결하기 위해서 우선순위 큐 자료구조를 이용한다.<br><em>참고</em> <a href="https://so0choi.github.io/">우선순위 큐 포스트</a></p>
+<p>파이썬에서 우선순위 큐는 <code>heapq</code> 모듈을 사용할 수 있다. <code>PriorityQueue</code>도 있지만 <code>heapq</code>가 좀 더 빠르게 동작한다고 한다.</p>
+<p>먼저 주어진 음식을 먹는 시간의 합이 <code>k</code>보다 작을 경우 <code>-1</code>을 반환하는 예외처리를 해준다.</p>
+<p>그리고 <code>(음식을 먹는데 걸리는 시간, 음식 번호)</code>의 튜플로 우선순위 큐에 걸리는 시간의 오름차순 순으로 데이터를 저장한다.<br>가장 시간이 적게 걸리는 음식부터 먹게 되는데, 한 음식을 먹는데 걸리는 총 시간은 <code>남은 음식의 수 * 음식 먹는데 걸리는 시간</code>이다.<br>예를 들어, 위에 주어진 예시에서 가장 시간이 짧게 소요되는 음식은 <code>1</code>이 걸리는 음식이다. 음식이 한 바퀴 도는데 <code>n*1</code>이 걸린다. 그리고 다음 음식으로 넘어간다. 두번째로 적게 걸리는 음식을 먹는데 걸리는 시간은 <code>이번에 먹을 차례의 음식을 먹는데 걸리는 시간 - 이전에 먹은 음식 걸리는 시간</code>이다. 이전 음식을 먹을 때도 현재 음식을 먹기 때문이다.</p>
+<p>음식을 하나 먹을 때마다 소요된 총 시간을 <code>k</code>에서 뺀다. 다음 음식을 큐에서 빼기 전에 해당 음식을 다 먹을 경우 <code>k</code>가 0이 되지 않는지 확인 작업을 해야 한다.</p>
+<p>더이상 음식을 다 먹을 수 없을 때가 되었을 경우 큐를 음식의 번호 순으로 정렬한다. 그리고 k 번째에 있는 음식의 번호를 반환하면 된다.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span>(<span class="params">food_times, k</span>):</span></span><br><span class="line">    answer=<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">sum</span>(food_times) &lt;= k:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    h = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(food_times)):</span><br><span class="line">        heapq.heappush(h, (food_times[i],i+<span class="number">1</span>))</span><br><span class="line">    n = <span class="built_in">len</span>(food_times)</span><br><span class="line">    last_food = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> k - (h[<span class="number">0</span>][<span class="number">0</span>] - last_food)*n &gt;= <span class="number">0</span>:</span><br><span class="line">        cur = heapq.heappop(h)[<span class="number">0</span>]</span><br><span class="line">        k -= (cur - last_food)*n</span><br><span class="line">        n-=<span class="number">1</span></span><br><span class="line">        last_food = cur</span><br><span class="line"></span><br><span class="line">    h.sort(key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> h[k%n][<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+            <script>
+            
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            /*
+            var disqus_config = function () {
+            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            */
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://zinirun.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Algorithm/"># Algorithm</a>
+                    
+                        <a href="/tags/Greedy/"># Greedy</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/21/Javascript/JS30/Javascript-30-Day-9/">Javascript 30 - Day 9</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/21/Algorithm/Greedy04/">[이코테] Greedy - 만들 수 없는 금액</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>Category | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+             
+
+<div class="container">
+  <div class="post-wrap categories">
+    <h2 class="post-title">Categories</h2>
+    <div class="categories-card">
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/BOJ/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              BOJ
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/19/Algorithm/BOJ-11724/">
+                BOJ - 11724. 연결 요소의 개수
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/09/Algorithm/BOJ-18352/">
+                BOJ - 18352. 특정 거리의 도시 찾기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/05/Algorithm/BOJ-3190/">
+                BOJ - 3190. 뱀
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/07/28/Algorithm/BOJ-7569/">
+                BOJ - 7569. 토마토
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Algorithm/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Algorithm
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/21/Algorithm/Greedy04/">
+                [이코테] Greedy - 만들 수 없는 금액
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/21/Algorithm/Greedy06/">
+                [이코테] Greedy - 무지의 먹방 라이브
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/23/Algorithm/sorting/">
+                Algorithm - Sorting
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/28/Algorithm/binary-search/">
+                Algorithm - Binary Search
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Programmers/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Programmers
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/30/Algorithm/programmers-60059/">
+                [프로그래머스] Lock and key
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/01/Algorithm/programmers-42889/">
+                [프로그래머스] 실패율
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Else/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Else
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/23/Else/Blogger-to-Hexo/">
+                Blogger to Hexo
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/14/Else/My-First-Post/">
+                Github 블로그 Hexo로 만들기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/22/Else/Slack-bot-%EB%A7%8C%EB%93%A4%EA%B8%B0/">
+                Slack bot 만들기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/01/16/Else/cmd-%ED%8F%AC%ED%8A%B8-%EC%A2%85%EB%A3%8C/">
+                특정 포트 강제 종료
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/03/27/Else/error01/">
+                Heroku deploy error - devD..
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/OS/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              OS
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/22/Else/Using-WSL/">
+                Windows에서 WSL 사용하기
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/GraphQL/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              GraphQL
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/01/16/GraphQL/graph1l02/">
+                graphql-yoga 로 시작하기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/01/14/GraphQL/graphql01/">
+                GraphQL 이란
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/06/06/GraphQL/graphql03/">
+                Context
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Javascript/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Javascript
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/21/Javascript/js01/">
+                closer / curring
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/21/Javascript/js02/">
+                for in, for of, forEach의 차..
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/18/Javascript/js03/">
+                ES6 문법
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/08/Javascript/js04/">
+                window.resize throttle 설정
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/13/Javascript/promise/">
+                Promise
+              </a>
+            
+          </article>
+                                                                  
+          <a class="more-post-link" href="/categories/Javascript/"
+            >More +</a
+          >
+          
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/NestJS/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              NestJS
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/08/23/NestJS/Nest00/">
+                NestJS란
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/05/13/NestJS/Nest02/">
+                NestJS Entity 파일과 dto의 동기화
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/05/10/NestJS/Nest01/">
+                NestJS, Graphql 연동
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/05/16/NestJS/Nest03/">
+                InputType vs ArgsType
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/05/23/NestJS/Nest04/">
+                ConfigService로 환경변수 사용하기
+              </a>
+            
+          </article>
+                  
+          <a class="more-post-link" href="/categories/NestJS/"
+            >More +</a
+          >
+          
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Python/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Python
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/29/Python_/Python-Scrapper01/">
+                Python web scrapping (Beau..
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/02/25/Python_/flask01/">
+                Flask와 NGINX
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Node-js/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Node.js
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/12/12/Nodejs/Node-js-17/">
+                Gulp.js
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/16/Nodejs/Node-js01/">
+                Node.js-01 노드의 기본 기능
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/18/Nodejs/Node-js02/">
+                Node js02 - Node.js의 CRUD
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/19/Nodejs/Node-js03/">
+                Node js03 - 동기 & 비동기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/19/Nodejs/Node-js04/">
+                Node js04 - 패키지 매니저와 PM2
+              </a>
+            
+          </article>
+                                          
+          <a class="more-post-link" href="/categories/Node-js/"
+            >More +</a
+          >
+          
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/React-js/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              React.js
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/01/24/React/React-js-01/">
+                React.js 시작하기
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/React-Native/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              React Native
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/11/18/ReactNative/babel-plugin-issue/">
+                React Native babel plugin ..
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Server/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Server
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/07/Server_/server01/">
+                Server01 - 인터넷 기초
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/07/Server_/server02/">
+                Server02 - 클라우드 컴퓨팅
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/07/Server_/server03/">
+                Server03 - AWS 시작하기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/08/Server_/server04/">
+                Flask앱 AWS로 배포하기
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/WEB/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              WEB
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/24/Web_Programming/web01/">
+                css 배치
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/24/Web_Programming/web02/">
+                Block & Inline block
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/03/Web_Programming/web06/">
+                Flex
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/02/Web_Programming/web05/">
+                CSS 복합 선택자
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/03/Web_Programming/web07/">
+                CSS 배치
+              </a>
+            
+          </article>
+                     
+          <a class="more-post-link" href="/categories/WEB/"
+            >More +</a
+          >
+          
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/AWS/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              AWS
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/14/AWS/AWS01/">
+                AWS - S3
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/16/AWS/AWS03/">
+                AWS - Github page AWS Rout..
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/17/AWS/AWS04/">
+                AWS - AWS Node.js SDK로 S3 ..
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/10/20/AWS/AWS05/">
+                AWS - CodeCommit
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/11/17/AWS/AWS06/">
+                AWS - Node.js + Lambda + A..
+              </a>
+            
+          </article>
+                                          
+          <a class="more-post-link" href="/categories/AWS/"
+            >More +</a
+          >
+          
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Webpack/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Webpack
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/11/18/Web_Programming/webpack-asset/">
+                Webpack file-loader 경로 오류
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/11/18/Web_Programming/webpack-loader/">
+                Webpack loader 사용하기
+              </a>
+            
+          </article>
+             
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2021/11/15/Web_Programming/webpack/">
+                Webpack
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Diary/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Diary
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/08/26/Else/Codeforces-try-1/">
+                Codeforces 첫 도전
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+       
+      <div class="card-item">
+        <div class="categories">
+          <a href="/categories/Git/">
+            <h3>
+              <i class="iconfont icon-category" style="padding-right: 3px;"></i>
+              Git
+            </h3>
+          </a>
+            
+          <article class="archive-item">
+            
+              <a class="archive-item-link" href="/2020/09/13/Else/Git01/">
+                Git 명령어
+              </a>
+            
+          </article>
+            
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
