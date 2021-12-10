@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Webpack file-loader 경로 오류 | StudyYeong</title>
+<title>AWS - DynamoDB2 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Webpack file-loader 경로 오류</h1>
+            <h1 class="post-title">AWS - DynamoDB2</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">11월 18, 2021&nbsp;&nbsp;11:36:27</a>
+                        Date: <a href="#">11월 20, 2020&nbsp;&nbsp;22:27:37</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Webpack/">Webpack</a>
+                                <a href="/categories/AWS/">AWS</a>
                             
                         </span>
                     
@@ -218,39 +218,31 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Webpack-file-loader-경로-오류"><a href="#Webpack-file-loader-경로-오류" class="headerlink" title="Webpack file-loader 경로 오류"></a>Webpack file-loader 경로 오류</h1><h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>jpg, gif 등 이미지 파일 처리를 위해 검색을 하다보면 ‘file-loader’를 사용하는 방식이 가장 많이 뜬다. 나의 경우 강의를 듣고 따라하며 ‘file-loader’를 프로젝트로 적용시켰는데, JS 파일에서 import한 이미지는 제대로 넣어졌으나 css 파일에서 url()로 입력한 이미지는 경로가 맞지 않아 불러오지를 못했다.</p>
-<p>파일 구조는 아래와 같았다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public</span><br><span class="line"> ┣ img</span><br><span class="line"> ┣  ┣ img1.jpg</span><br><span class="line"> ┣  ┣ img2.gif</span><br><span class="line"> ┣ js</span><br><span class="line"> ┗ css</span><br></pre></td></tr></table></figure>
-
-<p>file-loader를 사용하면서 option은 아래와 같이 입력했다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(png|jpe?g|gif)$/i</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="attr">loader</span>: <span class="string">&#x27;file-loader&#x27;</span>,</span><br><span class="line">            <span class="attr">options</span>: &#123;</span><br><span class="line">              <span class="attr">name</span>: <span class="string">&#x27;img/[contenthash].[ext]&#x27;</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
-
-<p><code>publicPath</code> 옵션도 바꿔보고.. 여러가지를 변경해봤는데 계속해서 해결되지 않았다. 나는 ‘public/img’ 폴더 내부에 있는 파일에 접근해야 하는데, public폴더 하위에 dummy file이 hash된 이름으로 생성되고 css에서 사용하는 url 링크는 이 dummy file을 참조했다. <code>name</code> 옵션에서 hash가 아닌 파일 원래 이름을 사용하도록 변경했음에도 hash된 이름의 dummy가 생성되는걸 보고 file-loader 문제가 아니구나… 싶었다. 🤔</p>
-<h2 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h2><p>역시나 답은 공식문서에 있었다. stackoverflow 답변 중 생소한 코드가 있어서 참조 링크를 들어가보니, file-loader는 Webpack4에서 사용하는 방식이고, Webpack5 부터는 내장 모듈 사용을 권장한다는 내용이었다.</p>
-<p><img src="/images/2021-11-18-10-49-12.png"></p>
-<p>file-loader 옵션 때문에 며칠동안 들어왔던 페이지인데.. 자세히 봤으면 진작 해결될 문제였다.</p>
-<h3 id="Asset-Modules"><a href="#Asset-Modules" class="headerlink" title="Asset Modules"></a>Asset Modules</h3><p>Asset Modules은 asset file(font, icon 등)을 추가 로더 없이 사용할 수 있도록 해주는 Webpack5에 새롭게 추가된 내장 모듈이다. 기존에 여러가지 로더로 사용되던 작업을 이 모듈 하나로 처리할 수 있다.</p>
-<p>이전까지의 방식은 아래와 같았다.</p>
+            <h1 id="DynamoDB-활용가능성"><a href="#DynamoDB-활용가능성" class="headerlink" title="DynamoDB 활용가능성"></a>DynamoDB 활용가능성</h1><p>DynamoDB를 사용할 수 있는지 계속해서 활용방안을 생각해보고있다.</p>
+<h2 id="현-상황"><a href="#현-상황" class="headerlink" title="현 상황"></a>현 상황</h2><p>재생량을 전송하는 작업에서 uuid로 구분되는 MySQL(RDBMS) 로그 데이터 테이블에 insert와 update가 빈번하게 발생하고 있다. 이를 개선시키고자 한다.</p>
+<h3 id="이슈"><a href="#이슈" class="headerlink" title="이슈"></a>이슈</h3><ol>
+<li>재생량 전송 처리 서버를 분리한다 (API 추출)</li>
+<li>데이터를 쌓는 과정과 조회 과정이 동시에 일어남에 따라 조회 지연이 길다.</li>
+</ol>
+<h2 id="해결방안"><a href="#해결방안" class="headerlink" title="해결방안"></a>해결방안</h2><ol>
+<li>AWS DynamoDB(NoSQL)을 도입한다.</li>
+<li>기본키의 구성을 바꾼다.</li>
+<li>데이터 삽입 방법과 조회 방법을 바꾼다.</li>
+<li>메세지 큐를 사용해 주기적으로 데이터를 정해진 곳으로 전송하도록 한다.</li>
+</ol>
+<h2 id="DynamoDB-사용해보기"><a href="#DynamoDB-사용해보기" class="headerlink" title="DynamoDB 사용해보기"></a>DynamoDB 사용해보기</h2><p><img src="images/2020-11-18-15-18-43.png"></p>
+<p>API Gateway로 재생량 전송 서버를 분리하여 api를 만든다. Lambda를 사용해 DynamoDB에 데이터를 저장한다.</p>
+<p>현재 사용중인 <code>log data insert</code> 작업은 기본키인 uuid의 데이터를 계속해서 갱신하는 방식으로, <code>INSERT INTO ON DUPLICATE KEY UPDATE</code> 문을 사용하고 있다. DynamoDB는 Hash key 값과 같은 key 값을 가진 데이터를 insert 하려고 하면 자동으로 new data를 old data에 Overwrite 한다. 따라서 간단한 insert문으로 입력/갱신을 할 수 있는 것이다. (물론 Update 작업도 따로 제공된다)</p>
+<p>Play data는 재생 로그 데이터의 수집이기 때문에 다른 테이블과의 관계가 없다. 데이터는 계속해서 insert 되기만 하고 로그 데이터라 양이 계속해서 쌓인다. DynamoDB는 데이터 용량이 제한되어있지않기 때문에 이번 작업에 사용하기에 적합한 툴로 보인다.</p>
+<h3 id="이슈-1"><a href="#이슈-1" class="headerlink" title="이슈"></a>이슈</h3><ol>
+<li>데이터를 입력할 때 <code>ddb.put</code> 메서드를 사용하는데 기본키가 같을 경우 DynamoDB는 기존 데이터에 새로운 데이터를 overwrite 한다. 이런 경우 update 연산이 빠른가 아니면 overwrite가 빠른가?</li>
+</ol>
 <ul>
-<li>raw-loader: file을 string으로 읽기</li>
-<li>url-loader: file을 data URI로 번들링하기</li>
-<li>file-loader: file을 output diretory로 내보내기</li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/47599149/updating-vs-overwriting-items-from-staging-tables-in-dynamodb">updating vs overwriting items from dynamodb</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46174669/amazon-dynamodb-performace-comparision-between-replacing-an-entire-item-using-p">dynamodb performance comparision</a></li>
 </ul>
-<p>나는 이미지 파일 처리를 위해 file-loader를 사용했던 것이다.<br>새로운 Asset Module은 다음과 같이 사용하면 된다.</p>
-<ul>
-<li>asset/resource: file-loader로 하던 작업에 사용. file을 내보내 URL을 제공</li>
-<li>asset/inline: url-loader로 하던 작업에 사용. asset의 URI를 내보낸다.</li>
-<li>asset/source: raw-loader로 하던 작업에 사용. asset을 소스코드로 내보낸다.</li>
-<li>asset: data URI로 내보낼 지 분할된 파일로 내보낼지 자동으로 선택한다. 이전에는 url-loader에서 size limit옵션을 통해 설정한 작업이다.</li>
-</ul>
-<p>최종적으로 아래와 같이 변경하여 정상적으로 실행이 가능했다.</p>
-<p>webpack.config.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.(png|svg|jpg|jpeg|gif)$/i</span>,</span><br><span class="line">        type: <span class="string">&#x27;asset/resource&#x27;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>이렇게 하면 output 경로에 asset파일이 저장되는데, 저장되는 경로나 파일 이름은 바꾸고 싶다면 output.assetModuleFilename 옵션으로 변경할 수 있다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  <span class="attr">assetModuleFilename</span>: <span class="string">&#x27;img/[hash][ext][query]&#x27;</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><p><a target="_blank" rel="noopener" href="https://webpack.js.org/guides/asset-modules/">Asset Modules</a></p>
+<p>실제로 속도에서 큰 차이는 없다고 한다. 각 메서드들을 호출하는 방식에 차이가 있는데, put 은 value 전체를 바꾸는 것이기 때문에 바꿀 데이터 전체를 입력해야 하고, update는 바꿀 항목 하나만 작성하면 된다는 것이다. 때문에, 만약 큰 data record에서 작은 하나의 항목만 수정하면 되는 경우에는 Update를 사용하는 것이 좀 더 경제적이다.</p>
+<p>현재와 같은 방식으로 데이터를 쌓는다면 update/put의 차이는 없어보인다.</p>
 
         </div>
 
@@ -283,9 +275,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/webpack/"># webpack</a>
+                        <a href="/tags/AWS/"># AWS</a>
                     
-                        <a href="/tags/file-loader/"># file-loader</a>
+                        <a href="/tags/DynamoDB/"># DynamoDB</a>
                     
                         
                 </span>
@@ -298,10 +290,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/12/09/AWS/DynamoDB/Dynamodb-%EA%B3%A0%EB%AF%BC/">Dynamodb 고민</a>
+                <a class="prev" rel="prev" href="/2020/11/20/AWS/DynamoDB/AWS07/">AWS - DynamoDB</a>
             
             
-            <a class="next" rel="next" href="/2021/11/18/ReactNative/babel-plugin-issue/">React Native babel plugin config 이슈</a>
+            <a class="next" rel="next" href="/2020/11/17/AWS/AWS06/">AWS - Node.js + Lambda + APIGateway + DynamoDB</a>
             
         </section>
 
