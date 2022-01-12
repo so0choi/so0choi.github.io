@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Gulp.js | StudyYeong</title>
+<title>Cloudwatch insight query | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Gulp.js</h1>
+            <h1 class="post-title">Cloudwatch insight query</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">12월 12, 2020&nbsp;&nbsp;23:04:47</a>
+                        Date: <a href="#">12월 13, 2021&nbsp;&nbsp;14:09:59</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Node-js/">Node.js</a>
+                                <a href="/categories/AWS/">AWS</a>
                             
                         </span>
                     
@@ -218,8 +218,10 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Gulp-js"><a href="#Gulp-js" class="headerlink" title="Gulp.js"></a>Gulp.js</h1><p>Gulp는 오픈소스 자바스크립트 toolkit이다. Node.js로 만들어진 task runner로 시간을 잡아먹는 반복적인 작업들을 자동화하는데 사용된다. 사용 예로는 파일 합치기, 유닛 테스트ㄴ 작업, linting, 최적화 작업 등이 있겠다.</p>
+            <h1 id="AWS-Cloudwatch-Insight"><a href="#AWS-Cloudwatch-Insight" class="headerlink" title="AWS Cloudwatch Insight"></a>AWS Cloudwatch Insight</h1><p>Cloudwatch Insight 쿼리 사용하는 법</p>
+<h2 id="timestamp-범위-내-로그-쿼리"><a href="#timestamp-범위-내-로그-쿼리" class="headerlink" title="timestamp 범위 내 로그 쿼리"></a>timestamp 범위 내 로그 쿼리</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fields @timestamp, @message</span><br><span class="line">| fields tomillis(@timestamp) as millis</span><br><span class="line">| filter millis &gt; 1639162500000  # 2021년 12월 11일 토요일 오전 3:55:05 GMT+09:00</span><br><span class="line">     and millis &lt; 1639162510000  # 2021년 12월 11일 토요일 오전 3:55:10 GMT+09:00</span><br></pre></td></tr></table></figure>
 
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
         </div>
 
         
@@ -251,9 +253,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Node-js/"># Node.js</a>
+                        <a href="/tags/AWS/"># AWS</a>
                     
-                        <a href="/tags/Gulp/"># Gulp</a>
+                        <a href="/tags/Cloudwatch/"># Cloudwatch</a>
                     
                         
                 </span>
@@ -266,10 +268,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/12/28/Nodejs/Node-js-18/">Gulp 사용 오류 정리</a>
+                <a class="prev" rel="prev" href="/2022/01/12/Javascript/Remove-event-handler/">Remove event handler</a>
             
             
-            <a class="next" rel="next" href="/2020/12/04/AWS/AWS15/">AWS - Data analytics3</a>
+            <a class="next" rel="next" href="/2021/12/13/Nodejs/Express-with-typescript/">Express.js Typescript 보일러플레이트 만들기 (for Web)</a>
             
         </section>
 
