@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Remove event handler | StudyYeong</title>
+<title>Event handler의 등록 및 삭제 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Remove event handler</h1>
+            <h1 class="post-title">Event handler의 등록 및 삭제</h1>
             
                 <div class="post-meta">
                     
@@ -248,7 +248,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.removeEventListener(<span class="string">&quot;keydown&quot;</span>, keydownEventHandler, <span class="literal">false</span>); <span class="comment">// 옵션이 다르기 때문에 삭제 실패</span></span><br></pre></td></tr></table></figure>
 
 <p>또한 가리키는 리스너가 같아야 삭제가 정상적으로 이루어진다. 즉, 익명 함수로 리스너 등록 및 삭제시 <em>삭제가 이루어지지 않는다!</em></p>
-<h4 id="리스너-초기화를-통한-삭제-방식"><a href="#리스너-초기화를-통한-삭제-방식" class="headerlink" title="리스너 초기화를 통한 삭제 방식"></a>리스너 초기화를 통한 삭제 방식</h4><p><code>removeEventListenr()</code> 이외의 다른 방법으로 리스너를 <code>null</code>로 초기화 하는 방법도 있다.</p>
+<h3 id="리스너-초기화를-통한-삭제-방식"><a href="#리스너-초기화를-통한-삭제-방식" class="headerlink" title="리스너 초기화를 통한 삭제 방식"></a>리스너 초기화를 통한 삭제 방식</h3><p><code>removeEventListenr()</code> 이외의 다른 방법으로 리스너를 <code>null</code>로 초기화 하는 방법도 있다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 등록</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = <span class="function">(<span class="params">f</span>) =&gt;</span> myMethod();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 삭제</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
 
         </div>
@@ -257,22 +257,21 @@
         <section class="post_disqus">
             <div id="disqus_thread"></div>
             <script>
-            
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://zinirun.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://so0github-blog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
             </script>
             <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         </section>
@@ -294,6 +293,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/01/13/Server_/Actor-model-framework/">Actor model framework</a>
             
             
             <a class="next" rel="next" href="/2021/12/13/AWS/Cloudwatch-insight-query/">Cloudwatch insight query</a>
