@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Cloudwatch Log Insights query | StudyYeong</title>
+<title>AWS Kinesis | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Cloudwatch Log Insights query</h1>
+            <h1 class="post-title">AWS Kinesis</h1>
             
                 <div class="post-meta">
                     
@@ -202,60 +202,21 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">12월 13, 2021&nbsp;&nbsp;14:09:59</a>
+                        Date: <a href="#">3월 17, 2022&nbsp;&nbsp;15:15:02</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/AWS/">AWS</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Cloudwatch Log Insights는 로그 그룹을 쿼리하는 데 사용할 수 있는 쿼리 언어를 지원한다. 로그 유형의 필드를 검색하고 <code>@</code> 기호로 시작하는 필드를 자동으로 생성한다. Cloudwatch 로그를 일일이 뒤지고 싶지 않다면 사용법을 알아두는게 좋다.</p>
-<h2 id="쿼리-명령어"><a href="#쿼리-명령어" class="headerlink" title="쿼리 명령어"></a>쿼리 명령어</h2><table>
-<thead>
-<tr>
-<th>명령어</th>
-<th>설명</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>display</td>
-<td>쿼리 결과에 표시할 필드를 지정</td>
-</tr>
-<tr>
-<td>fields</td>
-<td>로그 이벤트에서 지정된 필드를 검색</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>조건을 기반으로 쿼리 결과를 필터링</td>
-</tr>
-<tr>
-<td>stats</td>
-<td>로그 필드 값을 사용하여 집계 통계를 계산. <code>by</code>와 함께 사용하여 기준을 지정해 데이터를 그룹화할 수 있음</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>검색된 로그 이벤트를 정렬</td>
-</tr>
-<tr>
-<td>limit</td>
-<td>쿼리에서 반환되는 로그 이벤트 수를 지정 (기본값은 최대 1,000개)</td>
-</tr>
-<tr>
-<td>parse</td>
-<td>로그 필드에서 데이터를 추출하고, 쿼리에서 추가로 처리할 수 있는 임시 필드 생성</td>
-</tr>
-</tbody></table>
-<h2 id="사용예"><a href="#사용예" class="headerlink" title="사용예"></a>사용예</h2><h3 id="timestamp-범위-내-로그-쿼리"><a href="#timestamp-범위-내-로그-쿼리" class="headerlink" title="timestamp 범위 내 로그 쿼리"></a>timestamp 범위 내 로그 쿼리</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fields @timestamp, @message</span><br><span class="line">| fields tomillis(@timestamp) as millis</span><br><span class="line">| filter millis &gt; 1639162500000  # 2021년 12월 11일 토요일 오전 3:55:05 GMT+09:00</span><br><span class="line">     and millis &lt; 1639162510000  # 2021년 12월 11일 토요일 오전 3:55:10 GMT+09:00</span><br></pre></td></tr></table></figure>
+            <p>Amazon Kineses를 사용하면 실시간 스트리밍 데이터를 손쉽게 수집, 처리 및 분석할 수 있으므로 새로운 정보에 신속 대응할 수 있다. Amazon Kineses에서는 기계 학습, 분석 및 기타 애플리케이션을 위해 비디오, 오디오, 애플리케이션 로그 데이터와 같은 실시간 데이터를 수집할 수 있다.</p>
+<h2 id="중요-특징"><a href="#중요-특징" class="headerlink" title="중요 특징"></a>중요 특징</h2><ul>
+<li>실시간 : 실시간 스트리밍 데이터를 수집 및 처리할 수 있다.</li>
+<li>완전관리형 : 사용자가 인프라를 관리할 필요가 없다.</li>
+<li>확장성 : 매우 짧은 지연 시간으로 수많은 소스의 데이터를 처리할 수 있다.</li>
+</ul>
 
         </div>
 
@@ -287,9 +248,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/AWS/"># AWS</a>
-                    
-                        <a href="/tags/Cloudwatch/"># Cloudwatch</a>
+                        <a href="/tags/Kinesis/"># Kinesis</a>
                     
                         
                 </span>
@@ -302,10 +261,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/01/12/Javascript/Remove-event-handler/">Event handler의 등록 및 삭제</a>
+                <a class="prev" rel="prev" href="/2022/03/18/AWS/AWS-SAM/">AWS SAM</a>
             
             
-            <a class="next" rel="next" href="/2021/12/13/Nodejs/Express-with-typescript/">Express.js Typescript 보일러플레이트 만들기 (for Web)</a>
+            <a class="next" rel="next" href="/2022/02/25/ReactNative/React-Native-dotenv-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">React Native dotenv 사용하기</a>
             
         </section>
 
