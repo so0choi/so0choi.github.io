@@ -221,7 +221,7 @@
             <blockquote>
 <p>업무에서 Standard 큐를 사용할 것이라 Standard 큐 기준으로 내용을 정리했다. FIFO 큐는 차이가 있는 부분이 있기 때문에 문서를 참고해야 한다.</p>
 </blockquote>
-<p>Lambda trigger로 SQS를 등록할 수 있다. Standard 큐와 FIFO 큐 모두 지원한다.<br>Lambda는 큐를 poll하여 가져온 큐 메시지로 동기적으로 Lambda 함수를 실행한다. Lambda는 batch안의 메시지들을 읽고 각 batch당 한 번씩 Lambda 함수를 실행시킨다. 작업이 성공적으로 끝나면 Lambda는 자동으로 큐에서 메시지를 삭제한다.</p>
+<h2 id="SQS-Lambda-Trigger란"><a href="#SQS-Lambda-Trigger란" class="headerlink" title="SQS Lambda Trigger란"></a>SQS Lambda Trigger란</h2><p>Lambda trigger로 SQS를 등록할 수 있다. Standard 큐와 FIFO 큐 모두 지원한다.<br>Lambda는 큐를 poll하여 가져온 큐 메시지로 동기적으로 Lambda 함수를 실행한다. Lambda는 batch안의 메시지들을 읽고 각 batch당 한 번씩 Lambda 함수를 실행시킨다. 작업이 성공적으로 끝나면 Lambda는 자동으로 큐에서 메시지를 삭제한다.</p>
 <p>default로 Lambda는 한 번에 10개의 메시지를 poll하여 해당 batch를 함수로 보낸다. 적은 record로 함수가 실행되는 것을 피하기 위해서 batch window를 설정하여 최대 5분까지 메시지를 더 polling하여 record를 더 채울 수 있도록 대기시킬 수 있다. 함수를 실행하기 전에 Lambda는 지속적으로 메시지를 poll하여 아래의 경우 함수를 실행시킨다.</p>
 <ul>
 <li>batch window의 만료</li>
