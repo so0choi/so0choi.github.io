@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>TypeORM Query builder로 Join | StudyYeong</title>
+<title>Jest 경로 에러 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">TypeORM Query builder로 Join</h1>
+            <h1 class="post-title">Jest 경로 에러</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">7월 7, 2022&nbsp;&nbsp;11:06:41</a>
+                        Date: <a href="#">7월 21, 2022&nbsp;&nbsp;11:29:48</a>
                         </span>
                     
                     
@@ -211,10 +211,24 @@
         </header>
 
         <div class="post-content">
-            <p>TypeORM에서 서로 다른 테이블을 조인하여 값을 가져오는 작업은 Query Builder를 사용해야 한다.</p>
-<h2 id="SQL-query"><a href="#SQL-query" class="headerlink" title="SQL query"></a>SQL query</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tb1.a, tb2.b, tb3.c <span class="keyword">from</span> tb1, tb2, tb3 <span class="keyword">where</span> tb1.a <span class="operator">=</span> tb2.a <span class="keyword">and</span> tb2.b <span class="operator">=</span> tb3.b <span class="keyword">and</span> tb1.c <span class="operator">=</span> &quot;test&quot;</span><br></pre></td></tr></table></figure>
+            <p>테스트 코드를 실행하려고하는데 아래와 같은 에러가 발생했다.</p>
+<blockquote>
+<p>Cannot find module ‘src/config/configFile’ from ‘modules/foo/foo.service.ts’</p>
+</blockquote>
+<p>서치를 좀 하다가 Jest 설정을 수정했는데 경로 설정이 잘못된 같은 문제로 아래와 같은 에러도 발생했다.</p>
+<blockquote>
+<pre><code>TypeError: Right-hand side of &#39;instanceof&#39; is not an object
+ 30 |
+ 31 |   constructor(
+ 32 |     @InjectRepository(ChannelPlayer)
+</code></pre>
+</blockquote>
+<h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p><code>package.json</code> 파일의 Jest 설정을 바꿔주면 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;jest&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;roots&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&lt;rootDir&gt;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/home/some/path/&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;modulePaths&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&lt;rootDir&gt;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/home/some/other/path&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;moduleDirectories&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;node_modules&quot;</span></span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> query = <span class="keyword">await</span> <span class="built_in">this</span>.tb1Repository</span><br><span class="line">  .createQueryBuilder(<span class="string">&quot;tb1&quot;</span>)</span><br><span class="line">  .addSelect(<span class="string">&quot;tb2.b&quot;</span>, <span class="string">&quot;tb2_b&quot;</span>)</span><br><span class="line">  .addSelect(<span class="string">&quot;tb3.c&quot;</span>, <span class="string">&quot;tb3_c&quot;</span>)</span><br><span class="line">  .innerJoin(<span class="string">&quot;table2&quot;</span>, <span class="string">&quot;tb2&quot;</span>, <span class="string">&quot;tb1.a = tb2.a&quot;</span>)</span><br><span class="line">  .innerJoin(<span class="string">&quot;table3&quot;</span>, <span class="string">&quot;tb3&quot;</span>, <span class="string">&quot;tb2.b = tb3.b&quot;</span>)</span><br><span class="line">  .where(<span class="string">&quot;tb1.c = :test&quot;</span>, &#123;</span><br><span class="line">    <span class="attr">test</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  .getRawOne();</span><br></pre></td></tr></table></figure>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://thewebdev.info/2022/03/04/how-to-fix-the-cannot-find-module-when-importing-components-with-absolute-paths-with-jest/">How to fix the ‘Cannot find module’ when importing components with absolute paths with Jest?</a></li>
+</ul>
 
         </div>
 
@@ -245,12 +259,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/NestJS/"># NestJS</a>
-                    
-                        <a href="/tags/TypeORM/"># TypeORM</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -261,10 +269,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/21/Error/jest-%EA%B2%BD%EB%A1%9C-%EC%97%90%EB%9F%AC/">Jest 경로 에러</a>
             
-            
-            <a class="next" rel="next" href="/2022/05/30/Error/create-react-app-%EC%97%90%EB%9F%AC/">create-react-app 에러</a>
+            <a class="next" rel="next" href="/2022/07/07/Nodejs/NestJS/TypeORM-select-from-multiple-tables/">TypeORM Query builder로 Join</a>
             
         </section>
 
