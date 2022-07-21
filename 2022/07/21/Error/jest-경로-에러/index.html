@@ -215,13 +215,9 @@
 <blockquote>
 <p>Cannot find module ‘src/config/configFile’ from ‘modules/foo/foo.service.ts’</p>
 </blockquote>
-<p>서치를 좀 하다가 Jest 설정을 수정했는데 경로 설정이 잘못된 같은 문제로 아래와 같은 에러도 발생했다.</p>
+<p>서치를 좀 하다가 Jest 설정을 수정했는데 아래와 같은 에러도 발생했다.<br>결론적으로는 같은 원인으로 발생한 문제였다.</p>
 <blockquote>
-<pre><code>TypeError: Right-hand side of &#39;instanceof&#39; is not an object
- 30 |
- 31 |   constructor(
- 32 |     @InjectRepository(ChannelPlayer)
-</code></pre>
+<p>TypeError: Right-hand side of ‘instanceof’ is not an object<br>30 |<br>31 | constructor(<br>32 | @InjectRepository(ChannelPlayer)</p>
 </blockquote>
 <h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p><code>package.json</code> 파일의 Jest 설정을 바꿔주면 된다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;jest&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;roots&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&lt;rootDir&gt;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/home/some/path/&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;modulePaths&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&lt;rootDir&gt;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/home/some/other/path&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;moduleDirectories&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;node_modules&quot;</span></span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
