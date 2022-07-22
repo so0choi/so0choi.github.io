@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>serverless 사용해보기 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">serverless 사용해보기</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">3월 31, 2022&nbsp;&nbsp;10:40:24</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><img src="/images/2022-03-31-10-42-55.png"></p>
+<p>Serverless는 개발 프로세스를 단순화하기 위해 만들어졌다. AWS에서 Lambda를 작성한다면 각 Lambda마다 함수를 작성해야 하고 매번 환경 설정을 해야 한다. 그렇게 작성한 Lambda는 AWS 콘솔에서 다른 서비스와 연결시켜줘야 사용할 수 있다. 이런 과정을 간소화해주는 것이 Serverless Framework다. 간단한 Lambda 개발환경 구축 이외에도 serverless는 CI/CD 설정 및 배포 모니터링 기능을 제공한다.</p>
+<p>Serverless는 Node.js로 만들어진 오픈 소스 웹 프레임워크다. 2015년에 AWS Lambda를 개발하기 위해 만들어진 첫번째 프레임워크이며 현재는 Microsoft Azure의 Azure Functions, Google Cloud의 Google Cloud Functions등 다른 플랫폼도 지원한다. 플랫폼 선택에 따라 각 플랫폼에서 지원하는 다양한 언어(Node.js, Typescript, Python, Go, Java 등)를 모두 지원한다. AWS에서 나온 ‘SAM’과 비슷한 서비스인데 나도 SAM을 사용하려다가 더 큰 커뮤니티가 형성되어있고 다양한 플러그인이 존재하는 serverless를 선택하기로 했다.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.techmagic.co/blog/serverless-framework-vs-aws-sam/">serverless framework vs aws sam</a></li>
+</ul>
+<h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><p>Nodes.js가 이미 설치되어있고 컴퓨터에 aws credential이 설정되어있다는 가정하에 진행한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add serverless</span><br></pre></td></tr></table></figure>
+
+<p>설치를 완료하면 <code>serverless</code>, <code>sls</code> 명령어를 사용할 수 있다. <code>sls</code>는 그냥 축약어로 두 명령어는 같다고 보면 된다.</p>
+<h4 id="🚨-serverless-권한-부여"><a href="#🚨-serverless-권한-부여" class="headerlink" title="🚨 serverless 권한 부여"></a>🚨 serverless 권한 부여</h4><p>진행 과정에서 serverless의 권한을 설정하라고 할 수 있다. serverless가 AWS에 배포 할 수 있도록 권한을 줘야한다. AWS credential을 생성해 액세스키와 비밀 액세스키로 접근 권한을 줄 수 있다. 혹은 아래 명령어로 설정이 가능하다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless config credentials --provider aws --key &#123;액세스 키 ID&#125; --secret &#123;비밀 액세스 키&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="프로젝트-생성"><a href="#프로젝트-생성" class="headerlink" title="프로젝트 생성"></a>프로젝트 생성</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">serverless</span><br></pre></td></tr></table></figure>
+
+<p>명령어를 입력하면 템플릿을 선택할 수 있다.</p>
+<p><img src="/images/2022-03-31-11-16-10.png"></p>
+<p>Node.js Starter를 선택하고 프로젝트 명을 입력하면 프로젝트 이름의 폴더가 만들어진다. 생성 과정에서 serverless에 로그인 할 거냐고 물어보는데 계정이 있다면 로그인 해두는게 좋다. 배포한 프로젝트들을 serverless 콘솔에서 확인할 수 있기 때문이다.</p>
+<p><img src="/images/2022-03-31-11-28-41.png"></p>
+<p>생성된 프로젝트로 들어가면 위와 같은 구조가 보인다. 이 중 <code>serverless.yaml</code> 파일에 AWS deploy에 관련된 모든 정보가 들어간다.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span> <span class="string">aws-node-project</span></span><br><span class="line"></span><br><span class="line"><span class="attr">frameworkVersion:</span> <span class="string">&quot;3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">provider:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">aws</span></span><br><span class="line">  <span class="attr">runtime:</span> <span class="string">nodejs14.x</span></span><br><span class="line">  <span class="attr">region:</span> <span class="string">ap-northest-2</span></span><br><span class="line">  <span class="attr">profile:</span> <span class="string">dev</span></span><br><span class="line"></span><br><span class="line"><span class="attr">plugins:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">serverless-plugin-typescript</span></span><br><span class="line"></span><br><span class="line"><span class="attr">functions:</span></span><br><span class="line">  <span class="attr">hello:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">handler.hello</span></span><br><span class="line">  <span class="attr">dynamoHandler:</span></span><br><span class="line">    <span class="attr">handler:</span> <span class="string">handler.dynamoHandler</span></span><br><span class="line">    <span class="attr">role:</span> <span class="string">arn:aws:iam::xxxxxxxxxxx</span></span><br><span class="line">    <span class="attr">events:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">stream:</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">dynamodb</span></span><br><span class="line">        <span class="attr">arn:</span> <span class="string">arn:aws:dynamodb:xxxxxxx</span></span><br><span class="line">        <span class="attr">batchSize:</span> <span class="number">1000</span></span><br><span class="line">        <span class="attr">maximumRetryAttempts:</span> <span class="number">10</span></span><br><span class="line">        <span class="attr">startingPosition:</span> <span class="string">LATEST</span></span><br><span class="line">        <span class="attr">batchWindow:</span> <span class="number">30</span></span><br><span class="line"></span><br><span class="line"><span class="attr">resources:</span> <span class="comment"># CloudFormation template syntax</span></span><br><span class="line">  <span class="attr">Resources:</span></span><br><span class="line">    <span class="attr">usersTable:</span></span><br><span class="line">      <span class="attr">Type:</span> <span class="string">AWS::DynamoDB::Table</span></span><br><span class="line">      <span class="attr">Properties:</span></span><br><span class="line">        <span class="attr">TableName:</span> <span class="string">usersTable</span></span><br><span class="line">        <span class="attr">AttributeDefinitions:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">AttributeName:</span> <span class="string">email</span></span><br><span class="line">            <span class="attr">AttributeType:</span> <span class="string">S</span></span><br><span class="line">        <span class="attr">KeySchema:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">AttributeName:</span> <span class="string">email</span></span><br><span class="line">            <span class="attr">KeyType:</span> <span class="string">HASH</span></span><br><span class="line">        <span class="attr">ProvisionedThroughput:</span></span><br><span class="line">          <span class="attr">ReadCapacityUnits:</span> <span class="number">1</span></span><br><span class="line">          <span class="attr">WriteCapacityUnits:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>기본 생성 파일에 몇 가지를 더 추가해봤다. DynamoDB Stream을 처리하는 Lambda를 설정한 파일이다. 콘솔에서 설정하던 설정들이 코드 몇 줄이면 끝나고 관련 리소스 설정을 한 번에 볼 수 있어서 좋다.</p>
+<ul>
+<li>provider: 배포 환경에 관련된 설정이다. runtime 이외에도 <code>region</code>, <code>profile</code> 등을 여기서 정의</li>
+<li>functions: 배포할 함수들을 정의. (<code>hello</code>라는 함수에서 handler 파일의 hello를 handler로 쓰겠다는 의미) role 같이 필요한 설정이 정의되지 않을 경우 serverless가 자동 생성함</li>
+<li>plugins: 사용할 플러그인. 플러그인에 따라 입력 순서가 중요할 수 있기 때문에 주의 필요.</li>
+<li>resources: Lambda에 사용되는 infrastructure 리소스의 정의. 이미 존재하는 리소스를 사용하는 경우 arn을 사용하면 되고 없는 경우 리소스 정의를 통해 자동 생성 가능.</li>
+</ul>
+<p>이 외에도 <code>plugin</code>, <code>resources</code>가 있다. 필요에 따라 문서를 참고해 작성하면 되겠다.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml">serverless.yml 가이드</a></p>
+</blockquote>
+<h4 id="template으로-생성"><a href="#template으로-생성" class="headerlink" title="template으로 생성"></a>template으로 생성</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls create -h</span><br></pre></td></tr></table></figure>
+
+<p>커맨드를 입력하면 사용 가능한 템플릿 리스트를 확인할 수 있다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls create -t aws-nodejs-typescript</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 템플릿을 사용해 serverless 프로젝트를 만들 수 있다.</p>
+<h2 id="배포-및-실행"><a href="#배포-및-실행" class="headerlink" title="배포 및 실행"></a>배포 및 실행</h2><h3 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls deploy</span><br></pre></td></tr></table></figure>
+
+<p>명령어로 배포한다. serverless는 <code>servereless.yaml</code>의 내용에 따라 AWS CloudFormation stack을 생성해 AWS 자원을 만들어준다. 배포에 문제가 없었다면 리소스 url이 콘솔창에 출력된다.</p>
+<h3 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls invoke -f hello</span><br></pre></td></tr></table></figure>
+
+<p>Lambda를 실행하는 명령어다. <code>-f</code> 옵션으로 실행할 Lambda function의 이름을 넣는다. 설정파일에서 <code>functions</code>에 정의한 함수 이름을 넣으면된다. <code>--log</code> 옵션을 넣으면 로그까지 볼 수 있다.</p>
+<h4 id="로컬-실행"><a href="#로컬-실행" class="headerlink" title="로컬 실행"></a>로컬 실행</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls invoke local -f hello</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 로컬에서도 실행 할 수 있다. 앞서 만든 <code>hello</code> 함수를 실행하면 아래와 같은 메세지를 볼 수 있다.</p>
+<p><img src="/images/2022-03-31-13-56-53.png"></p>
+<h2 id="후기"><a href="#후기" class="headerlink" title="후기"></a>후기</h2><p>Lambda를 그동안 콘솔에서 개발했는데 버전관리도 힘들고 Typescript도 지원하지 않아서 작업환경을 바꿔야겠다는 생각을 하게됐다. 제공되는 기능이 정말 많아 앞으로 많이 사용하게 될 것 같다.</p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.serverless.com/framework/docs/providers/aws/guide/serverless.yml">Serverless Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@jeffyoun/Serverless-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0">Serverless 프레임워크 사용해서 배포하기</a></li>
+</ul>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/aws-lambda/"># aws-lambda</a>
+                    
+                        <a href="/tags/serverless/"># serverless</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/04/14/Else/AWS/sqs/">AWS - SQS Lambda Trigger</a>
+            
+            
+            <a class="next" rel="next" href="/2022/03/21/Else/AWS/AWS-CodeDeploy/">AWS CodeDeploy</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

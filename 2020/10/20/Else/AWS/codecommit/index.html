@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>AWS - CodeCommit | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">AWS - CodeCommit</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">10월 20, 2020&nbsp;&nbsp;22:27:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AWS/">AWS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="AWS-CodeCommit-git-사용법"><a href="#AWS-CodeCommit-git-사용법" class="headerlink" title="AWS CodeCommit git 사용법"></a>AWS CodeCommit git 사용법</h1><h2 id="CodeCommit"><a href="#CodeCommit" class="headerlink" title="CodeCommit"></a>CodeCommit</h2><p>AWS CodeCommit은 클라우드에서 asset을 비공개로 저장하여 관리할 수 있도록 AWS에서 호스팅되는 버전 관리 서비스이다. Git의 표준 기능을 지원하므로 기존 Git 기반 도구와도 원활하게 연동된다.</p>
+<h3 id="CodeCommit이-지원하는-기능들"><a href="#CodeCommit이-지원하는-기능들" class="headerlink" title="CodeCommit이 지원하는 기능들"></a>CodeCommit이 지원하는 기능들</h3><ul>
+<li>AWS가 호스팅하여 종합 관리 서비스를 제공함</li>
+<li>암호화된 안전한 코드 저장</li>
+<li>코드 공동 작업</li>
+<li>다른 AWS 및 타사 서비스와 통합됨</li>
+</ul>
+<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="자격증명"><a href="#자격증명" class="headerlink" title="자격증명"></a>자격증명</h3><p>우측 상단의 계정을 클릭하면 ‘내 보안 자격 증명’ 이라는 메뉴가 보인다. 클릭시 <code>IAM</code> 화면으로 넘어온다.</p>
+<p><img src="/images/2020-10-21-16-41-37.png"></p>
+<p>여기서 두번째 탭에 있는 <code>AWS CodeCommit 자격 증명</code>을 선택한다.</p>
+<p><img src="/images/2020-10-21-16-43-17.png"></p>
+<p>아래에 보이는 <code>AWS CodeCommit에 대한 HTTPS Git 자격증명</code>의 <code>자격증명 생성</code>을 선택한다.<br>자격증명을 생성하면 사용자 이름과 비밀번호가 나온다. csv 파일로 내보내 관리하는 것이 좋다.</p>
+<h3 id="git으로-코드-clone"><a href="#git으로-코드-clone" class="headerlink" title="git으로 코드 clone"></a>git으로 코드 clone</h3><p>코드를 클론할 레파지토리로 이동한다. 없다면 하나 새로 생성한다.</p>
+<p><img src="/images/2020-10-21-16-47-18.png"></p>
+<p>url 복제에서 HTTPS 복제를 누른다. 자동으로 복사가된다.<br>이제 git을 열고 다른때 사용하는 것과 똑같이 clone 작업을 하면 된다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone [codecommit url] [clone path]</span><br></pre></td></tr></table></figure>
+
+<p>명령어를 입력하면 username과 password를 입력하라는 창이 뜬다. 아까 자격증명에서 생성했던 유저 정보를 입력하면 된다.</p>
+<p>이렇게만 하면 간단하게 코드가 불러와진다.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AWS/"># AWS</a>
+                    
+                        <a href="/tags/CodeCommit/"># CodeCommit</a>
+                    
+                        <a href="/tags/git/"># git</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/11/17/Else/AWS/Node.js%20+%20Lambda%20+%20APIGateway%20+%20DynamoDB/">AWS - Node.js + Lambda + APIGateway + DynamoDB</a>
+            
+            
+            <a class="next" rel="next" href="/2020/10/17/Else/AWS/AWS%20Node.js%20SDK%EB%A1%9C%20S3%20%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0%20&%20multer-S3/">AWS - AWS Node.js SDK로 S3 사용해보기 & multer-S3</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
