@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Algorithm - Sorting | StudyYeong</title>
+<title>Sorting | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Algorithm - Sorting</h1>
+            <h1 class="post-title">Sorting</h1>
             
                 <div class="post-meta">
                     
@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <p><span class="github-emoji" alias="rotating_light" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png?v8">&#x1f6a8;</span> ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
+            <p>🚨 ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
 <h1 id="정렬"><a href="#정렬" class="headerlink" title="정렬"></a>정렬</h1><p>정렬을 위한 알고리즘은 여러가지가 있다. 대부분 언어의 라이브러리에는 이미 효율적인 정렬 라이브러리를 제공하고 있지만 기본적으로 정렬 알고리즘의 원리를 이해하고 있는 것도 기업 면접에도 많이 등장하는 문제이기 때문에 중요하다고 한다.</p>
 <h2 id="선택-정렬"><a href="#선택-정렬" class="headerlink" title="선택 정렬"></a>선택 정렬</h2><p>가장 단순하고 직관적으로 떠올릴 수 있는 정렬 방법이다. 배열에서 가장 작은 값을 선택해 차례대로 정렬하는 알고리즘이다.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">8</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selection_sort</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        idx = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,<span class="built_in">len</span>(data)):</span><br><span class="line">            <span class="keyword">if</span> data[idx] &gt; data[j]:</span><br><span class="line">                idx = j</span><br><span class="line">        data[idx],data[i] = data[i],data[idx]</span><br><span class="line">selection_sort()</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>

@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Algorithm - Binary Search | StudyYeong</title>
+<title>Binary Search | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Algorithm - Binary Search</h1>
+            <h1 class="post-title">Binary Search</h1>
             
                 <div class="post-meta">
                     
@@ -218,8 +218,8 @@
         </header>
 
         <div class="post-content">
-            <p><span class="github-emoji" alias="rotating_light" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f6a8.png?v8">&#x1f6a8;</span> ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
-<h1 id="이진탐색"><a href="#이진탐색" class="headerlink" title="이진탐색"></a>이진탐색</h1><p>이진탐색은 데이터의 크기가 클 때 효율적인 탐색 알고리즘이다. 한번 탐색 할 때 마다 탐색 범위를 반 씩 줄여나가면서 값을 찾기 때문에 속도가 매우 빠르다.</p>
+            <p>🚨 ‘이것이 취업을 위한 코딩테스트다’ 교재 정리</p>
+<h2 id="이진탐색"><a href="#이진탐색" class="headerlink" title="이진탐색"></a>이진탐색</h2><p>이진탐색은 데이터의 크기가 클 때 효율적인 탐색 알고리즘이다. 한번 탐색 할 때 마다 탐색 범위를 반 씩 줄여나가면서 값을 찾기 때문에 속도가 매우 빠르다.</p>
 <p>이진탐색은 정렬된 자료에 대해서만 사용할 수 있다. 코딩테스트에 자주 출제되는데, 문제에서 탐색해야 할 데이터의 양이 1,000만 단위 이상으로 넘어간다면 이진탐색 사용을 고려해보는 것이 좋다. 그 아이디어만 생각해내도 문제푸는데 도움이 될 것이다.<br>자주 출제되는 유형인 만큼 코드를 자주 보고 외워두는 것이 좋다.</p>
 <h2 id="원리"><a href="#원리" class="headerlink" title="원리"></a>원리</h2><p>이진탐색은 <code>start</code>, <code>end</code>, <code>middle</code> 세가지 값을 이용한다. start와 end 사이의 값이 middle 인데, 중간값이 찾고자 하는 <code>target</code> 값보다 큰 경우, middle과 end 사이의 값들은 탐색할 필요가 없기 때문에 그 부분을 탐색 범위에서 빼버리는 것이다.</p>
 <h2 id="파이썬-코드"><a href="#파이썬-코드" class="headerlink" title="파이썬 코드"></a>파이썬 코드</h2><h3 id="재귀-함수-이용"><a href="#재귀-함수-이용" class="headerlink" title="재귀 함수 이용"></a>재귀 함수 이용</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span>(<span class="params">arr, target, start, end</span>):</span></span><br><span class="line">    <span class="keyword">if</span> start &gt; end:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    mid = (start + end) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> arr[mid] == target:</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">    <span class="keyword">elif</span> arr[mid] &gt; target:</span><br><span class="line">        <span class="keyword">return</span> bin_search(arr, target, start, mid-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> bin_search(arr, target, mid+<span class="number">1</span>, end)</span><br></pre></td></tr></table></figure>
