@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>AWS - DynamoDB5 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">AWS - DynamoDB5</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">11월 24, 2020&nbsp;&nbsp;22:27:37</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AWS/">AWS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="DynamoDB-설계"><a href="#DynamoDB-설계" class="headerlink" title="DynamoDB 설계"></a>DynamoDB 설계</h1><h2 id="키-설계"><a href="#키-설계" class="headerlink" title="키 설계"></a>키 설계</h2><p>DynamoDB는 NoSQL이기 때문에 어떤 쿼리를 사용하게 될 지 생각해보고 해당 작업을 빠르게 할 수 있는 키를 설정하는 것이 매우 중요하다.</p>
+<p>DynamoDB의 기본키는 ‘파티션 키’와 ‘정렬 키’로 이루어진다. 새 테이블을 만들 때 기본키는 무조건 지정해야 한다.</p>
+<h3 id="기본키"><a href="#기본키" class="headerlink" title="기본키"></a>기본키</h3><p>기본키는 테이블의 각 항목을 나타내는 고유 식별자로, DynamoDB 기본키의 종류는 두 가지가 있다.</p>
+<ul>
+<li>파티션키(해시키) : 하나의 속성으로 구성되는 단순 기본키. 파티션 키로만 구성되어있는 테이블에서는 어떤 두 개의 테이블 항목도 동일한 파티션 값을 가질 수 없다.</li>
+<li>파티션 키 &amp; 정렬 키(범위(range) 속성) : 파티션 키와 정렬 키 두가지 속성으로 구성되는 복합 기본 키이다. 복합키를 사용하는 테이블의 서로 다른 두 항목은 같은 파티션 키 값을 가질 수 있다. 하지만 정렬 키 값은 달라야 한다.</li>
+</ul>
+<hr>
+
+<p>그 외에도 더욱 유연한 쿼리를 위해 보조 인덱스 기능을 제공한다. 기본적으로 쿼리 작업은 기본키에만 가능하기 때문에 다른 속성에 접근하기 위해서는 인덱스를 사용해야 한다.</p>
+<h3 id="보조-인덱스"><a href="#보조-인덱스" class="headerlink" title="보조 인덱스"></a>보조 인덱스</h3><p>인덱스의 종류는 두 가지가 있다.</p>
+<ul>
+<li>Global secondary Index : 파티션 키 및 정렬 키가 테이블의 파티션 키 및 정렬키와 다른 인덱스</li>
+<li>Local secondary Index : 테이블과 파티션 키는 동일하지만 정렬 키는 다른 인덱스</li>
+</ul>
+<p>각 테이블당 20개의 global, 5개의 local 보조 인덱스를 만들 수 있다. 일반적으로 로컬 보조 인덱스보다 글로벌 보조 인덱스의 사용을 우선시 해야 한다. 단 쿼리 결과에 높은 일관성이 필요한 경우는 로컬 보조 인덱스를 사용하는게 좋다.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/AWS/"># AWS</a>
+                    
+                        <a href="/tags/DynamoDB/"># DynamoDB</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/11/25/AWS/DynamoDB/AWS12/">AWS - DynamoDB6</a>
+            
+            
+            <a class="next" rel="next" href="/2020/11/23/AWS/DynamoDB/AWS10/">AWS - DynamoDB4</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

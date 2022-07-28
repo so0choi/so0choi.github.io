@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="React-Native-babel-plugin-config-이슈"><a href="#React-Native-babel-plugin-config-이슈" class="headerlink" title="React Native babel plugin config 이슈"></a>React Native babel plugin config 이슈</h1><p>IOS 15 업데이트가 나오고 시뮬레이터에서 하도 많은 오류를 보다보니 어떤 오류가 나도 다 xCode 때문일 거라고 생각했다. 그래서 이 요상한 에러로 하루를 날려버렸다 🙀</p>
+            <p>IOS 15 업데이트가 나오고 시뮬레이터에서 하도 많은 오류를 보다보니 어떤 오류가 나도 다 xCode 때문일 거라고 생각했다. 그래서 이 요상한 에러로 하루를 날려버렸다 🙀</p>
 <h2 id="에러"><a href="#에러" class="headerlink" title="에러"></a>에러</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: index.js: .plugins[0][1] must be an object, false, or undefined</span><br></pre></td></tr></table></figure>
 
 <p>이런 에러가 떴는데 에러 앞쪽에 Babel이 보였던걸로 보아 babel config 문제가 발생한것 같았다.<br>내 프로젝트에 추가된 babel plugin은 <code>module-resolver</code>, <code>babel-plugin-styled-components</code> 요 두가지였다.</p>
