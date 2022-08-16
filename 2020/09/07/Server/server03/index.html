@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Server03 - AWS 시작하기 | StudyYeong</title>
+<title>AWS 시작하기 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Server03 - AWS 시작하기</h1>
+            <h1 class="post-title">AWS 시작하기</h1>
             
                 <div class="post-meta">
                     
@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="AWS-시작하기"><a href="#AWS-시작하기" class="headerlink" title="AWS 시작하기"></a>AWS 시작하기</h1><h2 id="AWS-계정-만들기"><a href="#AWS-계정-만들기" class="headerlink" title="AWS 계정 만들기"></a>AWS 계정 만들기</h2><p>AWS 계정을 만드는 것은 간단하다. <a target="_blank" rel="noopener" href="https://aws.amazon.com/ko/">AWS Console</a>로 이동하여 회원가입하고, 클라우드 서비스는 비용이 나가는 서비스이기 때문에 billing info또한 작성해야 한다.</p>
+            <h2 id="AWS-계정-만들기"><a href="#AWS-계정-만들기" class="headerlink" title="AWS 계정 만들기"></a>AWS 계정 만들기</h2><p>AWS 계정을 만드는 것은 간단하다. <a target="_blank" rel="noopener" href="https://aws.amazon.com/ko/">AWS Console</a>로 이동하여 회원가입하고, 클라우드 서비스는 비용이 나가는 서비스이기 때문에 billing info또한 작성해야 한다.</p>
 <p>클라우드 서버를 통해 작업하는 것은 보안이 철저해야 한다. AWS 에도 다양한 상품이 존재하고, 상품에 따라서 눈깜빡할 사이에 몇백만원이 부과될 수 있기때문에 조심해야 한다.</p>
 <h3 id="MFA-활성화"><a href="#MFA-활성화" class="headerlink" title="MFA 활성화"></a>MFA 활성화</h3><p>보안을 강화하기 위해 2단계 인증을 설정한다.<br>MFA - Multi-factor Authentication<br><code>Google otp</code>를 휴대폰에 설치하여 사용하면 된다.<br>휴대폰 접속이 불가능할 경우 로그인을 할 수 없으며 이런 경우 고객센터에 문의해야 한다.</p>
 <h2 id="AWS-클라우드-인프라"><a href="#AWS-클라우드-인프라" class="headerlink" title="AWS 클라우드 인프라"></a>AWS 클라우드 인프라</h2><p>더 빠른 클라우드 서비스를 이용하기 위해서는 가장 가까이에 있는 인프라를 사용해야 한다. AWS는 클라우드 서비스 업계 1위 답게 전세계에 인프라를 구축하고 있으며, 한국도 2016년에 서비스를 시작했다. 앞으로도 계속해서 확대시켜 나갈 것이다.</p>
@@ -235,14 +235,14 @@
 <h2 id="Putty로-시작하기"><a href="#Putty로-시작하기" class="headerlink" title="Putty로 시작하기"></a>Putty로 시작하기</h2><p>NHN TOAST와 많은 부분이 유사했다.<br><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console">EC2 Guide</a><br>공식 문서에 정말 자세히 가이드가 나와있다.</p>
 <p>첫번째로 Putty가 필요하다. 이미 소프트웨어가 설치되어있다해도 최신 버전의 Putty를 사용하고 있는지 체크하자.</p>
 <p>Putty를 설치하면 자동으로 Putty Key Generator가 함께 설치된다. 프로그램을 실행하고 <code>File</code> &gt; <code>Load Private Key</code> 에서 아까 다운받은 AWS pem 키를 선택한다. 파일 형식이 <code>ppk</code>로 되어있으면 탐색기에서 안 보이므로 <code>모든파일</code>로 형식을 바꿔야한다.</p>
-<p>파일을 로드 하고 <code>save private key</code>를 선택하면 경고창이 하나 뜨고 키를 저장할 수 있다. 이름을 적당히 정하고 저장하면 pem 키가 저장되어있던 경로에 <code>ppk</code> 파일이 생성되어있다. </p>
+<p>파일을 로드 하고 <code>save private key</code>를 선택하면 경고창이 하나 뜨고 키를 저장할 수 있다. 이름을 적당히 정하고 저장하면 pem 키가 저장되어있던 경로에 <code>ppk</code> 파일이 생성되어있다.</p>
 <p>Putty를 실행한다.<br><img src="/images/2020-09-08-01-26-01.png"></p>
 <p>차례대로 정보를 입력하면된다.</p>
-<p>먼저 Host Name에는 <code>인스턴스 유저 이름</code>@<code>인스턴스 dns 이름</code>을 입력해야 한다. </p>
+<p>먼저 Host Name에는 <code>인스턴스 유저 이름</code>@<code>인스턴스 dns 이름</code>을 입력해야 한다.</p>
 <p>default 인스턴스 유저 이름은 인스턴스를 생성할 때 아래와 같이 생성된다. 생성했던 os에 따라 입력하면 된다.<br><img src="/images/2020-09-08-01-27-32.png"></p>
 <p>인스턴스의 dns 이름은 아래 인스턴스 대시보드에서 해당 인스턴스를 클릭 한 후 <code>연결</code>을 클릭하면 전체가 출력되고 쉽게 복사할 수 있다.<br><img src="/images/2020-09-08-01-28-45.png"></p>
 <p>Port는 22로 그대로 두고 Connection type은 SSH 이다.<br>왼쪽 Category 탭에서 <code>Connection &gt; SSH &gt; Auth</code>로 들어간다. 가장 아래에 보이는 <code>Private key file for authentication</code>의 Browse를 선택해 아까 PuttyGen으로 생성한 ppk 키를 선택한다.</p>
-<p>세션 연결 정보는 연결할때마다 사용되니까 저장해두면 편하다. Session 탭으로 돌아와서 <code>Saved Session</code> 밑에 input 칸에 이름을 넣고 Save를 클릭하면 세션 연결 정보가 저장된다. 다음부터는 리스트에서 이름을 선택하고 Load만 하면 된다. </p>
+<p>세션 연결 정보는 연결할때마다 사용되니까 저장해두면 편하다. Session 탭으로 돌아와서 <code>Saved Session</code> 밑에 input 칸에 이름을 넣고 Save를 클릭하면 세션 연결 정보가 저장된다. 다음부터는 리스트에서 이름을 선택하고 Load만 하면 된다.</p>
 <p>설정을 제대로 했다면 <code>Open</code>을 눌렀을 때 잘 접속 될 것이다!<br>TOAST 설정할 때 보다 좀 더 오류없이 빠르게 들어올 수 있었다.</p>
 
         </div>
@@ -293,7 +293,7 @@
                 <a class="prev" rel="prev" href="/2020/09/08/Server/server04/">Flask앱 AWS로 배포하기</a>
             
             
-            <a class="next" rel="next" href="/2020/09/07/Server/server02/">Server02 - 클라우드 컴퓨팅</a>
+            <a class="next" rel="next" href="/2020/09/07/Server/server02/">클라우드 컴퓨팅</a>
             
         </section>
 

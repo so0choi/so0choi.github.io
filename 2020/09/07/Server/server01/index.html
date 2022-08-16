@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Server01 - 인터넷 기초 | StudyYeong</title>
+<title>인터넷 기초 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Server01 - 인터넷 기초</h1>
+            <h1 class="post-title">인터넷 기초</h1>
             
                 <div class="post-meta">
                     
@@ -218,8 +218,7 @@
         </header>
 
         <div class="post-content">
-            <p>학교의 지원으로 사용하던 NHN TOAST 서버를 더이상 사용할 수 없게 되어서 AWS를 드디어 공부해보기로 했다. AWS도 비용이 드는 서비스지만, 돈 처럼 사용할 수 있는 ‘토큰’을 제공하기 때문에 이전에 서버로 배포하고 있었던 작은 프로젝트를 올리기엔 적합하다고 생각했다.</p>
-<h1 id="인터넷이란"><a href="#인터넷이란" class="headerlink" title="인터넷이란?"></a>인터넷이란?</h1><h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><p>인터넷에 연결되어있는 장치들을 식별할 수 있는 주소<br><em>IP : Internet Porocol</em><br>예) 192.168.0.1</p>
+            <h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><p>인터넷에 연결되어있는 장치들을 식별할 수 있는 주소<br><em>IP : Internet Porocol</em><br>예) 192.168.0.1</p>
 <h2 id="도메인-domain"><a href="#도메인-domain" class="headerlink" title="도메인(domain)"></a>도메인(domain)</h2><p>IP는 사람이 이해하고 기억하기 어렵기 때문에 이를 위해 각 IP에 이름(=도메인)을 부여하여 알아보기 쉽게 함</p>
 <ul>
 <li>naver.com - 220.95.233.172</li>
@@ -238,19 +237,21 @@
 <li>DNS : Domain Name System</li>
 </ul>
 <iframe width="560" height="315"
-src="https://www.youtube.com/embed/2ZUxoi7YNgs" 
-frameborder="0" 
-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+src="https://www.youtube.com/embed/2ZUxoi7YNgs"
+frameborder="0"
+allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe>
   
 ### 브라우저가 IP를 찾아내는 순서
-1. domain 입력
-2. local cache를 검색
-3. hosts 파일을 검색
-4. domain name server 검색
 
+<ol>
+<li>domain 입력</li>
+<li>local cache를 검색</li>
+<li>hosts 파일을 검색</li>
+<li>domain name server 검색</li>
+</ol>
 <p>따라서 local에서 <code>hosts</code> 파일의 ip-domain 정보를 바꿔놓으면 다른 사이트로 이동시킬 수 있다.</p>
-<h2 id="HTTPS와-SSL-인증서"><a href="#HTTPS와-SSL-인증서" class="headerlink" title="HTTPS와 SSL 인증서"></a>HTTPS와 SSL 인증서</h2><p>HTTP : HyperText Transfer Protocol. HTML을 전송하기 위한 통신 규약이다. Hypertext란, 문서와 문서가 링크로 연결되어있는 연결 체계이다. Hypertext에서 가장 중요한 체계가 바로 HTML이다. HTTP는 암호화되지 않는 방법으로 데이터를 전송하기 때문에 서버와 클라이언트 사이의 메세지를 가로채는 것이 매우 쉽다.<br>HTTP<strong>S</strong>의 <code>S</code>는 Over <strong>Secure</strong> Socket Layer의 약자로 보안이 강화된 HTTP이다. </p>
+<h2 id="HTTPS와-SSL-인증서"><a href="#HTTPS와-SSL-인증서" class="headerlink" title="HTTPS와 SSL 인증서"></a>HTTPS와 SSL 인증서</h2><p>HTTP : HyperText Transfer Protocol. HTML을 전송하기 위한 통신 규약이다. Hypertext란, 문서와 문서가 링크로 연결되어있는 연결 체계이다. Hypertext에서 가장 중요한 체계가 바로 HTML이다. HTTP는 암호화되지 않는 방법으로 데이터를 전송하기 때문에 서버와 클라이언트 사이의 메세지를 가로채는 것이 매우 쉽다.<br>HTTP<strong>S</strong>의 <code>S</code>는 Over <strong>Secure</strong> Socket Layer의 약자로 보안이 강화된 HTTP이다.</p>
 <p><img src="/images/2020-09-08-00-18-09.png"></p>
 <p><code>SSL</code>과 <code>HTTPS</code>는 같다면 같고 다르다면 다른 개념이다. 그 이유는 HTTPS가 SSL 위에서 작동하는 방식이기 때문이다.</p>
 <p><img src="/images/2020-09-08-00-23-59.png"><br>HTTP는 L7의 프로토콜이며 SSL은 그보다 한 단계 밑인 L6에서 동작한다. 따라서 SSL 프로토콜 위에서 동작하는 HTTP가 ‘HTTPS’인 셈이다. <em>(SSL==TLS이다. TLS가 이후에 바뀐 이름이지만 SSL이라는 이름이 더 통용된다.)</em></p>
@@ -301,7 +302,7 @@ allowfullscreen></iframe>
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/09/07/Server/server02/">Server02 - 클라우드 컴퓨팅</a>
+                <a class="prev" rel="prev" href="/2020/09/07/Server/server02/">클라우드 컴퓨팅</a>
             
             
             <a class="next" rel="next" href="/2020/09/05/Algorithm/BOJ-3190/">[BOJ] 3190. 뱀</a>

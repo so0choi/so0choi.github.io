@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>HTML 요소 분석하기 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">HTML 요소 분석하기</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 28, 2020&nbsp;&nbsp;0:54:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/WEB/">WEB</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="lt-head-gt-태그-구성요소"><a href="#lt-head-gt-태그-구성요소" class="headerlink" title="&lt;head&gt; 태그 구성요소"></a><code>&lt;head&gt;</code> 태그 구성요소</h2><p>head 태그에는 웹페이지에 대한 정보를 담는다. 페이지 인코딩 방식이나 css 파일 링크, 페이지의 제목 등 다양한 데이터를 포함한다.</p>
+<h3 id="lt-meta-gt"><a href="#lt-meta-gt" class="headerlink" title="&lt;meta&gt;"></a><code>&lt;meta&gt;</code></h3><p>meta 태그는 웹페이지에 대한 메타데이터를 나타내는 태그이다. 메타데이터란 <code>데이터를 설명하는 데이터</code>이다. 문서 작성자나 문서 요약과 같은 정보를 담고 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>주로 인코딩 방식을 나타내기 위해 사용된다.</p>
+<h3 id="lt-link-gt"><a href="#lt-link-gt" class="headerlink" title="&lt;link&gt;"></a><code>&lt;link&gt;</code></h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTML/Element/link">MDN-link</a><br>link는 외부 리소스를 불러올 때 사용한다. 주로 <code>stylesheet</code>를 연결할 때 가장 많이 사용하지만, 다른 속성을 이용해 그 외의 resource들도 불러 올 수 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/style.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-title-gt"><a href="#lt-title-gt" class="headerlink" title="&lt;title&gt;"></a><code>&lt;title&gt;</code></h3><p>웹 페이지의 제목을 설정하는 요소이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>테스트 페이지<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="lt-body-gt-태그-구성-요소-block"><a href="#lt-body-gt-태그-구성-요소-block" class="headerlink" title="&lt;body&gt; 태그 구성 요소 - block"></a><code>&lt;body&gt;</code> 태그 구성 요소 - block</h2><h3 id="lt-header-gt"><a href="#lt-header-gt" class="headerlink" title="&lt;header&gt;"></a><code>&lt;header&gt;</code></h3><p>사이트 상단에 위치하는 요소들의 컨테이너로 주로 사용한다. 다른 태그의 하위에 들어갈 수 없다. 상단에 위치하는 네비게이션 같은 요소가 주로 들어가게 된다.<br><img src="/images/2020-08-28-01-07-52.png"></p>
+<h3 id="lt-footer-gt"><a href="#lt-footer-gt" class="headerlink" title="&lt;footer&gt;"></a><code>&lt;footer&gt;</code></h3><p>사이드 하단에 위치하는 페이지 제작자의 정보나 연락처 또는 회사 로고등의 데이터가 주로 들어간다.</p>
+<p><img src="/images/2020-08-28-01-07-29.png"></p>
+<h3 id="lt-h1-gt"><a href="#lt-h1-gt" class="headerlink" title="&lt;h1&gt;"></a><code>&lt;h1&gt;</code></h3><p>h1부터 h6 까지 다른 글자 크기를 가지며 컨텐츠의 제목을 나타낼 때 사용한다. 주의할 점은 MDN의 레퍼런스를 따르면 폰트의 구조를 줄이기 위해 낮은 단계를 사용하지 말라고 명시되어있다.<br>HTML은 구조를 나타내기 위한 언어이기 때문에 실제로 표현되는 부분은 CSS로 조정하는 것이 본연의 목적에도 맞는 구현 방법이라고 할 수 있다.</p>
+<p>또한 각각의 우선도에 맞게 사용하기를 권장하고 있는데, 예를들면 <code>h1</code> 태그를 남발하기 보다는 이는 전체 문서의 대제목으로 하나를 지정하고, 소제목들은 <code>h2</code> 태그를 사용해서 나타내는 것을 말한다.</p>
+<p><img src="/images/2020-08-28-01-20-04.png"></p>
+<h3 id="lt-main-gt"><a href="#lt-main-gt" class="headerlink" title="&lt;main&gt;"></a><code>&lt;main&gt;</code></h3><p><code>&lt;body&gt;</code>의 주요 콘텐츠를 나타낸다. 이 태그는 문서 당 고유하게 하나만 사용해야 한다. IE는 지원하지 않는다. <code>block</code> 요소이다.</p>
+<h3 id="lt-article-gt"><a href="#lt-article-gt" class="headerlink" title="&lt;article&gt;"></a><code>&lt;article&gt;</code></h3><p>독립적으로 구분되거나, 재사용이 가능한 영역을 설정한다. 매거진, 기사, 블로그 포스팅이 여기에 속할 수 있다. 일반적으로 <code>&lt;h1&gt;-&lt;h6&gt;</code> 가 하나정도 포함된다.</p>
+<p><img src="/images/2020-08-28-01-28-38.png"></p>
+<p>위 그림에서 볼 수 있듯 파란색으로 묶은 부분은 독립적으로 다른 곳에서도 같은 형식으로 사용 될 수 있다. 이런 성격을 가지는 내용의 경우 <code>&lt;article&gt;</code>의 사용을 고려해보는 것이 좋다.</p>
+<h3 id="lt-section-gt"><a href="#lt-section-gt" class="headerlink" title="&lt;section&gt;"></a><code>&lt;section&gt;</code></h3><p>block 요소이다. 문서에서 일반적인 영역을 설정한다. 어떠한 구역을 나눈다는 역할적인 측면에서 <code>&lt;div&gt;</code>와 비슷하지만 <code>&lt;section&gt;</code>의 경우 <code>&lt;h1&gt;-&lt;h6&gt;</code>를 사용해 구역에 이름을 지어 구분한다.</p>
+<p><em>section</em> &gt; <em>article</em> &gt; <em>div</em> 순으로 좀 더 강한 의미를 가지고 있다고 생각하면 된다.</p>
+<h3 id="lt-aside-gt"><a href="#lt-aside-gt" class="headerlink" title="&lt;aside&gt;"></a><code>&lt;aside&gt;</code></h3><p>웹사이트의 사이드에 나타나는 주로 주요 contents와는 관계 없는 배너 광고나 기타 링크를 나타낸다.</p>
+<h3 id="lt-nav-gt"><a href="#lt-nav-gt" class="headerlink" title="&lt;nav&gt;"></a><code>&lt;nav&gt;</code></h3><p>block 요소이다. <code>navigation</code>의 약자로 다른 페이지의 링크를 제공하는 영역을 나타낸다. 메뉴나 홈, 목차, 색인 등이 주로 포함된다.</p>
+<p><em>주로 영역을 표시하는 태그들은 <code>block</code> 요소이다</em></p>
+<h3 id="lt-address-gt"><a href="#lt-address-gt" class="headerlink" title="&lt;address&gt;"></a><code>&lt;address&gt;</code></h3><p>연락처 정보를 나타낼 때 사용한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Contact the author of this page:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:jim@rock.com&quot;</span>&gt;</span>jim@rock.com<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;tel:+13115552368&quot;</span>&gt;</span>(311) 555-2368<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>address 태그 내부에 있는 <code>&lt;a&gt;</code> 태그를 클릭하면 곧바로 연락 할 수 있는 창이 뜬다. 전화번호의 경우 휴대폰에서 누르면 곧바로 연락처 앱이 뜨게 된다.</p>
+<h3 id="lt-div-gt"><a href="#lt-div-gt" class="headerlink" title="&lt;div&gt;"></a><code>&lt;div&gt;</code></h3><p>아무것도 나타내지 않는 컨텐츠 영역을 나타낸다. 의미를 가지지 않기 때문에 아무렇게나 사용할 수 있지만, 설정하는 구역이 가지는 의미에 따라 다른 의미있는 구역 구분 태그를 사용하는 것이 좋다.</p>
+<h2 id="문자-콘텐츠"><a href="#문자-콘텐츠" class="headerlink" title="문자 콘텐츠"></a>문자 콘텐츠</h2><h3 id="리스트-태그"><a href="#리스트-태그" class="headerlink" title="리스트 태그"></a>리스트 태그</h3><p>ol, ul은 block 요소이며 li 엘리먼트는 list-item 이다. 하지만 li는 항상 ol, ul 의 자식 엘리먼트로 들어가야 하기 때문에 block 요소라고 생각하여도 무방하다.</p>
+<ul>
+<li><code>&lt;ul&gt;</code> : unordered list 태그. 순서가 필요하지 않은 리스트에 사용</li>
+<li><code>&lt;ol&gt;</code> : ordered list 태그. 순서가 필요한 리스트에 사용</li>
+<li><code>&lt;li&gt;</code> : <code>&lt;ul&gt;</code> 또는 <code>&lt;ol&gt;</code> 과 항상 함께 사용된다.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-15-20-18.png"></p>
+<p><code>&lt;ul&gt;</code> 태그의 <code>list-style</code> 기본 속성은 <code>bullet</code>이기 때문에 이를 없애기 위해서는 css 속성을 바꾸면 된다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>다른 리스트 구분자도 많으니 찾아보고 사용하면 되겠다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-15-21-00.png"></p>
+<p><code>&lt;ol&gt;</code> 태그에는 속성을 추가 할 수 있다. 태그를 시작할 때 <code>type</code> 속성을 지정함으로써 시작 번호를 지정할 수 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>type</code> : 리스트 순서의 type을 지정할 수 있다. <code>a</code>는 영어 소문자, <code>A</code>는 영어 대문자 <code>i</code>는 로마자 소문자 등 여러가지가 있다. <img src="/images/2020-08-28-15-24-21.png"></li>
+<li><code>reversed</code> : 리스트 순서를 역순으로 표시한다. 이때 번호만 역순으로 출력되는 것이지 엘리먼트 자체 순서가 바뀌는 것은 아니다.</li>
+<li><code>start</code> : 리스트 순서의 시작 번호를 설정한다.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">start</span>=<span class="string">&quot;5&quot;</span> <span class="attr">reversed</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-15-34-43.png"></p>
+<p><code>&lt;ol&gt;</code> 태그 하위의 <code>&lt;li&gt;</code> 태그에는 <code>value</code>를 지정할 수 있다. value를 지정한 엘리먼트는 지정된 value 부터 번호를 시작하며 그 뒤에 나오는 li 태그들은 번호가 재정의 된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">value</span>=<span class="string">&quot;7&quot;</span>&gt;</span>apple<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">value</span>=<span class="string">&quot;99&quot;</span>&gt;</span>banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-15-37-44.png"></p>
+<h3 id="dl-dt-dd"><a href="#dl-dt-dd" class="headerlink" title="dl, dt, dd"></a>dl, dt, dd</h3><p>용어와 정의의 쌍(key-value)을 나타낼 때 사용한다.<br><code>&lt;dl&gt;</code>은 <code>&lt;dt&gt;, &lt;dd&gt;</code> 요소만을 포함한다.</p>
+<p><code>&lt;dfn&gt;</code> 은 용어 하나를 정의할 때 사용하는 태그이다. <code>definition</code>의 약어이다.</p>
+<p>하지만 <code>&lt;dl&gt;</code>의 경우 스타일링을 하는데 어느정도 제약이 있다. 따라서 이를 대신하여 <code>&lt;li&gt;</code>와 <code>&lt;dfn&gt;</code> 을 사용해 비슷하게 동작 하도록 할 수 있다.</p>
+<h2 id="문단-설정-요소"><a href="#문단-설정-요소" class="headerlink" title="문단 설정 요소"></a>문단 설정 요소</h2><h3 id=""><a href="#" class="headerlink" title=""></a><p></h3><p>하나의 문단을 설정할 때 사용한다. (paragraph) block 요소이다. 웹페이지에서 다음 문단 즉, 다음 <code>&lt;p&gt;</code>로 넘어갈 수 있는 단축키가 지정되어 있어서 자주 사용된다.</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a><hr/></h3><p>문단의 분리를 위해 사용한다. 빈 태그이며 block 요소이다. 수평선을 만들어 내는데 이 표현적 관점에 맞춰 사용하면 안된다. <code>주제에 의한 문단의 분리</code> 라는 의미적 관점으로 사용해야 한다.<br><code>&lt;hr&gt;</code> 태그로 나타나는 수평선을 없애고 싶을 경우 css 에서 속성을 변경하면 된다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hr &#123;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a><pre></h3><p>서식이 미리 지정된 텍스트를 설정한다. 텍스트의 공백과 줄바꿈을 유지하여 표시할 수 있다. 기본적으로 Monospace 글꼴 계열로 표시된다.<br><code>Monospace</code> 글꼴이란 글자 간 간격이 모두 같아 가독성이 높은 글꼴계열을 말한다.</p>
+<p>html 문서에서는 띄어쓰기를 한 번 이상 해도 하나로 인식하여 출력한다. 이를 사용자가 문서에 입력한 그대로 출력할 때 사용하는 태그가 <code>&lt;pre&gt;</code>태그이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span></span><br><span class="line">동해물과     백두산이</span><br><span class="line">마르고 닳도록!!</span><br><span class="line"><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>하나님이 보우하사 우리나라 만세 !!!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-16-58-15.png"></p>
+<p><code>&lt;pre&gt;</code> 태그 내의 내용은 띄어쓰기와 줄바꿈이 입력한 내용과 같게 출력된다. 이 때 에디터 내에서 가독성을 위해 tab 이 들어간 것도 모두 그대로 출력되므로 그런 공백들은 모두 지워야 한다.</p>
+<h3 id="lt-blockquote-gt"><a href="#lt-blockquote-gt" class="headerlink" title="&lt;blockquote&gt;"></a><code>&lt;blockquote&gt;</code></h3><p>인용문을 나타낼 때 사용한다. <code>cite</code> 속성으로 자료를 인용한 페이지의 url을 입력하면 된다.</p>
+<h2 id="body-태그-구성요소-inline"><a href="#body-태그-구성요소-inline" class="headerlink" title="body 태그 구성요소 - inline"></a>body 태그 구성요소 - inline</h2><h3 id="lt-a-gt"><a href="#lt-a-gt" class="headerlink" title="&lt;a&gt;"></a><code>&lt;a&gt;</code></h3><p>다른 url로 사용자를 보낼 때 연결 할 수 있는 하이퍼링크를 설정하는 태그이다.</p>
+<ul>
+<li>href : 링크의 url (html5 이전에는 필수 속성, 이후 선택 속성으로 변경됨) 선택 속성으로 바꼈지만 href를 지정하지 않으면 다른 url로 보낼 수 없으므로 <code>&lt;a&gt;</code> 태그가 제 역할을 할 수 없다.</li>
+<li>rel : 현재 문서와 링크 url의 관계</li>
+<li>target : 링크 url의 표시 위치. 기본 속성은 <code>_self</code>로 지정되어있다. 새로운 탭에서 링크가 열리게 하려면 <code>_blank</code> 속성을 지정해야 한다.</li>
+<li>type : 링크 url의 MIME type</li>
+<li>download : download 속성을 지정하면 해당 엘리먼트는 다운로드 받는 개체가 된다.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://google.com&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>Google<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;./README.md&quot;</span> <span class="attr">download</span>&quot;&gt;</span>README.md<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>href</code> 속성에 이미지 파일을 넣으면 이미지 파일이 출력된다. 또 <code>download</code> 속성을 주면 이미지를 다운받을 수 있다.</p>
+<p><code>&lt;a&gt;</code> 태그를 사용해 버튼을 만들고 싶은 경우 <code>&lt;a&gt;</code>태그는 inline 요소이기 때문에 css에서 <code>display: block</code> 으로 속성을 변경하여 사용하면 된다.</p>
+<p><code>href</code> 속성으로 html element의 <code>id</code>값을 주면 같은 페이지 내에 있는 해당 요소로 페이지 스크롤이 이동된다. 목차에서 유용하게 사용된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#title1&quot;</span>&gt;</span>제목 1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#title2&quot;</span>&gt;</span>제목 2<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;title1&quot;</span>&gt;</span>제목1<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">&quot;title2&quot;</span>&gt;</span>제목2<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="lt-abbr-gt"><a href="#lt-abbr-gt" class="headerlink" title="&lt;abbr&gt;"></a><code>&lt;abbr&gt;</code></h3><p>약어를 지칭할 때 사용한다. 보통 <code>title</code> 속성을 사용해 전체 글자나 설명을 제공한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Using <span class="tag">&lt;<span class="name">abbr</span> <span class="attr">title</span>=<span class="string">&quot;Hyper Text Markup Language&quot;</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">abbr</span>&gt;</span> is fun.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-17-41-52.png"><br>다음과 같이 텍스트에 밑줄이 생기고 마우스를 올리면 <code>title</code>로 지정한 약어의 뜻이 표시된다.</p>
+<h3 id="lt-b-gt"><a href="#lt-b-gt" class="headerlink" title="&lt;b&gt;"></a><code>&lt;b&gt;</code></h3><p>문체가 다른 글자의 범위를 설정한다. 글자가 <code>bold</code>로 표시된다. 특별한 의미를 가지지는 않으며 읽는 흐름에 도움을 주는 용도로만 사용한다. bold 속성만을 위해 이 태그를 사용하는 것은 옳지 못하며 마지막 수단으로 사용할 것이 권고 된다.</p>
+<h3 id="lt-mark-gt"><a href="#lt-mark-gt" class="headerlink" title="&lt;mark&gt;"></a><code>&lt;mark&gt;</code></h3><p>형광펜을 칠 하듯 하이라이팅을 위해 사용한다. 사용자의 관심을 끌기 위해 사용한다. 배경이 노란색으로 표시된다. css로도 표현할 수는 있지만 검색 엔진이 이 태그를 인식해 강조하는 의미로 사용되고 있음을 인식할 수 있다.</p>
+<h3 id="lt-em-gt"><a href="#lt-em-gt" class="headerlink" title="&lt;em&gt;"></a><code>&lt;em&gt;</code></h3><p>단순히 의미의 강조를 표시한다. 중첩이 가능하며 중첩될 수록 그 의미가 강해진다. Italic체로 표시된다.</p>
+<h3 id="lt-strong-gt"><a href="#lt-strong-gt" class="headerlink" title="&lt;strong&gt;"></a><code>&lt;strong&gt;</code></h3><p>의미의 중요성을 나타내기 위해 사용한다. <code>&lt;em&gt;</code>과의 차이점은, <code>strong</code> 태그는 문맥상에서 의미의 중요성을 나타내는 것이고 <code>em</code> 태그는 강조를 하기 위해 사용하는 것이다. 텍스트가 bold 체로 표시된다.</p>
+<h3 id="lt-i-gt"><a href="#lt-i-gt" class="headerlink" title="&lt;i&gt;"></a><code>&lt;i&gt;</code></h3><p><code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code> 등에서 표현할 수 없는 경우 사용한다. <code>&lt;b&gt;</code>태그가 비슷한 용도의 텍스트에 사용되는 것과 비슷하게 <code>&lt;i&gt;</code>태그는 특수기호나 아이콘 등을 일반 텍스트와 구분하기 위해 사용한다.</p>
+<h3 id="lt-dfn-gt"><a href="#lt-dfn-gt" class="headerlink" title="&lt;dfn&gt;"></a><code>&lt;dfn&gt;</code></h3><p>용어의 정의를 나타낼 때 사용한다. 딱히 다르게 표현되는 것은 없다.</p>
+<h3 id="lt-cite-gt"><a href="#lt-cite-gt" class="headerlink" title="&lt;cite&gt;"></a><code>&lt;cite&gt;</code></h3><p>창작물에 대한 참조를 설정한다. Italic 체로 표시된다. 책, 논문, 영화 등의 제목을 나타낼때 사용한다.</p>
+<h3 id="lt-q-gt"><a href="#lt-q-gt" class="headerlink" title="&lt;q&gt;"></a><code>&lt;q&gt;</code></h3><p>짧은 인용문을 나타낼때 사용한다. 긴 인용문의 경우 <code>&lt;blockquote&gt;</code>를 사용한다.</p>
+<h3 id="lt-code-gt"><a href="#lt-code-gt" class="headerlink" title="&lt;code&gt;"></a><code>&lt;code&gt;</code></h3><p>코드 블럭이 생성된다.</p>
+<h3 id="lt-kbd-gt"><a href="#lt-kbd-gt" class="headerlink" title="&lt;kbd&gt;"></a><code>&lt;kbd&gt;</code></h3><p>keyboard 키를 나타낼 때 사용한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">kbd</span>&gt;</span>ctrl<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span> + <span class="tag">&lt;<span class="name">kbd</span>&gt;</span>ESC<span class="tag">&lt;/<span class="name">kbd</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">kbd</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">3px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">  <span class="attribute">border-top</span>: <span class="number">2px</span> solid <span class="built_in">rgb</span>(<span class="number">240</span>, <span class="number">240</span>, <span class="number">240</span>);</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">2px</span> solid <span class="built_in">rgb</span>(<span class="number">205</span>, <span class="number">205</span>, <span class="number">205</span>);</span><br><span class="line">  <span class="attribute">border-right</span>: <span class="number">2px</span> solid <span class="built_in">rgb</span>(<span class="number">240</span>, <span class="number">240</span>, <span class="number">240</span>);</span><br><span class="line">  <span class="attribute">border-left</span>: <span class="number">2px</span> solid <span class="built_in">rgb</span>(<span class="number">250</span>, <span class="number">250</span>, <span class="number">250</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-18-27-36.png"><br>다양한 css 속성을 줘서 진짜 키보드 키 처럼 보이게 할 수 있다.</p>
+<h3 id="lt-time-gt"><a href="#lt-time-gt" class="headerlink" title="&lt;time&gt;"></a><code>&lt;time&gt;</code></h3><p><code>datetime</code> 속성을 사용해 시간을 표현할 수 있다. <code>datetime</code> 속성은 요소의 시간 또는 날짜 값을 필요로 한다. 지정할 수 있는 날짜 속성은 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTML/Element/time">MDN</a>을 참고한다.</p>
+<h3 id="lt-span-gt"><a href="#lt-span-gt" class="headerlink" title="&lt;span&gt;"></a><code>&lt;span&gt;</code></h3><p><code>&lt;div&gt;</code>태그와 유사하다. inline 요소로 본질적으로 아무것도 나타내지 않는 영역을 설정한다. 텍스트 요소들을 다루는데 특화되어있다.</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a><br/></h3><p>줄바꿈을 나타낸다. <code>/</code>는 생략해도 된다.</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a><del></h3><p>삭제된 요소를 나타낸다. 텍스트 중간에 가로선이 나타난다. 꼭 삭제되었음을 보여야 하는 경우에만 사용한다.</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=""></a><ins></h3><p>추가된 요소를 나타낸다. 텍스트에 밑줄이 표시된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>“You&#x27;re late!”<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>“I apologize for the delay.”<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ins</span> <span class="attr">cite</span>=<span class="string">&quot;../howtobeawizard.html&quot;</span> <span class="attr">datetime</span>=<span class="string">&quot;2018-05&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>“A wizard is never late …”<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ins</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-18-43-07.png"></p>
+<h2 id="멀티미디어-요소"><a href="#멀티미디어-요소" class="headerlink" title="멀티미디어 요소"></a>멀티미디어 요소</h2><h3 id="-6"><a href="#-6" class="headerlink" title=""></a><img/></h3><p>이미지를 삽입할 때 사용한다.</p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a><audio></h3><p>오디오 컨텐츠 삽입에 사용한다. <code>src</code>로 파일의 위치를 지정하여 사용한다. <code>autoplay</code> 속성을 추가하면 파일이 준비되는대로 바로 재생된다. <code>controls</code> 속성은 audio 속성의 제어 메뉴를 표시한다.</p>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a><video></h3><p>동영상 컨텐츠를 삽입한다. <code>&lt;audio&gt;</code>와 비슷하다. <code>poster</code>속성으로 썸네일 이미지 url을 지정할 수 있다.</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=", "></a><figure>, <figcaption></h3><p>이미지나 도표 등의 영역을 지정한다. <code>&lt;figcaption&gt;</code>은 삽입한 이미지의 밑에 표시되는 figure의 캡션 요소이다.</p>
+<h3 id="-10"><a href="#-10" class="headerlink" title=""></a><iframe></h3><p>다른 html 페이지를 현재 페이지에 삽입할때 사용한다. youtube등의 동영상을 불러올 때 등에도 다양하게 사용할 수 있다. 중첩된 페이지 컨텍스트를 표시한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">&quot;Example2&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">title</span>=<span class="string">&quot;iframe Example 2&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">width</span>=<span class="string">&quot;400&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">height</span>=<span class="string">&quot;300&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;border:none&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://maps.google.com/maps?f=q&amp;source=s_q&amp;q=buenos+aires&amp;sll=37.0625,-95.677068&amp;sspn=38.638819,80.859375&amp;t=h&amp;hnear=Buenos+Aires,+Argentina&amp;z=11&amp;ll=-34.603723,-58.381593&amp;output=embed&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>iframe을 사용할 경우 보안적 이슈가 생길 수 있고 정상적으로 페이지가 출력되지 않는 경우도 있다. <code>sandbox</code> 속성을 사용해 보안 문제를 완화 시킬 수는 있지만 이 속성을 주면 엘리먼트에 자바스크립트 코드가 적용되지 않을 수도 있는 등의 제약이 생길 수도 있으니 주의해야 한다.</p>
+<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><p>canvas API를 사용해 그래픽이나 애니메이션을 렌더링 한다. (Javascript 30 에서 다루었음)</p>
+<h3 id="-11"><a href="#-11" class="headerlink" title=", "></a><script>, <noscript></h3><p>자바스크립트 코드를 문서에 포함할 때 사용한다. 만약 브라우저가 스크립트를 지원하지 않는 경우 출력될 html을 <code>&lt;noscript&gt;</code>를 사용해 표시할 수 있다.</p>
+<p>외부 JS 코드를 불러올 때는 <code>src</code> 속성을 사용하면 된다. 이때 <code>&lt;header&gt;</code>에서 js 코드를 읽으면 전체 document를 읽기 전에 html element를 선택하려고 할 때 오류가 발생할 수 있다. 이런 경우 <code>defer</code>속성을 주면 문서를 모두 읽은 후에 js 코드를 실행하기 때문에 오류를 방지할 수 있다. 또는 js 코드를 아예 <code>&lt;body&gt;</code>태그 외부에 입력해 읽혀지는 순서를 나중으로 강제할 수도 있다.</p>
+<h2 id="표-컨텐츠"><a href="#표-컨텐츠" class="headerlink" title="표 컨텐츠"></a>표 컨텐츠</h2><h3 id="-12"><a href="#-12" class="headerlink" title=""></a><table></h3><p>표를 나타내는 태그. 이 태그 내부에 아래 요소들</p>
+<h3 id="-13"><a href="#-13" class="headerlink" title=""></a><tr></h3><p>행. table row</p>
+<h3 id="-14"><a href="#-14" class="headerlink" title=""></a><td></h3><p>열. table data</p>
+<h3 id="-15"><a href="#-15" class="headerlink" title=""></a><th></h3><p>제목 칸. table header</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">caption</span>&gt;</span></span><br><span class="line">    Alien football stars</span><br><span class="line">  <span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;col&quot;</span>&gt;</span>Player<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;col&quot;</span>&gt;</span>Gloobles<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;col&quot;</span>&gt;</span>Za&#x27;taak<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;row&quot;</span>&gt;</span>TR-7<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>7<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>4,569<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;row&quot;</span>&gt;</span>Khiresh Odo<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>7<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>7,223<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th</span> <span class="attr">scope</span>=<span class="string">&quot;row&quot;</span>&gt;</span>Mia Oolong<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>9<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span>6,219<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-08-28-19-20-25.png"></p>
+<p>실제 사용 예제를 보면 더 이해가 빠르다.<br><code>&lt;table&gt;</code> 태그를 사용해 표를 생성하면 기본적으로 테두리가 표시되지 않는데 선을 표시하기 위해서 css 속성을 추가해야 한다.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">table</span> &#123;</span><br><span class="line">  <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">td</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">th</span> &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background</span>: yellowgreen;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이때 <code>border-collapse</code> 속성은, 셀 간의 간격을 없애는 속성이다.</p>
+<h2 id="-16"><a href="#-16" class="headerlink" title=""></a><form></h2><p>클라이언트가 data를 서버단에 http request로 보내기 위해 사용하는 태그</p>
+<p>form 내부에는 주로 다음과 같은 태그들이 사용된다.</p>
+<ul>
+<li><code>&lt;input&gt;</code> : 사용자의 입력을 받는 태그</li>
+<li><code>&lt;button&gt;</code> : 버튼을 표시하는 태그</li>
+<li><code>&lt;label&gt;</code> : <code>&lt;input&gt;</code> 요소 뿐만 아니라 옆에 표시된 글자를 눌러도 input 요소 선택이 가능하도록 한다.</li>
+<li><code>&lt;select&gt;</code> : 옵션의 선택 메뉴를 제공한다.</li>
+</ul>
+<h3 id="-17"><a href="#-17" class="headerlink" title=""></a><input></h3><p><code>&lt;input&gt;</code> 태그는 <code>type</code> 속성을 지정해 다양한 값을 받을 수 있다.<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">Mozila 참조</a></p>
+<h3 id="-18"><a href="#-18" class="headerlink" title=""></a><label></h3><p><code>label</code>의 지정은 <code>input</code> 요소의 <code>id</code> 속성을 <code>for</code>를 통해 참조하거나, <code>label</code> 태그로 감싸는 두가지 방법으로 구현한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user-agreement&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;user-agreement&quot;</span>&gt;</span>체크 박스?<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> /&gt;</span>체크박스<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="-19"><a href="#-19" class="headerlink" title=""></a><select></h3><p>선택 옵션들을 표시한다.</p>
+<ul>
+<li><code>&lt;option&gt;</code> : 선택지 각 하나를 나타낸다. (<code>selected</code> 속성 사용 가능)</li>
+<li><code>&lt;optgroup&gt;</code> : 선택지를 그룹지어 나타낸다.</li>
+<li><code>&lt;datalist&gt;</code> : 자동완성 기능을 제공한다.</li>
+</ul>
+<h3 id="-20"><a href="#-20" class="headerlink" title=""></a><datalist></h3><p><code>input</code> 태그의 <code>list</code> 속성과 <code>datalist</code>의 <code>id</code>값을 연결해 사용한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">list</span>=<span class="string">&quot;fruits&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">datalist</span> <span class="attr">id</span>=<span class="string">&quot;fruits&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Apple<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Orange<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Banana<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Mango<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">option</span>&gt;</span>Fineapple<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">datalist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020-09-02-20-59-32.png"></p>
+<h2 id="-21"><a href="#-21" class="headerlink" title=""></a><progress></h2><p>작업의 완료 진행률을 표시한다. <code>inline-block</code> 속성을 가진다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">progress</span> <span class="attr">value</span>=<span class="string">&quot;70&quot;</span> <span class="attr">max</span>=<span class="string">&quot;100&quot;</span>&gt;</span>70 %<span class="tag">&lt;/<span class="name">progress</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="-22"><a href="#-22" class="headerlink" title=""></a><tabindex></h2><p><code>Tab</code>키를 이용해 순차적으로 포커스 탐색할 요소의 순서를 지정한다.<br>이미지나 오디오 등 ‘대화형 콘텐츠’는 기본적으로 코드 순서대로 <code>tabindex</code> 요소를 가진다. 비대화형 콘텐츠에도 해당 속성을 추가해 탭 탐색에 추가되도록 할 수 있다.<br><code>tabindex=숫자</code> 을 사용해 추가할 수 있고, 기본적으로 대화형 컨텐츠의 속성값은 <code>0</code>이다. 양의 정수 값 순서대로 탐색되지만 논리적 흐름을 방해하기 때문에 좋은 설정 방법은 아니다.<br>양수 값을 가질 때만 탐색 대상이 되므로, 대화형 콘텐츠에 <code>음수</code>값으로 설정하여 탭 순서에서 제외시킬 수도 있다.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Web-Programming/"># Web Programming</a>
+                    
+                        <a href="/tags/CSS/"># CSS</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/08/28/Algorithm/binary-search/">Binary Search</a>
+            
+            
+            <a class="next" rel="next" href="/2020/08/27/Javascript/JS30/Javascript-30-Day-12/">Javascript 30 Day 12</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>

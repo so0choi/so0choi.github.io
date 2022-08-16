@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>graphql-yoga 로 시작하기 | StudyYeong</title>
+<title>graphql-yoga로 GraphQL 시작하기 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">graphql-yoga 로 시작하기</h1>
+            <h1 class="post-title">graphql-yoga로 GraphQL 시작하기</h1>
             
                 <div class="post-meta">
                     
@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="GraphQL-사용법"><a href="#GraphQL-사용법" class="headerlink" title="GraphQL 사용법"></a>GraphQL 사용법</h1><p>기본 사용법을 익히기 위해 <code>graphql-yoga</code>를 사용했다.</p>
+            <p>기본 사용법을 익히기 위해 <code>graphql-yoga</code>를 사용했다.</p>
 <h2 id="서버-열기"><a href="#서버-열기" class="headerlink" title="서버 열기"></a>서버 열기</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; GraphQLServer &#125; <span class="keyword">from</span> <span class="string">&quot;graphql-yoga&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> resolvers <span class="keyword">from</span> <span class="string">&quot;./graphql/resolvers&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> GraphQLServer(&#123;</span><br><span class="line">  <span class="attr">typeDefs</span>: <span class="string">&quot;graphql/schema.graphql&quot;</span>,</span><br><span class="line">  resolvers,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.start(<span class="function">() =&gt;</span> <span class="built_in">console</span>.log(<span class="string">&quot;Graphql Server Running&quot;</span>));</span><br></pre></td></tr></table></figure>
 
 <p>서버를 열면서 스키마 파일을 지정하고, resolver 또한 설정해준다. 포트를 따로 지정하지 않으면 4000번 포트로 서버가 열리고 브라우저로 접속시 깔끔한 ui를 가진 플레이그라운드로 간편하게 api를 테스트 해볼 수 있다.</p>
@@ -289,7 +289,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/01/24/React/React-js-01/">React.js 시작하기</a>
+                <a class="prev" rel="prev" href="/2021/01/24/React/React-js-01/">React 시작하기</a>
             
             
             <a class="next" rel="next" href="/2021/01/16/Else/cmd-%ED%8F%AC%ED%8A%B8-%EC%A2%85%EB%A3%8C/">특정 포트 강제 종료</a>
