@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>아카이브 | StudyYeong</title>
+<title>CodeCommit, CodePipeline, ElasticBeanstalk을 사용한 CI/CD 구축 | StudyYeong</title>
 
 
 
@@ -124,109 +124,91 @@
   }
 </script>
         <div class="main">
-            <div class="post-wrap archive">
+            <div class="container">
     
     
-        
 
-        
-            <h3>2022</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2022/01/13/Server/Actor-model-framework/">Actor model framework</a>
-            <span class="archive-item-date">1월 13, 2022</span>
-        </article>
     
-        
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">CodeCommit, CodePipeline, ElasticBeanstalk을 사용한 CI/CD 구축</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">8월 23, 2022&nbsp;&nbsp;10:10:26</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>CodeCommit 레포지토리는 이미 생성했다고 가정한다.</p>
+
+        </div>
 
         
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/CodeCommit/"># CodeCommit</a>
+                    
+                        <a href="/tags/ElasticBeanstalk/"># ElasticBeanstalk</a>
+                    
+                        <a href="/tags/CodePipeline/"># CodePipeline</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/08/23/Error/ElasticBeanstalk-Javascript-heap-out-of-memory-%EC%98%A4%EB%A5%98/">ElasticBeanstalk yarn 적용 및 Javascript heap out of memory 오류</a>
+            
+            
+            <a class="next" rel="next" href="/2022/08/16/CS/%EC%84%9C%EB%B9%84%EC%8A%A4-%EA%B4%80%EB%A6%AC-%EC%84%9C%EB%B2%84-%EB%B6%84%EB%A5%98/">서비스 운영 서버 분류 (local, dev, stg, prod)</a>
+            
+        </section>
 
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2022/01/12/Javascript/Remove-event-handler/">Event handler의 등록 및 삭제</a>
-            <span class="archive-item-date">1월 12, 2022</span>
-        </article>
-    
-        
 
-        
-            <h3>2021</h3>
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/12/13/AWS/Cloudwatch-insight-query/">Cloudwatch Log Insights query</a>
-            <span class="archive-item-date">12월 13, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/12/13/Nodejs/Express-with-typescript/">Express.js Typescript 보일러플레이트 만들기 (for Web)</a>
-            <span class="archive-item-date">12월 13, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/12/10/Nodejs/hbs-exprees-handlebars-Missing-helper-%EC%97%90%EB%9F%AC/">hbs, exprees-handlebars - Missing helper 에러</a>
-            <span class="archive-item-date">12월 10, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/12/06/Else/Git-submodule-%EC%B6%94%EA%B0%80/">Git submodule 추가</a>
-            <span class="archive-item-date">12월 6, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/11/18/WebProgramming/else/webpack-asset/">Webpack file-loader 경로 오류</a>
-            <span class="archive-item-date">11월 18, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/11/18/ReactNative/babel-plugin-issue/">React Native babel plugin config 이슈</a>
-            <span class="archive-item-date">11월 18, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/11/18/WebProgramming/else/webpack-loader/">Webpack loader 사용하기</a>
-            <span class="archive-item-date">11월 18, 2021</span>
-        </article>
-    
-        
-
-        
-
-        <article class="archive-item">
-            <a class="archive-item-link" href="/2021/11/15/WebProgramming/else/webpack/">Webpack</a>
-            <span class="archive-item-date">11월 15, 2021</span>
-        </article>
-    
-    
-    <nav class="pagination">
-        <a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/14/">14</a>
-    </nav>
-
+    </article>
 </div>
+
         </div>
         <footer id="footer" class="footer">
   <div class="copyright">
