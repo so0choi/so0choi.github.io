@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>SOLID 원칙 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SOLID 원칙</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">9월 15, 2022&nbsp;&nbsp;10:31:14</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/CS/">CS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="SRP-Single-Responsibility-Principle"><a href="#SRP-Single-Responsibility-Principle" class="headerlink" title="SRP (Single Responsibility Principle)"></a>SRP (Single Responsibility Principle)</h2><p>‘클래스를 변경하는 이유가 한 가지 이상 있어서는 안 된다.’는 말이 있다. 한 개의 클래스가 한 가지 일만 하도록 하는 것은 매우 중요하다. 클래스의 기능이 많아질수록 역할이 불분명해지고 의존하고 있는 모듈들에 어떤 영향을 끼칠지 알 수 없기 때문이다.</p>
+<h3 id="Bad"><a href="#Bad" class="headerlink" title="Bad"></a>Bad</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSettings</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> user: User</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">changeSettings</span>(<span class="params">settings: UserSettings</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.verifyCredentials()) &#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">verifyCredentials</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Good"><a href="#Good" class="headerlink" title="Good"></a>Good</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserAuth</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> user: User</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">verifyCredentials</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserSettings</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> auth: UserAuth;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> user: User</span>)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.auth = <span class="keyword">new</span> UserAuth(user);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">changeSettings</span>(<span class="params">settings: UserSettings</span>)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.auth.verifyCredentials()) &#123;</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="OCP-Open-Closed-Principle"><a href="#OCP-Open-Closed-Principle" class="headerlink" title="OCP (Open Closed Principle)"></a>OCP (Open Closed Principle)</h2><p>소프트웨어 개체(클래스, 모듈, 함수, 등)는 확장에 열려있지만 변경에는 닫혀있어야 한다. 기존 코드를 수정하지 않으면서 새로운 기능을 추가할 수 있어야 한다는 말이다.</p>
+<h3 id="Bad-1"><a href="#Bad-1" class="headerlink" title="Bad"></a>Bad</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AjaxAdapter</span> <span class="keyword">extends</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NodeAdapter</span> <span class="keyword">extends</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpRequester</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> adapter: Adapter</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> fetch&lt;T&gt;(url: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.adapter <span class="keyword">instanceof</span> AjaxAdapter) &#123;</span><br><span class="line">      <span class="keyword">const</span> response = <span class="keyword">await</span> makeAjaxCall&lt;T&gt;(url);</span><br><span class="line">      <span class="comment">// transform response and return</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">this</span>.adapter <span class="keyword">instanceof</span> NodeAdapter) &#123;</span><br><span class="line">      <span class="keyword">const</span> response = <span class="keyword">await</span> makeHttpCall&lt;T&gt;(url);</span><br><span class="line">      <span class="comment">// transform response and return</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeAjaxCall</span>&lt;<span class="title">T</span>&gt;(<span class="params">url: <span class="built_in">string</span></span>): <span class="title">Promise</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">// request and return promise</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeHttpCall</span>&lt;<span class="title">T</span>&gt;(<span class="params">url: <span class="built_in">string</span></span>): <span class="title">Promise</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">// request and return promise</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Good-1"><a href="#Good-1" class="headerlink" title="Good"></a>Good</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="keyword">async</span> request&lt;T&gt;(url: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;T&gt;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// code shared to subclasses ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AjaxAdapter</span> <span class="keyword">extends</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> request&lt;T&gt;(url: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;T&gt;&#123;</span><br><span class="line">    <span class="comment">// request and return promise</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NodeAdapter</span> <span class="keyword">extends</span> <span class="title">Adapter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> request&lt;T&gt;(url: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;T&gt;&#123;</span><br><span class="line">    <span class="comment">// request and return promise</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HttpRequester</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> adapter: Adapter</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> fetch&lt;T&gt;(url: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="built_in">this</span>.adapter.request&lt;T&gt;(url);</span><br><span class="line">    <span class="comment">// transform response and return</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LSP-Liskov-Substitution-Principle"><a href="#LSP-Liskov-Substitution-Principle" class="headerlink" title="LSP (Liskov Substitution Principle)"></a>LSP (Liskov Substitution Principle)</h2><p>type S가 type T의 서브 타입이라면 type T는 아무 수정 없이도 type S로 대체될 수 있어야 한다. 다시 말하면 부모 클래스와 자식 클래스가 있을 때 그 둘은 대체 가능해야 한다는 것이다.<br>‘is-A’에 맞다고 하더라도 상위 타입에서 정의한 조건중 부합하지 않는게 있다면 이를 상속받아서는 안된다.  </p>
+<h3 id="Bad-2"><a href="#Bad-2" class="headerlink" title="Bad"></a>Bad</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">protected</span> width: <span class="built_in">number</span> = <span class="number">0</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">protected</span> height: <span class="built_in">number</span> = <span class="number">0</span></span>)</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setColor(color: <span class="built_in">string</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params">area: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setWidth(width: <span class="built_in">number</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.width = width;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setHeight(height: <span class="built_in">number</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.height = height;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getArea(): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.width * <span class="built_in">this</span>.height;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">  setWidth(width: <span class="built_in">number</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.width = width;</span><br><span class="line">    <span class="built_in">this</span>.height = width;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setHeight(height: <span class="built_in">number</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.width = height;</span><br><span class="line">    <span class="built_in">this</span>.height = height;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderLargeRectangles</span>(<span class="params">rectangles: Rectangle[]</span>) </span>&#123;</span><br><span class="line">  rectangles.forEach(<span class="function">(<span class="params">rectangle</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> area = rectangle</span><br><span class="line">      .setWidth(<span class="number">4</span>)</span><br><span class="line">      .setHeight(<span class="number">5</span>)</span><br><span class="line">      .getArea(); <span class="comment">// BAD: Returns 25 for Square. Should be 20.</span></span><br><span class="line">    rectangle.render(area);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> rectangles = [<span class="keyword">new</span> Rectangle(), <span class="keyword">new</span> Rectangle(), <span class="keyword">new</span> Square()];</span><br><span class="line">renderLargeRectangles(rectangles);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Good-2"><a href="#Good-2" class="headerlink" title="Good"></a>Good</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  setColor(color: <span class="built_in">string</span>): <span class="built_in">this</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">render</span>(<span class="params">area: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">abstract</span> getArea(): <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> <span class="keyword">readonly</span> width = <span class="number">0</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    <span class="keyword">private</span> <span class="keyword">readonly</span> height = <span class="number">0</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getArea(): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.width * <span class="built_in">this</span>.height;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> length: <span class="built_in">number</span></span>)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getArea(): <span class="built_in">number</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.length * <span class="built_in">this</span>.length;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderLargeShapes</span>(<span class="params">shapes: Shape[]</span>) </span>&#123;</span><br><span class="line">  shapes.forEach(<span class="function">(<span class="params">shape</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> area = shape.getArea();</span><br><span class="line">    shape.render(area);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> shapes = [<span class="keyword">new</span> Rectangle(<span class="number">4</span>, <span class="number">5</span>), <span class="keyword">new</span> Rectangle(<span class="number">4</span>, <span class="number">5</span>), <span class="keyword">new</span> Square(<span class="number">5</span>)];</span><br><span class="line">renderLargeShapes(shapes);</span><br></pre></td></tr></table></figure>
+
+<h2 id="ISP-Interface-Segregation-Principle"><a href="#ISP-Interface-Segregation-Principle" class="headerlink" title="ISP (Interface Segregation Principle)"></a>ISP (Interface Segregation Principle)</h2><p>클라이언트에게 굳이 필요없는 인터페이스를 노출시키지 말아야 한다는 뜻이다. SRP와도 연관이 있다. 클라이언트에게 전체 클래스가 아닌 필요한 메소드만 노출시켜 사용할 수 있도록 추상화를 잘 설계해야 한다.</p>
+<h3 id="Bad-3"><a href="#Bad-3" class="headerlink" title="Bad"></a>Bad</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> SmartPrinter &#123;</span><br><span class="line">  print();</span><br><span class="line">  fax();</span><br><span class="line">  scan();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllInOnePrinter</span> <span class="title">implements</span> <span class="title">SmartPrinter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">fax</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">scan</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EconomicPrinter</span> <span class="title">implements</span> <span class="title">SmartPrinter</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">fax</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;Fax not supported.&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">scan</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;Scan not supported.&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Good-3"><a href="#Good-3" class="headerlink" title="Good"></a>Good</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Printer &#123;</span><br><span class="line">  print();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Fax &#123;</span><br><span class="line">  fax();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Scanner &#123;</span><br><span class="line">  scan();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllInOnePrinter</span> <span class="title">implements</span> <span class="title">Printer</span>, <span class="title">Fax</span>, <span class="title">Scanner</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="title">fax</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="title">scan</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EconomicPrinter</span> <span class="title">implements</span> <span class="title">Printer</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">print</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Dependency-Inversion-Principle-DIP"><a href="#Dependency-Inversion-Principle-DIP" class="headerlink" title="Dependency Inversion Principle (DIP)"></a>Dependency Inversion Principle (DIP)</h2><p>의존성 역전 원칙은 두 가지 중요한 특징이 있다. </p>
+<ol>
+<li>상위레벨 모듈은 하위 레벨 모듈에 의존해서는 안된다. 두 모듈 모두 추상적으로 의존해야 한다.</li>
+<li>추상화가 구체적이어서는 안된다. 구현이 추상화에 의존해야 한다.</li>
+</ol>
+<p>의존성 역전 원칙에 따라 설계했을 시의 가장 큰 장점은 모듈간의 결합도(coupling)이 떨어진다는 점이다. DIP는 보통 IoC(Inversion of Control) 컨테이너를 사용하면 달성된다.</p>
+<h3 id="Bad-4"><a href="#Bad-4" class="headerlink" title="Bad"></a>Bad</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; readFile <span class="keyword">as</span> readFileCb &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; promisify &#125; <span class="keyword">from</span> <span class="string">&#x27;util&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> readFile = promisify(readFileCb);</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ReportData = &#123;</span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XmlFormatter</span> </span>&#123;</span><br><span class="line">  parse&lt;T&gt;(content: <span class="built_in">string</span>): T &#123;</span><br><span class="line">    <span class="comment">// Converts an XML string to an object T</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReportReader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// BAD: We have created a dependency on a specific request implementation.</span></span><br><span class="line">  <span class="comment">// We should just have ReportReader depend on a parse method: `parse`</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">readonly</span> formatter = <span class="keyword">new</span> XmlFormatter();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> read(path: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;ReportData&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> text = <span class="keyword">await</span> readFile(path, <span class="string">&#x27;UTF8&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.formatter.parse&lt;ReportData&gt;(text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> reader = <span class="keyword">new</span> ReportReader();</span><br><span class="line"><span class="keyword">const</span> report = <span class="keyword">await</span> reader.read(<span class="string">&#x27;report.xml&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Good-4"><a href="#Good-4" class="headerlink" title="Good"></a>Good</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; readFile <span class="keyword">as</span> readFileCb &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; promisify &#125; <span class="keyword">from</span> <span class="string">&#x27;util&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> readFile = promisify(readFileCb);</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ReportData = &#123;</span><br><span class="line">  <span class="comment">// ..</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Formatter &#123;</span><br><span class="line">  parse&lt;T&gt;(content: <span class="built_in">string</span>): T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XmlFormatter</span> <span class="title">implements</span> <span class="title">Formatter</span> </span>&#123;</span><br><span class="line">  parse&lt;T&gt;(content: <span class="built_in">string</span>): T &#123;</span><br><span class="line">    <span class="comment">// Converts an XML string to an object T</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonFormatter</span> <span class="title">implements</span> <span class="title">Formatter</span> </span>&#123;</span><br><span class="line">  parse&lt;T&gt;(content: <span class="built_in">string</span>): T &#123;</span><br><span class="line">    <span class="comment">// Converts a JSON string to an object T</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReportReader</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> formatter: Formatter</span>)</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">async</span> read(path: <span class="built_in">string</span>): <span class="built_in">Promise</span>&lt;ReportData&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> text = <span class="keyword">await</span> readFile(path, <span class="string">&#x27;UTF8&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.formatter.parse&lt;ReportData&gt;(text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> reader = <span class="keyword">new</span> ReportReader(<span class="keyword">new</span> XmlFormatter());</span><br><span class="line"><span class="keyword">const</span> report = <span class="keyword">await</span> reader.read(<span class="string">&#x27;report.xml&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// or if we had to read a json report</span></span><br><span class="line"><span class="keyword">const</span> reader = <span class="keyword">new</span> ReportReader(<span class="keyword">new</span> JsonFormatter());</span><br><span class="line"><span class="keyword">const</span> report = <span class="keyword">await</span> reader.read(<span class="string">&#x27;report.json&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/labs42io/clean-code-typescript#solid">Clean Code Typescript</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@teo/Javascript%EC%97%90%EC%84%9C%EB%8F%84-SOLID-%EC%9B%90%EC%B9%99%EC%9D%B4-%ED%86%B5%ED%95%A0%EA%B9%8C">Javascript에서도 SOLID 원칙이 통할까</a></li>
+</ul>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SOLID/"># SOLID</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/10/06/Else/Web-Component-%EB%8C%80%EC%8B%A0-iframe%EC%9D%84-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%9D%B4%EC%9C%A0/">Web Component 대신 iframe을 선택한 이유</a>
+            
+            
+            <a class="next" rel="next" href="/2022/09/02/AWS/Code-Deploy-%EB%B0%B0%ED%8F%AC-%EC%9E%90%EB%8F%99%ED%99%94-%EC%9D%B4%EC%8A%88/">Code Deploy 배포 자동화 이슈</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
