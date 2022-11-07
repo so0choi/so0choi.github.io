@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Kinesis | StudyYeong</title>
+<title>실시간 집계 데이터 처리 프로세스 개선 기록 | StudyYeong</title>
 
 
 
@@ -127,73 +127,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
-        <a onclick="go_top()">Top</a>
-        <a onclick="go_bottom()">Bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Kinesis</h1>
+            <h1 class="post-title">실시간 집계 데이터 처리 프로세스 개선 기록</h1>
             
                 <div class="post-meta">
                     
@@ -202,37 +140,29 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 17, 2022&nbsp;&nbsp;15:15:02</a>
+                        Date: <a href="#">10월 25, 2022&nbsp;&nbsp;15:42:51</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/History/">History</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>Amazon Kineses를 사용하면 실시간 스트리밍 데이터를 손쉽게 수집, 처리 및 분석할 수 있으므로 새로운 정보에 신속 대응할 수 있다. Amazon Kineses에서는 기계 학습, 분석 및 기타 애플리케이션을 위해 비디오, 오디오, 애플리케이션 로그 데이터와 같은 실시간 데이터를 수집할 수 있다.</p>
-<h2 id="중요-특징"><a href="#중요-특징" class="headerlink" title="중요 특징"></a>중요 특징</h2><ul>
-<li>실시간 : 실시간 스트리밍 데이터를 수집 및 처리할 수 있다.</li>
-<li>완전관리형 : 사용자가 인프라를 관리할 필요가 없다.</li>
-<li>확장성 : 매우 짧은 지연 시간으로 수많은 소스의 데이터를 처리할 수 있다.</li>
-</ul>
-<h3 id="Kinesis-Data-Streams"><a href="#Kinesis-Data-Streams" class="headerlink" title="Kinesis Data Streams"></a>Kinesis Data Streams</h3><p>거대한 데이터 스트림을 실시간으로 다룰 수 있는 서비스이다. 실시간으로 데이터 지표를 확인하고 처리 및 분석 작업이 가능하다. 가장 보편적으로 사용하는 케이스는 실시간 데이터 집계가 있다. 데이터를 집어넣고 처리를 위해 불러오는데 걸리는 시간인 ‘put-to-get delay’는 1초 이하이다. 데이터가 들어오자마자 즉각적으로 사용할 수 있다고 봐도 무방하다.</p>
-<p><img src="images/2022-10-07-01.png" alt="kinesis architecture"></p>
-<ul>
-<li>producer: Kinesis Data Streams에 지속적으로 데이터를 넣는 주체</li>
-<li>consumer: Amazon EC2 또는 Amazon Kinesis Firehose로 처리 결과를 Amazon DynamoDB, Redshift, S3 등에 저장하는 주체</li>
-<li>shard: Kinesis data stream은 샤드로 이루어져있다. 각 샤드는 data record들로 이루어져있고 각 data record는 sequence number를 가지고있다.</li>
-<li>data record: Kinesis data stream에서 저장되는 데이터의 단위이다. sequence number, partition key와 data blob으로 이루어져있다. data blob의 최대 크기는 1MB이다.</li>
-<li>capacity mode<ul>
-<li>on-demand mode: 자동으로 샤드의 수가 관리된다.</li>
-<li>provisioned mode: data stream에 대한 샤드 수를 직접 지정해야 한다.</li>
-</ul>
-</li>
-</ul>
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/streams/latest/dev/introduction.html">Amazon Kinesis Streams Developer Guide</a></li>
-</ul>
+            <blockquote>
+<p><a target="_blank" rel="noopener" href="https://dvpsy.notion.site/feat-DynamoDB-e95a7fd97fd54a4e9a901c07f58a12c8">2년 전 개선작업 시작때 기록</a></p>
+</blockquote>
+<p>무려 2년 전 입사한지 얼마 지나지 않았을 때 작성한 건데 생각보다 잘 썼다..?? 저때 열심히 살았나보다.</p>
+<p>서비스에 라이브 송출 플레이어가 추가되면서 실시간 데이터 처리를 맡게 되었다. 이전에 있던 다른 일반 VOD 재생 데이터들은 관계형 데이터베이스에서 DynamoDB를 사용하도록 프로세스가 수정된 상태였다.</p>
+<p><img src="images/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%A7%91%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B0%9C%EC%84%A0-%EA%B8%B0%EB%A1%9D.png" alt="구조"></p>
+<p>VOD 재생 데이터도 실시간 집계라면 실시간 집계였지만 라이브 서비스의 경우 <strong>현재 시청자수</strong>를 구해야해서 정말로 실시간 집계가 필요했다. </p>
 
         </div>
 
@@ -264,7 +194,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Kinesis/"># Kinesis</a>
+                        <a href="/tags/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC/"># 실시간 데이터 처리</a>
                     
                         
                 </span>
@@ -277,10 +207,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/03/18/AWS/AWS-SAM/">AWS SAM (Lambda Typescript로 작성하기)</a>
+                <a class="prev" rel="prev" href="/2022/11/07/Else/AWS-RDS-Aurora-MySQL-DataGrip%EC%9C%BC%EB%A1%9C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0/">AWS RDS Aurora MySQL DataGrip으로 접속하기</a>
             
             
-            <a class="next" rel="next" href="/2022/02/25/ReactNative/React-Native-dotenv-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/">React Native dotenv 사용하기</a>
+            <a class="next" rel="next" href="/2022/10/06/Else/Web-Component-%EB%8C%80%EC%8B%A0-iframe%EC%9D%84-%EC%84%A0%ED%83%9D%ED%95%9C-%EC%9D%B4%EC%9C%A0/">Web Component 대신 iframe을 선택한 이유</a>
             
         </section>
 
