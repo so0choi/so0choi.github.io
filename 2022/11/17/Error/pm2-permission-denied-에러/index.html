@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>pm2 permission denied 에러 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">pm2 permission denied 에러</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">11월 17, 2022&nbsp;&nbsp;15:26:48</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Node-js/">Node.js</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>pm2로 프로세스를 시작하려고 했는데 <code>permission denied</code> 에러가 발생했다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm start development</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mbus-api-play@1.0.1 start</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> pm2 start ./ecosystem.config.js --env development</span></span><br><span class="line"></span><br><span class="line">Error: EACCES: permission denied, mkdir &#x27;/root/.pm2/logs&#x27;</span><br><span class="line">    at Object.mkdirSync (node:fs:1382:3)</span><br><span class="line">    at mkdirpNativeSync (/usr/local/lib/node_modules/pm2/node_modules/mkdirp/lib/mkdirp-native.js:29:10)</span><br><span class="line">    at Function.mkdirpSync [as sync] (/usr/local/lib/node_modules/pm2/node_modules/mkdirp/index.js:21:7)</span><br><span class="line">    at module.exports.Client.initFileStructure (/usr/local/lib/node_modules/pm2/lib/Client.js:133:25)</span><br><span class="line">    at new module.exports (/usr/local/lib/node_modules/pm2/lib/Client.js:38:8)</span><br><span class="line">    at new API (/usr/local/lib/node_modules/pm2/lib/API.js:107:19)</span><br><span class="line">    at Object.&lt;anonymous&gt; (/usr/local/lib/node_modules/pm2/lib/binaries/CLI.js:22:11)</span><br><span class="line">    at Module._compile (node:internal/modules/cjs/loader:1155:14)</span><br><span class="line">    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1209:10)</span><br><span class="line">    at Module.load (node:internal/modules/cjs/loader:1033:32)</span><br><span class="line">Error: EACCES: permission denied, mkdir &#x27;/root/.pm2/pids&#x27;</span><br><span class="line">    at Object.mkdirSync (node:fs:1382:3)</span><br><span class="line">    at mkdirpNativeSync (/usr/local/lib/node_modules/pm2/node_modules/mkdirp/lib/mkdirp-native.js:29:10)</span><br><span class="line">    at Function.mkdirpSync [as sync] (/usr/local/lib/node_modules/pm2/node_modules/mkdirp/index.js:21:7)</span><br><span class="line">    .....</span><br></pre></td></tr></table></figure>
+
+<p><code>sudo -i</code> 를 사용해 root 사용자로 사용하고 있었다. 권한 문제인 것 같아 root가 아닌 다른 사용자로 프로세스를 시작하려고 했는데 아래와 같은 에러가 나타났다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: listen EACCES: permission denied 0.0.0.0:80</span><br></pre></td></tr></table></figure>
+
+<p>서치해보니 root 사용자가 아닌 사용자는 1024 이하 포트를 열 수 없다고 한다. (<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/60372618/nodejs-listen-eacces-permission-denied-0-0-0-080">참고</a>)</p>
+<p>프로세스는 root 사용자로 시작해야되는 게 맞나보다..<br>그리고 기록해두지 못했는데 이것저것 해보다가 pm2가 node 버전이 낮다는 에러도 보여줬다. 확인해보니 sudo 일 때와 sudo를 사용하지 않을 때 사용하는 node가 달랐다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> node -v</span></span><br><span class="line">v16.18.0</span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> node</span></span><br><span class="line">/root/.nvm/versions/node/v16.18.1/bin/node</span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo node -v</span></span><br><span class="line">v8.x</span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo <span class="built_in">which</span> node</span></span><br><span class="line">/usr/loca/bin/pm2</span><br></pre></td></tr></table></figure>
+
+<p>에러를 찾아보니 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/21215059/cant-use-nvm-from-root-or-sudo">이 글</a>을 찾았다. (can’t use nvm from root or sudo) 제일 상단의 답변에 있는 커맨드를 실행하니 해결이 되었다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n=$(which node); \</span><br><span class="line">n=$&#123;n%/bin/node&#125;; \</span><br><span class="line">chmod -R 755 $n/bin/*; \</span><br><span class="line">sudo cp -r $n/&#123;bin,lib,share&#125; /usr/local</span><br></pre></td></tr></table></figure>
+<p>잘못하면 시스템을 망가뜨릴 수도 있다고 조심해서 사용하라고 한다.</p>
+<p>이제 sudo나 root에서도 nvm이 설치한 노드를 사용하는데 여전히 pm2 권한 문제가 해결되지 않았다…<br>권한 에러가 난 파일들을 <code>chmod</code> 하는건 의미가 없는 것 같았고 🥲.. 다른 글을 보니 pm2를 재설치 해보라고 한다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo npm install pm2 -g</span></span><br></pre></td></tr></table></figure>
+
+<p>이렇게 했는데도 안되면 node를 재설치 하라고 한다! nvm도 재설치 했다.<br>하지만 아무리해도 같은 에러가 발생했다. 일단 실행시킬 수 있는 방법은 <code>npm start</code>가 아니라 sudo를 붙여서 직접 pm2를 실행시키는 것이다. ..</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pm2 start ./ecosystem.config.js --env development</span><br></pre></td></tr></table></figure>
+
+<p>왜 안되는 걸까 ? ㅎㅎ 나중에 다시 해봐야지..</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/pm2/"># pm2</a>
+                    
+                        <a href="/tags/nvm/"># nvm</a>
+                    
+                        <a href="/tags/node/"># node</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/11/07/Else/AWS-RDS-Aurora-MySQL-DataGrip%EC%9C%BC%EB%A1%9C-%EC%A0%91%EC%86%8D%ED%95%98%EA%B8%B0/">AWS RDS Aurora MySQL DataGrip으로 접속하기</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
