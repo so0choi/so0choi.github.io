@@ -255,7 +255,13 @@
 <td>로그 필드에서 데이터를 추출하고, 쿼리에서 추가로 처리할 수 있는 임시 필드 생성</td>
 </tr>
 </tbody></table>
-<h2 id="사용예"><a href="#사용예" class="headerlink" title="사용예"></a>사용예</h2><h3 id="timestamp-범위-내-로그-쿼리"><a href="#timestamp-범위-내-로그-쿼리" class="headerlink" title="timestamp 범위 내 로그 쿼리"></a>timestamp 범위 내 로그 쿼리</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fields @timestamp, @message</span><br><span class="line">| fields tomillis(@timestamp) as millis</span><br><span class="line">| filter millis &gt; 1639162500000  # 2021년 12월 11일 토요일 오전 3:55:05 GMT+09:00</span><br><span class="line">     and millis &lt; 1639162510000  # 2021년 12월 11일 토요일 오전 3:55:10 GMT+09:00</span><br></pre></td></tr></table></figure>
+<h2 id="사용-예"><a href="#사용-예" class="headerlink" title="사용 예"></a>사용 예</h2><h3 id="timestamp-범위-내-로그-쿼리"><a href="#timestamp-범위-내-로그-쿼리" class="headerlink" title="timestamp 범위 내 로그 쿼리"></a>timestamp 범위 내 로그 쿼리</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fields @timestamp, @message</span><br><span class="line">| fields tomillis(@timestamp) as millis</span><br><span class="line">| filter millis &gt; 1639162500000  # 2021년 12월 11일 토요일 오전 3:55:05 GMT+09:00</span><br><span class="line">     and millis &lt; 1639162510000  # 2021년 12월 11일 토요일 오전 3:55:10 GMT+09:00</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ko_kr/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">CloudWatch Logs Insights 쿼리 구문</a></li>
+</ul>
 
         </div>
 

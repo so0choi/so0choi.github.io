@@ -224,7 +224,7 @@
 <p>출력</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HEY</span><br></pre></td></tr></table></figure>
 
-<p>선언되기도 전에 사용한 변수가 정상적으로 불러와 짐으로 인해서 개발자에게 혼란을 가져왔는데, 주로 <code>var</code> 키워드를 사용할 때 이러한 문제들이 발생했다.</p>
+<p>선언되기도 전에 사용한 변수가 정상적으로 불러와짐으로 인해서 개발자에게 혼란을 가져왔는데, 주로 <code>var</code> 키워드를 사용할 때 이러한 문제들이 발생했다.</p>
 <p>이런 문제점들은 <code>let</code>을 사용하면 해결할 수 있다.</p>
 <p><code>let</code> 키워드는 선언된 후에만 사용할 수 있기 때문에 사용하려고 하면 문법적 오류가 발생해 로직 오류를 방지할 수 있다.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;HEY&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="keyword">let</span> a;</span><br></pre></td></tr></table></figure>

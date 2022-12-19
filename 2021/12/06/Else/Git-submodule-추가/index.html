@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Git-submodule-추가"><a href="#Git-submodule-추가" class="headerlink" title="Git submodule 추가"></a>Git submodule 추가</h1><p>hexo로 블로그를 생성해 테마를 설치해서 사용하면 다른 로컬 환경에서 블로그 프로젝트를 clone 했을 때 <code>themes</code> 디렉토리 내부의 테마 디렉토리들이 비어있는 상태로 받아지는 것을 볼 수 있다. 내부에 git 레파지토리가 따로 구성되어있기 때문인데 다른 컴퓨터에서도 원활하게 사용할 수 있도록 submodule을 설정해줬다.</p>
+            <p>hexo로 블로그를 생성해 테마를 설치해서 사용하면 다른 로컬 환경에서 블로그 프로젝트를 clone 했을 때 <code>themes</code> 디렉토리 내부의 테마 디렉토리들이 비어있는 상태로 받아지는 것을 볼 수 있다. 내부에 git 레파지토리가 따로 구성되어있기 때문인데 다른 컴퓨터에서도 원활하게 사용할 수 있도록 submodule을 설정해줬다.</p>
 <h2 id="submodule"><a href="#submodule" class="headerlink" title="submodule"></a>submodule</h2><p>submodule이란 Git 저장소 안에 다른 Git 저장소를 디렉토리로 분리해 넣는 것이다. 다른 독립된 Git 저장소를 Clone 해서 내 Git 저장소 안에 포함할 수 있으며 각 저장소의 커밋은 독립적으로 관리한다.</p>
 <p>자세한 내용은 <a target="_blank" rel="noopener" href="https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88">7.11 Git 도구 - 서브모듈</a> 여기서 볼 수 있다. 나는 블로그 운용만 쉽게 할 수 있게 간단히 훑어보고 필요한 작업만 해놓았다. 잘 알아두면 나중에 실무에서도 유용하게 쓸 수 있을 것 같다.</p>
 <h2 id="hexo-theme-submodule-적용"><a href="#hexo-theme-submodule-적용" class="headerlink" title="hexo theme submodule 적용"></a>hexo theme submodule 적용</h2><p>가장 깔끔한 방법은 테마를 처음 설치할 때 부터 submodule로 추가시키는 것이다.</p>

@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Web Component 대신 iframe을 선택한 이유 | StudyYeong</title>
+<title>cloudwatch log insights query sdk | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Web Component 대신 iframe을 선택한 이유</h1>
+            <h1 class="post-title">cloudwatch log insights query sdk</h1>
             
                 <div class="post-meta">
                     
@@ -202,40 +202,21 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">10월 6, 2022&nbsp;&nbsp;17:02:39</a>
+                        Date: <a href="#">12월 19, 2022&nbsp;&nbsp;11:18:56</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Else/">Else</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>내가 개발한 페이지에서 커스텀 플레이어를 만들 수 있는 부분만 기존 서비스에 추가하기 위한 작업을 시작했다. </p>
-<p><img src="/images/2022-10-06-5-41-15.png" alt="플레이어 컴포넌트"></p>
-<p>기존 페이지에 영향을 주지 않으면서 컴포넌트를 추가하기 위한 기술을 찾아보니 웹 컴포넌트라는게 있었다.<br>생각보다 오래전부터 존재했던 기술이라 신기했다. 생소한 개념이라 여러가지를 리서치했다.<br>생각보다 종류가 많았는데 그 중 <a target="_blank" rel="noopener" href="https://github.com/ionic-team/stencil">Stencil</a>를 선택했다.<br>프레임워크도 여러가지가 있었는데 Stencil도 프레임워크 같아 보이지만 ‘웹 컴포넌트 컴파일러’라고 한다.</p>
-<h2 id="웹-컴포넌트"><a href="#웹-컴포넌트" class="headerlink" title="웹 컴포넌트"></a>웹 컴포넌트</h2><p>코드를 캡슐화하여 재사용 가능한 커스텀 엘리먼트를 생성하고 웹 앱에서 활용할 수 있도록 해주는 다양한 기술들의 모음이다.<br>아래 세 가지 주요 기술들로 구성된다.</p>
-<ul>
-<li>Custom elements: 사용자 인터페이스에서 원하는대로 사용할 수 있는 사용자 정의 요소 및 해당 동작을 정의 할 수 있는 Javascript API 세트</li>
-<li>Shadow DOM: 캡슐화된 Shadow DOM 트리. 메인 Document DOM으로부터 독립적으로 렌더링된다. document의 다른 부분과의 충돌에 대한 걱정 없이 스크립트와 스타일을 작성할 수 있다.</li>
-<li>HTML template: <code>&lt;templa&gt;</code> 과 <code>&lt;slot&gt;</code> 엘리먼트는 렌더링된 페이지에 나타나지 않는 마크업 템플릿을 작성하게 해준다.</li>
+            <p>javascript sdk를 사용해 cloudwatch log insight를 사용하는 법을 정리한다.</p>
+<h2 id="코드"><a href="#코드" class="headerlink" title="코드"></a>코드</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> AWS = <span class="built_in">require</span>(<span class="string">&#x27;aws-sdk&#x27;</span>);</span><br><span class="line"></span><br><span class="line">AWS.config.update(&#123;<span class="attr">region</span>: <span class="string">&#x27;ap-northeast-2&#x27;</span>,<span class="attr">credentials</span>: &#123;</span><br><span class="line">    <span class="attr">accessKeyId</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">secretAccessKey</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">&#125;, &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create CloudWatch service object</span></span><br><span class="line"><span class="keyword">var</span> cl = <span class="keyword">new</span> AWS.CloudWatchLogs();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> params = &#123;</span><br><span class="line">    <span class="attr">startTime</span>: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2022</span>,<span class="number">10</span>,<span class="number">16</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>).getTime(),<span class="comment">/* required */</span></span><br><span class="line">    <span class="attr">endTime</span>: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2022</span>,<span class="number">10</span>,<span class="number">17</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>).getTime() <span class="comment">/* required */</span> ,</span><br><span class="line">    <span class="attr">logGroupName</span>: <span class="string">&#x27;&#x27;</span> <span class="comment">/* required */</span> ,</span><br><span class="line">    <span class="attr">queryString</span>: <span class="string">``</span> <span class="comment">/* query문 작성 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">cl.startQuery(params,  <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err, err.stack);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;queryId&#125; = data;</span><br><span class="line">        cl.getQueryResults(&#123;queryId&#125;, <span class="function">(<span class="params">_err, _data</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (_err ) &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(_err, _err.stack);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(_data)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">         getResults(data)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getResults = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    cl.getQueryResults(&#123;</span><br><span class="line">        <span class="attr">queryId</span>: data.queryId</span><br><span class="line">    &#125;, <span class="function">(<span class="params">_err, _data</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (_err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(_err, _err.stack)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (_data.results) &#123;</span><br><span class="line">                <span class="comment">// do something</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">/*check the status and run the function again*/</span></span><br><span class="line">            <span class="keyword">if</span> (_data.status.toLowerCase() === <span class="string">&#x27;running&#x27;</span>) &#123;</span><br><span class="line">                getResults(data)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/71235333/is-there-any-method-in-aws-sdk-for-javascript-to-get-the-aws-log-insights-query">Stackoverflow</a></li>
 </ul>
-<p>아무래도 iframe보다 최신 기술인 웹 컴포넌트를 써보고 싶었으나.. 결국 사용하지 못하게 되었다.</p>
-<h2 id="사용하지-못한-이유"><a href="#사용하지-못한-이유" class="headerlink" title="사용하지 못한 이유"></a>사용하지 못한 이유</h2><p>내가 만들고자 했던 웹 컴포넌트에는 jw 플레이어 라이브러리를 사용중이다. 플레이어 실행 코드는 아래와 같다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jwplayer(<span class="string">&#x27;#player&#x27;</span>).setup(&#123; <span class="comment">/* player config options */</span>&#125;);</span><br><span class="line">jwplayer(<span class="built_in">document</span>.querySelector(<span class="string">&#x27;#player&#x27;</span>)).setup(&#123; <span class="comment">/* player config options */</span>&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>위 두 가지 방법으로 실행이 가능한데 페이지의 HTMLElement를 넘기면 플레이어가 추가되는 방식이다.<br>나는 Shadow DOM 내부에서 플레이어를 실행하기 위해 해당 Element를 넘겼다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jwplayer(<span class="built_in">this</span>.el.shadowRoot.querySelector(<span class="string">&#x27;#player&#x27;</span>)).setup(&#123; <span class="comment">/* player config options */</span>&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>이렇게 하면 ShadowDOM 내부에 플레이어는 삽입이된다. 그러나 문제는 jwplayer의 실행 코드가 document 내부에 플레이어의 <code>style</code> 코드를 추가시키는데 이 때 ShadowDOM의 내부가 아닌 외부 document에 추가가 된다는 점이다.<br>Shadow DOM 과 외부 document는 각자에 작성된 style이 영향을 주지 못하기 때문에 플레이어를 정상적으로 사용할 수 없었다.</p>
-<p>결국 웹 컴포넌트 대신 iframe으로 구성하기로 결정!<br>새로운 기술은 매력적이지만 상황에따라서는 사용할 수 없음을 인정하고 다른 방법을 찾는 것도 중요한 것 같다.<br>프론트 기술이라 또 사용해야 할 때가 올 지는 모르겠지만 공부해보기엔 재미있었다.</p>
 
         </div>
 
@@ -276,10 +257,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/10/25/History/%EC%8B%A4%EC%8B%9C%EA%B0%84-%EC%A7%91%EA%B3%84-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EA%B0%9C%EC%84%A0-%EA%B8%B0%EB%A1%9D/">실시간 집계 데이터 처리 프로세스 개선 기록</a>
             
-            
-            <a class="next" rel="next" href="/2022/09/15/CS/solid-%EC%9B%90%EC%B9%99/">SOLID 원칙</a>
+            <a class="next" rel="next" href="/2022/11/18/Javascript/Web-Components/">Web Components</a>
             
         </section>
 
