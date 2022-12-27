@@ -5,7 +5,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
 <!-- 
 <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
  -->
@@ -221,9 +221,9 @@
             <blockquote>
 <p>Angular Document - <a target="_blank" rel="noopener" href="https://angular.io/guide/dependency-injection#understanding-dependency-injection">Understanding dependency injection</a> 해석</p>
 </blockquote>
-<h2 id="Understanding-dependency-injection"><a href="#Understanding-dependency-injection" class="headerlink" title="Understanding dependency injection"></a>Understanding dependency injection</h2><p>Dependency injection, 또는 DI는 Angular의 기본 컨셉입니다. DI는 Angular 프레임워크에 결합되어 Components, Directives, Pipes, and Injectables과 같은 decorator들로 class를 필요에 맞게 설정할 수 있도록 합니다.</p>
+<h2 id="Understanding-dependency-injection"><a href="#Understanding-dependency-injection" class="headerlink" title="Understanding dependency injection"></a>Understanding dependency injection</h2><p>Dependency injection, 또는 DI는 Angular의 기본 컨셉입니다. DI는 Angular 프레임워크에 결합되어 Components, Directives, Pipes, Injectables과 같은 decorator로 class를 필요에 맞게 설정할 수 있도록 합니다.</p>
 <p>DI 시스템의 두 가지 주요한 역할은 다음과 같습니다: dependency consumer와 dependency provider</p>
-<p>Angular는 Injector라는 추상화를 이용해 dependency consumer와 dependency provider 사이의 상호작용을 용이하게 합니다. dependency가 요청되면, injector는 이미 사용 가능한 instance가 존재하는지 registry부터 확인합니다. 사용 가능한 instance가 존재하지 않는다면, 새로운 instance를 생성해 registry에 저장합니다. Angular는 application bootstrap을 실행하면서 application-wide injector(“root” injector라고도 합니다)와 필요한 다른 Injector들을 생성합니다. 대부분의 경우에는 자체적으로 injector를 생성해야하는 일은 없을 것 입니다. 하지만 provider와 consumer라는 컨셉을 층이 있다는 것은 알고있어야 합니다.</p>
+<p>Angular는 Injector라는 추상화를 이용해 dependency consumer와 dependency provider 사이의 상호작용을 용이하게 합니다. dependency가 요청되면, injector는 이미 사용 가능한 instance가 존재하는지 registry부터 확인합니다. 사용 가능한 instance가 존재하지 않는다면, 새로운 instance를 생성해 registry에 저장합니다. Angular는 application bootstrap을 실행하면서 application-wide injector(“root” injector라고도 합니다)와 필요한 다른 Injector들을 생성합니다. 대부분의 경우에는 자체적으로 injector를 생성해야하는 일은 없을 것 입니다. 하지만 provider와 consumer라는 컨셉이 있다는 것은 알고있어야 합니다.</p>
 <p>이 글에서는 어떻게 class가 dependency를 다루는지에 대한 기본 시나리오를 다룹니다. Angular는 functions, objects, 또는 string or Boolean과 같은primitive type 또한 dependency에 사용할 수 있도록 하고 있습니다. 이것에 대한 더 많은 정보는 이 곳을 참조하시길 바랍니다. <a target="_blank" rel="noopener" href="https://angular.io/guide/dependency-injection-providers">Dependency providers</a></p>
 <h2 id="Providing-dependency"><a href="#Providing-dependency" class="headerlink" title="Providing dependency"></a>Providing dependency</h2><p>component 내부에서 dependency를 가지는 HeroService 라는 class가 있다고 상상해봅시다.</p>
 <p>첫 번째로 해야 할 일은 class가 inject 될 수 있도록 @Injectable decorator를 추가하는 것입니다.</p>
@@ -247,7 +247,9 @@
 
 <p>Angular가 component가 service에 dependency를 가진다는 것을 발견하면 Angular는 먼저 해당 service의 instance가 이미 존재하는지를 확인합니다. 만약 필요한 service instance가 아직 생성되지 않은 경우, injector는 등록된 provider를 사용해 instance를 생성합니다. 그리고 service를 Angular에 다시 되돌려주기 전에 생성한 instance를 injector에 추가합니다.</p>
 <p>모든 service가 처리되고 반환되었다면 Angular는 그 service들을 argument로 사용하여 component의 생성자를 호출할 수 있게 됩니다.</p>
+<blockquote>
 <p><img src="/images/dependency-injection.png"></p>
+</blockquote>
 
         </div>
 
