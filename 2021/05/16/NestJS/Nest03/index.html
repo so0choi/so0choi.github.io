@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>ConfigService로 환경변수 사용하기 | StudyYeong</title>
+<title>InputType vs ArgsType | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">ConfigService로 환경변수 사용하기</h1>
+            <h1 class="post-title">InputType vs ArgsType</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">5월 23, 2021&nbsp;&nbsp;23:01:48</a>
+                        Date: <a href="#">5월 16, 2021&nbsp;&nbsp;18:31:24</a>
                         </span>
                     
                     
@@ -218,24 +218,23 @@
         </header>
 
         <div class="post-content">
-            <h1 id="ConfigService-사용하기"><a href="#ConfigService-사용하기" class="headerlink" title="ConfigService 사용하기"></a>ConfigService 사용하기</h1><p>프로젝트 환경에 관련된 변수들이 있다. 예를들면 DB에 관한 정보라던가 AWS 접근 정보라던가. 이런 정보들을 .env에서 관리하도록 프로젝트를 구성했다면 <code>process.env.</code>으로 변수에 접근할 수 있다. 하지만 이렇게 하는 것은 NestJS에서 선호하는 방식은 아니다. NestJS에서는 <code>ConfigService</code>을 사용하기를 권장한다.</p>
-<p><a target="_blank" rel="noopener" href="https://docs.nestjs.com/techniques/configuration#using-the-configservice">공식 문서 - Usig the ConfigService</a></p>
-<p>문서에 따르면 ConfigModule을 import해서 쓰면 된다고 한다. 하지만 다른 setting이 있는 경우 <strong>global module</strong>로 설정해서 사용할 수도 있다. 그럼 ConfigModule을 또다시 import 할 필요 없다!</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ConfigModule.forRoot(&#123;</span><br><span class="line">  <span class="attr">isGlobal</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+            <h1 id="InputType-vs-ArgsType"><a href="#InputType-vs-ArgsType" class="headerlink" title="InputType vs ArgsType"></a>InputType vs ArgsType</h1><h2 id="InputType"><a href="#InputType" class="headerlink" title="InputType"></a>InputType</h2><p>GraphQL의 Mutaion 인자로 object를 받아야 하는 경우 <strong>input type</strong>을 사용한다. 아래와 같이 사용한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; InputType, Field &#125; <span class="keyword">from</span> <span class="string">&quot;@nestjs/graphql&quot;</span>;</span><br><span class="line"></span><br><span class="line">@InputType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">UpvotePostInput</span> </span>&#123;</span><br><span class="line">  @Field()</span><br><span class="line">  <span class="attr">postId</span>: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>나 또한 <code>app.module.ts</code>에서 ConfigModule에 <code>joi</code> 사용을 세팅했기 떄문에 <code>isGlobal : true</code>로 설정해 사용했다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ConfigModule.forRoot(&#123;</span><br><span class="line">      <span class="attr">isGlobal</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">envFilePath</span>: process.env.NODE_ENV === <span class="string">&#x27;dev&#x27;</span> ? <span class="string">&#x27;.env.dev&#x27;</span> : <span class="string">&#x27;.env.test&#x27;</span>,</span><br><span class="line">      <span class="attr">ignoreEnvFile</span>: process.env.NODE_ENV === <span class="string">&#x27;prod&#x27;</span>,</span><br><span class="line">      <span class="attr">validationSchema</span>: Joi.object(&#123;</span><br><span class="line">        <span class="attr">NODE_ENV</span>: Joi.string().valid(<span class="string">&#x27;dev&#x27;</span>, <span class="string">&#x27;prod&#x27;</span>).required(),</span><br><span class="line">        <span class="attr">DB_HOST</span>: Joi.string().required(),</span><br><span class="line">        ...</span><br><span class="line">      &#125;),</span><br><span class="line">    &#125;),</span><br></pre></td></tr></table></figure>
+<p>Mutation을 구현하는 resolver 에서 Input type을 사용하기 위해서는 <code>@Args()</code> 의 인자로 <strong>이름</strong>을 넘겨줘야한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Mutation(<span class="function"><span class="params">returns</span> =&gt;</span> Post)</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">upvotePost</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  @Args(<span class="string">&#x27;upvotePostData&#x27;</span>) upvotePostData: UpvotePostInput,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>그리고 feature module에서는 ConfigService를 import한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ConfigService &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/config&#x27;</span>;</span><br><span class="line"></span><br><span class="line">@Module(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [ConfigService],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>이렇게 작성한 경우 mutation은 아래와 같이 작성한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mutatiln &#123;</span><br><span class="line">    upvotePost(</span><br><span class="line">        upvotePostData: &#123;</span><br><span class="line">            name: &#x27;&#x27;,</span><br><span class="line">            something: &#x27;&#x27;,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>feature의 service 모듈에서는 이제 이 ConfigService 모듈로 환경변수에 접근이 가능하다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ConfigService &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/config&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">UsersService</span> </span>&#123;</span><br><span class="line">    <span class="title">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">        private readonly config: ConfigService,</span></span><br><span class="line"><span class="params">    </span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ArgsType"><a href="#ArgsType" class="headerlink" title="ArgsType()"></a>ArgsType()</h2><p>분리된 값들을 graphql 인자로 전달해준다. @InputType()과 달리 이름을 쓰지 않아도 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Mutation(<span class="function"><span class="params">returns</span> =&gt;</span> Post)</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">upvotePost</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  @Args(<span class="string">&#x27;&#x27;</span>) upvotePostData: UpvotePostInput,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>get()</code>을 사용해 접근한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">this</span>.config.get(<span class="string">&quot;SECRET_KEY&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-<h2 id="forRoot"><a href="#forRoot" class="headerlink" title="forRoot()"></a><code>forRoot()</code></h2><p>위의 ConfigModule을 global로 설정할 때 **forRoot()**를 사용했다. forRoot()는 module을 설정할 때 사용한다. return type을 보면 Dynamic Module을 반환하고있다. 동적인 모듈은 결과적으로는 모두 정적 모듈이 된다. Nest에서 모듈 파일들은 forRoot()를 통해 동적으로 세팅이 가능하고 최종적으로는 정적인 모듈이 되어 반환된다.</p>
+<h2 id="ObjectType"><a href="#ObjectType" class="headerlink" title="ObjectType()"></a>ObjectType()</h2><p><code>@ObjectType()</code> 데코레이터를 줌으로써 자동으로 graphql 스키마를 생성하도록 한다. 이로써 graphql 스키마 정의와 entity 정의를 한 번에 할 수 있다.</p>
+<ul>
+<li>restaurant.entity.ts</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Field, ObjectType &#125; <span class="keyword">from</span> <span class="string">&quot;@nestjs/graphql&quot;</span>;</span><br><span class="line"></span><br><span class="line">@ObjectType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span> </span>&#123;</span><br><span class="line">  @Field(<span class="function">(<span class="params">type</span>) =&gt;</span> <span class="built_in">String</span>)</span><br><span class="line">  <span class="attr">name</span>: string;</span><br><span class="line">  @Field(<span class="function">(<span class="params">type</span>) =&gt;</span> <span class="built_in">Boolean</span>, &#123;<span class="attr">nullable</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">  isGood?: boolean</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -269,6 +268,10 @@
                     
                         <a href="/tags/NestJS/"># NestJS</a>
                     
+                        <a href="/tags/ArgsType/"># ArgsType</a>
+                    
+                        <a href="/tags/InputType/"># InputType</a>
+                    
                         
                 </span>
             </div>
@@ -280,10 +283,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/06/05/WebProgramming/web/jwt/">JWT - Json Web Token</a>
+                <a class="prev" rel="prev" href="/2021/05/23/NestJS/Nest04/">ConfigService로 환경변수 사용하기</a>
             
             
-            <a class="next" rel="next" href="/2021/05/16/Nodejs/NestJS/Nest03/">InputType vs ArgsType</a>
+            <a class="next" rel="next" href="/2021/05/13/NestJS/Nest02/">NestJS Entity 파일과 dto의 동기화</a>
             
         </section>
 

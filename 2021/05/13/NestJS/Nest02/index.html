@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>InputType vs ArgsType | StudyYeong</title>
+<title>NestJS Entity 파일과 dto의 동기화 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">InputType vs ArgsType</h1>
+            <h1 class="post-title">NestJS Entity 파일과 dto의 동기화</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">5월 16, 2021&nbsp;&nbsp;18:31:24</a>
+                        Date: <a href="#">5월 13, 2021&nbsp;&nbsp;2:09:39</a>
                         </span>
                     
                     
@@ -218,23 +218,9 @@
         </header>
 
         <div class="post-content">
-            <h1 id="InputType-vs-ArgsType"><a href="#InputType-vs-ArgsType" class="headerlink" title="InputType vs ArgsType"></a>InputType vs ArgsType</h1><h2 id="InputType"><a href="#InputType" class="headerlink" title="InputType"></a>InputType</h2><p>GraphQL의 Mutaion 인자로 object를 받아야 하는 경우 <strong>input type</strong>을 사용한다. 아래와 같이 사용한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; InputType, Field &#125; <span class="keyword">from</span> <span class="string">&quot;@nestjs/graphql&quot;</span>;</span><br><span class="line"></span><br><span class="line">@InputType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">UpvotePostInput</span> </span>&#123;</span><br><span class="line">  @Field()</span><br><span class="line">  <span class="attr">postId</span>: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Mutation을 구현하는 resolver 에서 Input type을 사용하기 위해서는 <code>@Args()</code> 의 인자로 <strong>이름</strong>을 넘겨줘야한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Mutation(<span class="function"><span class="params">returns</span> =&gt;</span> Post)</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">upvotePost</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  @Args(<span class="string">&#x27;upvotePostData&#x27;</span>) upvotePostData: UpvotePostInput,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>이렇게 작성한 경우 mutation은 아래와 같이 작성한다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mutatiln &#123;</span><br><span class="line">    upvotePost(</span><br><span class="line">        upvotePostData: &#123;</span><br><span class="line">            name: &#x27;&#x27;,</span><br><span class="line">            something: &#x27;&#x27;,</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ArgsType"><a href="#ArgsType" class="headerlink" title="ArgsType()"></a>ArgsType()</h2><p>분리된 값들을 graphql 인자로 전달해준다. @InputType()과 달리 이름을 쓰지 않아도 된다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Mutation(<span class="function"><span class="params">returns</span> =&gt;</span> Post)</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="title">upvotePost</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">  @Args(<span class="string">&#x27;&#x27;</span>) upvotePostData: UpvotePostInput,</span></span></span><br><span class="line"><span class="params"><span class="function"></span>)</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ObjectType"><a href="#ObjectType" class="headerlink" title="ObjectType()"></a>ObjectType()</h2><p><code>@ObjectType()</code> 데코레이터를 줌으로써 자동으로 graphql 스키마를 생성하도록 한다. 이로써 graphql 스키마 정의와 entity 정의를 한 번에 할 수 있다.</p>
-<ul>
-<li>restaurant.entity.ts</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Field, ObjectType &#125; <span class="keyword">from</span> <span class="string">&quot;@nestjs/graphql&quot;</span>;</span><br><span class="line"></span><br><span class="line">@ObjectType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Restaurant</span> </span>&#123;</span><br><span class="line">  @Field(<span class="function">(<span class="params">type</span>) =&gt;</span> <span class="built_in">String</span>)</span><br><span class="line">  <span class="attr">name</span>: string;</span><br><span class="line">  @Field(<span class="function">(<span class="params">type</span>) =&gt;</span> <span class="built_in">Boolean</span>, &#123;<span class="attr">nullable</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">  isGood?: boolean</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="Nest-js-Entity-파일과-dto의-동기화"><a href="#Nest-js-Entity-파일과-dto의-동기화" class="headerlink" title="Nest.js Entity 파일과 dto의 동기화"></a>Nest.js Entity 파일과 dto의 동기화</h1><p>typeorm방식으로 Entity.ts 파일을 사용해 graphql 스키마와 DB Table 스키마를 동시에 만들어낼 수 있었다. 문제는 이에 접근하는 방식인 dto의 정의였는데, entity에 개체와 dto의 내용에 차이가 있다고해도 dto 스키마에 맞게 쿼리를 작성하는 경우 graphql은 에러를 발생시키지 않는다. mutation을 실행시킨 후에야 서버 오류가 발생했다고 한다. 개체 하나를 추가할때마다 복사 붙여넣기로 두 파일의 동기화를 맞출 수 있겠지만 실수하게 될 가능성도 있고 그다지 좋은 방법으로 보이지 않는다. TypeORM은 Entity를 이용해 dto또한 생성할 수 있는 기능을 제공한다. 이런 기능들이 TypeORM을 강력하게 만들어주는것 같다.</p>
+<h2 id="OmitType"><a href="#OmitType" class="headerlink" title="OmitType()"></a>OmitType()</h2><p>여러 종류의 dto 생성 방식이 있다. 그 중 OmitType을 이용했는데 OmitType은 첫번째 인자로 Entity 속성 중 dto에서 제외하고 싶은 속성의 이름들을 배열에 받아 나머지 속성들은 모두 포함한 dto를 생성시킨다. 두번째 인자로 받는 것은 만들어낼 dto의 데코레이터 설정이다. dto의 경우 InputType을 필요로 하는데 따로 데코레이터를 지정해주지 않는 이상 parent 클래스의 데코레이터를 상속받는다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@InputType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateUserDto</span> <span class="keyword">extends</span> <span class="title">OmitType</span>(<span class="title">UserInfo</span>, [&quot;<span class="title">id</span>&quot;], <span class="title">InputType</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -268,10 +254,6 @@
                     
                         <a href="/tags/NestJS/"># NestJS</a>
                     
-                        <a href="/tags/ArgsType/"># ArgsType</a>
-                    
-                        <a href="/tags/InputType/"># InputType</a>
-                    
                         
                 </span>
             </div>
@@ -283,10 +265,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/05/23/Nodejs/NestJS/Nest04/">ConfigService로 환경변수 사용하기</a>
+                <a class="prev" rel="prev" href="/2021/05/16/NestJS/Nest03/">InputType vs ArgsType</a>
             
             
-            <a class="next" rel="next" href="/2021/05/13/Nodejs/NestJS/Nest02/">NestJS Entity 파일과 dto의 동기화</a>
+            <a class="next" rel="next" href="/2021/05/10/NestJS/Nest01/">NestJS, Graphql 연동</a>
             
         </section>
 

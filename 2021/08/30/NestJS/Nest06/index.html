@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>NestJS Entity 파일과 dto의 동기화 | StudyYeong</title>
+<title>TypeORM | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">NestJS Entity 파일과 dto의 동기화</h1>
+            <h1 class="post-title">TypeORM</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">5월 13, 2021&nbsp;&nbsp;2:09:39</a>
+                        Date: <a href="#">8월 30, 2021&nbsp;&nbsp;23:21:38</a>
                         </span>
                     
                     
@@ -218,9 +218,17 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Nest-js-Entity-파일과-dto의-동기화"><a href="#Nest-js-Entity-파일과-dto의-동기화" class="headerlink" title="Nest.js Entity 파일과 dto의 동기화"></a>Nest.js Entity 파일과 dto의 동기화</h1><p>typeorm방식으로 Entity.ts 파일을 사용해 graphql 스키마와 DB Table 스키마를 동시에 만들어낼 수 있었다. 문제는 이에 접근하는 방식인 dto의 정의였는데, entity에 개체와 dto의 내용에 차이가 있다고해도 dto 스키마에 맞게 쿼리를 작성하는 경우 graphql은 에러를 발생시키지 않는다. mutation을 실행시킨 후에야 서버 오류가 발생했다고 한다. 개체 하나를 추가할때마다 복사 붙여넣기로 두 파일의 동기화를 맞출 수 있겠지만 실수하게 될 가능성도 있고 그다지 좋은 방법으로 보이지 않는다. TypeORM은 Entity를 이용해 dto또한 생성할 수 있는 기능을 제공한다. 이런 기능들이 TypeORM을 강력하게 만들어주는것 같다.</p>
-<h2 id="OmitType"><a href="#OmitType" class="headerlink" title="OmitType()"></a>OmitType()</h2><p>여러 종류의 dto 생성 방식이 있다. 그 중 OmitType을 이용했는데 OmitType은 첫번째 인자로 Entity 속성 중 dto에서 제외하고 싶은 속성의 이름들을 배열에 받아 나머지 속성들은 모두 포함한 dto를 생성시킨다. 두번째 인자로 받는 것은 만들어낼 dto의 데코레이터 설정이다. dto의 경우 InputType을 필요로 하는데 따로 데코레이터를 지정해주지 않는 이상 parent 클래스의 데코레이터를 상속받는다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@InputType()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateUserDto</span> <span class="keyword">extends</span> <span class="title">OmitType</span>(<span class="title">UserInfo</span>, [&quot;<span class="title">id</span>&quot;], <span class="title">InputType</span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h1><p><strong>TypeORM</strong>은 다양한 플랫폼에서 TypeScript와 JS로 실행되는 ORM이다. ORM이란 ‘Object Relational Mapping’의 줄임말이다. 최신 JS를 지원하고 DB로의 작업을 효율적으로 수행할 수 있도록 도와준다.</p>
+<h2 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h2><p>Entity는 DB에 저장되는 데이터의 형태를 보여주는 Model로, DB에 테이블을 매핑해주는 class이다. <code>@Entity()</code> 데코레이터로 정의한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Entity, PrimaryGeneratedColumn, Column &#125; <span class="keyword">from</span> <span class="string">&quot;typeorm&quot;</span>;</span><br><span class="line"></span><br><span class="line">@Entity()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  @PrimaryGeneratedColumn()</span><br><span class="line">  <span class="attr">id</span>: number;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">firstName</span>: string;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">lastName</span>: string;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">isActive</span>: boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>@PrimaryGeneratedColumn() : 기본키</li>
+<li>@Column() : 속성</li>
+</ul>
+<p>각 Entity는 반드시 하나의 primary column을 가져야한다.</p>
+<p>또한, 모든 Entity들이 typeORM의 connection option에 정의되어있어야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createConnection, Connection &#125; <span class="keyword">from</span> <span class="string">&quot;typeorm&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">&quot;./entity/User&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> connection: Connection = <span class="keyword">await</span> createConnection(&#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">  <span class="attr">host</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="number">3306</span>,</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">database</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">entities</span>: [User],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -254,6 +262,8 @@
                     
                         <a href="/tags/NestJS/"># NestJS</a>
                     
+                        <a href="/tags/TypeORM/"># TypeORM</a>
+                    
                         
                 </span>
             </div>
@@ -265,10 +275,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/05/16/Nodejs/NestJS/Nest03/">InputType vs ArgsType</a>
+                <a class="prev" rel="prev" href="/2021/11/15/WebProgramming/else/webpack/">Webpack</a>
             
             
-            <a class="next" rel="next" href="/2021/05/10/Nodejs/NestJS/Nest01/">NestJS, Graphql 연동</a>
+            <a class="next" rel="next" href="/2021/08/23/NestJS/Nest00/">NestJS란</a>
             
         </section>
 

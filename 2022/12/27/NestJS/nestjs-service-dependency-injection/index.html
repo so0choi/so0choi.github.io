@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>TypeORM | StudyYeong</title>
+<title>NestJS Service 상속을 해도 될까? | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">TypeORM</h1>
+            <h1 class="post-title">NestJS Service 상속을 해도 될까?</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">8월 30, 2021&nbsp;&nbsp;23:21:38</a>
+                        Date: <a href="#">12월 27, 2022&nbsp;&nbsp;16:46:19</a>
                         </span>
                     
                     
@@ -218,17 +218,17 @@
         </header>
 
         <div class="post-content">
-            <h1 id="TypeORM"><a href="#TypeORM" class="headerlink" title="TypeORM"></a>TypeORM</h1><p><strong>TypeORM</strong>은 다양한 플랫폼에서 TypeScript와 JS로 실행되는 ORM이다. ORM이란 ‘Object Relational Mapping’의 줄임말이다. 최신 JS를 지원하고 DB로의 작업을 효율적으로 수행할 수 있도록 도와준다.</p>
-<h2 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h2><p>Entity는 DB에 저장되는 데이터의 형태를 보여주는 Model로, DB에 테이블을 매핑해주는 class이다. <code>@Entity()</code> 데코레이터로 정의한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Entity, PrimaryGeneratedColumn, Column &#125; <span class="keyword">from</span> <span class="string">&quot;typeorm&quot;</span>;</span><br><span class="line"></span><br><span class="line">@Entity()</span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">  @PrimaryGeneratedColumn()</span><br><span class="line">  <span class="attr">id</span>: number;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">firstName</span>: string;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">lastName</span>: string;</span><br><span class="line"></span><br><span class="line">  @Column()</span><br><span class="line">  <span class="attr">isActive</span>: boolean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>@PrimaryGeneratedColumn() : 기본키</li>
-<li>@Column() : 속성</li>
+            <p>현재 만들고있는 app의 구조를 개선하던중 service 상속과 dependency injection에 대해 고민하게 되었다.<br>내가 맡은 프로세스는, A 요청시 A 컴포넌트를 실행하고 B 요청시 B 컴포넌트를 실행한다. A와 B는 각각의 설정 방법이 다르지만 공통적으로 사전에 수행되어야하는 작업들이 있다.<br>코드를 넘겨받을 당시 가장 초기 구조는 A와 B 각 provider에 같은 코드가 작성되어 실행되고 있었다. 이렇게 할 경우 수정사항이 생겼을 때 한 곳만 고친다던가 하는 실수가 잦았다. 초반에는 A 서비스만 제공했기 떄문에 B를 추가하면서 복붙한 것 같다. 하지만 그 뒤에 C 서비스까지 들어온 것으로 보인다.<br>이렇게는 안되겠다! 싶어서 리팩토링을 진행하면서 공통 작업을 수행하는 provider를 생성하고 A, B, C에서 <code>extends</code> 하도록 했다. 이렇게 할 경우 constructor가 너무 지저분해져서 방법을 찾다가 service 상속은 NestJS가 지향하는 것과 맞지 않다는 글을 보게 되었다.. </p>
+<blockquote>
+<p>No, it is not a good idea. Why? Because in NestJS, “service” is a synonym for dependency (it is a kind of provider).<br>Therefore, the assumption that dependencies should share some parts of their implementation seems unnecessary. The dependencies will differ (because they do different things; they provide different functionalities!), so they are not alike.</p>
+<p>In general, the trait you describe is named the Layer Supertype, and you can read more about it here: <a target="_blank" rel="noopener" href="https://www.martinfowler.com/eaaCatalog/layerSupertype.html">https://www.martinfowler.com/eaaCatalog/layerSupertype.html</a></p>
+<p>If somebody asked me whether I consider all the services in Nest.js a “layer”, I would say no. If you, however, discover a particular kind of services (like, Repositories), then they might qualify for a common parent, implementation-wise. A “Data Access Layer” is a layer (says so in the name, duh), and it naturally benefits from some code sharing.</p>
+</blockquote>
+<p>하지만 글의 말미에 언급된 것 처럼 경우에 따라서는 공통의 parent를 두고 code sharing을 함으로써 얻어지는 이득도 있다고 한다. 필요에 의해서 충분히 구조에 대해 고민해본 뒤에는 사용해봐도 괜찮을 것 같다.</p>
+<p>Nest.js의 공식 문서를 처음부터 끝까지 읽어보고 있는데 많은 도움이 되고있다. 블로그나 깃북에 정리된 내용들은 전체 문서를 요약한 느낌이라 일단 공식 문서를 한 번 쫘악 읽는 것이 우선순위였는데 그걸 몰랐네. 공식 문서를 읽는 습관을 들여야겠다!~</p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.reddit.com/r/node/comments/ybem5w/nestjs_question_is_it_a_good_idea_for_services_to/">Nestjs Question: is it a good idea for services to inherit from a base service ?</a></li>
 </ul>
-<p>각 Entity는 반드시 하나의 primary column을 가져야한다.</p>
-<p>또한, 모든 Entity들이 typeORM의 connection option에 정의되어있어야 한다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createConnection, Connection &#125; <span class="keyword">from</span> <span class="string">&quot;typeorm&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; User &#125; <span class="keyword">from</span> <span class="string">&quot;./entity/User&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> connection: Connection = <span class="keyword">await</span> createConnection(&#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">  <span class="attr">host</span>: <span class="string">&quot;localhost&quot;</span>,</span><br><span class="line">  <span class="attr">port</span>: <span class="number">3306</span>,</span><br><span class="line">  <span class="attr">username</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">password</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">database</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">  <span class="attr">entities</span>: [User],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -259,12 +259,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/NestJS/"># NestJS</a>
-                    
-                        <a href="/tags/TypeORM/"># TypeORM</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -275,10 +269,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/11/15/WebProgramming/else/webpack/">Webpack</a>
+                <a class="prev" rel="prev" href="/2023/01/31/Else/method-naming-convention/">Method Naming Convention</a>
             
             
-            <a class="next" rel="next" href="/2021/08/23/Nodejs/NestJS/Nest00/">NestJS란</a>
+            <a class="next" rel="next" href="/2022/12/27/Else/dependency-injection/">Dependency Injection</a>
             
         </section>
 
