@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>helmet.js 버전업 이슈 | StudyYeong</title>
+<title>yarn 전체 라이브러리 upgrade | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">helmet.js 버전업 이슈</h1>
+            <h1 class="post-title">yarn 전체 라이브러리 upgrade</h1>
             
                 <div class="post-meta">
                     
@@ -202,33 +202,26 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">7월 22, 2022&nbsp;&nbsp;10:06:00</a>
+                        Date: <a href="#">2월 1, 2023&nbsp;&nbsp;9:41:14</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Error/">Error</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>helmet.js는 Express 앱에 보안을 위한 HTTP 헤더를 추가해 앱을 보호해주는 라이브러리다. 모듈 업데이트가 한참 적용되지 않은 프로젝트를 넘겨받아 업데이트를 진행했는데 버전 3 에서 버전 5로 버전이 확 뛰었다. helmet 버전 4에 추가된 미들웨어들이 앱 동작에 에러를 일으켰다. public asset 접근에 이슈가 있는건 개발하면서 확인해 설정을 변경해두었는데 레퍼러 관련 기능은 테스트를 스킵했고 결과적으로 이것때문에 배포 후 오류가 발생했다. 😰</p>
-<h2 id="Helmet-4-upgrade-guide"><a href="#Helmet-4-upgrade-guide" class="headerlink" title="Helmet 4 upgrade guide"></a>Helmet 4 upgrade guide</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/helmetjs/helmet/wiki/Helmet-4-upgrade-guide">가이드 문서</a></li>
-</ul>
-<p><img src="/images/2022-07-22-10-11-21.png"></p>
-<p>버전 4 업그레이드 가이드 문서를 보면 추가된 미들웨어를 확인할 수 있다. 따로 설정하지 않으면 default 값으로 엄격한 보안 정책이 설정되기 때문에 앱에서 필요한 정책을 확인하여 수동 설정 작업이 필요하다.</p>
-<p>이번에 문제가 생긴 부분은 <code>referrerPolicy</code> 정책이다. <code>Referrer-Policy</code> 헤더를 설정하는 미들웨어가 추가되면서 default 값으로 <code>no-referrer</code> 헤더가 세팅되었다. 앱에서는 레퍼러 정보를 넘겨줘야 했고 정보가 넘어가지 않아 접근제한 오류가 발생해 서비스 장애가 발생했다.</p>
-<h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p>필요에 맞게 보안 정책을 설정해두면 된다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.use(</span><br><span class="line">  helmet(&#123;</span><br><span class="line">    <span class="attr">frameguard</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">contentSecurityPolicy</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">crossOriginEmbedderPolicy</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">crossOriginResourcePolicy</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">referrerPolicy</span>: <span class="literal">false</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+            <h2 id="yarn-upgrade"><a href="#yarn-upgrade" class="headerlink" title="yarn upgrade"></a>yarn upgrade</h2><p><code>package.json</code>에 명시된 버전 범위 내에서 패키지들을 업데이트 한다. <code>yarn.lock</code> 파일도 재생성된다. </p>
+<h3 id="yarn-upgrade-–latest"><a href="#yarn-upgrade-–latest" class="headerlink" title="yarn upgrade –latest"></a>yarn upgrade –latest</h3><p><code>upgrade</code> 명령어가 실행되지만 <code>package.json</code>에 명시된 버전 범위는 무시된다.</p>
+<blockquote>
+<p><code>yarn upgarde</code>를 사용할 경우 <code>package.json</code> 내용이 업데이트 되지 않는다.</p>
+</blockquote>
+<h2 id="yarn-outdated"><a href="#yarn-outdated" class="headerlink" title="yarn outdated"></a>yarn outdated</h2><p>설치된 모든 패키지의 dependency를 리스팅한다. 현재 설치된 버전과 최소 요구 버전, 그리고 최신 버전을 보여준다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Package    Current Wanted Latest Package Type    URL</span><br><span class="line">lodash     4.15.0  4.15.0 4.16.4 devDependencies https://github.com/lodash/lodash#readme</span><br><span class="line">underscore 1.6.0   1.6.0  1.8.3  dependencies    https://github.com/jashkenas/underscore#readme</span><br><span class="line">✨  Done in 0.72s.</span><br></pre></td></tr></table></figure>
 
-<p>모듈 버전이 크게 올라갈 땐 문서를 꼭꼭 확인해야겠다.. 테스트 코드도 빨리 다 작성해야겠고.. 배포 전엔 조심 또 조심 해야겠다.</p>
+<h2 id="yarn-upgrade-interactive"><a href="#yarn-upgrade-interactive" class="headerlink" title="yarn upgrade-interactive"></a>yarn upgrade-interactive</h2><p><code>yarn outdated</code>와 <code>yarn upgrade</code>가 합쳐진 명령어이다. </p>
+<h2 id="yarn-upgrade-all-패키지-사용"><a href="#yarn-upgrade-all-패키지-사용" class="headerlink" title="yarn-upgrade-all 패키지 사용"></a>yarn-upgrade-all 패키지 사용</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx global add yarn-upgrade-all</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -259,10 +252,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/helmet-js/"># helmet.js</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -273,10 +262,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/07/27/Security/%EB%A9%94%EC%8B%9C%EC%A7%80-%EC%95%94%ED%98%B8%ED%99%94/">암호화 해시 함수 / 메시지 인증 코드</a>
+                <a class="prev" rel="prev" href="/2023/02/02/Javascript/Typescript-declare/">Typescript declare</a>
             
             
-            <a class="next" rel="next" href="/2022/07/21/Error/jest-%EA%B2%BD%EB%A1%9C-%EC%97%90%EB%9F%AC/">Jest 경로 에러</a>
+            <a class="next" rel="next" href="/2023/01/31/Else/method-naming-convention/">Method Naming Convention</a>
             
         </section>
 
