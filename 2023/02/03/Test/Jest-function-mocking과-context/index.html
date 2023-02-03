@@ -127,6 +127,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -144,12 +206,48 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Test/">Test</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            
+            <h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p>테스트 코드를 작성하던 중 함수가 실행되었는지 테스트하는 부분이 계속 정상적으로 실행되지 않았다. 콘솔을 찍어보면 실행된 것은 확실한데 실행 횟수는 0으로 나오는 상황이었다.</p>
+<ul>
+<li><p>original.ts</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="string">&#x27;foo&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;foo()&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>original.spec.ts</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;bar&#125; <span class="keyword">from</span> <span class="string">&#x27;original&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> spy = jest.spyOn(</span><br><span class="line">    original,</span><br><span class="line">    <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line">expect(spy).toBeCalled(); <span class="comment">// assert 문 Fail!</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>에러는 다음과 같았다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Fail</span><br><span class="line">    expect(jest.fn()).toBeCalled()</span><br><span class="line"></span><br><span class="line">    Expected number of calls: &gt;= 1</span><br><span class="line">    Received number of calls:    0</span><br></pre></td></tr></table></figure>
+
+<p>하루를 날려서 알아낸 결과 <code>context</code>가 달라서 생긴 문제였다.<br><code>spyOn</code>으로 mock 되는 것은 테스트 파일 내 context에 한정해서 이다. 원래 파일에 있던 함수는 원본 함수 그대로일 것이다. 따라서 테스트 코드 내부에서 <code>foo</code>를 mock 했다고 해도 <code>bar</code> 내부에서 실행되는 함수는 원래 파일에 정의된 함수이기 때문에 mock된 spy의 실행 횟수는 0이 되는 것이다.</p>
+<h2 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a>해결 방법</h2><h3 id="모듈을-분리시키기"><a href="#모듈을-분리시키기" class="headerlink" title="모듈을 분리시키기"></a>모듈을 분리시키기</h3><p>2개의 파일을 만들어서 모듈을 따로 작성하는 방법이다.</p>
+<ul>
+<li><p>‘foo.ts’</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">&#x27;foo&#x27;</span>&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> foo;</span><br></pre></td></tr></table></figure></li>
+<li><p>‘original.ts’</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">&#x27;./foo&#x27;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;foo()&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>이렇게하면 기존 파일과 테스트 파일 모두 ‘foo’라는 외부 모듈에 대한 context를 사용하기 때문에 모듈 자체를 mock 함으로써 문제를 해결할 수 있다.</p>
+<h3 id="export할-함수들을-따로-관리하기"><a href="#export할-함수들을-따로-관리하기" class="headerlink" title="export할 함수들을 따로 관리하기"></a>export할 함수들을 따로 관리하기</h3><ul>
+<li><p>‘original.ts’</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="string">&#x27;foo&#x27;</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;exportFunctions.foo&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> exportFunctions = &#123;</span><br><span class="line">    foo,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> exportFunctions;</span><br></pre></td></tr></table></figure></li>
+<li><p>‘original.spec.ts’</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> original <span class="keyword">from</span> <span class="string">&#x27;original&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> spy = jest.spyOn(</span><br><span class="line">    original,</span><br><span class="line">    <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">bar();</span><br><span class="line">expect(spy).toBeCalled(); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/40771520/how-to-expect-one-function-to-call-another-function">How to expect one function to call another function?</a></li>
+<li></li>
+</ul>
+
         </div>
 
         
@@ -179,6 +277,12 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Jest/"># Jest</a>
+                    
+                        <a href="/tags/Test/"># Test</a>
+                    
+                        
                 </span>
             </div>
             <div>
