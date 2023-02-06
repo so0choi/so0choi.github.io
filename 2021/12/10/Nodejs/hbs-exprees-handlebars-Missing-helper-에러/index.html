@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>hbs, exprees-handlebars - Missing helper 에러 | StudyYeong</title>
+<title>[Node.js] Handlebar Missing helper 에러 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">hbs, exprees-handlebars - Missing helper 에러</h1>
+            <h1 class="post-title">[Node.js] Handlebar Missing helper 에러</h1>
             
                 <div class="post-meta">
                     
@@ -209,7 +209,7 @@
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/WEB/">WEB</a>
+                                <a href="/categories/Node-js/">Node.js</a>
                             
                         </span>
                     
@@ -218,7 +218,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="Missing-helper-에러-hbs-exprees-handlebars"><a href="#Missing-helper-에러-hbs-exprees-handlebars" class="headerlink" title="Missing helper 에러 (hbs, exprees-handlebars)"></a>Missing helper 에러 (hbs, exprees-handlebars)</h1><p>express에서 핸들바로 개발하는 중.. ‘partial’ 기능을 사용하려는데 에러가 잡히지가 않았다. 스택오버플로우에서 알려준대로 해도 설정이 안먹히는 것 같았다.<br>helper를 정의했는데도 <code>Missing helper</code> 에러가 뜨고 partial folder 경로를 정해줬는데도 자꾸 못 찾아왔다. 드디어 알아낸 문제의 원인은 <code>hbs</code>과 <code>express-handlebars</code> 이 두개의 view engine 을 혼용하고 있어서.. 였다.<br>여러 코드 솔루션을 보다보니 저 두 개가 다른건줄 모르고 섞어서 쓰고있었다.<br><strong>.</strong> 하나로 사용하는 엔진이 달라지다니.. 조심해야겠다.</p>
+            <p>express에서 핸들바로 개발하는 중.. ‘partial’ 기능을 사용하려는데 에러가 잡히지가 않았다. 스택오버플로우에서 알려준대로 해도 설정이 안먹히는 것 같았다.<br>helper를 정의했는데도 <code>Missing helper</code> 에러가 뜨고 partial folder 경로를 정해줬는데도 자꾸 못 찾아왔다. 드디어 알아낸 문제의 원인은 <code>hbs</code>과 <code>express-handlebars</code> 이 두개의 view engine 을 혼용하고 있어서.. 였다.<br>여러 코드 솔루션을 보다보니 저 두 개가 다른건줄 모르고 섞어서 쓰고있었다.<br><strong>.</strong> 하나로 사용하는 엔진이 달라지다니.. 조심해야겠다.</p>
 <h2 id="원래-코드"><a href="#원래-코드" class="headerlink" title="원래 코드"></a>원래 코드</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; create &#125; <span class="keyword">from</span> <span class="string">&quot;express-handlebars&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"><span class="keyword">const</span> hbs = create(&#123;</span><br><span class="line">  <span class="attr">partialsDir</span>: path.join(__dirname, <span class="string">&quot;../views/partials&quot;</span>),</span><br><span class="line">  <span class="attr">helpers</span>: &#123;</span><br><span class="line">    <span class="attr">section</span>: <span class="function"><span class="keyword">function</span> (<span class="params">name: string, options: any</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (!<span class="built_in">this</span>._sections) <span class="built_in">this</span>._sections = &#123;&#125;;</span><br><span class="line">      <span class="built_in">this</span>._sections[name] = options.fn(<span class="built_in">this</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">this</span>.app.engine(<span class="string">&quot;handlebars&quot;</span>, hbs.engine);</span><br><span class="line"><span class="built_in">this</span>.app.set(<span class="string">&quot;view engine&quot;</span>, <span class="string">&quot;hbs&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>이렇게 쓰면</p>
@@ -267,9 +267,7 @@
                     
                         <a href="/tags/Handlebars/"># Handlebars</a>
                     
-                        <a href="/tags/hbs/"># hbs</a>
-                    
-                        <a href="/tags/express-handlebars/"># express-handlebars</a>
+                        <a href="/tags/Error/"># Error</a>
                     
                         
                 </span>
@@ -282,7 +280,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2021/12/13/Nodejs/Express-with-typescript/">Express.js Typescript 보일러플레이트 만들기 (for Web)</a>
+                <a class="prev" rel="prev" href="/2021/12/13/Nodejs/Express-with-typescript/">Express.js Typescript 보일러플레이트 만들기 (for WEB)</a>
             
             
             <a class="next" rel="next" href="/2021/12/06/Else/Git-submodule-%EC%B6%94%EA%B0%80/">Git submodule 추가</a>

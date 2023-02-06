@@ -146,11 +146,12 @@ template {
   font-family: 'lanting';
   src: url("../fonts/lanting/lanting.eot"); /* IE9 */
   src: url("../fonts/lanting/lanting.eot?#iefix") format('embedded-opentype'), /* IE6-IE8 */ url("../fonts/lanting/lanting.woff2") format('woff2'), url("../fonts/lanting/lanting.woff") format('woff'), url("../fonts/lanting/lanting.ttf") format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  src: url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap");
   font-weight: 300;
   font-display: swap;
 }
 html {
-  font-family: 'IBM Plex Sans KR', 'Noto Sans KR', 'Microsoft Jhenghei', Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Microsoft Yahei, Arial, system-ui;
+  font-family: 'IBM Plex Sans KR', 'Noto Sans KR', 'Microsoft Jhenghei', Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Microsoft Yahei, Arial;
 }
 html::-webkit-scrollbar {
   width: 8px;
@@ -723,10 +724,10 @@ header label {
   color: #87878d !important;
 }
 .post-wrap .post-meta a {
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-wrap .post-meta a {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-wrap .post-meta a:hover {
   color: #ef3982;
@@ -749,40 +750,40 @@ header label {
 .post-content h1::before {
   content: "#";
   margin-right: 5px;
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-content h1::before {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-content h2::before {
   content: "#";
   margin-right: 5px;
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-content h2::before {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-content h3::before {
   content: "|";
   margin-right: 5px;
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-content h3::before {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-content h4::before {
   content: "*";
   margin-right: 5px;
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-content h4::before {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-content a {
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-content a {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-content a:hover {
   color: #ef3982;
@@ -927,10 +928,10 @@ header label {
   border-bottom: 1px solid #e8e8e8;
 }
 .post-copyright a {
-  color: #2d96bd;
+  color: #646eff;
 }
 .dark-theme .post-copyright a {
-  color: #eee;
+  color: rgba(133,233,255,0.62);
 }
 .post-copyright a:hover {
   color: #ef3982;
@@ -1097,7 +1098,7 @@ header label {
   background-color: #fff;
 }
 .post-toc .is-active-link::before {
-  background-color: #2d96bd;
+  background-color: #646eff;
 }
 .post-toc .tocbot-list-menu {
   margin: 1rem 0.75rem;
@@ -1263,107 +1264,68 @@ header label {
     display: none;
   }
 }
-.post-content figure.highlight {
-  margin: 2em 0;
-  background: #f7f7f7;
-  color: #4d4d4c;
-  font-size: 12px;
-  overflow: scroll;
-  overflow-y: hidden;
-  overflow-x: auto;
+.highlight {
+  background: #000;
+  color: #f8f8f8;
 }
-.post-content figure.highlight .gutter {
-  color: $hight-gutter;
+.highlight .code .comment,
+.highlight .code .quote,
+.highlight .code .meta {
+  color: #7c7c7c;
 }
-.post-content figure.highlight pre {
-  background: #f7f7f7;
-  margin: 0;
+.highlight .code .keyword,
+.highlight .code .selector-tag,
+.highlight .code .tag,
+.highlight .code .name {
+  color: #96cbfe;
 }
-.post-content code {
-  padding: 2px 4px;
-  background: #f7f7f7;
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-  font-size: 12px;
+.highlight .code .attribute,
+.highlight .code .selector-id {
+  color: #ffffb6;
 }
-.post-content pre {
-  padding: 10px;
-  overflow: auto;
-  background: #f7f7f7;
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+.highlight .code .string,
+.highlight .code .selector-attr,
+.highlight .code .selector-pseudo,
+.highlight .code .addition {
+  color: #a8ff60;
 }
-.post-content pre code {
-  padding: 0;
+.highlight .code .subst {
+  color: #daefa3;
 }
-.post-content pre .deletion {
-  background: #fdd;
+.highlight .code .regexp,
+.highlight .code .link {
+  color: #e9c062;
 }
-.post-content pre .addition {
-  background: #dfd;
+.highlight .code .title,
+.highlight .code .section,
+.highlight .code .type,
+.highlight .code .doctag {
+  color: #ffffb6;
 }
-.post-content pre .meta {
-  color: #8959a8;
+.highlight .code .symbol,
+.highlight .code .bullet,
+.highlight .code .variable,
+.highlight .code .template-variable,
+.highlight .code .literal {
+  color: #c6c5fe;
 }
-.post-content pre .comment {
-  color: #8e908c;
+.highlight .code .number,
+.highlight .code .deletion {
+  color: #ff73fd;
 }
-.post-content pre .variable,
-.post-content pre .attribute,
-.post-content pre .tag,
-.post-content pre .regexp,
-.post-content pre .ruby .constant,
-.post-content pre .xml .tag .title,
-.post-content pre .xml .pi,
-.post-content pre .xml .doctype,
-.post-content pre .html .doctype,
-.post-content pre .css .id,
-.post-content pre .css .class,
-.post-content pre .css .pseudo {
-  color: #c82829;
+.highlight .code .emphasis {
+  font-style: italic;
 }
-.post-content pre .number,
-.post-content pre .preprocessor,
-.post-content pre .built_in,
-.post-content pre .literal,
-.post-content pre .params,
-.post-content pre .constant,
-.post-content pre .command {
-  color: #f5871f;
-}
-.post-content pre .ruby .class .title,
-.post-content pre .css .rules .attribute,
-.post-content pre .string,
-.post-content pre .value,
-.post-content pre .inheritance,
-.post-content pre .header,
-.post-content pre .ruby .symbol,
-.post-content pre .xml .cdata,
-.post-content pre .special,
-.post-content pre .number,
-.post-content pre .formula {
-  color: #718c00;
-}
-.post-content pre .title,
-.post-content pre .css .hexcolor {
-  color: #3e999f;
-}
-.post-content pre .function,
-.post-content pre .python .decorator,
-.post-content pre .python .title,
-.post-content pre .ruby .function .title,
-.post-content pre .ruby .title .keyword,
-.post-content pre .perl .sub,
-.post-content pre .javascript .title,
-.post-content pre .coffeescript .title {
-  color: #4271ae;
-}
-.post-content pre .keyword,
-.post-content pre .javascript .function {
-  color: #8959a8;
+.highlight .code .strong {
+  font-weight: bold;
 }
 @media screen and (max-width: 650px) {
   #github_widget {
     display: none;
   }
+}
+.calendar .Box-header {
+  display: none;
 }
 #blog_logo:hover {
   text-decoration: underline;
