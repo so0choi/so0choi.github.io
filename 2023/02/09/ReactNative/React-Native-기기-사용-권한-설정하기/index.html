@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>React Native 기기 사용 권한 설정하기 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">React Native 기기 사용 권한 설정하기</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">2월 9, 2023&nbsp;&nbsp;10:35:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/React-Native/">React Native</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>Application permission 이란 앱에서 장치 수준 기능에 대한 액세스를 제어하고 규제하는 수단이다. 일반적으로는 카메라나 위치 정보 접근과 같은 장치의 하드웨어 기능 및 개인 데이터 액세스 기능과 같이 개인 정보에 영향을 미칠 수 있는 기능이 포함된다. React Native 문서에는 Android 권한을 다루는 <code>PermissionsAndroid</code>에 대한 설명은 나와있는데 IOS 관련 내용은 없었다. 보통 두 OS를 공통으로 처리하기 위해 <a target="_blank" rel="noopener" href="https://github.com/zoontek/react-native-permissions">react-native-permissions</a> 라이브러리를 많이 사용한다고 한다.</p>
+<p>권한을 요청할 뿐 아니라 권한을 얻지 못했을 때의 동작을 핸들링하려면 직접 처리하는 작업은 꼭 필요해 보인다.</p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p>github READ.me를 참고하여 설치할 수 있다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-permissions</span><br></pre></td></tr></table></figure>
+
+<h3 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h3><p>‘Podfile’을 업데이트 하고 <code>pod install</code>을 실행해야 한다. Podfile에서 아래에 해당하는 블럭을 찾아 추가하고자 하는 권한만 추가하면 된다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">target &#x27;YourAwesomeProject&#x27; do</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">  #</span><span class="bash"> …</span></span><br><span class="line"></span><br><span class="line">  permissions_path = &#x27;../node_modules/react-native-permissions/ios&#x27;</span><br><span class="line"></span><br><span class="line">  pod &#x27;Permission-AppTrackingTransparency&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/AppTrackingTransparency&quot;</span><br><span class="line">  pod &#x27;Permission-BluetoothPeripheral&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/BluetoothPeripheral&quot;</span><br><span class="line">  pod &#x27;Permission-Calendars&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Calendars&quot;</span><br><span class="line">  pod &#x27;Permission-Camera&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Camera&quot;</span><br><span class="line">  pod &#x27;Permission-Contacts&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Contacts&quot;</span><br><span class="line">  pod &#x27;Permission-FaceID&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/FaceID&quot;</span><br><span class="line">  pod &#x27;Permission-LocationAccuracy&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/LocationAccuracy&quot;</span><br><span class="line">  pod &#x27;Permission-LocationAlways&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/LocationAlways&quot;</span><br><span class="line">  pod &#x27;Permission-LocationWhenInUse&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/LocationWhenInUse&quot;</span><br><span class="line">  pod &#x27;Permission-MediaLibrary&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/MediaLibrary&quot;</span><br><span class="line">  pod &#x27;Permission-Microphone&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Microphone&quot;</span><br><span class="line">  pod &#x27;Permission-Motion&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Motion&quot;</span><br><span class="line">  pod &#x27;Permission-Notifications&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Notifications&quot;</span><br><span class="line">  pod &#x27;Permission-PhotoLibrary&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/PhotoLibrary&quot;</span><br><span class="line">  pod &#x27;Permission-PhotoLibraryAddOnly&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/PhotoLibraryAddOnly&quot;</span><br><span class="line">  pod &#x27;Permission-Reminders&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Reminders&quot;</span><br><span class="line">  pod &#x27;Permission-Siri&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/Siri&quot;</span><br><span class="line">  pod &#x27;Permission-SpeechRecognition&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/SpeechRecognition&quot;</span><br><span class="line">  pod &#x27;Permission-StoreKit&#x27;, :path =&gt; &quot;#&#123;permissions_path&#125;/StoreKit&quot;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ios &amp;&amp; pod install</span><br></pre></td></tr></table></figure>
+
+<p>그리고 ‘Info.plist’를 업데이트 해야한다. 권한을 얻는 alert가 뜰 때 나타날 문구를 설정할 수 있다.</p>
+<figure class="highlight plaintext"><figcaption><span>version</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 🚨 Keep only the permissions used in your app 🚨 --&gt;</span><br><span class="line"></span><br><span class="line">  &lt;key&gt;NSAppleMusicUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSBluetoothAlwaysUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSBluetoothPeripheralUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSCalendarsUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSCameraUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSContactsUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSFaceIDUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSLocationAlwaysAndWhenInUseUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSLocationAlwaysUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSLocationTemporaryUsageDescriptionDictionary&lt;/key&gt;</span><br><span class="line">  &lt;dict&gt;</span><br><span class="line">    &lt;key&gt;YOUR-PURPOSE-KEY&lt;/key&gt;</span><br><span class="line">    &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;/dict&gt;</span><br><span class="line">  &lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSMicrophoneUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSMotionUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSPhotoLibraryUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSPhotoLibraryAddUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSRemindersUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSSpeechRecognitionUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSSiriUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line">  &lt;key&gt;NSUserTrackingUsageDescription&lt;/key&gt;</span><br><span class="line">  &lt;string&gt;YOUR TEXT&lt;/string&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- … --&gt;</span><br><span class="line"></span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p><code>android/app/src/main/AndroidManifest.xml</code> 파일을 수정해야 한다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">package</span>=<span class="string">&quot;com.myawesomeapp&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 🚨 Keep only the permissions used in your app 🚨 --&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCEPT_HANDOVER&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_BACKGROUND_LOCATION&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_COARSE_LOCATION&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_FINE_LOCATION&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACCESS_MEDIA_LOCATION&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ACTIVITY_RECOGNITION&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;com.android.voicemail.permission.ADD_VOICEMAIL&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.ANSWER_PHONE_CALLS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BLUETOOTH_ADVERTISE&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BLUETOOTH_CONNECT&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BLUETOOTH_SCAN&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BODY_SENSORS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.BODY_SENSORS_BACKGROUND&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.CALL_PHONE&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.CAMERA&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.GET_ACCOUNTS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.NEARBY_WIFI_DEVICES&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.POST_NOTIFICATIONS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.PROCESS_OUTGOING_CALLS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_CALENDAR&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_CALL_LOG&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_CONTACTS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_MEDIA_AUDIO&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_MEDIA_IMAGES&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_MEDIA_VIDEO&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_NUMBERS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_PHONE_STATE&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.READ_SMS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_MMS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_SMS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECEIVE_WAP_PUSH&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.RECORD_AUDIO&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.SEND_SMS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.USE_SIP&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.UWB_RANGING&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_CALENDAR&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_CALL_LOG&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_CONTACTS&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- … --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><h3 id="Status-types"><a href="#Status-types" class="headerlink" title="Status types"></a>Status types</h3><table>
+<thead>
+<tr>
+<th>Return value</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RESULTS.UNAVAILABLE</td>
+<td>이 기능은 이 디바이스에서 사용 불가</td>
+</tr>
+<tr>
+<td>RESULTS.DENIED</td>
+<td>아직 요청 된 적 없거나 거부되었으나 다시 요청이 가능한 경우</td>
+</tr>
+<tr>
+<td>RESULTS.GRANTED</td>
+<td>허용됨</td>
+</tr>
+<tr>
+<td>RESULTS.LIMITED</td>
+<td>제한적 허용</td>
+</tr>
+<tr>
+<td>RESULTS.BLOCKED</td>
+<td>거부되었으며 다시 요청할 수 없음</td>
+</tr>
+</tbody></table>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><ul>
+<li>check<br>한 가지 permission에 대한 status를 확인한다</li>
+</ul>
+<blockquote>
+<p>Android는 <code>check</code> 메소드에 <code>blocked</code>를 반환하지 않는다. 상태를 알기 위해서는 permission을 요청해야 한다.</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;check, PERMISSIONS, RESULTS&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-permissions&#x27;</span>;</span><br><span class="line"></span><br><span class="line">check(PERMISSIONS.IOS.LOCATION_ALWAYS)</span><br><span class="line">    .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">switch</span> (result) &#123;</span><br><span class="line">            <span class="keyword">case</span> RESULTS.UNAVAILABLE:</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;This feature is not available (on this device / in this context)&#x27;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> RESULTS.DENIED:</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;The permission has not been requested / is denied but requestable&#x27;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> RESULTS.LIMITED:</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;The permission is limited: some actions are possible&#x27;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> RESULTS.GRANTED:</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;The permission is granted&#x27;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> RESULTS.BLOCKED:</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">&#x27;The permission is denied and not requestable anymore&#x27;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>request</li>
+</ul>
+<p>한 가지 Persmission을 요청한다. (<code>rationale</code> 파라미터는 Android에서만 사용)</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">type</span> Rationale = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="built_in">string</span>;</span><br><span class="line">  message: <span class="built_in">string</span>;</span><br><span class="line">  buttonPositive?: <span class="built_in">string</span>;</span><br><span class="line">  buttonNegative?: <span class="built_in">string</span>;</span><br><span class="line">  buttonNeutral?: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params">permission: <span class="built_in">string</span>, rationale?: Rationale</span>): <span class="title">Promise</span>&lt;<span class="title">PermissionStatus</span>&gt;</span>;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;request, PERMISSIONS&#125; <span class="keyword">from</span> <span class="string">&#x27;react-native-permissions&#x27;</span>;</span><br><span class="line"></span><br><span class="line">request(PERMISSIONS.IOS.LOCATION_ALWAYS).then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/02/06/Frontend/else/head-meta-%ED%83%9C%EA%B7%B8%EB%A1%9C-Kakao-%EB%A9%94%EC%84%B8%EC%A7%80-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0/">head meta 태그로 Kakao 메세지 미리보기 설정하기</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
