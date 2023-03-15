@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>React Native bottom modal 넣기 | StudyYeong</title>
+<title>Reat hooks 정리 | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">React Native bottom modal 넣기</h1>
+            <h1 class="post-title">Reat hooks 정리</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 7, 2023&nbsp;&nbsp;14:31:07</a>
+                        Date: <a href="#">3월 7, 2023&nbsp;&nbsp;15:26:14</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React-Native/">React Native</a>
+                                <a href="/categories/React/">React</a>
                             
                         </span>
                     
@@ -218,26 +218,11 @@
         </header>
 
         <div class="post-content">
-            <p>내가 선택한 라이브러리는 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@gorhom/bottom-sheet">@gorhom/bottom-sheet</a>이다. 위클리 다운로드 10만을 넘는 라이브러리로 깔끔한 도큐먼트 페이지도 있어 믿고 사용할 수 있었다. (<a target="_blank" rel="noopener" href="https://gorhom.github.io/react-native-bottom-sheet/">공식 홈페이지</a>)</p>
-<p><img src="!%5Bimg%5D(/images/React-Native-bottom-modal-%EB%84%A3%EA%B8%B0.png)"></p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>작성일 기준 설치방법이다.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add @gorhom/bottom-sheet@^4</span><br></pre></td></tr></table></figure>
+            <p>사용할 때마다 틈틈이 정리해놓기 ✨</p>
+<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><p>리렌더링 과정에서 사용할 수 있는 캐싱기법이다.</p>
+<p>함수형 컴포넌트는 <code>렌더링 &gt; 컴포넌트 함수 호출 &gt; 내부 변수 초기화</code> 과정을 거쳐 렌더링되는데 이 때 내부 변수 초기화에 무거운 연산이 포함된 경우 성능이 저하될 것이다. 이런 경우 연산된 결과를 메모리에 저장해놓고 필요한 경우에 불러올 때 사용하는 것이 <code>useMemo</code>이다. useMemo를 사용하는 경우 의존성 배열에 들어있는 값에 변화가 있을 때만 재연산한다. 의존성 배열에 빈 배열이 들어오면 매 렌더링에 실행된다.</p>
+<h3 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useMemo &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params">&#123; todos, tab &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> visibleTodos = useMemo(</span><br><span class="line">    <span class="function">() =&gt;</span> filterTodos(todos, tab),</span><br><span class="line">    [todos, tab]</span><br><span class="line">  );</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>추가로 설치가 필요한 라이브러리가 있다.</p>
-<ul>
-<li><p>expo 사용하지 않는 경우</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-native-reanimated react-native-gesture-handler</span><br></pre></td></tr></table></figure></li>
-<li><p>expo 사용하는 경우</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expo install react-native-reanimated react-native-gesture-handler</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>ReactNative v0.63 이상을 사용한다면 Fabric 구조로 프로젝트가 구성되며 이 경우 <code>react-native-gesture-handler</code> v2.0 이상을 사용해야 한다.</p>
-<h3 id="babel-plugin"><a href="#babel-plugin" class="headerlink" title="babel plugin"></a>babel plugin</h3><p><code>babel.config.js</code> 파일 수정이 필요하다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    ...</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&#x27;react-native-reanimated/plugin&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h3><p>프로젝트 내부의 <code>ios</code> 폴더로 이동해 아래 명령어 실행</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RCT_NEW_ARCH_ENABLED=1 pod install</span><br></pre></td></tr></table></figure>
-
-<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>추가 설정 필요 없음</p>
 
         </div>
 
@@ -278,10 +263,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/03/07/React/React-hook-%EC%A0%95%EB%A6%AC/">Reat hooks 정리</a>
+                <a class="prev" rel="prev" href="/2023/03/15/ReactNative/React-Native-%ED%8F%B0%ED%8A%B8-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/">React Native 폰트 적용하기 (native-base)</a>
             
             
-            <a class="next" rel="next" href="/2023/02/21/ReactNative/React-Native-Animated%EB%A1%9C-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0/">React Native Animated로 애니메이션 구현하기</a>
+            <a class="next" rel="next" href="/2023/03/07/ReactNative/React-Native-bottom-modal-%EB%84%A3%EA%B8%B0/">React Native bottom modal 넣기</a>
             
         </section>
 
