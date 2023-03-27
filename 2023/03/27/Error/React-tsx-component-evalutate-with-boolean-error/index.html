@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>context로 global data 관리 | StudyYeong</title>
+<title>Type &#39;false | Element&#39; is not assignable to type &#39;ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined&#39;. | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">context로 global data 관리</h1>
+            <h1 class="post-title">Type &#39;false | Element&#39; is not assignable to type &#39;ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined&#39;.</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 20, 2023&nbsp;&nbsp;14:46:19</a>
+                        Date: <a href="#">3월 27, 2023&nbsp;&nbsp;9:12:57</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React/">React</a>
+                                <a href="/categories/Error/">Error</a>
                             
                         </span>
                     
@@ -218,23 +218,15 @@
         </header>
 
         <div class="post-content">
-            <p>React에서는 주로 parent 컴포넌트에서 child 컴포넌트로 <code>props</code>를 이용해 데이터를 넘긴다. 이때 많은 데이터에서 공통적으로 필요로하는 데이터가 있다면 props를 통해 데이터를 넘기려면 불편하기도하고 비효율적이라는 생각이 든다. 이럴 때 사용할 수 있는 것이 <code>Context</code>이다. 직접적으로 props를 통해 데이터를 넘기지 않아도 아무 컴포넌트에서나 접근이 가능하도록 하는 기능이다.</p>
-<h2 id="Prop-drilling"><a href="#Prop-drilling" class="headerlink" title="Prop drilling"></a>Prop drilling</h2><p><code>props</code>를 통해 데이터를 전달하다보면 데이터가 직접 필요한 컴포넌트와 데이터를 처음에 가지고 있던 컴포넌트 사이에 거리가 먼 경우가 있다. 그 사이에 컴포넌트는 데이터가 필요하지 않음에도 계속해서 전달해야 하는데 이런 현상을 <code>prop drilling</code>이라고 한다.</p>
-<p><img src="/images/2023032001.png"></p>
-<p>번거롭게 넘길 필요 없이 데이터를 아무데서나 쓸 수 있도록 할 때 사용할 수 있는 것이 <code>Context</code>이다.</p>
-<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><p><code>Context</code>를 사용하면 부모 컴포넌트에서 정의한 데이터를 모든 자식 컴포넌트에서 사용 할 수 있다.<br>context를 사용에는 다음 세 가지 단계를 거친다. </p>
-<h3 id="context를-생성한다"><a href="#context를-생성한다" class="headerlink" title="context를 생성한다."></a>context를 생성한다.</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createContext &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> LevelContext = createContext(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+            <p>에러가 발생했던 코드는 아래와 같다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export default function EventListScreen() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;FlatList</span><br><span class="line">            // .....</span><br><span class="line">            ListEmptyComponent=&#123;</span><br><span class="line">                !eventList.length &amp;&amp; (</span><br><span class="line">                    &lt;Text&gt;생성된 이벤트가 없습니다.&lt;/Text&gt;</span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">            // ....</span><br><span class="line">        /&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="데이터가-필요한-컴포넌트에서-context를-사용한다"><a href="#데이터가-필요한-컴포넌트에서-context를-사용한다" class="headerlink" title="데이터가 필요한 컴포넌트에서 context를 사용한다."></a>데이터가 필요한 컴포넌트에서 context를 사용한다.</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useContext &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; LevelContext &#125; <span class="keyword">from</span> <span class="string">&#x27;./LevelContext.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Heading</span>(<span class="params">&#123; children &#125;</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">const</span> level = useContext(LevelContext);</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이 구문은 <code>&amp;&amp;</code>를 사용하는 inline logical 구문이다. <a target="_blank" rel="noopener" href="https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator">React 공식 문서</a>에서도 찾아볼 수 있다. 코드에 빨간 줄이 뜨긴 하지만 실행은 정상적으로 된다.<br>React는 false를 만난 순간 그 뒤에 나온 코드를 무시하기 때문에 원하는대로 동작하게 할 수 있으나 Typescript 관점에서는 <code>boolean &amp;&amp; expression</code> 이기 때문에 TS 오류가 발생한다.<br>가장 쉽게 해결할 수 있는 방법은 conditional logic 전체를 React element로 감싸는 방법이다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export default function EventListScreen() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;FlatList</span><br><span class="line">            // .....</span><br><span class="line">            ListEmptyComponent=&#123;</span><br><span class="line">                &lt;&gt;</span><br><span class="line">                    !eventList.length &amp;&amp; (</span><br><span class="line">                        &lt;Text&gt;생성된 이벤트가 없습니다.&lt;/Text&gt;</span><br><span class="line">                    )</span><br><span class="line">                &lt;/&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            // ....</span><br><span class="line">        /&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>데이터를 명시한 컴포넌트가 데이터를 제공한다.</li>
-</ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; LevelContext &#125; <span class="keyword">from</span> <span class="string">&#x27;./LevelContext.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Section</span>(<span class="params">&#123; level, children &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">section</span> <span class="attr">className</span>=<span class="string">&quot;section&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">LevelContext.Provider</span> <span class="attr">value</span>=<span class="string">&#123;level&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;children&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">LevelContext.Provider</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>하위 컴포넌트 <code>level</code> 데이터를 전달하지 않아도 내부의 모든 컴포넌트에서 전달받은 데이터 값을 사용할 수 있다. 전달된 값이 없는 경우 default로 설정한 <code>1</code>을 사용하게 된다.</p>
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://react.dev/learn/passing-data-deeply-with-context">Passing Data Deeply with Context</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/62612062/ts2322-false-element-is-not-assignable-to-type-reactelement-error-does-not">stackoverflow</a></li>
 </ul>
 
         </div>
@@ -266,6 +258,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/React/"># React</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -276,10 +272,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/03/27/Error/React-tsx-component-evalutate-with-boolean-error/">Type 'false | Element' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>> | ComponentType<any> | null | undefined'.</a>
             
-            
-            <a class="next" rel="next" href="/2023/03/15/ReactNative/React-Native-%ED%8F%B0%ED%8A%B8-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/">React Native 폰트 적용하기 (native-base)</a>
+            <a class="next" rel="next" href="/2023/03/20/React/React-context%EB%A1%9C-data-%EB%84%98%EA%B8%B0%EA%B8%B0/">context로 global data 관리</a>
             
         </section>
 
