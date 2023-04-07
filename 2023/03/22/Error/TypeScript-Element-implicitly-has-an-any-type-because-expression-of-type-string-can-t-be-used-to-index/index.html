@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Type &#39;false | Element&#39; is not assignable to type &#39;ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined&#39;. | StudyYeong</title>
+<title>TypeScript : Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Type &#39;false | Element&#39; is not assignable to type &#39;ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined&#39;.</h1>
+            <h1 class="post-title">TypeScript : Element implicitly has an &#39;any&#39; type because expression of type &#39;string&#39; can&#39;t be used to index</h1>
             
                 <div class="post-meta">
                     
@@ -202,7 +202,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 27, 2023&nbsp;&nbsp;9:12:57</a>
+                        Date: <a href="#">3월 22, 2023&nbsp;&nbsp;10:00:51</a>
                         </span>
                     
                     
@@ -218,15 +218,27 @@
         </header>
 
         <div class="post-content">
-            <p>에러가 발생했던 코드는 아래와 같다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export default function EventListScreen() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;FlatList</span><br><span class="line">            // .....</span><br><span class="line">            ListEmptyComponent=&#123;</span><br><span class="line">                !eventList.length &amp;&amp; (</span><br><span class="line">                    &lt;Text&gt;생성된 이벤트가 없습니다.&lt;/Text&gt;</span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">            // ....</span><br><span class="line">        /&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>타입스크립트 에러가 발생했다. 실행에는 문제가 없었지만 빨간 줄이 너무 거슬렸다.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> CONN_STATE = &#123;</span><br><span class="line">  <span class="number">1</span>: <span class="string">&#x27;준비&#x27;</span>,</span><br><span class="line">  <span class="number">2</span>: <span class="string">&#x27;송출&#x27;</span>,</span><br><span class="line">  <span class="number">3</span>: <span class="string">&#x27;종료&#x27;</span>,</span><br><span class="line">  <span class="number">4</span>: <span class="string">&#x27;일시 중지&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(CONN_STATE[stream.ConnState])</span><br><span class="line"><span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
 
-<p>이 구문은 <code>&amp;&amp;</code>를 사용하는 inline logical 구문이다. <a target="_blank" rel="noopener" href="https://legacy.reactjs.org/docs/conditional-rendering.html#inline-if-with-logical--operator">React 공식 문서</a>에서도 찾아볼 수 있다. 코드에 빨간 줄이 뜨긴 하지만 실행은 정상적으로 된다.<br>React는 false를 만난 순간 그 뒤에 나온 코드를 무시하기 때문에 원하는대로 동작하게 할 수 있으나 Typescript 관점에서는 <code>boolean &amp;&amp; expression</code> 이기 때문에 TS 오류가 발생한다.<br>가장 쉽게 해결할 수 있는 방법은 conditional logic 전체를 React element로 감싸는 방법이다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">export default function EventListScreen() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;FlatList</span><br><span class="line">            // .....</span><br><span class="line">            ListEmptyComponent=&#123;</span><br><span class="line">                &lt;&gt;</span><br><span class="line">                    &#123;!eventList.length &amp;&amp; (</span><br><span class="line">                        &lt;Text&gt;생성된 이벤트가 없습니다.&lt;/Text&gt;</span><br><span class="line">                    )&#125;</span><br><span class="line">                &lt;/&gt;</span><br><span class="line">            &#125;</span><br><span class="line">            // ....</span><br><span class="line">        /&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>TS7053: Element implicitly has an ‘string’ type because expression of type ‘string’ can’t be used to index type ‘{ 1: string; 2: string; 3: string; 4: string; }’.</p>
+</blockquote>
+<p>index signature 관련 에러였다.</p>
+<h2 id="Index-Signature"><a href="#Index-Signature" class="headerlink" title="Index Signature"></a>Index Signature</h2><p>Javascript에서 Object에 문자열로 접근할 수 있다. 이 때 암묵적으로 <code>toString</code>을 호출하기 때문에 Typescript는 이 때 오류를 발생시킨다.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="function"><span class="title">toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> foo: <span class="built_in">any</span> = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 오류: index signature는 string, number 여야 함...</span></span><br><span class="line">foo[obj] = <span class="string">&#x27;World&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FIX: TypeScript는 명시적으로 호출하게 강제함</span></span><br><span class="line">foo[obj.toString()] = <span class="string">&#x27;World&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
+<p>에러를 보면 알 수 있다. Typescript에서 index signature는 <code>string</code> 또는 <code>number</code>여야 한다. (<code>symbols</code>도 사용할 수 있다고 한다.) Typescript는 index signature를 명시할 수 있도록 한다.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo:&#123; [key:<span class="built_in">string</span>] : &#123;<span class="attr">message</span>: <span class="built_in">string</span>&#125; &#125; = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Ok */</span></span><br><span class="line">foo[<span class="string">&#x27;a&#x27;</span>] = &#123; <span class="attr">message</span>: <span class="string">&#x27;some message&#x27;</span> &#125;;</span><br><span class="line"><span class="comment">/** 오류: 타입이 string인 `message`가 있어야 함. `message` 부분에 오타 존재  */</span></span><br><span class="line">foo[<span class="string">&#x27;a&#x27;</span>] = &#123; <span class="attr">messages</span>: <span class="string">&#x27;some message&#x27;</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p>여기서 index signature의<code>key</code>는 Typescript에서 가독성을 위해 넣는 아무 의미 없는 문자열이다. <code>index</code>라던지 <code>username</code> 라던지 아무 이름이나 넣어도 상관없다.</p>
+<p>위의 에러는 index signature를 따로 명시하지 않기 때문에 객체 내부의 string literal을 key로 받게 되어있는데 string으로 객체에 접근하려고 해서 발생한 것이다. </p>
+<h2 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a>해결 방법</h2><p>객체에 <code>index signature</code>를 명시함으로써 해결 할 수 있다.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> ConnState = <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> | <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CONN_STATE: &#123;[key <span class="keyword">in</span> ConnState]: <span class="built_in">string</span>&#125; = &#123;</span><br><span class="line">    <span class="number">1</span>: <span class="string">&#x27;준비&#x27;</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">&#x27;송출&#x27;</span>,</span><br><span class="line">    <span class="number">3</span>: <span class="string">&#x27;종료&#x27;</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">&#x27;일시 중지&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/62612062/ts2322-false-element-is-not-assignable-to-type-reactelement-error-does-not">stackoverflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://dev.to/mapleleaf/indexing-objects-in-typescript-1cgi">Indexing objects in TypeScript</a></li>
+<li><a target="_blank" rel="noopener" href="https://radlohead.gitbook.io/typescript-deep-dive/type-system/index-signatures">인덱스 서명(Index Signature)</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@raccoon-ccoder/Error-TypeScript-Element-implicitly-has-an-any-type-because-expression-of-type-string-cant-be-used-to-index">raccoon-ccoder.log</a></li>
 </ul>
 
         </div>
@@ -259,7 +271,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/React/"># React</a>
+                        <a href="/tags/Typescript/"># Typescript</a>
                     
                         
                 </span>
@@ -272,10 +284,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/04/04/Else/svg-%ED%8C%8C%EC%9D%BC-%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD/">svg 파일 크기 변경</a>
+                <a class="prev" rel="prev" href="/2023/03/27/Error/React-tsx-component-evalutate-with-boolean-error/">Type 'false | Element' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>> | ComponentType<any> | null | undefined'.</a>
             
             
-            <a class="next" rel="next" href="/2023/03/22/Error/TypeScript-Element-implicitly-has-an-any-type-because-expression-of-type-string-can-t-be-used-to-index/">TypeScript : Element implicitly has an 'any' type because expression of type 'string' can't be used to index</a>
+            <a class="next" rel="next" href="/2023/03/20/React/React-context%EB%A1%9C-data-%EB%84%98%EA%B8%B0%EA%B8%B0/">context로 global data 관리</a>
             
         </section>
 
