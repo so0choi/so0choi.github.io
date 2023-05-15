@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>[Error] Serverless DynamoDB local 설치 이슈 | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[Error] Serverless DynamoDB local 설치 이슈</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">5월 15, 2023&nbsp;&nbsp;10:17:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Error/">Error</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>테스트를 위해 local DynamoDB를 serverless에 설치하려는데 에러가 발생했다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls dynamodb install</span><br></pre></td></tr></table></figure>
+
+<p>설치 명령어를 입력하면 아래 에러가 발생하며 설치가 실행되지 않았다.</p>
+<blockquote>
+<p>Error: Error getting DynamoDb local latest tar.gz location undefined: 403</p>
+</blockquote>
+<p>검색해보니 이미 많은 사람들이 겪고있는 문제였다. (<a target="_blank" rel="noopener" href="https://github.com/99x/serverless-dynamodb-local/issues/294">Error getting DynamoDb local latest tar.gz location undefined: 403</a>)</p>
+<p>공식 해결법은 아직 없는 것 같고 라이브러리 코드를 조금 수정해서 해결할 수 있었다.</p>
+<h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p><code>node_modules/dynamodb-localhost/dynamodb/config.json</code> 파일을 열어 <code>download_url</code>을 <code>https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz</code>로 수정한다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;setup&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;download_url&quot;</span>: <span class="string">&quot;https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;install_path&quot;</span>: <span class="string">&quot;bin&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;jar&quot;</span>: <span class="string">&quot;DynamoDBLocal.jar&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;start&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="number">8000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위와 같은 모양이 될 것이다.</p>
+<p>그리고 <code>node_modules/dynamodb-localhost/dynamodb/isntaller.js</code> 파일에서 <code>http</code>를 <code>https</code>로 바꾸면 된다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">var</span> tar = <span class="built_in">require</span>(<span class="string">&quot;tar&quot;</span>),</span><br><span class="line">    zlib = <span class="built_in">require</span>(<span class="string">&quot;zlib&quot;</span>),</span><br><span class="line">    path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>),</span><br><span class="line">    https = <span class="built_in">require</span>(<span class="string">&quot;https&quot;</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">https</span><br><span class="line">    .get(downloadUrl, <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> len = <span class="built_in">parseInt</span>(response.headers[<span class="string">&quot;content-length&quot;</span>], <span class="number">10</span>),</span><br><span class="line"><span class="comment">// ......</span></span><br></pre></td></tr></table></figure>
+
+<p>파일 수정 후 <code>sls dynamodb install</code> 명령어를 다시 실행하니 정상적으로 설치 되었다.</p>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/DynamoDB/"># DynamoDB</a>
+                    
+                        <a href="/tags/serverless/"># serverless</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/05/02/ReactNative/React-Native-%EB%A6%B4%EB%A6%AC%EC%A6%88-%EA%B8%B0%EB%A1%9D/">[React Native] 배포 및 릴리즈 기록</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
