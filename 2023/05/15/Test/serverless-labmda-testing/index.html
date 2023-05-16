@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>[Error] Serverless DynamoDB local 설치 이슈 | StudyYeong</title>
+<title>[AWS] serverless AWS Labmda testing - SQS &amp; DynamoDB | StudyYeong</title>
 
 
 
@@ -193,7 +193,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">[Error] Serverless DynamoDB local 설치 이슈</h1>
+            <h1 class="post-title">[AWS] serverless AWS Labmda testing - SQS &amp; DynamoDB</h1>
             
                 <div class="post-meta">
                     
@@ -202,14 +202,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">5월 15, 2023&nbsp;&nbsp;10:17:23</a>
+                        Date: <a href="#">5월 15, 2023&nbsp;&nbsp;15:24:38</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Error/">Error</a>
+                                <a href="/categories/AWS/">AWS</a>
                             
                         </span>
                     
@@ -218,23 +218,8 @@
         </header>
 
         <div class="post-content">
-            <p>테스트를 위해 local DynamoDB를 serverless에 설치하려는데 에러가 발생했다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sls dynamodb install</span><br></pre></td></tr></table></figure>
-
-<p>설치 명령어를 입력하면 아래 에러가 발생하며 설치가 실행되지 않았다.</p>
-<blockquote>
-<p>Error: Error getting DynamoDb local latest tar.gz location undefined: 403</p>
-</blockquote>
-<p>검색해보니 이미 많은 사람들이 겪고있는 문제였다. (<a target="_blank" rel="noopener" href="https://github.com/99x/serverless-dynamodb-local/issues/294">Error getting DynamoDb local latest tar.gz location undefined: 403</a>)</p>
-<p>공식 해결법은 아직 없는 것 같고 라이브러리 코드를 조금 수정해서 해결할 수 있었다.</p>
-<h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p><code>node_modules/dynamodb-localhost/dynamodb/config.json</code> 파일을 열어 <code>download_url</code>을 <code>https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz</code>로 수정한다.</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;setup&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;download_url&quot;</span>: <span class="string">&quot;https://s3.us-west-2.amazonaws.com/dynamodb-local/dynamodb_local_latest.tar.gz&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;install_path&quot;</span>: <span class="string">&quot;bin&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;jar&quot;</span>: <span class="string">&quot;DynamoDBLocal.jar&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;start&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;port&quot;</span>: <span class="number">8000</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>위와 같은 모양이 될 것이다.</p>
-<p>그리고 <code>node_modules/dynamodb-localhost/dynamodb/isntaller.js</code> 파일에서 <code>http</code>를 <code>https</code>로 바꾸면 된다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">var</span> tar = <span class="built_in">require</span>(<span class="string">&quot;tar&quot;</span>),</span><br><span class="line">    zlib = <span class="built_in">require</span>(<span class="string">&quot;zlib&quot;</span>),</span><br><span class="line">    path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>),</span><br><span class="line">    https = <span class="built_in">require</span>(<span class="string">&quot;https&quot;</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">https</span><br><span class="line">    .get(downloadUrl, <span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> len = <span class="built_in">parseInt</span>(response.headers[<span class="string">&quot;content-length&quot;</span>], <span class="number">10</span>),</span><br><span class="line"><span class="comment">// ......</span></span><br></pre></td></tr></table></figure>
-
-<p>파일 수정 후 <code>sls dynamodb install</code> 명령어를 다시 실행하니 정상적으로 설치 되었다.</p>
+            <p>AWS Lambda 테스트 코드를 작성한다. 나는 serverless 프레임워크 위에서 작업을 진행하고 있다.</p>
+<h2 id="SQS-테스트"><a href="#SQS-테스트" class="headerlink" title="SQS 테스트"></a>SQS 테스트</h2><p>serverless 문서에 따라 ElasticMQ를 사용했다. <code>ElasticMQ</code>는 Amazon SQS와 호환 가능한 메시지 큐 시스템이다. Amazon SQS를 테스트 하고 싶을때도 많이 사용된다고 한다.</p>
 
         </div>
 
@@ -265,12 +250,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/DynamoDB/"># DynamoDB</a>
-                    
-                        <a href="/tags/serverless/"># serverless</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -281,10 +260,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/05/15/Test/serverless-labmda-testing/">[AWS] serverless AWS Labmda testing - SQS & DynamoDB</a>
+                <a class="prev" rel="prev" href="/2023/05/16/CS/singleton-pattern/">Singleton pattern(JS)</a>
             
             
-            <a class="next" rel="next" href="/2023/05/02/ReactNative/React-Native-%EB%A6%B4%EB%A6%AC%EC%A6%88-%EA%B8%B0%EB%A1%9D/">[React Native] 배포 및 릴리즈 기록</a>
+            <a class="next" rel="next" href="/2023/05/15/Error/Serverless-DynamoDB-local-%EC%84%A4%EC%B9%98-%EC%9D%B4%EC%8A%88/">[Error] Serverless DynamoDB local 설치 이슈</a>
             
         </section>
 
