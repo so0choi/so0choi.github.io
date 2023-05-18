@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
+<!-- 
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
+ -->
+
+    <meta name="author" content="Soyeong Choi">
+
+
+    <meta name="subtitle" content="기록용 블로그">
+
+
+    <meta name="description" content="Personal IT Diary">
+
+
+    <meta name="keywords" content="Node.js, html, React, Docker">
+
+
+<title>[AWS] aws-sdk v3 마이그레이션 (Node.js 18.x 런타임) | StudyYeong</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-175983012-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+  <nav class="navbar">
+      <div class="container">
+          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
+          <div class="menu navbar-right">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+              <input id="switch_default" type="checkbox" class="switch_default">
+              <label for="switch_default" class="toggleBtn"></label>
+          </div>
+      </div>
+  </nav>
+
+  
+  <nav class="navbar-mobile" id="nav-mobile">
+      <div class="container">
+          <div class="navbar-header">
+              <div>
+                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+              </div>
+              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+          </div>
+          <div class="menu" id="mobile-menu">
+              
+                  <a class="menu-item" href="/archives">Posts</a>
+              
+                  <a class="menu-item" href="/category">Categories</a>
+              
+                  <a class="menu-item" href="/tag">Tags</a>
+              
+                  <a class="menu-item" href="/about">About</a>
+              
+          </div>
+      </div>
+  </nav>
+
+</header>
+<script>
+  var mobileBtn = function f() {
+      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+      var mobileMenu = document.getElementById("mobile-menu");
+      if(toggleMenu.classList.contains("active")){
+         toggleMenu.classList.remove("active")
+          mobileMenu.classList.remove("active")
+      }else{
+          toggleMenu.classList.add("active")
+          mobileMenu.classList.add("active")
+      }
+  }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[AWS] aws-sdk v3 마이그레이션 (Node.js 18.x 런타임)</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">5월 18, 2023&nbsp;&nbsp;11:13:58</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/AWS/">AWS</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>serverless로 Labmda를 컴파일하는데 aws-sdk v3를 사용하라는 warning이 계속 나타나서 이참에 업그레이드를 하기로 했다. AWS에서 sdk-v3로 코드를 바꿔주는 커맨드가 있긴한데 난 그걸로는 부족해서 이참에 리팩토링도 진행했다.<br>v3로 버전업 되면서 달라진 점이 몇 가지 있는데 장점이 많아 업그레이드 할 시간이 있다면 바꿔보는 게 좋을 것 같다.</p>
+<h2 id="modular-package"><a href="#modular-package" class="headerlink" title="modular package"></a>modular package</h2><p>이전에는 <code>aws-sdk</code> 라이브러리 전체를 import해서 사용해야 했다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;SNS&#125; <span class="keyword">from</span> <span class="string">&quot;aws-sdk&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>이제 필요한 모듈만 import해서 사용할 수 있다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  &#123; SNSClient &#125; <span class="keyword">from</span> <span class="string">&quot;@aws-sdk/client-sns&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 전체 라이브러리가 아닌 modular package를 사용하면 전체 번들러의 크기가 줄어들기 때문에 성능 향상에 도움이 될 수 있다. 애플리케이션에서 aws-sdk를 사용하는 경우엔 크게 도움이 될 것이다. 하지만 AWS Lambda의 경우 여기서 얻는 장점은 크게는 없을 것으로 보인다. </p>
+<h2 id="Typescript-지원"><a href="#Typescript-지원" class="headerlink" title="Typescript 지원"></a>Typescript 지원</h2><p>모든 sdk 라이브러리에 타입 정의가 되어있다. 타입 관련 실수가 줄어들 것이다. IDE에서 타입스크립트를 사용할 경우 자동완성 기능을 사용할 수 있고 타입 에러를 컴파일 전에 알 수 있어 생산성이 높아진다. 타입스크립트 사용은 옵션이지만 AWS는 타입스크립트 사용을 적극 권장하고 있다.</p>
+<h2 id="에러-핸들링-인스턴스-추가"><a href="#에러-핸들링-인스턴스-추가" class="headerlink" title="에러 핸들링 인스턴스 추가"></a>에러 핸들링 인스턴스 추가</h2><p>이제 <code>instanceof</code> 키워드로 exception의 종류를 확인할 수 있다. 이전에는 Error 객체의 <code>name</code>과 하드코딩된 에러 이름을 비교하여 에러의 종류를 알아내야 했다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">await</span> client.send(someCommand);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (e.name === <span class="string">&quot;InvalidSignatureException&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// Handle InvalidSignatureException</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e.name === <span class="string">&quot;ResourceNotFoundException&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// Handle ResourceNotFoundException</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e.name === <span class="string">&quot;FooServiceException&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// Handle all other server-side exceptions from Foo service</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Handle errors from SDK</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>v3 부터는 클래스를 이용해 에러 객체가 어떤 에러 클래스의 객체인지 확인 할 수 있게 되었다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  InvalidSignatureException,</span><br><span class="line">  ResourceNotFoundException,</span><br><span class="line">  FooServiceException,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;@aws-sdk/client-foo&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">await</span> client.send(someCommand);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="keyword">if</span> (e <span class="keyword">instanceof</span> InvalidSignatureException) &#123;</span><br><span class="line">    <span class="comment">// Handle InvalidSignatureException</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> ResourceNotFoundException) &#123;</span><br><span class="line">    <span class="comment">// Handle ResourceNotFoundException</span></span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> FooServiceException) &#123;</span><br><span class="line">    <span class="comment">// Handle all other server-side exceptions from Foo service</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Other errors</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>하드 코딩이 사라졌기 때문에 실수를 할 가능성도 줄었고 에러가 어떤 인스턴스인지 확인이 된 상태에서는 타입스크립트로부터 자동완성 기능도 받을 수 있다.</p>
+<p><img src="aws-sdk-v3-dynamodb-%EC%B0%A8%EC%9D%B4.png"></p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/ko/blogs/developer/service-error-handling-modular-aws-sdk-js/">Error Handling in Modular AWS SDK for JavaScript (v3)</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/ko/blogs/developer/why-and-how-you-should-use-aws-sdk-for-javascript-v3-on-node-js-18/">Why and how you should use AWS SDK for JavaScript (v3) on Node.js 18</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/ko/blogs/developer/first-class-typescript-support-in-modular-aws-sdk-for-javascript/">First-class TypeScript support in modular AWS SDK for JavaScript</a></li>
+</ul>
+
+        </div>
+
+        
+        <section class="post_disqus">
+            <div id="disqus_thread"></div>
+                <script>
+                    /**
+                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                    /*
+                    var disqus_config = function () {
+                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    };
+                    */
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://so0github-blog.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/DynamoDB/"># DynamoDB</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/05/18/Error/Typescript-process-env-undefined/">Typescript process.env undefined 이슈</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+  <div class="copyright">
+    <span
+      >© Soyeong Choi | Powered by
+      <a href="https://hexo.io" target="_blank">Hexo</a>
+  </div>
+</footer>
+
+    </div>
+</body>
+</html>
