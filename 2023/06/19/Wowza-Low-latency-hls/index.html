@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>[AWS] DLQ(Dead Letter Queue) 리드라이브 | StudyYeong</title>
+<title>Wowza Streaming Engine으로 LL-HLS 스트리밍 하기 | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">[AWS] DLQ(Dead Letter Queue) 리드라이브</h1>
+            <h1 class="post-title">Wowza Streaming Engine으로 LL-HLS 스트리밍 하기</h1>
             
                 <div class="post-meta">
                     
@@ -212,29 +212,68 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">5월 23, 2023&nbsp;&nbsp;10:48:52</a>
+                        Date: <a href="#">6월 19, 2023&nbsp;&nbsp;9:26:19</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/AWS/">AWS</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h2 id="DLQ"><a href="#DLQ" class="headerlink" title="DLQ"></a>DLQ</h2><p>SQS에서 <code>DLQ(dead-letter queue)</code>란  성공적으로 처리되지 않은 메세지를 담고있는 큐를 말한다. DLQ는 자동으로 설정되는 것은 아니고, 일단 큐를 생성한 후 해당 큐를 다른 큐의 DLQ로 설정하여 사용할 수 있다. DLQ도 소스 큐와 같은 유형의 큐여야 한다. FIFO 큐의 DLQ는 FIFO 큐가 되어야 하는 것이다. (스탠다드 큐도 같다) DLQ는 큐 생성 시에도 설정할 수 있고 생성 후에도 큐 편집 메뉴의 <code>배달 못한 편지 대기열</code>에서 설정 가능하다.</p>
-<h2 id="DLQ-리드라이브"><a href="#DLQ-리드라이브" class="headerlink" title="DLQ 리드라이브"></a>DLQ 리드라이브</h2><p><img src="/images/202306191107.png"></p>
-<p>정상 처리되지 못한 메세지를 DLQ에서 다른 큐로 보내는 것을 ‘리드라이브’라고 한다. 큐 리드라이브는 원래 메세지를 처리하는 소스 큐로 보내는 것이 일반적이지만 다른 큐에서 처리되도록 할 수도 있다. DLQ로 지정된 큐는 콘솔에서 <code>DLQ 리드라이브</code> 버튼이 활성화 된 것을 확인 할 수 있다. </p>
-<p><img src="/images/202306191308.png"></p>
-<p>이 때 메세지 처리 정책을 정할 수 있다. <code>maxReceiveCount</code>는 최대 재처리 횟수를 말한다. 모든 메세지는 <code>ReceiveCount</code> 값을 가지는데, 소스 큐에서 consume 될 때마다 카운트 값이 올라간다. <code>maxReceiveCount</code>를 5로 설정하고 메세지 처리에 다섯 번 실패하면 여섯 번 째 시도에서는 메세지를 처리하지 않고 설정된 DLQ로 메세지를 전송한다.</p>
-<p>메세지 리드라이브는 API 또는 콘솔을 통해 실행할 수 있다. 자세한 건 <a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-dead-letter-queue-redrive.html">여기</a>서 확인할 수 있다.</p>
-<p>리드라이브 동작에 필요한 권한도 있으니 잘 참고하여 권한을 추가 해야겠다.</p>
+            <h2 id="HLS와-LL-HLS"><a href="#HLS와-LL-HLS" class="headerlink" title="HLS와 LL-HLS"></a>HLS와 LL-HLS</h2><p>LL-HLS는 기존의 HLS를 확장한 프로토콜이다. HLS는 미디어를 segment라는 쪼개진 단위로 잘라 전송하는 프로토콜인데 segment duration 만큼의 latency가 발생할 수 밖에 없는 한계점을 가지고있다. HLS가 처음 발표되었을 때 기본 스펙에서는 30초의 latency를 가지고 있었으나 스트리밍 서버 튜닝으로 8~10초대로 latency를 낮추는 것이 가능했다. LL-HLS는 HLS와 달라진 동작 방식으로 latency를 2-8초 대로 단축시킨다. </p>
+<h3 id="차이점"><a href="#차이점" class="headerlink" title="차이점"></a>차이점</h3><p>두 프로토콜의 차이점을 간단하게 살펴보면 아래와 같다.</p>
+<ul>
+<li>HLS의 segment가 더 작은 단위로 쪼개진다. 이 <code>mini segment</code>는 segment가 오래 지속되는 것에 비해 짧은 시간만 존재한다.</li>
+<li>playlist가 <code>Preload Hints</code> 정보를 가지고 있으며 이를 통해 다운로드되어야 하는 데이터릐 크기를 미리 알 수 있다. 이를 통해 오버헤드가 줄어든다. 하지만 필수적으로 포함되는 태그는 아니다.</li>
+<li>각 playlist마다 독립적인 식별자를 가지고있어 캐싱이 쉬워진다.</li>
+</ul>
+<h2 id="Wowza-Streaming-Engine"><a href="#Wowza-Streaming-Engine" class="headerlink" title="Wowza Streaming Engine"></a>Wowza Streaming Engine</h2><p><img src="/images/202306191323.png"></p>
+<p>Wowza Streaming Engine은 미디어 서버 구축시 흔하게 사용되는 소프트웨어이다. 다양한 스트리밍 프로토콜과 미디어 형식을 지원하며 다양한 서버 옵션 커스터마이징이 가능하다. 가격은 기본 한 달에 195$로 책정되어있다. </p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p>소프트웨어를 구매했거나 Trial 계정을 생성했다면 <code>My Account</code>에서 다운로드 탭에 접근 할 수 있다.</p>
+<p><img src="/images/202306191332.png"></p>
+<p>OS에 맞는 소프트웨어를 설치하면 된다. 나는 MacOS에 설치했다. EC2 같은 서버를 띄워 설치한다면 엔진 소프트웨어가 사용하는 포트를 열어놓아야 한다.</p>
+<h3 id="Ports"><a href="#Ports" class="headerlink" title="Ports"></a>Ports</h3><p>아래 포트들을 사용하니 방화벽 설정 등을 미리 해놓고 설치하면 편하다.</p>
+<table>
+<thead>
+<tr>
+<th>Ports</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TCP 1935</td>
+<td>RTMP/RTMPE/RTMPT/RTSP-interleaved streaming and WOWZ™ streaming</td>
+</tr>
+<tr>
+<td>TCP 8086-8088</td>
+<td>Administration</td>
+</tr>
+<tr>
+<td>UDP 6970-9999</td>
+<td>RTP UDP streaming</td>
+</tr>
+<tr>
+<td>TCP 80</td>
+<td>HLS, MPEG-DASH, and RTMPT streaming</td>
+</tr>
+<tr>
+<td>TCP 443</td>
+<td>SSL/TLS streaming (RTMPS and HTTPS)</td>
+</tr>
+<tr>
+<td>TCP 554</td>
+<td>RTSP streaming</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="참고-링크"><a href="#참고-링크" class="headerlink" title="참고 링크"></a>참고 링크</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.wowza.com/docs/understanding-wowza-streaming-engine">Understanding wowza streaming engine</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.wowza.com/docs/deliver-apple-low-latency-hls-live-streams-using-wowza-streaming-engine">Deliver Low-Latency HLS live streams using Wowza Streaming Engine</a></li>
+</ul>
 
         </div>
 
@@ -265,10 +304,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/SQS/"># SQS</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -279,10 +314,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/05/23/AWS/SQS-batch-item-failures/">[AWS] SQS batch item failures</a>
             
-            
-            <a class="next" rel="next" href="/2023/05/18/AWS/aws-sdk-v3-dynamodb-%EC%B0%A8%EC%9D%B4/">[AWS] aws-sdk v3 마이그레이션 (Node.js 18.x 런타임)</a>
+            <a class="next" rel="next" href="/2023/05/23/AWS/SQS-batch-item-failures/">[AWS] SQS batch item failures</a>
             
         </section>
 
