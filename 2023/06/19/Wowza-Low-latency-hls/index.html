@@ -228,6 +228,8 @@
 <li>playlist가 <code>Preload Hints</code> 정보를 가지고 있으며 이를 통해 다운로드되어야 하는 데이터릐 크기를 미리 알 수 있다. 이를 통해 오버헤드가 줄어든다. 하지만 필수적으로 포함되는 태그는 아니다.</li>
 <li>각 playlist마다 독립적인 식별자를 가지고있어 캐싱이 쉬워진다.</li>
 </ul>
+<h3 id="LL-HLS-vs-LL-DASH"><a href="#LL-HLS-vs-LL-DASH" class="headerlink" title="LL-HLS vs LL-DASH"></a>LL-HLS vs LL-DASH</h3><p>LL-HLS와 LL-DASH는 비슷한 프로토콜이지만 동작 방식이 약간 다르다.LL-HLS에서 segment가 mini segment, 혹은 part로 쪼개진다고 표현하는데 비해 LL-DASH는 chunk 혹은 fragment로 나누어진다고 표현한다. LL-DASH에서는 이 chunk들이 HTTP CTE(Chunked Transfer Encoding)으로 전송된다. 그래서 origin은 segment 전체가 인코딩되어 플레이어에 전송할 준비가 될 때까지 기다릴 필요가 없이 첫 번째 chunk가 전송 준비가 끝나는 즉시 전송할 수 있다.<br>LL-HLS에서 각 part는 독립적으로 읽는 것이 가능하다. 하나의 완전한 segment 단위로도 가능하며 아주 작은 byte 단위의 파일도 읽을 수 있다. 반면 LL-DASH의 장점은 manifest 업데이트에 의존하지 않는다는 점이다. 하지만 LL-HLS는 각 part에 대한 추가정보를 기재할 수 있다는 것이 장점이겠다.<br>하지만 LL-DASH는 재생되지 않는 디바이스들이 있으니 주의해야 한다.</p>
+<p>LL-HLS는 이제 HLS 표준에 합쳐졌다. 기업에서도 안심하고 사용해볼 수 있을 것으로 보인다. </p>
 <h2 id="Wowza-Streaming-Engine"><a href="#Wowza-Streaming-Engine" class="headerlink" title="Wowza Streaming Engine"></a>Wowza Streaming Engine</h2><p><img src="/images/202306191323.png"></p>
 <p>Wowza Streaming Engine은 미디어 서버 구축시 흔하게 사용되는 소프트웨어이다. 다양한 스트리밍 프로토콜과 미디어 형식을 지원하며 다양한 서버 옵션 커스터마이징이 가능하다. 가격은 기본 한 달에 195$로 책정되어있다. </p>
 <h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><p>소프트웨어를 구매했거나 Trial 계정을 생성했다면 <code>My Account</code>에서 다운로드 탭에 접근 할 수 있다.</p>
@@ -265,14 +267,35 @@
 <td>TCP 554</td>
 <td>RTSP streaming</td>
 </tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+<h2 id="SSL-TLS-인증서-등록"><a href="#SSL-TLS-인증서-등록" class="headerlink" title="SSL/TLS 인증서 등록"></a>SSL/TLS 인증서 등록</h2><p>LL-HLS 재생은 SSL/TLS 포트를 통하지 않고서는 동작하지 않는다. HTTPS 재생이 가능하도록 인증서를 등록해야 한다. WowzaStreamingEngine의 라이센스가 있다면 Wowza StreamLock 인증서를 사용해 쉽게 적용할 수 있다. <a target="_blank" rel="noopener" href="https://www.wowza.com/docs/how-to-get-ssl-certificates-from-the-streamlock-service">공식 문서</a>도 잘 나와있다.</p>
+<h3 id="인증서-등록하기"><a href="#인증서-등록하기" class="headerlink" title="인증서 등록하기"></a>인증서 등록하기</h3><p>Wowza 로그인 후 <strong>Account Management</strong>로 들어가 <strong>StreamLock</strong> 탭으로 들어간다.</p>
+<p><img src="Wowza-Low-latency-hls4.png"></p>
+<p>가지고 있는 라이센스 키를 선택하고 인증서를 사용할 서버의 IP 주소를 입력 후 아래 <code>Apply for SSL Certificate</code> 버튼을 누르면 아래쪽 <strong>My SSL certificates</strong>에서 생성된 인증서를 볼 수 있다. </p>
+<p><img src="Wowza-Low-latency-hls2.png"></p>
+<p><code>Download certificate</code>를 누르면 팝업이 나타나며 패스워드를 입력하도록 한다. 이 때 입력한 패스워드는 뒤에서 또 사용되니 잘 기억해두어야 한다.<br>인증서 생성 시 입력한 IP 주소를 바꾸고 싶다면 <code>Change</code> 버튼을 누르면 된다. 생성된 인증서를 다운로드 받아 Wowza Steraming Engine 설치 위치의 <code>/conf</code> 디렉토리에 파일을 옮겨놓는다.</p>
+<p>파일을 옮겨놓았다면 Wowza Streaming Engine Manager로 들어와 <strong>Server</strong> 탭으로 이동한다.</p>
+<p><img src="Wowza-Low-latency-hls3.png"></p>
+<p>그리고 <strong>Virtual Host Setup</strong>을 눌러 <strong>Edit</strong>에서 <code>+Add Host Port...</code>를 누르면 포트 설정 팝업이 나타난다.</p>
+<ul>
+<li>Name: 인증서 이름</li>
+<li>Type: <strong>Streaming</strong> 선택</li>
+<li>IP Address: * 을 입력하여 모든 트래픽을 허용할 수도 있고 특정 IP 주소를 입력할 수도 있다.</li>
+<li>Port(s): 443</li>
+<li>Enable SSL/StreamLock: enable 필요<ul>
+<li>Keystore Path (StreamLock certificate path): 인증서(.jks 파일) 저장 경로<ul>
+<li>인증서 이름은 <code>5ab4321c0d123.streamlock.net</code> 이러한 형태를 가지고 있다.</li>
+<li>```text<br>${com.wowza.wms.context.VHostConfigHome}/conf/[인증서 도메인 이름].jks<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- Keystore Password: 인증서를 만들 때 입력했던 패스워드</span><br><span class="line">- Use WebRTC: WebRTC 스트림을 사용한다면 enable 하면 되지만 LL-HLS 이므로 체크를 해제했다.</span><br><span class="line"></span><br><span class="line">### 설정 테스트</span><br><span class="line"></span><br><span class="line">아래 명령어로 인증서 설정이 잘 되었는지 확인할 수 있다.</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">openssl s_client -connect [ssl-certificate-domain-name]:443</span><br><span class="line">openssl s_client -showcerts -connect [ssl-certificate-domain-name]:443</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>인증서가 출력되면 설정이 잘 된것이고 timeout이 발생하면 설정에 문제가 생긴 것이다. 설정을 다시 한 번 확인해봐야 한다.</p>
 <h2 id="참고-링크"><a href="#참고-링크" class="headerlink" title="참고 링크"></a>참고 링크</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.wowza.com/docs/understanding-wowza-streaming-engine">Understanding wowza streaming engine</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.wowza.com/docs/deliver-apple-low-latency-hls-live-streams-using-wowza-streaming-engine">Deliver Low-Latency HLS live streams using Wowza Streaming Engine</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.theoplayer.com/blog/how-does-ll-hls-work">How does LL-HLS work</a></li>
 </ul>
 
         </div>
