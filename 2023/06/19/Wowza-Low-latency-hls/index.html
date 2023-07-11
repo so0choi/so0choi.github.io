@@ -270,13 +270,14 @@
 </tbody></table>
 <h2 id="SSL-TLS-인증서-등록"><a href="#SSL-TLS-인증서-등록" class="headerlink" title="SSL/TLS 인증서 등록"></a>SSL/TLS 인증서 등록</h2><p>LL-HLS 재생은 SSL/TLS 포트를 통하지 않고서는 동작하지 않는다. HTTPS 재생이 가능하도록 인증서를 등록해야 한다. WowzaStreamingEngine의 라이센스가 있다면 Wowza StreamLock 인증서를 사용해 쉽게 적용할 수 있다. <a target="_blank" rel="noopener" href="https://www.wowza.com/docs/how-to-get-ssl-certificates-from-the-streamlock-service">공식 문서</a>도 잘 나와있다.</p>
 <h3 id="인증서-등록하기"><a href="#인증서-등록하기" class="headerlink" title="인증서 등록하기"></a>인증서 등록하기</h3><p>Wowza 로그인 후 <strong>Account Management</strong>로 들어가 <strong>StreamLock</strong> 탭으로 들어간다.</p>
-<p><img src="Wowza-Low-latency-hls4.png"></p>
+<p><img src="/images/Wowza-Low-latency-hls4.png"></p>
 <p>가지고 있는 라이센스 키를 선택하고 인증서를 사용할 서버의 IP 주소를 입력 후 아래 <code>Apply for SSL Certificate</code> 버튼을 누르면 아래쪽 <strong>My SSL certificates</strong>에서 생성된 인증서를 볼 수 있다. </p>
-<p><img src="Wowza-Low-latency-hls2.png"></p>
+<p><img src="/images/Wowza-Low-latency-hls2.png"></p>
 <p><code>Download certificate</code>를 누르면 팝업이 나타나며 패스워드를 입력하도록 한다. 이 때 입력한 패스워드는 뒤에서 또 사용되니 잘 기억해두어야 한다.<br>인증서 생성 시 입력한 IP 주소를 바꾸고 싶다면 <code>Change</code> 버튼을 누르면 된다. 생성된 인증서를 다운로드 받아 Wowza Steraming Engine 설치 위치의 <code>/conf</code> 디렉토리에 파일을 옮겨놓는다.</p>
 <p>파일을 옮겨놓았다면 Wowza Streaming Engine Manager로 들어와 <strong>Server</strong> 탭으로 이동한다.</p>
-<p><img src="Wowza-Low-latency-hls3.png"></p>
+<p><img src="/images/Wowza-Low-latency-hls3.png"></p>
 <p>그리고 <strong>Virtual Host Setup</strong>을 눌러 <strong>Edit</strong>에서 <code>+Add Host Port...</code>를 누르면 포트 설정 팝업이 나타난다.</p>
+<p><img src="/images/Wowza-Low-latency-hls.png"></p>
 <ul>
 <li>Name: 인증서 이름</li>
 <li>Type: <strong>Streaming</strong> 선택</li>
@@ -336,6 +337,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2023/07/11/ReactNative/React-Native-New-Architecture/">React Native New Architecture</a>
             
             
             <a class="next" rel="next" href="/2023/05/23/AWS/SQS-batch-item-failures/">[AWS] SQS batch item failures</a>
