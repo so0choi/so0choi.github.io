@@ -255,7 +255,7 @@
 <li>변경가능성: 값 기반 의존성 주입은 값이 변할 수 있다는 단점이 있다. 이는 런타임에 예상치 못한 결과를 불러올 수 있다.</li>
 <li>테스트가 어려움: 테스트가 어려워진다. 메소드를 호출하기 전에 모든 값이 제대로 세팅 되었는지 확인해야 한다.</li>
 </ul>
-<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>Nest.js 에서 권장되는 구조는 constructor injection이다. 이 방식이 모듈화와 유지보수성이 더 좋고 테스트 하기도 쉽기 때문이다. 하지만 property-based injection 또한 상황에 따라 유용하게 쓰일 수 있다. 예를 들어 동적인 의존성이 필요한 경우가 그렇다. 따라서 프로젝트의 성격에 맞는 방식을 선택하면 될 것으로 보인다.</p>
+<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>반복되는 코드를 줄이고자 property based injection으로 전환할까 했지만 테스트하기에 더 좋은 구조인 constructor injection 구조를 유지하기로 했다.<br>Nest.js 에서 권장되는 구조는 constructor injection이다. 이 방식이 모듈화와 유지보수성이 더 좋고 테스트 하기도 쉽기 때문이다. 하지만 property-based injection 또한 상황에 따라 유용하게 쓰일 수 있다. 예를 들어 동적인 의존성이 필요한 경우가 그렇다. 따라서 프로젝트의 성격에 맞는 방식을 선택하면 될 것으로 보인다.</p>
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://optimuslee.tistory.com/69">NestJS 속성 기반 주입</a></li>
 </ul>
