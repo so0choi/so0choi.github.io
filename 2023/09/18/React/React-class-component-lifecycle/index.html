@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Typescript reducer object key type | StudyYeong</title>
+<title>React class component lifecycle | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Typescript reducer object key type</h1>
+            <h1 class="post-title">React class component lifecycle</h1>
             
                 <div class="post-meta">
                     
@@ -212,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">9월 5, 2023&nbsp;&nbsp;9:41:47</a>
+                        Date: <a href="#">9월 18, 2023&nbsp;&nbsp;11:19:40</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Javascript/">Javascript</a>
+                                <a href="/categories/React/">React</a>
                             
                         </span>
                     
@@ -228,17 +228,39 @@
         </header>
 
         <div class="post-content">
-            <h2 id="문제"><a href="#문제" class="headerlink" title="문제"></a>문제</h2><p><code>reduce</code>를 이용해 빈 객체에 대상 배열의 string 값을 key로 사용해 값을 지정하려고 했더니 타입 에러가 발생했다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [&#123;<span class="attr">name</span>: <span class="string">&#x27;a&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-a&#x27;</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">&#x27;b&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-b&#x27;</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">&#x27;c&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-c&#x27;</span>&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> names = arr.reduce(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    acc[cur.name] = cur[value];</span><br><span class="line">&#125;, &#123;&#125;)</span><br></pre></td></tr></table></figure>
-
+            <p>외부 라이브러리를 다운받아 쓰다보니 class 컴포넌트를 쓸 일이 있어서 한 번 정리하기로 했다.</p>
+<h2 id="lifecycle-순서"><a href="#lifecycle-순서" class="headerlink" title="lifecycle 순서"></a>lifecycle 순서</h2><p>DOM이 그려질 때 컴포넌트들은 아래의 순서로 생성되고 소멸한다.</p>
 <blockquote>
-<p>acc[key] Element implicitly has an ‘any’ type because expression of type’string’ can’t be used to index type ‘{}’.</p>
+<p><code>Mounting</code> -&gt; <code>Updating</code> -&gt; <code>Unmounting</code></p>
 </blockquote>
-<h2 id="해결법"><a href="#해결법" class="headerlink" title="해결법"></a>해결법</h2><p>reducer의 초기 값으로 넣은 empty object에 타입이 지정되지 않아 생기는 문제다. <code>Record&lt;string, any&gt;</code> 로 지정하면 된다.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [&#123;<span class="attr">name</span>: <span class="string">&#x27;a&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-a&#x27;</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">&#x27;b&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-b&#x27;</span>&#125;, &#123;<span class="attr">name</span>: <span class="string">&#x27;c&#x27;</span>, <span class="attr">value</span>: <span class="string">&#x27;val-c&#x27;</span>&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> names = arr.reduce(<span class="function">(<span class="params">acc, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    acc[cur.name] = cur[value];</span><br><span class="line">&#125;, &#123;&#125; <span class="keyword">as</span> Record&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;)</span><br></pre></td></tr></table></figure>
-
-
-
+<h3 id="Mounting"><a href="#Mounting" class="headerlink" title="Mounting"></a>Mounting</h3><p>DOM에 인스턴스가 처음 생성될 때의 과정이다.</p>
+<ol>
+<li><code>constructor()</code></li>
+<li>static getDerivedStateFromProps()</li>
+<li><code>render()</code></li>
+<li>componentDidMount()</li>
+</ol>
+<p>이전에는 <code>componentWillMount()</code>, <code>componentWillReceiveProps()</code> 도 있었으나 이제는 레거시 기능으로써 새로 작성하는 코드에서는 쓰지 않는 것이 권장된다.</p>
+<h3 id="Updating"><a href="#Updating" class="headerlink" title="Updating"></a>Updating</h3><p><code>props</code>나 <code>state</code>에 갱신 작업이 발생할 때 일어난다. 즉 컴포넌트가 re-render 될 때 발생한다.</p>
+<ol>
+<li>static getDerivedStateFromProps()</li>
+<li><code>shouldComponentUpdate()</code></li>
+<li><code>render()</code></li>
+<li><code>getSnapshotBeforeUpdate()</code></li>
+<li><code>componentDidUpdate()</code></li>
+</ol>
+<h3 id="Unmounting"><a href="#Unmounting" class="headerlink" title="Unmounting"></a>Unmounting</h3><p>컴포넌트가 DOM에서 사라질 때 발생하는 이벤트이다.</p>
+<ol>
+<li><code>componentWillUnmoun()</code></li>
+</ol>
+<h2 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h2><p>렌더링 중 에러가 발생했거나 자식 컴포넌트의 생성자 실행 중 에러가 발생하면 실행된다.</p>
+<ul>
+<li>static getDerivedStateFromError()</li>
+<li><code>componentDidCatch()</code></li>
+</ul>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://legacy.reactjs.org/docs/react-component.html">React.Component</a></li>
+</ul>
 
         </div>
 
@@ -270,7 +292,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/typescript/"># typescript</a>
+                        <a href="/tags/React/"># React</a>
+                    
+                        <a href="/tags/Class-component/"># Class component</a>
                     
                         
                 </span>
@@ -283,10 +307,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/05/React/Next-js%EB%9E%80/">Next.js란</a>
+                <a class="prev" rel="prev" href="/2023/09/21/React/React-setInterval/">React에서 setInterval 사용하기</a>
             
             
-            <a class="next" rel="next" href="/2023/08/31/Else/webpack-babel-loader-ts-loader-%EA%B4%80%EB%A0%A8-%EC%84%A4%EC%A0%95/">webpack 빌드 속도 향상시키기</a>
+            <a class="next" rel="next" href="/2023/09/05/React/Next-js%EB%9E%80/">Next.js란</a>
             
         </section>
 
