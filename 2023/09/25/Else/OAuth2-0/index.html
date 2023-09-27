@@ -228,8 +228,10 @@
         </header>
 
         <div class="post-content">
-            <p>OAuth는 클라이언트 디벨로퍼가 다양한 환경에서 개발할 때 더 간단한 인증 플로우를 가질 수 있도록 고안된 개념으로 인증 프레임워크이다. 데스크탑 애플리케이션, 모바일 애플리케이션, 각종 가정용 디바이스 등 클라이언트 환경이 다양해졌기 때문에 공통의 인증 서버를 두게 되면 훨씬 간편해진다. </p>
+            <p>OAuth(Open Authorization)는 클라이언트 디벨로퍼가 다양한 환경에서 개발할 때 더 간단한 인증 플로우를 가질 수 있도록 고안된 개념으로 인증 프레임워크이다. 데스크탑 애플리케이션, 모바일 애플리케이션, 각종 가정용 디바이스 등 클라이언트 환경이 다양해졌기 때문에 공통의 인증 서버를 두게 되면 훨씬 간편해진다. </p>
 <h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><p>OAuth는 제 3의 애플리케이션이 제한된 권한으로 접근 가능한 HTTP 서비스에 대해 리소스의 주인 또는 그를 대신하여 인가를 관장하는 인증 프레임워크이다.<br>타 웹 서비스에서 구글이나 페이스북 계정을 사용해 계정을 생성하고 그 계정으로 서비스를 이용할 수 있는 것이 OAuth 라고 볼 수 있다.<br>사용자 정보의 인증을 내 서비스가 아닌 타 서비스에 위임하는 것이다.</p>
+<p>OAuth 1.0은 consumer, service provider, user로 구성되는데, 여기서는 리소스 서버와 인증 서버의 롤이 정확히 구분되어 있지 않다. OAuth 2.0은 client, authorization server, resource server, resource owner로 구성되며 각 구성원들의 롤이 정확히 구분되어있다. 그렇기 때문에 1.0과 2.0은 서로 호환될 수 없다. </p>
+<p><img src="/images/OAuth2-0.png"></p>
 <h2 id="주요-용어"><a href="#주요-용어" class="headerlink" title="주요 용어"></a>주요 용어</h2><table>
 <thead>
 <tr>
@@ -262,6 +264,18 @@
 <td>Access Token은 비교적 짧은 만료기간을 가지며 Refresh Token으로 재로그인 없이 서비스를 이용할 수 있게끔 함</td>
 </tr>
 </tbody></table>
+<p>Access Token이 있어야 리소스를 요청 할 수 있고 Access Token은 비교적 짧은 만료기간을 가지며 이를 갱신하는 데 사용하는 것이 Refresh Token인 것이다. Refresh Token을 사용함으로써 사용자가 재로그인 해야 하는 번거로움을 조금이나마 줄여줄 수 있다.</p>
+<h3 id="Access-Token"><a href="#Access-Token" class="headerlink" title="Access Token"></a>Access Token</h3><p>OAuth client가 리소스 서버로 요청을 보낼 때 사용되는 토큰이다. 하나의 정해진 포맷이 있는 것이 아니며 다양한 모양으로 사용할 수 있다. 예를 들면 ‘bearer token’이 있다.<br>다만 몇 가지 제약 사항이 있는데,</p>
+<ul>
+<li>Access Token은 OAuth client에 의해서 해석되어서는 안된다.</li>
+<li>Access Token으로 user에 대한 정보를 OAuth client가 알게되어서는 안된다.</li>
+<li>Access Token은 리소스 서버로 요청을 보낼 때만 사용되어야 한다.</li>
+</ul>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://oauth.net/2/">OAuth 2.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-OAuth-20-%EA%B0%9C%EB%85%90-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC">OAuth 2.0 개념 - 그림으로 이해하기 쉽게 설명</a></li>
+<li><a target="_blank" rel="noopener" href="https://fusionauth.io/articles/oauth/modern-guide-to-oauth">What is OAuth (The Modern Guide)</a></li>
+</ul>
 
         </div>
 
