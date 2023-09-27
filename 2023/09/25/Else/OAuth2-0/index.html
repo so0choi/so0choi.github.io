@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>React에서 setInterval 사용하기 | StudyYeong</title>
+<title>OAuth2.0 이란 | StudyYeong</title>
 
 
 
@@ -137,11 +137,73 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">React에서 setInterval 사용하기</h1>
+            <h1 class="post-title">OAuth2.0 이란</h1>
             
                 <div class="post-meta">
                     
@@ -150,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">9월 21, 2023&nbsp;&nbsp;10:16:31</a>
+                        Date: <a href="#">9월 25, 2023&nbsp;&nbsp;9:08:59</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React-JS/">React.JS</a>
+                                <a href="/categories/Else/">Else</a>
                             
                         </span>
                     
@@ -166,16 +228,40 @@
         </header>
 
         <div class="post-content">
-            <p>React에서 <code>setInterval</code>를 사용했는데 설정한 것 보다 여러번 실행되었다. 문제를 찾아보니 컴포넌트가 리로드 될 때마다 hook으로 감싸지지 않은 코드들이 재실행되기 때문이었다.</p>
-<p>예를들어 아래와 같이 코드를 작성하는 경우에 그렇게 된다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123;useState&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> AppRouter <span class="keyword">from</span> <span class="string">&#x27;./Router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;authService&#125; <span class="keyword">from</span> <span class="string">&#x27;../fbase&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);</span><br><span class="line">  <span class="built_in">console</span>.log(authService.currentUser);</span><br><span class="line">  <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">Date</span>().toLocaleString());</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;In App.js &gt; App()&#x27;</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(authService.currentUser);</span><br><span class="line">  &#125;, <span class="number">5000</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">AppRouter</span> <span class="attr">isLoggedIn</span>=<span class="string">&#123;isLoggedIn&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">AppRouter</span>&gt;</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
-
-<p>원하는 대로 동작하게 하려면 <code>useEffect()</code> 훅으로 감싸주면 된다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;, <span class="number">5000</span>)</span><br><span class="line">), []&#125;</span><br></pre></td></tr></table></figure>
-
-<p>또한 컴포넌트가 unmount 되었을 때 <code>setInterval</code> 함수가 단독으로 실행되는 것을 방지하기 위해서 <code>useEffect()</code> 함수의 return 값으로 <code>clearInterval()</code>를 실행하는 것이 좋다.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> interval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;, <span class="number">5000</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(interval);</span><br><span class="line">), []&#125;</span><br></pre></td></tr></table></figure>
-
+            <p>OAuth는 클라이언트 디벨로퍼가 다양한 환경에서 개발할 때 더 간단한 인증 플로우를 가질 수 있도록 고안된 개념으로 인증 프레임워크이다. 데스크탑 애플리케이션, 모바일 애플리케이션, 각종 가정용 디바이스 등 클라이언트 환경이 다양해졌기 때문에 공통의 인증 서버를 두게 되면 훨씬 간편해진다. </p>
+<h2 id="개념"><a href="#개념" class="headerlink" title="개념"></a>개념</h2><p>OAuth는 제 3의 애플리케이션이 제한된 권한으로 접근 가능한 HTTP 서비스에 대해 리소스의 주인 또는 그를 대신하여 인가를 관장하는 인증 프레임워크이다.<br>타 웹 서비스에서 구글이나 페이스북 계정을 사용해 계정을 생성하고 그 계정으로 서비스를 이용할 수 있는 것이 OAuth 라고 볼 수 있다.<br>사용자 정보의 인증을 내 서비스가 아닌 타 서비스에 위임하는 것이다.</p>
+<h2 id="주요-용어"><a href="#주요-용어" class="headerlink" title="주요 용어"></a>주요 용어</h2><table>
+<thead>
+<tr>
+<th>구분</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Resource Owner</td>
+<td>웹 서비스를 사용하려는 유저</td>
+</tr>
+<tr>
+<td>Client</td>
+<td>개인이 만든 애플리케이션 서버, Resource server에게 필요한 자원을 요청하는 서버</td>
+</tr>
+<tr>
+<td>Authorization Server</td>
+<td>권한을 부여해주는 서버</td>
+</tr>
+<tr>
+<td>Resource Server</td>
+<td>리소스를 가지고 있는 서버 (Google, Facebook, Kakao 등)</td>
+</tr>
+<tr>
+<td>Access Token</td>
+<td>자원에 대한 접근 권한을 Resource Owner가 인가하였음을 나타내는 자격증명</td>
+</tr>
+<tr>
+<td>Refresh Token</td>
+<td>Access Token은 비교적 짧은 만료기간을 가지며 Refresh Token으로 재로그인 없이 서비스를 이용할 수 있게끔 함</td>
+</tr>
+</tbody></table>
 
         </div>
 
@@ -216,10 +302,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/09/25/Else/OAuth2-0/">OAuth2.0 이란</a>
+                <a class="prev" rel="prev" href="/2023/09/27/React/React-typescript/">React typescript type 지정하기</a>
             
             
-            <a class="next" rel="next" href="/2023/09/18/React/React-class-component-lifecycle/">React class component lifecycle</a>
+            <a class="next" rel="next" href="/2023/09/21/React/React-setInterval/">React에서 setInterval 사용하기</a>
             
         </section>
 
