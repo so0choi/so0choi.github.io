@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>React typescript type 지정하기 | StudyYeong</title>
+<title>Mac 관리자권한으로 앱 실행하기 (Eclipse) | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">React typescript type 지정하기</h1>
+            <h1 class="post-title">Mac 관리자권한으로 앱 실행하기 (Eclipse)</h1>
             
                 <div class="post-meta">
                     
@@ -212,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">9월 27, 2023&nbsp;&nbsp;9:18:15</a>
+                        Date: <a href="#">12월 4, 2023&nbsp;&nbsp;9:17:16</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React/">React</a>
+                                <a href="/categories/Else/">Else</a>
                             
                         </span>
                     
@@ -228,26 +228,18 @@
         </header>
 
         <div class="post-content">
-            <p>각종 리액트 변수 및 함수들을 파라미터로 넘기려는 데 type을 알 수 없어서 몇 번 검색하다가 자주쓰는 건 정리해놓기로 했다.  </p>
-<h2 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h2><ul>
-<li><code>React.Dispatch&lt;React.SetStateAction&lt;any&gt;&gt;</code></li>
+            <p>MacOS에서 관리자권한으로 앱을 실행하는 방법은 Windows에 비해 까다롭다. 나의 경우 Eclipse 실행을 관리자권한으로 해야 했다. 시스템 자체에서 root 계정으로 로그인 후 사용하는 방법도 있으나 아래 방식은 한 가지 앱만 superuser 권한으로 실행하는 방법이다.</p>
+<h2 id="Run-an-app-with-superuser-privileges-just-once"><a href="#Run-an-app-with-superuser-privileges-just-once" class="headerlink" title="Run an app with superuser privileges just once"></a>Run an app with superuser privileges just once</h2><ol>
+<li>Finder에서 실행하고자하는 애플리케이션의 위치로 이동한다. (<code>Users/sychoi/eclipse/java-2023-06/Eclipse</code>)</li>
+<li>앱 아이콘에 우클릭 후 메뉴에서 ‘패키지 내용 보기’를 선택한다.</li>
+<li>Contents 폴더 내부에서 MacOS 폴더를 찾아 들어간다.</li>
+<li>앱 실행 파일을 찾는다.</li>
+<li>Terminal을 열고 <strong>sudo</strong>를 입력 후 앱 실행 파일을 Terminal에 끌어놓으면 파일 path가 자동으로 입력된다.</li>
+<li>root 비밀번호를 입력하면 앱이 실행된다.</li>
+</ol>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://discussions.apple.com/thread/253727537">How to run Outlook as Administrator on MacBook Air?</a></li>
 </ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcA = <span class="function">(<span class="params">setStateParam: React.Dispatch&lt;React.SetStateAction&lt;<span class="built_in">string</span>&gt;&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="onClick-Event-Handler"><a href="#onClick-Event-Handler" class="headerlink" title="onClick Event Handler"></a>onClick Event Handler</h2><ul>
-<li><code>MouseEventHandler&lt;HTMLButtonElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcB = <span class="function">(<span class="params">onClick: MouseEventHandler&lt;HTMLButtonElement&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="onClick-Event"><a href="#onClick-Event" class="headerlink" title="onClick Event"></a>onClick Event</h2><ul>
-<li><code>React.MouseEvent</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onClickHandler = <span class="function">(<span class="params">e: React.MouseEvent, command: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="onChange-Event-Handler"><a href="#onChange-Event-Handler" class="headerlink" title="onChange Event Handler"></a>onChange Event Handler</h2><ul>
-<li><code>ChangeEventHandler&lt;HTMLInputElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onChange: ChangeEventHandler&lt;HTMLInputElement&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -278,10 +270,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Typescript/"># Typescript</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -292,10 +280,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/06/ReactNative/react-native-%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C-%EC%84%A4%EC%A0%95/">React Native 절대경로 설정</a>
             
-            
-            <a class="next" rel="next" href="/2023/09/25/Else/OAuth2-0/">OAuth2.0 이란</a>
+            <a class="next" rel="next" href="/2023/11/13/Frontend/tools/webpack-bundle-analyzer/">Webpack Bundle Analyzer</a>
             
         </section>
 

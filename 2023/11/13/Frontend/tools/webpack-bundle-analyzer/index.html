@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>React typescript type 지정하기 | StudyYeong</title>
+<title>Webpack Bundle Analyzer | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">React typescript type 지정하기</h1>
+            <h1 class="post-title">Webpack Bundle Analyzer</h1>
             
                 <div class="post-meta">
                     
@@ -212,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">9월 27, 2023&nbsp;&nbsp;9:18:15</a>
+                        Date: <a href="#">11월 13, 2023&nbsp;&nbsp;14:08:57</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React/">React</a>
+                                <a href="/categories/Frontend/">Frontend</a>
                             
                         </span>
                     
@@ -228,26 +228,15 @@
         </header>
 
         <div class="post-content">
-            <p>각종 리액트 변수 및 함수들을 파라미터로 넘기려는 데 type을 알 수 없어서 몇 번 검색하다가 자주쓰는 건 정리해놓기로 했다.  </p>
-<h2 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h2><ul>
-<li><code>React.Dispatch&lt;React.SetStateAction&lt;any&gt;&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcA = <span class="function">(<span class="params">setStateParam: React.Dispatch&lt;React.SetStateAction&lt;<span class="built_in">string</span>&gt;&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>페이지 로드 속도는 매우 중요한 요소이다. 페이지 컨텐츠가 전부 그려지지 못하더라도 무언가 화면에 그려지는 first paint 작업은 최대한 빠르게 처리되어야 유저 이탈률이 줄어든다.<br>webpack을 사용해 bundle을 페이지에 붙이는 경우 bundle의 사이즈가 페이지 성능에 큰 영향을 주게 된다. 따라서 bundle 사이즈를 관리하는 것이 매우 중요하다.<br><code>Webpack Bundle Analyzer</code>를 사용해 webpack output 파일을 분석해 각 요소의 크기를 시각화하여 볼 수 있다. <a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/webpack-bundle-analyzer">Github: Webpack Bundle Analyzer</a> 페이지에서 자세한 사용 방법을 볼 수 있다. </p>
+<p><img src="/images/webpack-bundle-analyzer.gif" alt="webpack bundle analyzer"></p>
+<h2 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yarn</span></span><br><span class="line">yarn add  -D webpack-bundle-analyzer</span><br></pre></td></tr></table></figure>
 
-<h2 id="onClick-Event-Handler"><a href="#onClick-Event-Handler" class="headerlink" title="onClick Event Handler"></a>onClick Event Handler</h2><ul>
-<li><code>MouseEventHandler&lt;HTMLButtonElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcB = <span class="function">(<span class="params">onClick: MouseEventHandler&lt;HTMLButtonElement&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="사용"><a href="#사용" class="headerlink" title="사용"></a>사용</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> BundleAnalyzerPlugin = <span class="built_in">require</span>(<span class="string">&#x27;webpack-bundle-analyzer&#x27;</span>).BundleAnalyzerPlugin;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> BundleAnalyzerPlugin(options?: object)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="onClick-Event"><a href="#onClick-Event" class="headerlink" title="onClick Event"></a>onClick Event</h2><ul>
-<li><code>React.MouseEvent</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onClickHandler = <span class="function">(<span class="params">e: React.MouseEvent, command: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="onChange-Event-Handler"><a href="#onChange-Event-Handler" class="headerlink" title="onChange Event Handler"></a>onChange Event Handler</h2><ul>
-<li><code>ChangeEventHandler&lt;HTMLInputElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onChange: ChangeEventHandler&lt;HTMLInputElement&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="옵션"><a href="#옵션" class="headerlink" title="옵션"></a>옵션</h3><p>생성된 번들 분석 보고서를 html 파일로 열어주는데, 포트 설정 등 다양한 옵션을 제공한다. 기능에 영향을 크게 주는 옵션은 없어보이므로 필요한 경우 <a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/webpack-bundle-analyzer#options-for-plugin">webpack-bundle-analyzer README</a>를 참고해서 사용하면 될 것 같다.</p>
+<h2 id="그-외"><a href="#그-외" class="headerlink" title="그 외"></a>그 외</h2><h3 id="페이지-로드-성능-측정-사이트"><a href="#페이지-로드-성능-측정-사이트" class="headerlink" title="페이지 로드 성능 측정 사이트"></a>페이지 로드 성능 측정 사이트</h3><p><a target="_blank" rel="noopener" href="https://pagespeed.web.dev/analysis">https://pagespeed.web.dev/analysis</a></p>
+<p>위 사이트에서 로드 속도를 측정하고자 하는 페이지의 링크를 입력하면 성능을 측정할 수 있다. 로드 속도 뿐만 아니라 로드 속도가 느린 원인 분석과 해결 방안 추천까지 해줘서 여러모로 도움이 되었다.</p>
 
         </div>
 
@@ -278,10 +267,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Typescript/"># Typescript</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -292,10 +277,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/06/ReactNative/react-native-%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C-%EC%84%A4%EC%A0%95/">React Native 절대경로 설정</a>
+                <a class="prev" rel="prev" href="/2023/12/04/Else/Mac-%EA%B4%80%EB%A6%AC%EC%9E%90%EA%B6%8C%ED%95%9C%EC%9C%BC%EB%A1%9C-%EC%95%B1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0/">Mac 관리자권한으로 앱 실행하기 (Eclipse)</a>
             
             
-            <a class="next" rel="next" href="/2023/09/25/Else/OAuth2-0/">OAuth2.0 이란</a>
+            <a class="next" rel="next" href="/2023/10/06/ReactNative/react-native-%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C-%EC%84%A4%EC%A0%95/">React Native 절대경로 설정</a>
             
         </section>
 

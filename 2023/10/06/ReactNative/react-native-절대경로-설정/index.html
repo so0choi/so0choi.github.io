@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>React typescript type 지정하기 | StudyYeong</title>
+<title>React Native 절대경로 설정 | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">React typescript type 지정하기</h1>
+            <h1 class="post-title">React Native 절대경로 설정</h1>
             
                 <div class="post-meta">
                     
@@ -212,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">9월 27, 2023&nbsp;&nbsp;9:18:15</a>
+                        Date: <a href="#">10월 6, 2023&nbsp;&nbsp;16:04:31</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/React/">React</a>
+                                <a href="/categories/React-Native/">React Native</a>
                             
                         </span>
                     
@@ -228,26 +228,17 @@
         </header>
 
         <div class="post-content">
-            <p>각종 리액트 변수 및 함수들을 파라미터로 넘기려는 데 type을 알 수 없어서 몇 번 검색하다가 자주쓰는 건 정리해놓기로 했다.  </p>
-<h2 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h2><ul>
-<li><code>React.Dispatch&lt;React.SetStateAction&lt;any&gt;&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcA = <span class="function">(<span class="params">setStateParam: React.Dispatch&lt;React.SetStateAction&lt;<span class="built_in">string</span>&gt;&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p>점점 더 지저분해지는 import 경로를 도저히 볼 수 없어서 절대경로를 추가하기로 했다.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Logo <span class="keyword">from</span> <span class="string">&#x27;../../../../../assets/images/logo.svg&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="onClick-Event-Handler"><a href="#onClick-Event-Handler" class="headerlink" title="onClick Event Handler"></a>onClick Event Handler</h2><ul>
-<li><code>MouseEventHandler&lt;HTMLButtonElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> funcB = <span class="function">(<span class="params">onClick: MouseEventHandler&lt;HTMLButtonElement&gt;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>우우.. 👎 리팩토링을 진행하면서 컴포넌트를 더 잘게 쪼개다보니 path level이 너무 깊어졌다. 이대로는 안되겠다 싶었다.</p>
+<h2 id="적용-방법"><a href="#적용-방법" class="headerlink" title="적용 방법"></a>적용 방법</h2><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/babel-plugin-module-resolver">babel-plugin-module-resolver</a>를 설치한다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add --dev babel-plugin-module-resolver</span><br></pre></td></tr></table></figure>
 
-<h2 id="onClick-Event"><a href="#onClick-Event" class="headerlink" title="onClick Event"></a>onClick Event</h2><ul>
-<li><code>React.MouseEvent</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onClickHandler = <span class="function">(<span class="params">e: React.MouseEvent, command: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>프로젝트 root 경로에 있는 <code>babel.config.js</code> 파일을 열어 아래와 같이 수정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [<span class="string">&#x27;module:metro-react-native-babel-preset&#x27;</span>],</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">      <span class="comment">// other plugins...</span></span><br><span class="line">    [ </span><br><span class="line">      <span class="string">&#x27;module-resolver&#x27;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">root</span>: [<span class="string">&#x27;./src&#x27;</span>],</span><br><span class="line">        <span class="attr">alias</span>: &#123;</span><br><span class="line">          <span class="string">&#x27;@&#x27;</span>: <span class="string">&#x27;./src&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@assets&#x27;</span>: <span class="string">&#x27;./src/assets&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@constants&#x27;</span>: <span class="string">&#x27;./src/constants&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@contexts&#x27;</span>: <span class="string">&#x27;./src/contexts&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@hooks&#x27;</span>: <span class="string">&#x27;./src/hooks&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@interfaces&#x27;</span>: <span class="string">&#x27;./src/interfaces&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;@styles&#x27;</span>: <span class="string">&#x27;./src/styles&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="onChange-Event-Handler"><a href="#onChange-Event-Handler" class="headerlink" title="onChange Event Handler"></a>onChange Event Handler</h2><ul>
-<li><code>ChangeEventHandler&lt;HTMLInputElement&gt;</code></li>
-</ul>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onChange: ChangeEventHandler&lt;HTMLInputElement&gt; = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>이렇게만 하면 적용된다. 서버를 재시작 후에도 에러가 발생한다면 <code>yarn start:development --reset-cache</code>로 캐시를 지우고 실행해보자.</p>
 
         </div>
 
@@ -278,10 +269,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Typescript/"># Typescript</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -292,10 +279,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/10/06/ReactNative/react-native-%EC%A0%88%EB%8C%80%EA%B2%BD%EB%A1%9C-%EC%84%A4%EC%A0%95/">React Native 절대경로 설정</a>
+                <a class="prev" rel="prev" href="/2023/11/13/Frontend/tools/webpack-bundle-analyzer/">Webpack Bundle Analyzer</a>
             
             
-            <a class="next" rel="next" href="/2023/09/25/Else/OAuth2-0/">OAuth2.0 이란</a>
+            <a class="next" rel="next" href="/2023/09/27/React/React-typescript/">React typescript type 지정하기</a>
             
         </section>
 
