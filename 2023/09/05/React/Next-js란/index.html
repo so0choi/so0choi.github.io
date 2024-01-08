@@ -137,6 +137,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
+        <a onclick="go_top()">Top</a>
+        <a onclick="go_bottom()">Bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -166,7 +228,43 @@
         </header>
 
         <div class="post-content">
-            
+            <p>Next.js란 풀스택 애플리케이션을 만들 수 있게 해주는 React 프레임워크이다. React를 사용해 프론트를 개발한 뒤 Next.js의 추가 기능을 사용해 더욱 간편하게 개발을 하거나 최적화를 할 수 있다. Next.js는 자동으로 React에 필요한 번들링, 컴파일링 등의 작업들을 수행해준다. 따라서 사용자는 개발에만 집중할 수 있는 환경이 만들어진다.</p>
+<h2 id="주요-특징"><a href="#주요-특징" class="headerlink" title="주요 특징"></a>주요 특징</h2><h3 id="파일-시스템-기반-라우팅"><a href="#파일-시스템-기반-라우팅" class="headerlink" title="파일 시스템 기반 라우팅"></a>파일 시스템 기반 라우팅</h3><p>실제로 사용하면서 가장 편리하다고 느꼈던 기능이다. 파일 시스템 기반의 라우팅으로 nested routing을 구현하는 것이 굉장히 쉬웠다.</p>
+<h3 id="Client-side와-Server-side-렌더링을-모두-사용"><a href="#Client-side와-Server-side-렌더링을-모두-사용" class="headerlink" title="Client-side와 Server-side 렌더링을 모두 사용"></a>Client-side와 Server-side 렌더링을 모두 사용</h3><p>두 가지 컴포넌트를 모두 사용함으로써 Static, dynamic 렌더링을 최적화 한다.</p>
+<h3 id="Data-fetching"><a href="#Data-fetching" class="headerlink" title="Data fetching"></a>Data fetching</h3><p>서버 컴포넌트에서 data fetching을 간편하게 구현할 수 있다. <code>fetch</code> API를 확장한 기능으로 memoization이나 Data caching 등을 사용할 수 있다.</p>
+<h3 id="Styling"><a href="#Styling" class="headerlink" title="Styling"></a>Styling</h3><p>선호하는 스타일링 툴을 사용할 수 있다. css modules, Tailwind CSS, CSS-inJS 등 다양하다.</p>
+<h3 id="최적화"><a href="#최적화" class="headerlink" title="최적화"></a>최적화</h3><p>이미지, 폰트, script 최적화 등 웹 애플리케이션의 최적화를 해준다. UX를 높이는데 도움이 된다.</p>
+<h2 id="App-Router-vs-Page-Router"><a href="#App-Router-vs-Page-Router" class="headerlink" title="App Router vs Page Router"></a>App Router vs Page Router</h2><p>Next.js에는 두 가지 라우터가 있다. App router와 Page router로 App router가 좀 더 최근에 나온 방식이다. Next.js에서 제공하는 최신의 기능들을 사용할 수 있다. 서버 컴포넌트 기능의 경우 App router에서만 사용이 가능하다. Page router는 이전에 Next.js에서 사용하던 라우터로 server-rendered React 애플리케이션을 개발할 수 있다. 이전에 만들어진 Next.js는 Page router로 만들어져 있고 이전에 쓰어진 글들도 Page router 기반으로 작성된게 많다.</p>
+<p>두 가지가 다른 점이 많아 공식 문서도 따로 기술되어있다. 왼쪽 상당에 어떤 라우터가 선택되어 있는지 잘 확인하도록 하자.</p>
+<p><img src="/images/202401081134.png"></p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>2024년 1월 8일 기준 공식 문서를 보고 작성한다.<br>Node.js 18.17 이상이 필요하므로 참고하자.</p>
+<h3 id="자동-설치"><a href="#자동-설치" class="headerlink" title="자동 설치"></a>자동 설치</h3><p>공식 문서는 <code>create-next-app</code>을 사용해 프로젝트를 생성할 것을 권장한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-next-app@latest</span><br></pre></td></tr></table></figure>
+
+<p>명령어를 입력하면 아래와 같은 프롬프트가 출력되는데 원하는대로 프로젝트 기본 설정을 진행하면 된다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">What is your project named? my-app</span><br><span class="line">Would you like to use TypeScript? No / Yes</span><br><span class="line">Would you like to use ESLint? No / Yes</span><br><span class="line">Would you like to use Tailwind CSS? No / Yes</span><br><span class="line">Would you like to use `src/` directory? No / Yes</span><br><span class="line">Would you like to use App Router? (recommended) No / Yes</span><br><span class="line">Would you like to customize the default import alias (@/*)? No / Yes</span><br><span class="line">What import alias would you like configured? @/*</span><br></pre></td></tr></table></figure>
+
+<p>입력된 내용을 바탕으로 Next.js 기본 프로젝트가 생성될 것이다.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><ul>
+<li>App router를 사용하는 것으로 사용 방법을 정리한다.</li>
+</ul>
+<p>App router에서 가장 기본이되는 폴더는 <code>app/</code> 이다. <code>app/</code> 디렉토리를 생성 후 <code>layout.tsx</code> 파일과 <code>page.tsx</code> 파일을 추가하자. <code>page.tsx</code> 파일이 애플리케이션의 <code>/</code> 경로에 렌더링 될 것이다.</p>
+<h3 id="layout-tsx"><a href="#layout-tsx" class="headerlink" title="layout.tsx"></a>layout.tsx</h3><p><code>layout.tsx</code> 파일에는 root layout이 작성되어야 한다. <code>&lt;html&gt;</code>과 <code>&lt;body&gt;</code>태그가 필수이다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export default function RootLayout(&#123;</span><br><span class="line">  children,</span><br><span class="line">&#125;: &#123;</span><br><span class="line">  children: React.ReactNode</span><br><span class="line">&#125;) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">      &lt;body&gt;&#123;children&#125;&lt;/body&gt;</span><br><span class="line">    &lt;/html&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="page-tsx"><a href="#page-tsx" class="headerlink" title="page.tsx"></a>page.tsx</h3><p><code>page.tsx</code>에는 페이지 내용을 추가하면 된다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default function Page() &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, Next.js!&lt;/h1&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><ol>
+<li><code>yarn run dev</code>를 실행한다.</li>
+<li><code>http://localhost:3000</code>에 접속하면 애플리케이션을 볼 수 있다.</li>
+<li><code>app/page.tsx</code> 파일을 수정하면 수정 사항이 실시간으로 반영된다.</li>
+</ol>
+<h2 id="후기"><a href="#후기" class="headerlink" title="후기"></a>후기</h2><p>실제로 업무에 필요한 간단한 페이지를 제작해봤는데 라우팅에 시간을 쏟을 일이 하나도 필요 없어서 참 편리하다고 느꼈다. 각종 최적화도 알아서 해줘서 그런지 애플리케이션 성능도 더 좋았다.<br>vercel을 사용해 배포하면 페이지 성능 측정 대시보드와 도메인 연결 등 애플리케이션 관리도 매끄럽게 되지만 개인 프로젝트가 아닌 경우 유료로 이용해야 한다.</p>
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://nextjs.org/docs">Next.js 공식 문서</a></li>
+</ul>
+
         </div>
 
         
@@ -197,7 +295,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Nest-JS/"># Nest.JS</a>
+                        <a href="/tags/Next-js/"># Next.js</a>
                     
                         
                 </span>
