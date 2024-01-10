@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Mac 관리자권한으로 앱 실행하기 (Eclipse) | StudyYeong</title>
+<title>Node.js 설치 GLIBC_x 에러 | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Mac 관리자권한으로 앱 실행하기 (Eclipse)</h1>
+            <h1 class="post-title">Node.js 설치 GLIBC_x 에러</h1>
             
                 <div class="post-meta">
                     
@@ -212,14 +212,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">12월 4, 2023&nbsp;&nbsp;9:17:16</a>
+                        Date: <a href="#">1월 10, 2024&nbsp;&nbsp;13:41:49</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Else/">Else</a>
+                                <a href="/categories/Error/">Error</a>
                             
                         </span>
                     
@@ -228,17 +228,18 @@
         </header>
 
         <div class="post-content">
-            <p>MacOS에서 관리자권한으로 앱을 실행하는 방법은 Windows에 비해 까다롭다. 나의 경우 Eclipse 실행을 관리자권한으로 해야 했다. 시스템 자체에서 root 계정으로 로그인 후 사용하는 방법도 있으나 아래 방식은 한 가지 앱만 superuser 권한으로 실행하는 방법이다.</p>
-<h2 id="Run-an-app-with-superuser-privileges-just-once"><a href="#Run-an-app-with-superuser-privileges-just-once" class="headerlink" title="Run an app with superuser privileges just once"></a>Run an app with superuser privileges just once</h2><ol>
-<li>Finder에서 실행하고자하는 애플리케이션의 위치로 이동한다. (<code>Users/sychoi/eclipse/java-2023-06/Eclipse</code>)</li>
-<li>앱 아이콘에 우클릭 후 메뉴에서 ‘패키지 내용 보기’를 선택한다.</li>
-<li>Contents 폴더 내부에서 MacOS 폴더를 찾아 들어간다.</li>
-<li>앱 실행 파일을 찾는다.</li>
-<li>Terminal을 열고 <strong>sudo</strong>를 입력 후 앱 실행 파일을 Terminal에 끌어놓으면 파일 path가 자동으로 입력된다.</li>
-<li>root 비밀번호를 입력하면 앱이 실행된다.</li>
+            <p>node 설치 후 아래와 같은 에러가 발생할 때가 있다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.9&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.21&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.28&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.25&#x27; not found (required by node)</span><br></pre></td></tr></table></figure>
+
+<p>에러의 발생 원인은 Node.js를 설치한 서버의 Operating System이 설치한 Node.js가 지원하는 것보다 낮은 버전의 GLIBC를 가지고있기 때문이다.<br>예를 들어 Node v18.x는 GLIBC v2.7 이상을 지원하기 때문에 GLIBC v2.6을 가진 Linux OS 서버에 Node v18.x를 설치하려고하면 위의 오류가 발생하는 것이다.</p>
+<p>따라서 해결 방법은 두 가지가 있다.</p>
+<ol>
+<li>서버의 사양을 높인다.</li>
+<li>GLIBC 버전에 맞는 Node 버전을 사용한다.</li>
 </ol>
+<p>서버 사양을 높일 순 없어서 Node 버전을 낮추기로 했다.</p>
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://discussions.apple.com/thread/253727537">How to run Outlook as Administrator on MacBook Air?</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74698021/installing-node-lib64-libm-so-6-version-glibc-2-27-not-found-required-by-n"></a></li>
 </ul>
 
         </div>
@@ -280,10 +281,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/01/10/Error/glibc-error/">Node.js 설치 GLIBC_x 에러</a>
             
-            
-            <a class="next" rel="next" href="/2023/11/13/Frontend/tools/webpack-bundle-analyzer/">Webpack Bundle Analyzer</a>
+            <a class="next" rel="next" href="/2023/12/04/Else/Mac-%EA%B4%80%EB%A6%AC%EC%9E%90%EA%B6%8C%ED%95%9C%EC%9C%BC%EB%A1%9C-%EC%95%B1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0/">Mac 관리자권한으로 앱 실행하기 (Eclipse)</a>
             
         </section>
 
