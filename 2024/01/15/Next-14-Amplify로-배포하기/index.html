@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>Node.js 설치 GLIBC_x 에러 | StudyYeong</title>
+<title>Next 14 AWS Amplify로 배포하기 | StudyYeong</title>
 
 
 
@@ -137,73 +137,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
-        <a onclick="go_top()">Top</a>
-        <a onclick="go_bottom()">Bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Node.js 설치 GLIBC_x 에러</h1>
+            <h1 class="post-title">Next 14 AWS Amplify로 배포하기</h1>
             
                 <div class="post-meta">
                     
@@ -212,35 +150,19 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">1월 10, 2024&nbsp;&nbsp;13:41:49</a>
+                        Date: <a href="#">1월 15, 2024&nbsp;&nbsp;15:22:03</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/Error/">Error</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>node 설치 후 아래와 같은 에러가 발생할 때가 있다.</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.9&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.21&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.28&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.25&#x27; not found (required by node)</span><br></pre></td></tr></table></figure>
+            <p>Amplify로 새 애플리케이션을 만들고 자동으로 선택되는 이미지는 Node v16을 사용해 Next.js 빌드 과정에서 에러가 발생한다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">                                 # Starting phase: preBuild</span><br><span class="line">                                 # Executing command: npm ci</span><br><span class="line">2024-01-15T04:25:12.847Z [WARNING]: npm</span><br><span class="line">2024-01-15T04:25:12.848Z [WARNING]: WARN EBADENGINE Unsupported engine &#123;</span><br><span class="line">                                    npm WARN EBADENGINE   package: &#x27;next@14.0.4&#x27;,</span><br><span class="line">                                    npm WARN EBADENGINE   required: &#123; node: &#x27;&gt;=18.17.0&#x27; &#125;,</span><br><span class="line">                                    npm WARN</span><br><span class="line">2024-01-15T04:25:12.849Z [WARNING]: EBADENGINE   current: &#123; node: &#x27;v16.19.0&#x27;, npm: &#x27;8.19.3&#x27; &#125;</span><br><span class="line">                                    npm WARN EBADENGINE &#125;</span><br><span class="line">2024-01-15T04:25:22.504Z [INFO]: added 362 packages, and audited 363 packages in 12s</span><br><span class="line">2024-01-15T04:25:22.507Z [INFO]: 128 packages are looking for funding</span><br><span class="line">                                 run `npm fund` for details</span><br><span class="line">                                 found 0 vulnerabilities</span><br><span class="line">2024-01-15T04:25:22.517Z [INFO]: # Completed phase: preBuild</span><br><span class="line">                                 # Starting phase: build</span><br><span class="line">2024-01-15T04:25:22.518Z [INFO]: # Executing command: npm run build</span><br><span class="line">2024-01-15T04:25:22.835Z [INFO]: &gt; y@0.1.0 build</span><br><span class="line">                                 &gt; next build</span><br><span class="line">2024-01-15T04:25:22.885Z [WARNING]: You are using Node.js 16.19.0. For Next.js, Node.js version &gt;= v18.17.0 is required.</span><br><span class="line">2024-01-15T04:25:22.892Z [ERROR]: !!! Build failed</span><br></pre></td></tr></table></figure>
 
-<p>에러의 발생 원인은 Node.js를 설치한 서버의 Operating System이 설치한 Node.js가 지원하는 것보다 낮은 버전의 GLIBC를 가지고있기 때문이다.<br>예를 들어 Node v18.x는 GLIBC v2.7 이상을 지원하기 때문에 GLIBC v2.6을 가진 Linux OS 서버에 Node v18.x를 설치하려고하면 위의 오류가 발생하는 것이다.</p>
-<p>따라서 해결 방법은 두 가지가 있다.</p>
-<ol>
-<li>서버의 사양을 높인다.</li>
-<li>GLIBC 버전에 맞는 Node 버전을 사용한다.</li>
-</ol>
-<p>서버 사양을 높일 순 없어서 Node 버전을 낮추기로 했다.</p>
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74698021/installing-node-lib64-libm-so-6-version-glibc-2-27-not-found-required-by-n"></a></li>
-</ul>
+<p>이를 해결하기 위해서는 콘솔의 <code>빌드 설정 &gt; Build image settings</code>의 빌드 이미지를 수정하면 된다.<br>2024.01.15 기준으로 Amazon Linux:2023 을 사용하면 Node.js 버전 관련 에러가 발생하지 않는다.</p>
 
         </div>
 
@@ -281,10 +203,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/01/11/GraphQL/AWS-AppSync/">AWS AppSync & AWS Amplify</a>
+                <a class="prev" rel="prev" href="/2024/01/24/AWS/AWS-AppSync-DynamoDB-Resolver-update-Add-%EC%82%AC%EC%9A%A9/">AWS AppSync DynamoDB Resolver update Add 사용</a>
             
             
-            <a class="next" rel="next" href="/2023/12/04/Else/Mac-%EA%B4%80%EB%A6%AC%EC%9E%90%EA%B6%8C%ED%95%9C%EC%9C%BC%EB%A1%9C-%EC%95%B1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0/">Mac 관리자권한으로 앱 실행하기 (Eclipse)</a>
+            <a class="next" rel="next" href="/2024/01/11/GraphQL/AWS-AppSync/">AWS AppSync & AWS Amplify</a>
             
         </section>
 
