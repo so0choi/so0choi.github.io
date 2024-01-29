@@ -232,14 +232,14 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">node: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.20&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.9&#x27; not found (required by node)</span><br><span class="line">node: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.21&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.28&#x27; not found (required by node)</span><br><span class="line">node: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.25&#x27; not found (required by node)</span><br></pre></td></tr></table></figure>
 
 <p>에러의 발생 원인은 Node.js를 설치한 서버의 Operating System이 설치한 Node.js가 지원하는 것보다 낮은 버전의 GLIBC를 가지고있기 때문이다.<br>예를 들어 Node v18.x는 GLIBC v2.7 이상을 지원하기 때문에 GLIBC v2.6을 가진 Linux OS 서버에 Node v18.x를 설치하려고하면 위의 오류가 발생하는 것이다.</p>
-<p>따라서 해결 방법은 두 가지가 있다.</p>
+<h2 id="해결-방법"><a href="#해결-방법" class="headerlink" title="해결 방법"></a>해결 방법</h2><p>해결 방법은 두 가지가 있다.</p>
 <ol>
 <li>서버의 사양을 높인다.</li>
 <li>GLIBC 버전에 맞는 Node 버전을 사용한다.</li>
 </ol>
-<p>서버 사양을 높일 순 없어서 Node 버전을 낮추기로 했다.</p>
+<p>서버 사양을 높일 순 없어서 Node 버전을 낮추기로 했다.<br>상황에 맞게 서버와 노드의 버전을 맞춰 사용하면 오류를 해결할 수 있다.</p>
 <h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74698021/installing-node-lib64-libm-so-6-version-glibc-2-27-not-found-required-by-n"></a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74698021/installing-node-lib64-libm-so-6-version-glibc-2-27-not-found-required-by-n">Stackoverflow</a></li>
 </ul>
 
         </div>
