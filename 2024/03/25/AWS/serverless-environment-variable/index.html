@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>VPC 내부 AWS Lambda DynamoDB 연결하기 | StudyYeong</title>
+<title>serverless environment variable | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">VPC 내부 AWS Lambda DynamoDB 연결하기</h1>
+            <h1 class="post-title">serverless environment variable</h1>
             
                 <div class="post-meta">
                     
@@ -212,7 +212,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 5, 2024&nbsp;&nbsp;18:49:12</a>
+                        Date: <a href="#">3월 25, 2024&nbsp;&nbsp;10:50:50</a>
                         </span>
                     
                     
@@ -228,21 +228,21 @@
         </header>
 
         <div class="post-content">
-            <p>Elasticache를 사용하려는데 같은 VPC 내부에서만 접근이 가능해서 Lambda를 VPC 내부에 위치시켰다. 그랬더니 DynamoDB로 직접 접근이 되지 않고 무한히 Timeout만 발생했다. 당연히 안되겠지. </p>
-<p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ko_kr/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html#vpc-endpoints-dynamodb-tutorial.launch-ec2-instance">DynamoDB VPC 엔드포인트 사용</a>을 보고 문제를 해결할 수 있었다. 다만 문서에서는 CLI 명령으로 VPC 엔드포인트를 만들어 입력하기 조금 귀찮아서 나는 콘솔 조작으로 생성했다.</p>
-<p>VPC 엔드포인트를 생성하는 방법 이외에도 인터넷 게이트웨이와 VPC를 연결해 통신하는 방법도 있으나 보안이 좀 더 좋은 쪽은 역시 VPC 내부를 이용하는 방식이다.<br>VPC 엔드포인트를 사용하면 프라이빗 IP 주소를 사용해 DynamoDB에 액세스 할 수 있으며 VPC와 AWS 서비스 간 트래픽이 Amazon 네트워크를 벗어나지 않는다.<br>DynamoDB에 대한 VPC 엔드포인트 생성은 리전 내 DynamoDB로의 요청이 모두 프라이빗 DynamoDB 종단점으로 라우팅된다. 서비스 내부 코드를 수정할 필요 없이 알아서 연결이 되어 쉽게 도입할 수 있다.</p>
-<p><img src="/images/2024030501.png"></p>
-<h2 id="DynamoDB-VPC-엔드포인트-생성하기"><a href="#DynamoDB-VPC-엔드포인트-생성하기" class="headerlink" title="DynamoDB VPC 엔드포인트 생성하기"></a>DynamoDB VPC 엔드포인트 생성하기</h2><p>먼저 Lambda를 추가하고자 하는 VPC의 id를 알아둬야 한다. (<em>vpc-00000000</em> 형식)</p>
-<p>Labmda 구성 탭에 VPC 메뉴에서 VPC 설정이 가능하다.</p>
-<p><img src="/images/2024030502.png"></p>
-<p>해당 vpc id를 제대로 선택하고 저장하면 Lambda VPC 설정은 끝이다.</p>
-<p>VPC메뉴로 이동하면 <strong>엔드포인트</strong> 메뉴가 있다. 들어와보면 Elasticache 등 이미 만들어진 엔드포인트가 있을 수도 있다. 여기서 엔드포인트 생성 버튼을 누르면 된다.</p>
-<p><img src="/images/2024030503.png"></p>
-<p>그럼 이런 창이 뜨는데 이름은 선택 사항이고 서비스 범주를 <strong>AWS 서비스</strong>로 선택, 서비스에서 <em>com.amazonaws.ap-northeast-2.dynamodb</em>를 선택하면 된다.</p>
-<p>그 아래에 VPC 설정 인풋이 있는데, 여기서 아까 봐뒀던 VPC id를 선택하면 된다.</p>
-<p><img src="/images/2024030506.png"></p>
-<p>서브넷, 보안그룹 등을 적절히 설정 후 저장하면 DynamoDB 엔드포인트가 생성된다.<br>문서에서는 라우팅 테이블도 id로 설정하던데 콘솔에서는 엔드포인트 생성과정에 따로 설정하는 부분이 없어서 생성한 엔드포인트를 클릭 후 <code>라우팅 테이블 &gt; 라우팅 테이블 관리</code> 에서 추가시킬 수 있었다. </p>
-<p>이제 VPC 안에서도 DyanmoDB로 접근이 가능하다.</p>
+            <p>serverless 프레임워크에서 환경 변수를 사용하는 방법은 여러가지가 있다. 그중 가장 간단하다고 생각되는 방법은 비교적 나중에 추가된 기능인 <code>.env</code> 파일을 그대로 읽어오도록 하는 방법이다.</p>
+<h2 id="적용-방법"><a href="#적용-방법" class="headerlink" title="적용 방법"></a>적용 방법</h2><ul>
+<li>serverless.yml<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">useDotenv:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>serverless.yml 파일에 <code>useDotenv</code> 옵션을 true로 넣어주면 된다. serverless에서 지원하는 <code>.env</code> 파일은 <code>.env.&#123;stage&#125;</code> 파일과 <code>.env</code> 파일이다. 만약 두 파일이 모두 존재한다면 <code>.env.&#123;stage&#125;</code> 파일을 로드하며, 이 때 stage가 명시되지 않은 경우 <code>dev</code> 파일을 로드한다. </p>
+<h3 id="env-파일-작성"><a href="#env-파일-작성" class="headerlink" title="env 파일 작성"></a>env 파일 작성</h3><p>여느 ENV 파일과 같은 방식으로 작성하면 된다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BASE_URL=my.api.com</span><br><span class="line">PROTOCOL=https</span><br></pre></td></tr></table></figure>
+
+<h3 id="serverless-yml-파일에-환경-변수-정의"><a href="#serverless-yml-파일에-환경-변수-정의" class="headerlink" title="serverless.yml 파일에 환경 변수 정의"></a>serverless.yml 파일에 환경 변수 정의</h3><p>.env 파일에 등록한 변수는 serverless의 provider.environment에서 다시 한번 명시해야 한다. 이때 <code>$&#123;env:[변수명]&#125;</code>으로 불러올 수 있다.</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">service:</span> <span class="string">my-service</span></span><br><span class="line"><span class="attr">frameworkVersion:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">useDotenv:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">provider:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">aws</span></span><br><span class="line">  <span class="attr">runtime:</span> <span class="string">nodejs20.x</span></span><br><span class="line">  <span class="attr">profile:</span> <span class="string">default</span></span><br><span class="line">  <span class="attr">region:</span> <span class="string">ap-northeast-2</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">NODE_ENV:</span> <span class="string">$&#123;opt:stage,</span> <span class="string">&#x27;dev&#x27;</span><span class="string">&#125;</span></span><br><span class="line">    <span class="attr">BASE_URL:</span> <span class="string">$&#123;env:BASE_URL&#125;</span></span><br><span class="line">    <span class="attr">PROTOCOL:</span> <span class="string">$&#123;env:PROTOCOL&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.serverless.com/framework/docs/environment-variables">serverless - environment variables</a></li>
+<li></li>
+</ul>
 
         </div>
 
@@ -273,14 +273,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/Lambda/"># Lambda</a>
-                    
-                        <a href="/tags/DynamoDB/"># DynamoDB</a>
-                    
-                        <a href="/tags/VPC/"># VPC</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -291,10 +283,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/03/25/AWS/serverless-environment-variable/">serverless environment variable</a>
             
-            
-            <a class="next" rel="next" href="/2024/01/24/AWS/AWS-AppSync-DynamoDB-Resolver-update-Add-%EC%82%AC%EC%9A%A9/">AWS AppSync DynamoDB Resolver update Add 사용</a>
+            <a class="next" rel="next" href="/2024/03/05/AWS/connect-lambda-in-vpc-and-dynamodb/">VPC 내부 AWS Lambda DynamoDB 연결하기</a>
             
         </section>
 
