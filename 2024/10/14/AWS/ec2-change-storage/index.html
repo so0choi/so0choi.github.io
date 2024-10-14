@@ -22,7 +22,7 @@
     <meta name="keywords" content="Node.js, html, React, Docker">
 
 
-<title>AWS cli credential helper로 codecommit 인증하기 | StudyYeong</title>
+<title>EC2 스토리지 용량 변경하기 | StudyYeong</title>
 
 
 
@@ -203,7 +203,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">AWS cli credential helper로 codecommit 인증하기</h1>
+            <h1 class="post-title">EC2 스토리지 용량 변경하기</h1>
             
                 <div class="post-meta">
                     
@@ -212,7 +212,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">3월 29, 2024&nbsp;&nbsp;10:40:54</a>
+                        Date: <a href="#">10월 14, 2024&nbsp;&nbsp;16:35:39</a>
                         </span>
                     
                     
@@ -228,32 +228,31 @@
         </header>
 
         <div class="post-content">
-            <p>이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다.</p>
-<h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h2><ol>
-<li><p>Codecommit 권한이 있는 IAM 유저를 생성한다. (로컬 머신에 이미 계정 프로필이 등록돼있다면 스킵한다.)</p>
-</li>
-<li><p>새로운 IAM 유저를 생성할 것 이라면 <code>AWSCodeCommitPowerUser</code> 정책을 추가하면 된다.</p>
-</li>
-<li><p>AWS cli가 설치되지 않았다면 설치를 먼저 진행한다. ([링크]( Getting Set Up with the AWS Command Line Interface))</p>
-</li>
-<li><p>AWS cli에 프로필을 등록한다. 터미널에서 아래 커맨드를 실행한다.</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws configure</span><br></pre></td></tr></table></figure>
-<p>그 이후 나타나는 프롬프트 메세지를 보고 설정값을 입력한다.</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AWS Access Key ID [None]: Type your IAM user AWS access key ID here, and then press Enter</span><br><span class="line"> AWS Secret Access Key [None]: Type your IAM user AWS secret access key here, and then press Enter</span><br><span class="line"> Default region name [None]: Type a supported region for CodeCommit here, and then press Enter</span><br><span class="line"> Default output format [None]: Type json here, and then press Enter</span><br></pre></td></tr></table></figure></li>
-<li><p>aws credentials 파일을 확인한다. <code>~/.aws/credentials</code> 파일이다. 기존에 있던 계정을 사용한다면 여기서 프로필이름을 확인하고 아래 <code>gitconifg</code> 설정에 사용할 수 있다. </p>
-</li>
-<li><p><code>~/.gitconfig</code> 파일에 아래 내용을 추가한다.</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[credential]    </span><br><span class="line">helper = !aws --profile CodeCommitProfile codecommit credential-helper $@</span><br><span class="line">UseHttpPath = true</span><br></pre></td></tr></table></figure>
+            <p>‘No space left …’ 에러가 발생했을 때 스토리지 용량을 수정하는 방법이다. 그 전에 먼저 스토리지가 모두 사용중인 게 맞는지 확인이 필요하다.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@[ip]: ~$ df -h</span><br><span class="line">Filesystem       Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/root        6.8G  6.7G     0 100% /</span><br><span class="line">tmpfs            922M     0  922M   0% /dev/shm</span><br><span class="line">tmpfs            369M   34M  336M  10% /run</span><br><span class="line">tmpfs            5.0M     0  5.0M   0% /run/lock</span><br><span class="line">efivarfs         128K  3.3K  125K   3% /sys/firmware/efi/efivars</span><br><span class="line">/dev/nvme0n1p16  891M  129M  700M  16% /boot</span><br><span class="line">/dev/nvme0n1p15   98M  6.4M   92M   7% /boot/efi</span><br><span class="line">tmpfs            185M   12K  185M   1% /run/user/1000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p> profile을 설정하지 않으면 자동으로 default 프로필이 설정된다.</p>
+<p>100% 사용중으로 나와서 스토리지 용량 변경을 진행했다.</p>
+<h2 id="변경-방법"><a href="#변경-방법" class="headerlink" title="변경 방법"></a>변경 방법</h2><ol>
+<li><p>콘솔에서 연결된 EBS 스토리지 용량을 수정한다.</p>
 </li>
-<li><p> git 커맨드를 실행해서 문제 없으면 설정이 잘된 것 이다.</p>
-</li>
+<li><p>인스턴스에서 <code>cloud-guest-utils</code>를 설치한다.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install cloud-guest-utils</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p><code>lsblk</code> 명령어로 파티션명을 확인한다.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ubuntu@[ip]:~$ lsblk</span><br><span class="line"> NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS</span><br><span class="line"> loop0          7:0    0 21.8M  1 loop /snap/amazon-ssm-agent/7984</span><br><span class="line"> loop1          7:1    0 21.9M  1 loop /snap/amazon-ssm-agent/7994</span><br><span class="line"> loop2          7:2    0 49.1M  1 loop /snap/core18/2826</span><br><span class="line"> loop3          7:3    0 48.8M  1 loop /snap/core18/2848</span><br><span class="line"> loop4          7:4    0 33.7M  1 loop /snap/snapd/21467</span><br><span class="line"> loop5          7:5    0 33.7M  1 loop /snap/snapd/21761</span><br><span class="line"> [파티션명]      259:0    0   10G  0 disk</span><br><span class="line"> ├─nvme0n1p1  259:1    0    9G  0 part /</span><br><span class="line"> ├─nvme0n1p15 259:2    0   99M  0 part /boot/efi</span><br><span class="line"> └─nvme0n1p16 259:3    0  923M  0 part /boot</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html">AWS Document</a></li>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53189190/git-multiple-credential-helper">Stackoverflow - git multiple credential helper</a>s</li>
-</ul>
+</li>
+<li><p>root partition 사이즈를 재설정 한다.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo growpart /dev/[파티션명] 1</span><br></pre></td></tr></table></figure></li>
+<li><p>filesystem 사이즈를 재설정 한다.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo resize2fs /dev/nvme0n1p1</span><br></pre></td></tr></table></figure>
+<p>난 <code>df -h</code> 실행시 <code>/dev/root</code>의 사용량이 100% 였기 때문에 파티션명 아래에 <code>/</code> 경로를 사용하는 파일 시스템 이름을 넣어서 실행하면 된다.</p>
+</li>
+<li><p>변경사항이 잘 적용됐는지 확인한다.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ df -h</span><br><span class="line">$ lsblk</span><br></pre></td></tr></table></figure></li>
+</ol>
 
         </div>
 
@@ -285,7 +284,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/codecommit/"># codecommit</a>
+                        <a href="/tags/EC2/"># EC2</a>
                     
                         
                 </span>
@@ -298,10 +297,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/10/14/AWS/ec2-change-storage/">EC2 스토리지 용량 변경하기</a>
             
-            
-            <a class="next" rel="next" href="/2024/03/25/AWS/serverless-environment-variable/">serverless environment variable</a>
+            <a class="next" rel="next" href="/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/">AWS cli credential helper로 codecommit 인증하기</a>
             
         </section>
 
