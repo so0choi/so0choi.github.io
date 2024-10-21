@@ -1,226 +1,227 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-<!-- 
-<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
- -->
-
-    <meta name="author" content="Soyeong Choi">
-
-
-    <meta name="subtitle" content="기록용 블로그">
-
-
-    <meta name="description" content="Personal IT Diary">
-
-
-    <meta name="keywords" content="Node.js, html, React, Docker">
-
-
-<title>StudyYeong</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
-    
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
-
-
-
-<!--<script>-->
-<!--	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
-<!--		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
-<!--			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
-<!--	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
-<!--	ga('create', 'G-560FY9ZC2B', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-560FY9ZC2B');
-</script>
-
-
-<meta name="generator" content="Hexo 5.4.0"></head>
-<body>
-    <div class="wrapper">
-        <header>
-  <nav class="navbar">
-      <div class="container">
-          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
-          <div class="menu navbar-right">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-              <input id="switch_default" type="checkbox" class="switch_default">
-              <label for="switch_default" class="toggleBtn"></label>
-          </div>
-      </div>
-  </nav>
-
-  
-  <nav class="navbar-mobile" id="nav-mobile">
-      <div class="container">
-          <div class="navbar-header">
-              <div>
-                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-              </div>
-              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-          </div>
-          <div class="menu" id="mobile-menu">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-          </div>
-      </div>
-  </nav>
-
-</header>
-<script>
-  var mobileBtn = function f() {
-      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-      var mobileMenu = document.getElementById("mobile-menu");
-      if(toggleMenu.classList.contains("active")){
-         toggleMenu.classList.remove("active")
-          mobileMenu.classList.remove("active")
-      }else{
-          toggleMenu.classList.add("active")
-          mobileMenu.classList.add("active")
+<!DOCTYPE html><html lang="ko" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>StudyYeong - 기록용 블로그</title><meta name="author" content="Soyeong Choi"><meta name="copyright" content="Soyeong Choi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Personal IT Diary">
+<meta property="og:type" content="website">
+<meta property="og:title" content="StudyYeong">
+<meta property="og:url" content="https://so0choi.github.io/page/4/index.html">
+<meta property="og:site_name" content="StudyYeong">
+<meta property="og:description" content="Personal IT Diary">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://so0choi.github.io/img/avatar.png">
+<meta property="article:author" content="Soyeong Choi">
+<meta property="article:tag" content="Node.js, React, AWS, Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://so0choi.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://so0choi.github.io/page/4/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
       }
-  }
-</script>
-        <div class="main">
-            
-    <div class="container">
-  <div class="intro">
-    <div class="avatar">
-      <a href="/archives"
-        ><img src="/image/avatar.jpeg"
-      /></a>
-    </div>
-    <div class="nickname">Soyeong Choi</div>
-    <div class="description"><p>Web Developer<br><i>LGTM 🎄</i></p>
-</div>
-    <div class="links">
-       
-      <a class="link-item" title="Blog" href="/archives">
-        
-        
-        <i class="iconfont icon-blog"></i>
-        
-      </a>
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
       
-      <a class="link-item" title="Category" href="/category">
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
-        
-        <i class="iconfont icon-category"></i>
-        
-      </a>
       
-      <a class="link-item" title="Instagram" target="_blank" rel="noopener" href="https://instagram.com/so02hi">
-        
-        
-        <i class="iconfont icon-instagram"></i>
-        
-      </a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
       
-      <a class="link-item" title="Github" target="_blank" rel="noopener" href="https://github.com/so0choi">
-        
-        
-        <i class="iconfont icon-github"></i>
-        
-      </a>
-       
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-175983012-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-175983012-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-175983012-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '복사 성공',
+    error: '복사 실패',
+    noSupport: '브라우저가 지원되지 않음'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '방금',
+    min: '분 전',
+    hour: '시간 전',
+    day: '일 전',
+    month: '달 전'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '더 보기'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'StudyYeong',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-10-21 10:28:18'
+}</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/test.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">StudyYeong</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">StudyYeong</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/so0choi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:simc2644@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/04/20/React/react-ref-%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0/" title="[React] ref 전달하기">[React] ref 전달하기</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-04-20T04:18:38.000Z" title="작성일 2023-04-20 13:18:38">2023-04-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content">React에서 자식 컴포넌트에 ref를 전달하려고 하면 오류가 발생한다. 123456789101112import &#123; useRef, useEffect &#125; from &#x27;react&#x27;export function Parent() &#123;  const elementRef = useRef()  useEffect(() =&gt; &#123;    // Does not work!    console.log(elementRef.current) // logs undefined  &#125;, [])  return &lt;Child ref=&#123;elementRef&#125; /&gt; // assign the ref&#125;function Child(&#123; ref &#125;) &#123; // a new component  return &lt;div ref=&#123;ref&#125;&gt;Hello,...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/04/10/React/React-setInterval-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-state-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8-%ED%95%98%EA%B8%B0/" title="[React] setInterval 내부에서 state 업데이트 하기">[React] setInterval 내부에서 state 업데이트 하기</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-04-10T00:25:26.000Z" title="작성일 2023-04-10 09:25:26">2023-04-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content"></div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/04/07/Javascript/Javascript-Closure%EB%9E%80/" title="[Javascript] Closure란">[Javascript] Closure란</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-04-07T01:38:12.000Z" title="작성일 2023-04-07 10:38:12">2023-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Javascript/">Javascript</a></span></div><div class="content">클로저란 함수의 레퍼런스와 함수를 둘러싼 state, 즉 lexical 환경을 합쳐서 부르는 말이다. 클로저는 내부 함수에서 외부 함수 scope에 접근할 수 있도록 해준다. JavaScript에서 클로저는 함수가 생성될 때마다 함수 생성 시점에 클로저가 생성된다. Lexical scoping아래 코드를 살펴보자. 123456789function init() &#123;    var name = &quot;Mozilla&quot;; // name 은 init에서 만들어진 local variable이다    function displayName() &#123;        // displayName() 은 내부 함수이다. 클로저를 형성한다.        console.log(name); // 외부 부모 함수에서 만든 variable을 사용하고있다.    &#125;    displayName();&#125;init();  init()은 name이라는 local variable과...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/04/04/Error/React-Native-Xcode-archive-%EC%8B%A4%ED%8C%A8-Operation-not-permitted/" title="React Native Xcode archive 실패 - Operation not permitted">React Native Xcode archive 실패 - Operation not permitted</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-04-04T02:06:23.000Z" title="작성일 2023-04-04 11:06:23">2023-04-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Error/">Error</a></span></div><div class="content">Archieve를 진행하려고 하는데 계속해서 에러가 발생했다. 1jest-haste-map: Watchman crawl failed. Retrying once with node crawler. Usually this happens when watchman isn&#x27;t running. Create an empty .watchmanconfig file in your project&#x27;s root folder or initialize a git or hg repository in your project. Error: Watchman error: std::__1::system_error: open: /Users/sychoi/Desktop/Project/MyProject: Operation not permitted. Make sure watchman is running for this project. See...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/04/04/Else/svg-%ED%8C%8C%EC%9D%BC-%ED%81%AC%EA%B8%B0-%EB%B3%80%EA%B2%BD/" title="svg 파일 크기 변경">svg 파일 크기 변경</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-04-04T01:42:36.000Z" title="작성일 2023-04-04 10:42:36">2023-04-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Else/">Else</a></span></div><div class="content">로고 이미지로 svg 파일을 받아서 앱 아이콘 사이즈에 맞게 파일 변환이 필요했다. 이미지 비율은 유지하면서 로고가 중앙에 오도록 하여 전체 이미지 크기는 정사각형으로 고정이 필요했다. svg를 png로 변환해주는 사이트들이 많은데 그냥 프로그램을 설치하는게 제일 깔끔한 방법인 것 같다. 😌 rsvg-convert먼저 원하는 width와 height를 가진 png 파일로 변환한다. librsvg를 설치했다. ubuntu에서는 rsvg-convert로 사용가능하다. 1brew install librsvg  설치 후 아래 명령어를 입력한다. 1librsvg -a -w 1024 -h 1024 logo.svg &gt; logo-libsrvg.png  imagemagick이미지와 관련된 다양한 기능을 제공하는 소프트웨어이다. 1brew install imagemagick  아래 명령어를 입력하면 된다. 1magick -background none -resize 1024x1024...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/03/27/Error/React-tsx-component-evalutate-with-boolean-error/" title="Type 'false | Element' is not assignable to type 'ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined'.">Type 'false | Element' is not assignable to type 'ReactElement&lt;any, string | JSXElementConstructor&lt;any&gt;&gt; | ComponentType&lt;any&gt; | null | undefined'.</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-03-27T00:12:57.000Z" title="작성일 2023-03-27 09:12:57">2023-03-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Error/">Error</a></span></div><div class="content">에러가 발생했던 코드는 아래와 같다. 12345678910111213export default function EventListScreen() &#123;    return (        &lt;FlatList            // .....            ListEmptyComponent=&#123;                !eventList.length &amp;&amp; (                    &lt;Text&gt;생성된 이벤트가 없습니다.&lt;/Text&gt;                )            &#125;            // ....        /&gt;    )&#125;  이 구문은 &amp;&amp;를 사용하는 inline logical 구문이다. React 공식 문서에서도 찾아볼 수 있다. 코드에 빨간 줄이 뜨긴 하지만 실행은 정상적으로 된다.React는 false를 만난 순간 그 뒤에 나온 코드를 무시하기...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/03/22/Error/TypeScript-Element-implicitly-has-an-any-type-because-expression-of-type-string-can-t-be-used-to-index/" title="TypeScript : Element implicitly has an 'any' type because expression of type 'string' can't be used to index">TypeScript : Element implicitly has an 'any' type because expression of type 'string' can't be used to index</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-03-22T01:00:51.000Z" title="작성일 2023-03-22 10:00:51">2023-03-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Error/">Error</a></span></div><div class="content">타입스크립트 에러가 발생했다. 실행에는 문제가 없었지만 빨간 줄이 너무 거슬렸다. 123456789const CONN_STATE = &#123;  1: &#x27;준비&#x27;,  2: &#x27;송출&#x27;,  3: &#x27;종료&#x27;,  4: &#x27;일시 중지&#x27;,&#125;;console.log(CONN_STATE[stream.ConnState])// Error   TS7053: Element implicitly has an ‘string’ type because expression of type ‘string’ can’t be used to index type ‘{ 1: string; 2: string; 3: string; 4: string; }’.  index signature 관련 에러였다. Index SignatureJavascript에서 Object에 문자열로 접근할 수 있다. 이 때 암묵적으로 toString을 호출하기 때문에...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/03/20/React/React-context%EB%A1%9C-data-%EB%84%98%EA%B8%B0%EA%B8%B0/" title="context로 global data 관리">context로 global data 관리</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-03-20T05:46:19.000Z" title="작성일 2023-03-20 14:46:19">2023-03-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content">React에서는 주로 parent 컴포넌트에서 child 컴포넌트로 props를 이용해 데이터를 넘긴다. 이때 많은 데이터에서 공통적으로 필요로하는 데이터가 있다면 props를 통해 데이터를 넘기려면 불편하기도하고 비효율적이라는 생각이 든다. 이럴 때 사용할 수 있는 것이 Context이다. 직접적으로 props를 통해 데이터를 넘기지 않아도 아무 컴포넌트에서나 접근이 가능하도록 하는 기능이다. Prop drillingprops를 통해 데이터를 전달하다보면 데이터가 직접 필요한 컴포넌트와 데이터를 처음에 가지고 있던 컴포넌트 사이에 거리가 먼 경우가 있다. 그 사이에 컴포넌트는 데이터가 필요하지 않음에도 계속해서 전달해야 하는데 이런 현상을 prop drilling이라고 한다.  번거롭게 넘길 필요 없이 데이터를 아무데서나 쓸 수 있도록 할 때 사용할 수 있는 것이 Context이다. ContextContext를 사용하면 부모 컴포넌트에서 정의한 데이터를 모든 자식...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/03/15/ReactNative/React-Native-%ED%8F%B0%ED%8A%B8-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0/" title="React Native 폰트 적용하기 (native-base)">React Native 폰트 적용하기 (native-base)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-03-15T00:09:27.000Z" title="작성일 2023-03-15 09:09:27">2023-03-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React-Native/">React Native</a></span></div><div class="content">폰트 적용하는데 꽤 어려움을 겪었다. 그래서 내용을 정리 해놓으려 한다. iOS와 Android 각각 적용해야 한다. 구글링을 하다보니 react-native-asset을 쓰는 방법도 있는 것 같은데 나는 아래의 방법으로 적용했다. 참고한 블로그들이 정말 도움이 많이 되었다. iOSios/Fonts 폴더를 만들어서 그 안에 폰트 파일을 복사한다.  xcode를 실행하고 왼쪽 상단의 프로젝트명을 오른쪽 클릭하여 Add Files to &quot;project_name&quot;을 클릭한다.  방금 생성한 ios/Fonts를 선택하고 아래와 같은 옵션으로 Add 버튼을 누른다.  왼쪽 상단의 프로젝트명을 누르고 나타나는 창에서 TARGETS를 프로젝트명을 선택한다. 위에 나타나는 탭에서 Info를 선택하여 Fonts provided by application key를 찾아 폰트명으로 항목을 하나씩 추가시킨다. 파일 형식과 소문자, 대문자 모두 똑같이 입력해야 오류가 발생하지...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2023/03/07/React/React-hook-%EC%A0%95%EB%A6%AC/" title="Reat hooks 정리">Reat hooks 정리</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2023-03-07T06:26:14.000Z" title="작성일 2023-03-07 15:26:14">2023-03-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/React/">React</a></span></div><div class="content">사용할 때마다 틈틈이 정리해놓기 ✨ useMemo리렌더링 과정에서 사용할 수 있는 캐싱 기법이다. 함수형 컴포넌트는 렌더링 &gt; 컴포넌트 함수 호출 &gt; 내부 변수 초기화 과정을 거쳐 렌더링되는데 이 때 내부 변수 초기화에 무거운 연산이 포함된 경우 성능이 저하될 것이다. 이런 경우 연산된 결과를 메모리에 저장해놓고 필요한 경우에 불러올 때 사용하는 것이 useMemo이다. useMemo를 사용하는 경우 의존성 배열에 들어있는 값에 변화가 있을 때만 재연산한다. 의존성 배열에 빈 배열이 들어오면 매 렌더링에 실행된다. 사용법123456789import &#123; useMemo &#125; from &#x27;react&#x27;;function TodoList(&#123; todos, tab &#125;) &#123;  const visibleTodos = useMemo(    () =&gt; filterTodos(todos, tab),    [todos, tab] ...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/#content-inner">20</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Soyeong Choi</div><div class="author-info-description">Personal IT Diary</div><div class="site-data"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/so0choi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/so0choi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:simc2644@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>공지</span></div><div class="announcement_content">Life is not all beer and skittles.</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>최근 글</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/20/React/react-test/" title="React 컴포넌트 테스트 하기">React 컴포넌트 테스트 하기</a><time datetime="2024-10-20T08:56:29.000Z" title="작성일 2024-10-20 17:56:29">2024-10-20</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/14/AWS/ec2-change-storage/" title="EC2 스토리지 용량 변경하기">EC2 스토리지 용량 변경하기</a><time datetime="2024-10-14T07:35:39.000Z" title="작성일 2024-10-14 16:35:39">2024-10-14</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/" title="AWS cli credential helper로 codecommit 인증하기">AWS cli credential helper로 codecommit 인증하기</a><time datetime="2024-03-29T01:40:54.000Z" title="작성일 2024-03-29 10:40:54">2024-03-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/25/AWS/serverless-environment-variable/" title="serverless environment variable">serverless environment variable</a><time datetime="2024-03-25T01:50:50.000Z" title="작성일 2024-03-25 10:50:50">2024-03-25</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/05/AWS/connect-lambda-in-vpc-and-dynamodb/" title="VPC 내부 AWS Lambda DynamoDB 연결하기">VPC 내부 AWS Lambda DynamoDB 연결하기</a><time datetime="2024-03-05T09:49:12.000Z" title="작성일 2024-03-05 18:49:12">2024-03-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>카테고리</span>
+            <a class="card-more-btn" href="/categories/" title="더 보기">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AWS/"><span class="card-category-list-name">AWS</span><span class="card-category-list-count">28</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithm/"><span class="card-category-list-name">Algorithm</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/"><span class="card-category-list-name">CS</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Else/"><span class="card-category-list-name">Else</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Error/"><span class="card-category-list-name">Error</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Frontend/"><span class="card-category-list-name">Frontend</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/"><span class="card-category-list-name">Git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GraphQL/"><span class="card-category-list-name">GraphQL</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>태그</span></div><div class="card-tag-cloud"><a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/Kinesis/" style="font-size: 1.1em; color: #999">Kinesis</a> <a href="/tags/Javascript/" style="font-size: 1.5em; color: #99a9bf">Javascript</a> <a href="/tags/CodePipeline/" style="font-size: 1.1em; color: #999">CodePipeline</a> <a href="/tags/Flask/" style="font-size: 1.18em; color: #999ca1">Flask</a> <a href="/tags/Error/" style="font-size: 1.26em; color: #999fa8">Error</a> <a href="/tags/Greedy/" style="font-size: 1.18em; color: #999ca1">Greedy</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Class-component/" style="font-size: 1.1em; color: #999">Class component</a> <a href="/tags/test/" style="font-size: 1.1em; color: #999">test</a> <a href="/tags/CSR/" style="font-size: 1.1em; color: #999">CSR</a> <a href="/tags/webpack/" style="font-size: 1.26em; color: #999fa8">webpack</a> <a href="/tags/FTP/" style="font-size: 1.1em; color: #999">FTP</a> <a href="/tags/Server/" style="font-size: 1.1em; color: #999">Server</a> <a href="/tags/DataGrip/" style="font-size: 1.1em; color: #999">DataGrip</a> <a href="/tags/graphQL/" style="font-size: 1.1em; color: #999">graphQL</a> <a href="/tags/typescript/" style="font-size: 1.18em; color: #999ca1">typescript</a> <a href="/tags/security/" style="font-size: 1.1em; color: #999">security</a> <a href="/tags/Javascript-heap-out-of-memory/" style="font-size: 1.1em; color: #999">Javascript heap out of memory</a> <a href="/tags/Gulp-js/" style="font-size: 1.1em; color: #999">Gulp.js</a> <a href="/tags/Generator/" style="font-size: 1.1em; color: #999">Generator</a> <a href="/tags/curring/" style="font-size: 1.1em; color: #999">curring</a> <a href="/tags/CodeDeploy/" style="font-size: 1.1em; color: #999">CodeDeploy</a> <a href="/tags/Serverless/" style="font-size: 1.1em; color: #999">Serverless</a> <a href="/tags/%EA%B5%AC%ED%98%84/" style="font-size: 1.1em; color: #999">구현</a> <a href="/tags/ubuntu18-04/" style="font-size: 1.1em; color: #999">ubuntu18.04</a> <a href="/tags/AWS-RDS/" style="font-size: 1.1em; color: #999">AWS RDS</a> <a href="/tags/BFS/" style="font-size: 1.1em; color: #999">BFS</a> <a href="/tags/DynamoDB/" style="font-size: 1.42em; color: #99a6b7">DynamoDB</a> <a href="/tags/github-page/" style="font-size: 1.1em; color: #999">github page</a> <a href="/tags/Actor-model/" style="font-size: 1.1em; color: #999">Actor model</a> <a href="/tags/BFS-DFS/" style="font-size: 1.34em; color: #99a3b0">BFS/DFS</a> <a href="/tags/React/" style="font-size: 1.26em; color: #999fa8">React</a> <a href="/tags/DynamoDB-local/" style="font-size: 1.1em; color: #999">DynamoDB local</a> <a href="/tags/Python/" style="font-size: 1.18em; color: #999ca1">Python</a> <a href="/tags/Programmers/" style="font-size: 1.18em; color: #999ca1">Programmers</a> <a href="/tags/API-Gateway/" style="font-size: 1.1em; color: #999">API Gateway</a> <a href="/tags/SPA/" style="font-size: 1.1em; color: #999">SPA</a> <a href="/tags/multer/" style="font-size: 1.1em; color: #999">multer</a> <a href="/tags/Next-js/" style="font-size: 1.1em; color: #999">Next.js</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>아카이브</span>
+      <a class="card-more-btn" href="/archives/" title="더 보기"><i class="fas fa-angle-right"></i></a>
     </div>
-    <div id="github_widget" style="margin-top: 15px;">
-      <!-- Include the library. -->
-      <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-
-      <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-      />
-
-      <div>
-        <!-- Prepare a container for your calendar. -->
-        <div class="calendar" style="width: 650px;">
-          <!-- Loading stuff -->
-          Loading data ...
-        </div>
-      </div>
-
-      <script>
-        GitHubCalendar(".calendar", "so0choi", {
-          responsive: true,
-          tooltips: false,
-          global_stats: false,
-        }).then(function () {
-          // delete the space underneath the module bar which is caused by minheight
-          document.getElementsByClassName("calendar")[0].style.minHeight =
-            "120px";
-          // remove calendar border
-          document.getElementsByClassName("calendar")[0].style.border = 'none';
-        });
-      </script>
-    </div>
-  </div>
-</div>
-
-
-        </div>
-        <footer id="footer" class="footer">
-  <div class="copyright">
-    <span
-      >© Soyeong Choi | Powered by
-      <a href="https://hexo.io" target="_blank">Hexo</a>
-  </div>
-</footer>
-
-    </div>
-</body>
-</html>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">10월 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">3월 2024</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">1월 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/12/">
+          <span class="card-archive-list-date">12월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/11/">
+          <span class="card-archive-list-date">11월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/10/">
+          <span class="card-archive-list-date">10월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/09/">
+          <span class="card-archive-list-date">9월 2023</span>
+          <span class="card-archive-list-count">6</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/08/">
+          <span class="card-archive-list-date">8월 2023</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>사이트 정보</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">글 수 :</div><div class="item-count">198</div></div><div class="webinfo-item"><div class="item-name">방문자 수 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">총 조회수 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">마지막 업데이트 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-10-21T01:28:16.471Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Soyeong Choi</div><div class="framework-info"><span>프레임워크 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>테마 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="라이트/다크 모드 전환"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="단일/이중 열 전환"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="설정"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="맨 위로"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,226 +1,227 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-<!-- 
-<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
- -->
-
-    <meta name="author" content="Soyeong Choi">
-
-
-    <meta name="subtitle" content="기록용 블로그">
-
-
-    <meta name="description" content="Personal IT Diary">
-
-
-    <meta name="keywords" content="Node.js, html, React, Docker">
-
-
-<title>StudyYeong</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
-    
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
-
-
-
-<!--<script>-->
-<!--	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
-<!--		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
-<!--			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
-<!--	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
-<!--	ga('create', 'G-560FY9ZC2B', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-560FY9ZC2B');
-</script>
-
-
-<meta name="generator" content="Hexo 5.4.0"></head>
-<body>
-    <div class="wrapper">
-        <header>
-  <nav class="navbar">
-      <div class="container">
-          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
-          <div class="menu navbar-right">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-              <input id="switch_default" type="checkbox" class="switch_default">
-              <label for="switch_default" class="toggleBtn"></label>
-          </div>
-      </div>
-  </nav>
-
-  
-  <nav class="navbar-mobile" id="nav-mobile">
-      <div class="container">
-          <div class="navbar-header">
-              <div>
-                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-              </div>
-              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-          </div>
-          <div class="menu" id="mobile-menu">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-          </div>
-      </div>
-  </nav>
-
-</header>
-<script>
-  var mobileBtn = function f() {
-      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-      var mobileMenu = document.getElementById("mobile-menu");
-      if(toggleMenu.classList.contains("active")){
-         toggleMenu.classList.remove("active")
-          mobileMenu.classList.remove("active")
-      }else{
-          toggleMenu.classList.add("active")
-          mobileMenu.classList.add("active")
+<!DOCTYPE html><html lang="ko" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>StudyYeong - 기록용 블로그</title><meta name="author" content="Soyeong Choi"><meta name="copyright" content="Soyeong Choi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Personal IT Diary">
+<meta property="og:type" content="website">
+<meta property="og:title" content="StudyYeong">
+<meta property="og:url" content="https://so0choi.github.io/page/13/index.html">
+<meta property="og:site_name" content="StudyYeong">
+<meta property="og:description" content="Personal IT Diary">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://so0choi.github.io/img/avatar.png">
+<meta property="article:author" content="Soyeong Choi">
+<meta property="article:tag" content="Node.js, React, AWS, Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://so0choi.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://so0choi.github.io/page/13/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
       }
-  }
-</script>
-        <div class="main">
-            
-    <div class="container">
-  <div class="intro">
-    <div class="avatar">
-      <a href="/archives"
-        ><img src="/image/avatar.jpeg"
-      /></a>
-    </div>
-    <div class="nickname">Soyeong Choi</div>
-    <div class="description"><p>Web Developer<br><i>LGTM 🎄</i></p>
-</div>
-    <div class="links">
-       
-      <a class="link-item" title="Blog" href="/archives">
-        
-        
-        <i class="iconfont icon-blog"></i>
-        
-      </a>
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
       
-      <a class="link-item" title="Category" href="/category">
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
-        
-        <i class="iconfont icon-category"></i>
-        
-      </a>
       
-      <a class="link-item" title="Instagram" target="_blank" rel="noopener" href="https://instagram.com/so02hi">
-        
-        
-        <i class="iconfont icon-instagram"></i>
-        
-      </a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
       
-      <a class="link-item" title="Github" target="_blank" rel="noopener" href="https://github.com/so0choi">
-        
-        
-        <i class="iconfont icon-github"></i>
-        
-      </a>
-       
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-175983012-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-175983012-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-175983012-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '복사 성공',
+    error: '복사 실패',
+    noSupport: '브라우저가 지원되지 않음'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '방금',
+    min: '분 전',
+    hour: '시간 전',
+    day: '일 전',
+    month: '달 전'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '더 보기'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'StudyYeong',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-10-21 10:28:18'
+}</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/test.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">StudyYeong</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">StudyYeong</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/so0choi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:simc2644@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/11/17/AWS/Node.js%20+%20Lambda%20+%20APIGateway%20+%20DynamoDB/" title="Node.js + Lambda + APIGateway + DynamoDB">Node.js + Lambda + APIGateway + DynamoDB</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-11-17T13:27:37.000Z" title="작성일 2020-11-17 22:27:37">2020-11-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">Lambda람다는 서버리스 코드 실행 컴퓨팅 서비스이다. 항상 가동되는 것이 아니라 필요 시에만 코드를 실행하기 때문에 경제적이다. 또한 사용자는 컴퓨터 자원에 대해서는 고려하지 않아도 되며 오로지 코드에만 책임을 가지기 때문에 상황에 따라 아주 효율적으로 사용될 수 있다. 람다는 다양한 언어로 사용할 수 있다. Node.js, Python, Java, Go 등 대부분의 언어를 지원하고 있다. 그 중 Node.js로 작성하는 방법을 알아봤다. 핸들러1234exports.handler = async function (event, context, callback) &#123;  console.log(&quot;EVENT: \n&quot; + JSON.stringify(event, null, 2));  return context.logStreamName;&#125;;   event : 호출자로부터의 정보가 포함된 객체. JSON 형식 문자열로 전달하고, 런타임은 이를 객체로...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/20/AWS/codecommit/" title="CodeCommit">CodeCommit</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-20T13:27:37.000Z" title="작성일 2020-10-20 22:27:37">2020-10-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">CodeCommitAWS CodeCommit은 클라우드에서 asset을 비공개로 저장하여 관리할 수 있도록 AWS에서 호스팅되는 버전 관리 서비스이다. Git의 표준 기능을 지원하므로 기존 Git 기반 도구와도 원활하게 연동된다. CodeCommit이 지원하는 기능들 AWS가 호스팅하여 종합 관리 서비스를 제공함 암호화된 안전한 코드 저장 코드 공동 작업 다른 AWS 및 타사 서비스와 통합됨  시작하기자격증명우측 상단의 계정을 클릭하면 ‘내 보안 자격 증명’ 이라는 메뉴가 보인다. 클릭시 IAM 화면으로 넘어온다.  여기서 두번째 탭에 있는 AWS CodeCommit 자격 증명을 선택한다.  아래에 보이는 AWS CodeCommit에 대한 HTTPS Git 자격증명의 자격증명 생성을 선택한다.자격증명을 생성하면 사용자 이름과 비밀번호가 나온다. csv 파일로 내보내 관리하는 것이 좋다. git으로 코드 clone코드를 클론할 레파지토리로 이동한다. 없다면 하나 새로...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/17/AWS/AWS%20Node.js%20SDK%EB%A1%9C%20S3%20%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0%20&amp;%20multer-S3/" title="AWS Node.js SDK로 S3 사용해보기 &amp; multer-S3">AWS Node.js SDK로 S3 사용해보기 &amp; multer-S3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-17T13:27:37.000Z" title="작성일 2020-10-17 22:27:37">2020-10-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">설치1npm i aws-sdk --save  1const AWS = require(&quot;aws-sdk&quot;);  자격증명global credential file을 통해 자격증명을 할 수도 있고 다양한 방법이 있다. 나는 간단하게 config.json파일을 생성하여 사용했다. (IAM 사용자 생성 후 sdk 사용을 위한 키-밸류 값들은 받아놓은 상태) config.json 12345&#123;  &quot;accessKeyId&quot;: &quot;&quot;,  &quot;secretAccessKey&quot;: &quot;&quot;,  &quot;region&quot;: &quot;&quot;&#125;  파일은 다음과 같이 불러올 수 있다. 1AWS.config.loadFromPath(&quot;./config.json&quot;);  S3 생성 및 리스팅12345678//create S3 service objects3 = new AWS.S3();...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/16/AWS/Github%20page%20AWS%20Route53%20custom%20domain%EC%9C%BC%EB%A1%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4%ED%95%98%EA%B8%B0/" title="Github page AWS Route53 custom domain으로 서비스하기">Github page AWS Route53 custom domain으로 서비스하기</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-16T13:27:37.000Z" title="작성일 2020-10-16 22:27:37">2020-10-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">Route53은 AWS의 클라우드 DNS 웹 서비스이다. DNS 서비스를 제공하는 다른 서비스들도 많지만 Route53을 사용할 경우 EC2 또는 CloudFront 등 AWS에서 실행되는 인프라에 효과적으로 연결된다. 이번에는 Route53에서 도메인을 사서 github page로 연결시켜보았다. 다른 더 저렴한 namecheap 같은 사이트에서 구매해도 되지만 Route53으로 서비스할 것이기 때문에 Route53에서 도메인을 구입하는 것이 절차를 조금 간단하게 할 수 있는 방법이다. 도메인 구입 구입을 눌러서 마음에 드는 도메인을 살 수 있다. 나는 가장 저렴한 8$의 .be 도메인을 구입했다. 구입시에 모든 등록 정보는 영어로 입력해야 한다. 제대로 등록이 되었다면 얼마 지나지 않아 바로 도메인 등록이 완료된다. 오래 걸릴수도 있다는 알림이 떠있지만 사실 바로 등록이 안되면, 대부분의 경우 뭔가 잘못된 것이다. 도메인 등록에 문제가 생기면 생성이 취소 된다.  이...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/15/AWS/s3%20&amp;%20cloudfront%20%EC%97%B0%EB%8F%99/" title="S3 &amp; CloudFront 연동">S3 &amp; CloudFront 연동</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-15T13:27:37.000Z" title="작성일 2020-10-15 22:27:37">2020-10-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">AWS CloudFront 공식문서 CloudFronthtml, css, js 및 이미지 파일과 같은 정적 &amp; 동적 웹 컨텐츠를 사용자에게 더 빨리 배포하도록 지원하는 AWS의 웹 서비스이다.전세계의 엣지 로케이션을 통해 뛰어난 전송 능력을 가지고있다. 파일의 사본이 여러 위치에 보관되므로 안정성과 가용성도 향상된다.  CloudFront는 ‘배포’를 생성해 컨텐츠를 전송한다. 원본 파일을 가지고 있는 ‘오리진 서버’와 연동하여 사용한다. 구성하는 방법 오리진 서버를 지정한다.( Amazon S3 버킷 또는 고유 HTTP 서버) 오리진 서버는 객체(파일)의 원본 버전을 저장하고있다.  웹 사이트나 애플리케이션을 통해 사용자가 파일을 요청할 경우 CloudFront에 어떤 오리진 서버에서 파일을 가져올지 알려주는 CloudFront 배포를 만든다.  CloudFront는 새 배포에 도메인 이름을 할당하고 이는 API 요청 등과 같은 request에 대항 response로...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/14/AWS/s3/" title="S3">S3</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-14T13:27:37.000Z" title="작성일 2020-10-14 22:27:37">2020-10-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/AWS/">AWS</a></span></div><div class="content">Amazon Simple Storage Service 인터넷 스토리지 서비스를 위한 AWS 서비스 구성요소 bucket : container와 같은 개념. 파일이 저장될 프로젝트를 말한다. Data Object : 저장되는 파일. 객체 형식으로 저장된다. 실제 ‘파일’과 파일을 설명하는 ‘메타데이터’로 구성된다.  장점 사용하기 쉽다. AWS Management Console과 다양한 SDK 사용가능. 세부적인 보안 설정이 가능하다. Object 별로 접근권한을 설정할 수 있다.  ObjectS3는 object store 방식으로 데이터를 저장한다. key-value 방식을 사용해 많은 데이터를 저장할 수 있도록 한다. </div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/08/Javascript/js04/" title="window.resize throttle 설정">window.resize throttle 설정</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-07T15:10:43.000Z" title="작성일 2020-10-08 00:10:43">2020-10-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Javascript/">Javascript</a></span></div><div class="content">window.resize throttle 설정window.resize 이벤트에 리스너를 걸게되면 사이즈가 바뀌는 매순간 이벤트가 발생하기 때문에 성능 저하가 발생할 수 있다. 이것을 막기 위해 취하는 해결방법에 debounce와 throttle이 있다. 이전에 정리 포스팅을 올린 것 같은데 아무리 찾아도 없다..ㅠㅠ? resize 이벤트에 걸린 핸들러를 이벤트가 종료된 시점에 한 번만 호출 되도록 하기위해 throttle을 사용했다. 이는 MDN 사이트에서 찾은 방식이다. 검색을 해보면 정말 다양한 방식으로 구현할 수 있는데, (Stackoverflow - How to wait for the ‘end’ of ‘resize’ event and only then perform an action?) MDN에 올라온 방식이 가장 깔끔한 것 같다. throttlethrottle은 간단히 말해서 일정 timer를 걸어두고 그 시간 내에는 이벤트를 활성화 시키지 않는 것이다. 예를들어...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/04/Nodejs/Node-js16/" title="[Node.js] operation not permitted 오류">[Node.js] operation not permitted 오류</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-04T07:08:04.000Z" title="작성일 2020-10-04 16:08:04">2020-10-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Node-js/">Node.js</a></span></div><div class="content">Operation not permitted npm install 실행 중 위와 같은 오류가 발생했다. 이 작업을 하기 전 다른 프로젝트의 security issue들을 해결하기 위해 몇가지 스크립트를 실행하다가 오류가 났었는데 그 작업중에 npm에 문제가 생긴것 같다.  Stackoverflow  여기서 해결법을 찾아냈다.  cache clean  1npm cache clean --force   최신 버젼 npm 설치  1npm install -g npm@latest --force   cache clean  1npm cache clean --force   오류 났던 작업 다시 실행해보기  나느 이 방법으로 해결 할 수 있었다. 만약 문제가 해결되지 않는다면 백신 프로그램을 끄고 실행해보라고 한다. </div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/03/Javascript/JS30/Javascript-30-Day-17/" title="Javascript 30 Day 17">Javascript 30 Day 17</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-03T12:17:55.000Z" title="작성일 2020-10-03 21:17:55">2020-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Javascript/">Javascript</a></span></div><div class="content">Day 17 - Sort Without ArticlesArticles : 관사, 즉 관사 없이 영어 문자열을 배열하는 방법이다. 완성본기존 데이터 123456789101112131415const bands = [  &quot;The Plot in You&quot;,  &quot;The Devil Wears Prada&quot;,  &quot;Pierce the Veil&quot;,  &quot;Norma Jean&quot;,  &quot;The Bled&quot;,  &quot;Say Anything&quot;,  &quot;The Midway State&quot;,  &quot;We Came as Romans&quot;,  &quot;Counterparts&quot;,  &quot;Oh, Sleeper&quot;,  &quot;A Skylit Drive&quot;,  &quot;Anywhere But Here&quot;,  &quot;An Old...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/2020/10/03/Javascript/JS30/Javascript-30-Day-16/" title="Javascript 30 Day 16">Javascript 30 Day 16</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">작성일</span><time datetime="2020-10-03T10:24:44.000Z" title="작성일 2020-10-03 19:24:44">2020-10-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Javascript/">Javascript</a></span></div><div class="content">Day 16 - Mouse Move Shadow마우스 이동에 따라 텍스트에 그림자 효과 주기 완성본     .hero {         display: flex;         justify-content: center;         align-items: center;         color: black;         min-height: 40vh;       }       🔥WOAH!   const hero = document.querySelector('.hero');       const text = hero.querySelector('h1');       const walk = 100; //100px       function shadow(e) {         //destructuring         const { offsetWidth: width, offsetHeight: height } = hero; // 화면 크기         let {...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/12/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#content-inner">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/#content-inner">20</a><a class="extend next" rel="next" href="/page/14/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Soyeong Choi</div><div class="author-info-description">Personal IT Diary</div><div class="site-data"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/so0choi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/so0choi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:simc2644@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>공지</span></div><div class="announcement_content">Life is not all beer and skittles.</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>최근 글</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/20/React/react-test/" title="React 컴포넌트 테스트 하기">React 컴포넌트 테스트 하기</a><time datetime="2024-10-20T08:56:29.000Z" title="작성일 2024-10-20 17:56:29">2024-10-20</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/14/AWS/ec2-change-storage/" title="EC2 스토리지 용량 변경하기">EC2 스토리지 용량 변경하기</a><time datetime="2024-10-14T07:35:39.000Z" title="작성일 2024-10-14 16:35:39">2024-10-14</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/" title="AWS cli credential helper로 codecommit 인증하기">AWS cli credential helper로 codecommit 인증하기</a><time datetime="2024-03-29T01:40:54.000Z" title="작성일 2024-03-29 10:40:54">2024-03-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/25/AWS/serverless-environment-variable/" title="serverless environment variable">serverless environment variable</a><time datetime="2024-03-25T01:50:50.000Z" title="작성일 2024-03-25 10:50:50">2024-03-25</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/05/AWS/connect-lambda-in-vpc-and-dynamodb/" title="VPC 내부 AWS Lambda DynamoDB 연결하기">VPC 내부 AWS Lambda DynamoDB 연결하기</a><time datetime="2024-03-05T09:49:12.000Z" title="작성일 2024-03-05 18:49:12">2024-03-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>카테고리</span>
+            <a class="card-more-btn" href="/categories/" title="더 보기">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AWS/"><span class="card-category-list-name">AWS</span><span class="card-category-list-count">28</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithm/"><span class="card-category-list-name">Algorithm</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CS/"><span class="card-category-list-name">CS</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Else/"><span class="card-category-list-name">Else</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Error/"><span class="card-category-list-name">Error</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Frontend/"><span class="card-category-list-name">Frontend</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Git/"><span class="card-category-list-name">Git</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/GraphQL/"><span class="card-category-list-name">GraphQL</span><span class="card-category-list-count">3</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>태그</span></div><div class="card-tag-cloud"><a href="/tags/git/" style="font-size: 1.1em; color: #999">git</a> <a href="/tags/Kinesis/" style="font-size: 1.1em; color: #999">Kinesis</a> <a href="/tags/Javascript/" style="font-size: 1.5em; color: #99a9bf">Javascript</a> <a href="/tags/CodePipeline/" style="font-size: 1.1em; color: #999">CodePipeline</a> <a href="/tags/Flask/" style="font-size: 1.18em; color: #999ca1">Flask</a> <a href="/tags/Error/" style="font-size: 1.26em; color: #999fa8">Error</a> <a href="/tags/Greedy/" style="font-size: 1.18em; color: #999ca1">Greedy</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Class-component/" style="font-size: 1.1em; color: #999">Class component</a> <a href="/tags/test/" style="font-size: 1.1em; color: #999">test</a> <a href="/tags/CSR/" style="font-size: 1.1em; color: #999">CSR</a> <a href="/tags/webpack/" style="font-size: 1.26em; color: #999fa8">webpack</a> <a href="/tags/FTP/" style="font-size: 1.1em; color: #999">FTP</a> <a href="/tags/Server/" style="font-size: 1.1em; color: #999">Server</a> <a href="/tags/DataGrip/" style="font-size: 1.1em; color: #999">DataGrip</a> <a href="/tags/graphQL/" style="font-size: 1.1em; color: #999">graphQL</a> <a href="/tags/typescript/" style="font-size: 1.18em; color: #999ca1">typescript</a> <a href="/tags/security/" style="font-size: 1.1em; color: #999">security</a> <a href="/tags/Javascript-heap-out-of-memory/" style="font-size: 1.1em; color: #999">Javascript heap out of memory</a> <a href="/tags/Gulp-js/" style="font-size: 1.1em; color: #999">Gulp.js</a> <a href="/tags/Generator/" style="font-size: 1.1em; color: #999">Generator</a> <a href="/tags/curring/" style="font-size: 1.1em; color: #999">curring</a> <a href="/tags/CodeDeploy/" style="font-size: 1.1em; color: #999">CodeDeploy</a> <a href="/tags/Serverless/" style="font-size: 1.1em; color: #999">Serverless</a> <a href="/tags/%EA%B5%AC%ED%98%84/" style="font-size: 1.1em; color: #999">구현</a> <a href="/tags/ubuntu18-04/" style="font-size: 1.1em; color: #999">ubuntu18.04</a> <a href="/tags/AWS-RDS/" style="font-size: 1.1em; color: #999">AWS RDS</a> <a href="/tags/BFS/" style="font-size: 1.1em; color: #999">BFS</a> <a href="/tags/DynamoDB/" style="font-size: 1.42em; color: #99a6b7">DynamoDB</a> <a href="/tags/github-page/" style="font-size: 1.1em; color: #999">github page</a> <a href="/tags/Actor-model/" style="font-size: 1.1em; color: #999">Actor model</a> <a href="/tags/BFS-DFS/" style="font-size: 1.34em; color: #99a3b0">BFS/DFS</a> <a href="/tags/React/" style="font-size: 1.26em; color: #999fa8">React</a> <a href="/tags/DynamoDB-local/" style="font-size: 1.1em; color: #999">DynamoDB local</a> <a href="/tags/Python/" style="font-size: 1.18em; color: #999ca1">Python</a> <a href="/tags/Programmers/" style="font-size: 1.18em; color: #999ca1">Programmers</a> <a href="/tags/API-Gateway/" style="font-size: 1.1em; color: #999">API Gateway</a> <a href="/tags/SPA/" style="font-size: 1.1em; color: #999">SPA</a> <a href="/tags/multer/" style="font-size: 1.1em; color: #999">multer</a> <a href="/tags/Next-js/" style="font-size: 1.1em; color: #999">Next.js</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>아카이브</span>
+      <a class="card-more-btn" href="/archives/" title="더 보기"><i class="fas fa-angle-right"></i></a>
     </div>
-    <div id="github_widget" style="margin-top: 15px;">
-      <!-- Include the library. -->
-      <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
-
-      <!-- Optionally, include the theme (if you don't want to struggle to write the CSS) -->
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
-      />
-
-      <div>
-        <!-- Prepare a container for your calendar. -->
-        <div class="calendar" style="width: 650px;">
-          <!-- Loading stuff -->
-          Loading data ...
-        </div>
-      </div>
-
-      <script>
-        GitHubCalendar(".calendar", "so0choi", {
-          responsive: true,
-          tooltips: false,
-          global_stats: false,
-        }).then(function () {
-          // delete the space underneath the module bar which is caused by minheight
-          document.getElementsByClassName("calendar")[0].style.minHeight =
-            "120px";
-          // remove calendar border
-          document.getElementsByClassName("calendar")[0].style.border = 'none';
-        });
-      </script>
-    </div>
-  </div>
-</div>
-
-
-        </div>
-        <footer id="footer" class="footer">
-  <div class="copyright">
-    <span
-      >© Soyeong Choi | Powered by
-      <a href="https://hexo.io" target="_blank">Hexo</a>
-  </div>
-</footer>
-
-    </div>
-</body>
-</html>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">10월 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/03/">
+          <span class="card-archive-list-date">3월 2024</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/01/">
+          <span class="card-archive-list-date">1월 2024</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/12/">
+          <span class="card-archive-list-date">12월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/11/">
+          <span class="card-archive-list-date">11월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/10/">
+          <span class="card-archive-list-date">10월 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/09/">
+          <span class="card-archive-list-date">9월 2023</span>
+          <span class="card-archive-list-count">6</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/08/">
+          <span class="card-archive-list-date">8월 2023</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>사이트 정보</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">글 수 :</div><div class="item-count">198</div></div><div class="webinfo-item"><div class="item-name">방문자 수 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">총 조회수 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">마지막 업데이트 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-10-21T01:28:16.471Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Soyeong Choi</div><div class="framework-info"><span>프레임워크 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>테마 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="라이트/다크 모드 전환"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="단일/이중 열 전환"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="설정"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="맨 위로"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

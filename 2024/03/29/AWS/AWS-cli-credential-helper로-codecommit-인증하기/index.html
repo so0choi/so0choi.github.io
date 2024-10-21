@@ -1,234 +1,161 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap" rel="stylesheet">
-<!-- 
-<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanskr.css">
- -->
-
-    <meta name="author" content="Soyeong Choi">
-
-
-    <meta name="subtitle" content="기록용 블로그">
-
-
-    <meta name="description" content="Personal IT Diary">
-
-
-    <meta name="keywords" content="Node.js, html, React, Docker">
-
-
-<title>AWS cli credential helper로 codecommit 인증하기 | StudyYeong</title>
-
-
-
-    <link rel="icon" href="/favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
-    
-    <link rel="stylesheet" href="/css/style.css">
-    
-
-
-
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
-
-
-
-    
-    
-        
-    
-
-
-
-<!--<script>-->
-<!--	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
-<!--		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
-<!--			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
-<!--	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
-<!--	ga('create', 'G-560FY9ZC2B', 'auto');-->
-<!--	ga('send', 'pageview');-->
-<!--</script>-->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-560FY9ZC2B');
-</script>
-
-
-<meta name="generator" content="Hexo 5.4.0"></head>
-<body>
-    <div class="wrapper">
-        <header>
-  <nav class="navbar">
-      <div class="container">
-          <div class="navbar-header header-logo"><a href="/">Study Yeong</a></div>
-          <div class="menu navbar-right">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-              <input id="switch_default" type="checkbox" class="switch_default">
-              <label for="switch_default" class="toggleBtn"></label>
-          </div>
-      </div>
-  </nav>
-
-  
-  <nav class="navbar-mobile" id="nav-mobile">
-      <div class="container">
-          <div class="navbar-header">
-              <div>
-                  <a href="/">Study Yeong</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-              </div>
-              <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-          </div>
-          <div class="menu" id="mobile-menu">
-              
-                  <a class="menu-item" href="/archives">Posts</a>
-              
-                  <a class="menu-item" href="/category">Categories</a>
-              
-                  <a class="menu-item" href="/tag">Tags</a>
-              
-                  <a class="menu-item" href="/about">About</a>
-              
-          </div>
-      </div>
-  </nav>
-
-</header>
-<script>
-  var mobileBtn = function f() {
-      var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-      var mobileMenu = document.getElementById("mobile-menu");
-      if(toggleMenu.classList.contains("active")){
-         toggleMenu.classList.remove("active")
-          mobileMenu.classList.remove("active")
-      }else{
-          toggleMenu.classList.add("active")
-          mobileMenu.classList.add("active")
-      }
-  }
-</script>
-        <div class="main">
-            <div class="container">
-    
-    
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand All</a>
-        <a onclick="go_top()">Top</a>
-        <a onclick="go_bottom()">Bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
+<!DOCTYPE html><html lang="ko" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>AWS cli credential helper로 codecommit 인증하기 | StudyYeong</title><meta name="author" content="Soyeong Choi"><meta name="copyright" content="Soyeong Choi"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다. 사용 방법 Codecommit 권한이 있는 I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS cli credential helper로 codecommit 인증하기">
+<meta property="og:url" content="https://so0choi.github.io/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/index.html">
+<meta property="og:site_name" content="StudyYeong">
+<meta property="og:description" content="이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다. 사용 방법 Codecommit 권한이 있는 I">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://so0choi.github.io/img/avatar.png">
+<meta property="article:published_time" content="2024-03-29T01:40:54.000Z">
+<meta property="article:modified_time" content="2024-03-29T02:15:56.758Z">
+<meta property="article:author" content="Soyeong Choi">
+<meta property="article:tag" content="codecommit">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://so0choi.github.io/img/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://so0choi.github.io/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
         }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
+        return value
+      }
     }
 
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
     }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
+      const theme = saveToLocal.get('theme')
     
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">AWS cli credential helper로 codecommit 인증하기</h1>
-            
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">Soyeong Choi</a>
-                    
-
-                    
-                        <span class="post-time">
-                        Date: <a href="#">3월 29, 2024&nbsp;&nbsp;10:40:54</a>
-                        </span>
-                    
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/AWS/">AWS</a>
-                            
-                        </span>
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
-            <p>이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다.</p>
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-175983012-1"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'UA-175983012-1')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'UA-175983012-1', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '복사 성공',
+    error: '복사 실패',
+    noSupport: '브라우저가 지원되지 않음'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '방금',
+    min: '분 전',
+    hour: '시간 전',
+    day: '일 전',
+    month: '달 전'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '더 보기'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AWS cli credential helper로 codecommit 인증하기',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-29 11:15:56'
+}</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/test.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo.png" alt="Logo"><span class="site-name">StudyYeong</span></a><a class="nav-page-title" href="/"><span class="site-name">AWS cli credential helper로 codecommit 인증하기</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> AWS</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Algorithm</span></a></li><li><a class="site-page child" href="/"><span> Frontend</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">AWS cli credential helper로 codecommit 인증하기</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">작성일</span><time class="post-meta-date-created" datetime="2024-03-29T01:40:54.000Z" title="작성일 2024-03-29 10:40:54">2024-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">수정일</span><time class="post-meta-date-updated" datetime="2024-03-29T02:15:56.758Z" title="수정일 2024-03-29 11:15:56">2024-03-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AWS/">AWS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">조회수:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다.</p>
 <h2 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h2><ol>
 <li><p>Codecommit 권한이 있는 IAM 유저를 생성한다. (로컬 머신에 이미 계정 프로필이 등록돼있다면 스킵한다.)</p>
 </li>
@@ -254,70 +181,4 @@
 <li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html">AWS Document</a></li>
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53189190/git-multiple-credential-helper">Stackoverflow - git multiple credential helper</a>s</li>
 </ul>
-
-        </div>
-
-        
-        <section class="post_disqus">
-            <div id="disqus_thread"></div>
-                <script>
-                    /**
-                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                    /*
-                    var disqus_config = function () {
-                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                    };
-                    */
-                    (function() { // DON'T EDIT BELOW THIS LINE
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://so0github-blog.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                    })();
-                </script>
-            <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        </section>
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/codecommit/"># codecommit</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
-        </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2024/10/14/AWS/ec2-change-storage/">EC2 스토리지 용량 변경하기</a>
-            
-            
-            <a class="next" rel="next" href="/2024/03/25/AWS/serverless-environment-variable/">serverless environment variable</a>
-            
-        </section>
-
-
-    </article>
-</div>
-
-        </div>
-        <footer id="footer" class="footer">
-  <div class="copyright">
-    <span
-      >© Soyeong Choi | Powered by
-      <a href="https://hexo.io" target="_blank">Hexo</a>
-  </div>
-</footer>
-
-    </div>
-</body>
-</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>작성자: </span><span class="post-copyright-info"><a href="https://so0choi.github.io">Soyeong Choi</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>링크: </span><span class="post-copyright-info"><a href="https://so0choi.github.io/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/">https://so0choi.github.io/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>저작권 고지: </span><span class="post-copyright-info">이 블로그의 모든 글은 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 라이선스를 따르며, 별도로 명시되지 않는 한 모든 권리를 보유합니다. 재배포 시 출처를 명시해 주세요: <a href="https://so0choi.github.io">StudyYeong</a>.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/codecommit/">codecommit</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="prev-post pull-left" href="/2024/10/14/AWS/ec2-change-storage/" title="EC2 스토리지 용량 변경하기"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">이전</div><div class="prev_info">EC2 스토리지 용량 변경하기</div></div></a><a class="next-post pull-right" href="/2024/03/25/AWS/serverless-environment-variable/" title="serverless environment variable"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">다음</div><div class="next_info">serverless environment variable</div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Soyeong Choi</div><div class="author-info-description">Personal IT Diary</div><div class="site-data"><a href="/archives/"><div class="headline">글</div><div class="length-num">198</div></a><a href="/tags/"><div class="headline">태그</div><div class="length-num">111</div></a><a href="/categories/"><div class="headline">카테고리</div><div class="length-num">23</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/so0choi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/so0choi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:simc2644@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>공지</span></div><div class="announcement_content">Life is not all beer and skittles.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>목차</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.</span> <span class="toc-text">사용 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0"><span class="toc-number">2.</span> <span class="toc-text">참고</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>최근 글</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/20/React/react-test/" title="React 컴포넌트 테스트 하기">React 컴포넌트 테스트 하기</a><time datetime="2024-10-20T08:56:29.000Z" title="작성일 2024-10-20 17:56:29">2024-10-20</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/10/14/AWS/ec2-change-storage/" title="EC2 스토리지 용량 변경하기">EC2 스토리지 용량 변경하기</a><time datetime="2024-10-14T07:35:39.000Z" title="작성일 2024-10-14 16:35:39">2024-10-14</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/29/AWS/AWS-cli-credential-helper%EB%A1%9C-codecommit-%EC%9D%B8%EC%A6%9D%ED%95%98%EA%B8%B0/" title="AWS cli credential helper로 codecommit 인증하기">AWS cli credential helper로 codecommit 인증하기</a><time datetime="2024-03-29T01:40:54.000Z" title="작성일 2024-03-29 10:40:54">2024-03-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/25/AWS/serverless-environment-variable/" title="serverless environment variable">serverless environment variable</a><time datetime="2024-03-25T01:50:50.000Z" title="작성일 2024-03-25 10:50:50">2024-03-25</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2024/03/05/AWS/connect-lambda-in-vpc-and-dynamodb/" title="VPC 내부 AWS Lambda DynamoDB 연결하기">VPC 내부 AWS Lambda DynamoDB 연결하기</a><time datetime="2024-03-05T09:49:12.000Z" title="작성일 2024-03-05 18:49:12">2024-03-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By Soyeong Choi</div><div class="framework-info"><span>프레임워크 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>테마 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="읽기 모드"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="라이트/다크 모드 전환"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="단일/이중 열 전환"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="설정"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="목차"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="맨 위로"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
