@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
+
+const posts = await getCollection('blog');
+const areas = Array.from(
+  new Set(
+    posts
+      .map((p) => p.id.startsWith('areas/') ? p.id.split('/')[1] : null)
+      .filter(Boolean)
+  )
+).sort();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} — Areas`} description={SITE_DESCRIPTION} />
+    <style>
+      main { width: 960px; }
+      ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+      li a { display: block; padding: 0.75rem 1rem; border: 1px solid rgba(var(--gray), 0.3); border-radius: 8px; text-decoration: none; color: rgb(var(--black)); }
+      li a:hover { border-color: rgb(var(--accent)); color: rgb(var(--accent)); box-shadow: var(--box-shadow); }
+      h1 { margin-bottom: 1rem; }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Browse by Area</h1>
+      <ul>
+        {areas.map((a) => (
+          <li><a href={`/blog/areas/${a}/`}>{a}</a></li>
+        ))}
+      </ul>
+    </main>
+    <Footer />
+  </body>
+  </html>
+

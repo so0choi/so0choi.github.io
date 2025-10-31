@@ -7,9 +7,17 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
+const all = await getCollection('blog');
+const posts = all.sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const areas = Array.from(
+  new Set(
+    all
+      .map((p) => p.id.startsWith('areas/') ? p.id.split('/')[1] : null)
+      .filter(Boolean)
+  )
+).sort();
 ---
 
 <!doctype html>
@@ -19,6 +27,27 @@ const posts = (await getCollection('blog')).sort(
 		<style>
 			main {
 				width: 960px;
+			}
+			.areas {
+				margin: 0 0 1rem 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+			.areas a {
+				display: inline-block;
+				padding: 0.35rem 0.75rem;
+				border-radius: 9999px;
+				border: 1px solid rgba(var(--accent), 0.5);
+				background: rgba(var(--accent), 0.08);
+				color: rgb(var(--accent));
+				text-decoration: none;
+				font-size: 0.9rem;
+			}
+			.areas a:hover {
+				background: rgb(var(--accent));
+				color: white;
+				box-shadow: var(--box-shadow);
 			}
 			ul {
 				display: flex;
@@ -89,6 +118,12 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<section class="areas">
+				<a href="/blog/areas">All Areas</a>
+				{areas.map((a) => (
+					<a href={`/blog/areas/${a}/`}>{a}</a>
+				))}
+			</section>
 			<section>
 				<ul>
 					{

@@ -17,21 +17,21 @@
 		rgba(var(--gray), 33%);
 }
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
+	font-family: "Pretendard";
+	src: url("/fonts/Pretendard-Regular.woff") format("woff");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
 @font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
+	font-family: "Pretendard";
+	src: url("/fonts/Pretendard-Bold.woff") format("woff");
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
 }
 body {
-	font-family: "Atkinson", sans-serif;
+	font-family: "Pretendard", sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -60,10 +60,10 @@ h6 {
 	line-height: 1.2;
 }
 h1 {
-	font-size: 3.052em;
+	font-size: 2.3em;
 }
 h2 {
-	font-size: 2.441em;
+	font-size: 2.041em;
 }
 h3 {
 	font-size: 1.953em;
