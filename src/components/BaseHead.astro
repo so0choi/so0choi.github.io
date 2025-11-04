@@ -3,8 +3,8 @@
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
 import { SITE_TITLE } from '../consts';
+import Placeholder from '../assets/placeholder.jpg'
 
 interface Props {
 	title: string;
@@ -14,7 +14,7 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = Placeholder  } = Astro.props;
 ---
 
 <!-- Global Metadata -->

@@ -16,6 +16,7 @@
     "astro": "^5.15.3",
     "astro-pagefind": "1.8.5",
     "pagefind": "1.4.0",
+    "prettier": "^3.6.2",
     "sharp": "^0.34.3"
   }
 }

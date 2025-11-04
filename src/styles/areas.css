@@ -1,0 +1,26 @@
+main {
+  width: 960px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(var(--gray), 0.3);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--black);
+  transition: color 0.2s;
+}
+li a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+h1 {
+  margin-bottom: 1rem;
+}

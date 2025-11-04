@@ -3,46 +3,132 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import ProfileImage from '../assets/profile.jpeg'
+import { Image } from 'astro:assets';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			section{
+				margin-bottom: 100px;
+			}
+			article {
+				margin-bottom: 50px;
+			}
+			td {
+				padding: 10px 15px;
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<Image src={ProfileImage} height={500} width={450} alt="profile"/>
+				<p>문제를 빠르게 진단하고 구조적으로 해결하는 개발자, 최소영입니다.</p>
+				<section>
+					<h2>About</h2>
+					<hr />
+					<p>5년 차 Node.js 소프트웨어 엔지니어입니다.</p>
+					<p>
+						Node.js와 Nest.js 기반으로 대규모 트래픽에 대응한 경험이 있으며, 서버리스 아키텍처 설계와
+						Redis 캐시 시스템 도입을 통해 응답 속도를 최대 60% 개선한 바 있습니다.
+					</p>
+					<p>
+						트래픽 이슈, 병목 현상 등을 빠르게 진단하고 구조적으로 해결하는 실전 감각을 갖추고 있으며,
+						필요에 따라 프론트엔드 개발도 주도적으로 참여해 왔습니다.
+					</p>
+					<p>
+						특정 언어나 기술에 국한되지 않고, 문제 해결을 위해 가장 적합한 도구를 유연하게 선택하려 노력합니다.
+						다양한 분야에 대한 관심과 경험을 통해 꾸준히 성장하는 개발자가 되고자 합니다.
+					</p>
+				</section>
+
+				<section>
+					<h2>Skill</h2>
+					<hr />
+					<table>
+						<thead>
+						<tr >
+							<th>분야</th>
+							<th>스택</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td><strong>Language</strong></td>
+							<td>TypeScript, JavaScript, Python</td>
+						</tr>
+						<tr>
+							<td><strong>Backend</strong></td>
+							<td>Node.js, Nest.js</td>
+						</tr>
+						<tr>
+							<td><strong>Frontend</strong></td>
+							<td>React.js, Next.js</td>
+						</tr>
+						<tr>
+							<td><strong>Infra</strong></td>
+							<td>AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td>
+						</tr>
+						<tr>
+							<td><strong>DB</strong></td>
+							<td>DynamoDB, Redis</td>
+						</tr>
+						<tr>
+							<td><strong>DevOps</strong></td>
+							<td>CloudWatch, Slack Alert, CI/CD (Bitbucket Pipelines)</td>
+						</tr>
+						<tr>
+							<td><strong>기타</strong></td>
+							<td>실시간 로그 수집, 비용 최적화 설계 경험 다수</td>
+						</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h2>Work Experience</h2>
+					<hr />
+					<p><a href="https://www.kinx.net/" target="_blank" rel="noopener">KINX</a>
+						CDN 개발 그룹 매니저: 2020 ~ · 소프트웨어 개발 엔지니어
+					</p>
+				</section>
+
+				<section>
+					<h2>Education</h2>
+					<hr />
+					<ul>
+						<li><strong>2015 - 2020</strong> 단국대학교 소프트웨어공학과</li>
+						<li><strong>2018 - 2019</strong> 캐나다 어학연수</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Certification</h2>
+					<hr />
+					<ul>
+						<li>AWS Certified Developer - Associate</li>
+						<li>AWS Solutions Architecture</li>
+						<li>AWS Practitioner</li>
+						<li>SQLD</li>
+						<li>정보처리기사</li>
+						<li>OPIC - IH</li>
+						<li>CILISAT (Community Interpreter Language and Interpreting Skills Assessment Tool)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Contacts</h2>
+					<hr />
+					<p>✉️ Email - <em>simc2644@gmail.com</em></p>
+					<h3>🐱 Github</h3>
+					<p><a href="https://github.com/so0choi" target="_blank" rel="noopener">so0choi</a></p>
+					<h3>🙎🏻 Blog</h3>
+					<p><a href="https://so0choi.github.io" target="_blank" rel="noopener">StudyYeong</a></p>
+				</section>
 		</main>
 		<Footer />
 	</body>
