@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postbuild": "pagefind --site dist/"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",
@@ -14,7 +15,7 @@
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
     "astro": "^5.15.3",
-    "astro-pagefind": "1.8.5",
+    "astro-pagefind": "^1.8.5",
     "pagefind": "1.4.0",
     "prettier": "^3.6.2",
     "sharp": "^0.34.3"

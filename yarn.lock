@@ -1221,7 +1221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro-pagefind@npm:1.8.5":
+"astro-pagefind@npm:^1.8.5":
   version: 1.8.5
   resolution: "astro-pagefind@npm:1.8.5"
   dependencies:
@@ -4403,7 +4403,7 @@ __metadata:
     "@astrojs/rss": ^4.0.13
     "@astrojs/sitemap": ^3.6.0
     astro: ^5.15.3
-    astro-pagefind: 1.8.5
+    astro-pagefind: ^1.8.5
     pagefind: 1.4.0
     prettier: ^3.6.2
     sharp: ^0.34.3

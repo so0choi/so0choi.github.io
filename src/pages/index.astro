@@ -1,30 +1,11 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import ProfileImage from '../assets/profile.jpeg'
 import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			section{
-				margin-bottom: 100px;
-			}
-			article {
-				margin-bottom: 50px;
-			}
-			td {
-				padding: 10px 15px;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
+<BaseLayout title="About">
 		<main>
 			<Image src={ProfileImage} height={500} width={450} alt="profile"/>
 				<p>문제를 빠르게 진단하고 구조적으로 해결하는 개발자, 최소영입니다.</p>
@@ -130,6 +111,4 @@ import { Image } from 'astro:assets';
 					<p><a href="https://so0choi.github.io" target="_blank" rel="noopener">StudyYeong</a></p>
 				</section>
 		</main>
-		<Footer />
-	</body>
-</html>
+</BaseLayout>
