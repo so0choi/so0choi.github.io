@@ -11,10 +11,10 @@ const posts = await getCollection('blog');
 const areas = Array.from(
   new Set(
     posts
-      .map((p) => p.id.startsWith('areas/') ? p.id.split('/')[1] : null)
-      .filter(Boolean)
-  )
-).sort();
+      .map((p) => p.id.split('/')[0])
+  )).sort()
+
+console.log(areas)
 
 ---
 
@@ -29,7 +29,7 @@ const areas = Array.from(
       <h1>Browse by Category</h1>
       <ul>
         {areas.map((area) => (
-          <li><a href={`/blog/areas/${area}/`}>{area?.toUpperCase()}</a></li>
+          <li><a href={`/blog/${area}/`}>{area?.toUpperCase()}</a></li>
         ))}
       </ul>
     </main>

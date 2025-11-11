@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const areas = Array.from(
     new Set(
       posts
-        .map((p) => p.id.startsWith('areas/') ? p.id.split('/')[1] : null)
+        .map((p) => p.id.startsWith('blog/') ? p.id.split('/')[1] : null)
         .filter(Boolean)
     )
   );
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 const { area } = Astro.params;
 const all = await getCollection('blog');
 const posts = all
-  .filter((p) => p.id.startsWith(`areas/${area}/`))
+  .filter((p) => p.id.startsWith(`blog/${area}/`))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
