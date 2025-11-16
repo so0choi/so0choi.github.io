@@ -1,24 +1,84 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 
 export async function getStaticPaths() {
-    const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+  const allPosts = await getCollection('blog');
+  const tags = Array.from(new Set(allPosts.flatMap((p) => p.data.tags ?? [])));
 
-    const uniqueTags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
-    return uniqueTags.map((tag) => {
-        const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags.includes(tag));
-        return {
-            params: { tag },
-            props: { posts: filteredPosts },
-        };
-    });
+  return tags.map((tag) => {
+    const filteredPosts = allPosts
+      .filter((post) => post.data.tags?.includes(tag))
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    return {
+      params: { tag },
+      props: { tag, posts: filteredPosts },
+    };
+  });
 }
 
-const { tag } = Astro.params;
+type Props = {
+  tag: string;
+  posts: CollectionEntry<'blog'>[];
+};
+
+const { tag, posts } = Astro.props as Props;
 ---
-<BaseLayout title={tag} >
+
+<BaseLayout title={`Tag: ${tag}`}>
+  <section>
+    <h1># {tag}</h1>
     <p>Posts tagged with {tag}</p>
-    <ul>
-        {posts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
-    </ul>
+    {
+      posts.length ? (
+        <ul class="tag-posts">
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>
+                <h4>{post.data.title}</h4>
+                <p class="meta">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No posts have been tagged with {tag} yet.</p>
+      )
+    }
+  </section>
+  <style>
+    section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      margin-bottom: 0.25rem;
+      text-transform: capitalize;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li + li {
+      margin-top: 1.5rem;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(var(--gray), 0.3);
+    }
+    a:hover {
+      box-shadow: var(--box-shadow);
+    }
+    .meta {
+      margin: 0;
+      color: rgb(var(--gray));
+    }
+  </style>
 </BaseLayout>

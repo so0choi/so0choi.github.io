@@ -13,23 +13,24 @@ const areas = Array.from(
     posts
       .map((p) => p.id.split('/')[0])
   )).sort()
-
-console.log(areas)
-
+import { Font } from 'astro:assets';
 ---
 
 <!doctype html>
 <html lang="en">
+
   <head>
     <BaseHead title={`${SITE_TITLE} — Areas`} description={SITE_DESCRIPTION} />
+
   </head>
   <body>
     <Header />
     <main>
+
       <h1>Browse by Category</h1>
       <ul>
         {areas.map((area) => (
-          <li><a href={`/blog/${area}/`}>{area?.toUpperCase()}</a></li>
+          <li><a href={`/blog/areas/${area}`}>{area?.toUpperCase()}</a></li>
         ))}
       </ul>
     </main>

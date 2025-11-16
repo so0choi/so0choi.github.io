@@ -11,16 +11,17 @@ ul {
 li a {
   display: block;
   padding: 0.75rem 1rem;
-  border: 1px solid rgba(var(--gray), 0.3);
-  border-radius: 8px;
+
+  /*border-radius: 8px;*/
   text-decoration: none;
-  color: var(--black);
+  color: var(--color-gray-400);
   transition: color 0.2s;
 }
 li a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  color: var(--color-gray-800);
 }
 h1 {
-  margin-bottom: 1rem;
+  font-family: "Playfair Display", serif;
+  color: var(--accent);
+  font-style: italic;
 }

@@ -1,0 +1,27 @@
+a {
+  text-decoration-line: underline;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--accent);
+}
+
+h2 {
+  margin-top: 4rem;
+  color: var(--gray-gradient);
+}
+
+ul {
+  margin-bottom: 1rem;
+}
+li {
+  list-style: disc;
+  padding: 0.5rem;
+}
+
+pre {
+  margin-bottom: 2rem;
+}
+hr {
+  margin-bottom: 1rem;
+}

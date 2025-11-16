@@ -5,7 +5,9 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "paths": {
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@public/*": ["./public/*"],
+      "@components/*": ["./src/components/*"]
     }
   }
 }

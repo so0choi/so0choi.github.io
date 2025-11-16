@@ -3,7 +3,6 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
@@ -11,12 +10,10 @@ const all = await getCollection('blog');
 
 const tags = Array.from(
   new Set(
-    all
-      .map((p) => p.id.startsWith('tags/') ? p.id.split('/')[1] : null)
-      .filter(Boolean)
+	  all
+      .flatMap((p) => p.data.tags)
   )
 ).sort();
-console.log(tags)
 ---
 
 <!doctype html>
@@ -45,7 +42,7 @@ console.log(tags)
 			}
 			.areas a:hover {
 				background: rgb(var(--accent));
-				color: white;
+
 				box-shadow: var(--box-shadow);
 			}
 			ul {

@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from "../components/BaseHead.astro";
+import {SITE_DESCRIPTION, SITE_TITLE} from "../consts";
+import Header from "../components/Header.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Footer from "../components/Footer.astro";
+
+
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+    const areas = Array.from(
+        new Set(
+            posts
+                .map((p) => p.id.startsWith('blog/') ? p.id.split('/')[1] : null)
+                .filter(Boolean)
+        )
+    );
+
+    return areas.map((a) => ({ params: { area: a } }));
+}
+
+const { area } = Astro.params;
+const all = await getCollection('blog');
+const posts = all
+    .filter((p) => p.id.startsWith(`blog/${area}/`))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <BaseHead title={`${SITE_TITLE} — ${area}`} description={SITE_DESCRIPTION} />
+    <style>
+        main { width: 960px; }
+        ul { display: flex; flex-wrap: wrap; gap: 2rem; list-style: none; padding: 0; margin: 0; }
+        li { width: calc(50% - 1rem); }
+        li:first-child { width: 100%; text-align: center; }
+        li img { border-radius: 12px; margin-bottom: 0.5rem; }
+        a { text-decoration: none; }
+        .title { margin: 0; color: rgb(var(--black)); }
+        .date { margin: 0; color: rgb(var(--gray)); }
+        a:hover h4, a:hover .date { color: rgb(var(--accent)); }
+        a:hover img { box-shadow: var(--box-shadow); }
+        h1 { margin-bottom: 1rem; text-transform: capitalize; }
+        @media (max-width: 720px) { li { width: 100%; text-align: center; } }
+    </style>
+</head>
+<body>
+<Header />
+<main>
+    <h1>{area}</h1>
+    <ul>
+        {posts.map((post) => (
+                <li>
+                    <a href={`/blog/${post.id}/`}>
+                        {post.data.heroImage && (
+                                <Image width={720} height={360} src={post.data.heroImage} alt="" />
+                        )}
+                        <h4 class="title">{post.data.title}</h4>
+                        <p class="date"><FormattedDate date={post.data.pubDate} /></p>
+                    </a>
+                </li>
+        ))}
+    </ul>
+</main>
+<Footer />
+</body>
+</html>
+

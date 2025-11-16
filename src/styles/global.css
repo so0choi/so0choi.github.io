@@ -1,3 +1,4 @@
+@import "tailwindcss";
 /*
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
@@ -5,8 +6,8 @@
  */
 
 :root {
-  --accent: #ff99f2;
-  --accent-dark: #ca4bff;
+  --accent: #2d6dc3;
+  --accent-dark: #23569a;
   --black: 15, 18, 25;
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
@@ -60,30 +61,26 @@ h6 {
   line-height: 1.2;
 }
 h1 {
-  font-size: 2.3em;
+  font-size: 2em;
+  margin: 1em 0;
 }
 h2 {
-  font-size: 2.041em;
+  font-size: 1.6em;
 }
 h3 {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 h4 {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 h5 {
-  font-size: 0.7em;
+  font-size: 0.4em;
 }
 strong,
 b {
   font-weight: 700;
 }
-a {
-  color: var(--accent);
-}
-a:hover {
-  color: var(--accent);
-}
+
 p {
   margin-bottom: 1em;
 }
