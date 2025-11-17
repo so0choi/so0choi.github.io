@@ -12,15 +12,19 @@ tags:
 
 테스트 코드를 실행하려고하는데 아래와 같은 에러가 발생했다.
 
+```
 > Cannot find module 'src/config/configFile' from 'modules/foo/foo.service.ts'
+```
 
 서치를 좀 하다가 Jest 설정을 수정했는데 아래와 같은 에러도 발생했다.
 결론적으로는 같은 원인으로 발생한 문제였다.
 
+```
 > TypeError: Right-hand side of 'instanceof' is not an object
 > 30 |
 > 31 | constructor(
 > 32 | @InjectRepository(ChannelPlayer)
+```
 
 ## 해결법
 

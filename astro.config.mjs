@@ -1,6 +1,5 @@
 // @ts-check
 
-import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
 
@@ -12,7 +11,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://so0choi.github.io",
-  integrations: [mdx(), sitemap(), partytown(), pagefind()],
+  integrations: [sitemap(), partytown(), pagefind()],
   experimental: {
     fonts: [
       {
@@ -25,4 +24,9 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  build: {
+    rollupOptions: {
+      external: ["astro:content-layer-deferred-module"],
+    },
+  }
 });

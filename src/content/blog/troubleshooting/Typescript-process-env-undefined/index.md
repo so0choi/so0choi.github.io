@@ -23,7 +23,9 @@ const dynamoDBClient = new DynamoDBClient({
 
 이렇게 작성할 경우 `DynmoDBClient` 생성자 파라미터 옵션이 모두 `string`으로 되어있기 때문에 타입에러가 발생한다.
 
-> TS2322: Type 'string | undefined' is not assignable to type 'string'.   Type 'undefined' is not assignable to type 'string'.
+```
+ TS2322: Type 'string | undefined' is not assignable to type 'string'.   Type 'undefined' is not assignable to type 'string'.
+ ```
 
 해결하기 위해서는 definition 파일을 작성하여 해당 변수가 `string`이라는 것을 타입 시스템에 알려주면 된다.
 

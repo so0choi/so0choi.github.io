@@ -17,7 +17,7 @@ Skipping start: DynamoDB Local is not available for stage: dev
 
 ## serverless.yml
 
-```yml
+```
 custom:
   dynamodb:
     stages:

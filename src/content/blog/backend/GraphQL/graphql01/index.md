@@ -9,15 +9,6 @@ category: GraphQL
 
 ---
 
-
-
-<style>
-img + em {
-    display: block;
-    text-align: center;
-}
-</style>
-
 GraphQL은 페이스북에서 만든 쿼리언어이다. 등장한지 얼마 안됐음에도 불구하고 인기가 매우 가파르게 올라가고 있지만 아직 GraphQL을 이용한 open API를 제공하는 곳은 국내 및 해외를 포함해도 많지않다.
 
 쿼리언어 즉, SQL과 마찬가지이다. 하지만 둘의 구조적 차이는 분명하다. SQL이 DB 시스템에 저장된 데이터를 효율적으로 가져오는 목적으로 만들어진 반면, GQL은 web client가 데이터를 서버로부터 효율적으로 가져오는 것을 목적으로 한다. 따라서 SQL은 백엔드 시스템에서 사용되는 반면, GQL은 주로 클라이언트 시스템에 호출된다.

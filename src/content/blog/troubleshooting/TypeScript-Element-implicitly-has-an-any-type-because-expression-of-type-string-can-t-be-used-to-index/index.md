@@ -4,7 +4,6 @@ description: '타입스크립트 에러가 발생했다. 실행에는 문제가 
 pubDate: 2023-03-22 10:00:51
 tags: Typescript
 category: Error
-
 ---
 
 
@@ -22,7 +21,7 @@ console.log(CONN_STATE[stream.ConnState])
 // Error
 ```
 
-> TS7053: Element implicitly has an 'string' type because expression of type 'string' can't be used to index type '{ 1: string; 2: string; 3: string; 4: string; }'.
+> TS7053: Element implicitly has an 'string' type because expression of type 'string' can't be used to index type `{ 1: string; 2: string; 3: string; 4: string; }`.
 
 index signature 관련 에러였다.
 
@@ -58,7 +57,7 @@ foo['a'] = { messages: 'some message' };
 ```
 여기서 index signature의`key`는 Typescript에서 가독성을 위해 넣는 아무 의미 없는 문자열이다. `index`라던지 `username` 라던지 아무 이름이나 넣어도 상관없다.
 
-위의 에러는 index signature를 따로 명시하지 않기 때문에 객체 내부의 string literal을 key로 받게 되어있는데 string으로 객체에 접근하려고 해서 발생한 것이다. 
+위의 에러는 index signature를 따로 명시하지 않기 때문에 객체 내부의 string literal을 key로 받게 되어있는데 string으로 객체에 접근하려고 해서 발생한 것이다.
 
 ## 해결 방법
 
