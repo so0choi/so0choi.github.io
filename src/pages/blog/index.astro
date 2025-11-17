@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Footer from '@components/Footer.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+import Header from '@components/Header.astro';
+
+import CalendarIcon from '@public/icons/calendar.svg'
+import {SITE_DESCRIPTION, SITE_TITLE} from "../../consts";
+
+
+const all = await getCollection('blog');
+const posts = all
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+import '../../styles/global.css'
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <BaseHead title={`${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+    <style>
+        h1{
+            font-family: "Playfair Display", serif;
+            color: var(--accent);
+            font-style: italic;
+        }
+        li * {
+            transition: color 0.2s;
+        }
+        li:hover * {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+<Header />
+<main>
+    <div class="flex justify-between w-full items-center">
+    <h1>All posts</h1>
+    <a href="/blog/areas"><button class="text-gray-500 cursor-pointer bg-gray-200 h-fit p-2 rounded-xl hover:bg-gray-300 text-xs transition-all">Categories  ></button></a>
+    </div>
+    <div class="mt-10">
+        <span class="text-gray-400 text-sm">LATEST</span>
+        <ul>
+            {posts.map((post) => (
+                    <li>
+                        <a href={`/blog/${post.id}/`} class="flex gap-7 border-b border-gray-200 py-10">
+                            <Image width={150} height={100} src={post.data.heroImage || "/favicon.png"} alt={post.id} />
+                            <div class="flex flex-col">
+                                <h3 class="bold">{post.data.title}</h3>
+                                <div class="text-[13px] flex gap-2 mb-2">
+
+                                    <CalendarIcon fill="gray" height={20}/>
+                                    <FormattedDate date={post.data.pubDate} /></div>
+                                <p class="text-gray-500 text-[15px]">{post.data.description.slice(0,70)}...</p>
+                            </div>
+                        </a>
+                    </li>
+            ))}
+        </ul>
+    </div>
+</main>
+<Footer />
+</body>
+</html>

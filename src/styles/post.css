@@ -6,9 +6,10 @@ a:hover {
   color: var(--accent);
 }
 
-h2 {
+h1,h2, h3, h4 {
   margin-top: 4rem;
-  color: var(--gray-gradient);
+  color: var(--accent);
+  font-weight:  bold;
 }
 
 ul {
