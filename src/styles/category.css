@@ -1,0 +1,50 @@
+main {
+  width: 960px;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  width: calc(50% - 1rem);
+}
+li:first-child {
+  width: 100%;
+  text-align: center;
+}
+li img {
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+a {
+  text-decoration: none;
+}
+.title {
+  margin: 0;
+  color: rgb(var(--black));
+}
+.date {
+  margin: 0;
+  color: rgb(var(--gray));
+}
+a:hover h4,
+a:hover .date {
+  color: rgb(var(--accent));
+}
+a:hover img {
+  box-shadow: var(--box-shadow);
+}
+h1 {
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+@media (max-width: 720px) {
+  li {
+    width: 100%;
+    text-align: center;
+  }
+}

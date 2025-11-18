@@ -3,14 +3,24 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from "../components/Header.astro";
 const { title,description } = Astro.props;
-
+import '@styles/global.css'
 ---
 <html lang="en">
 <head>
     <BaseHead title={title} description={description} />
-    <style>
-    </style>
-</head> 
+    <!-- Google tag (gtag.js) -->
+    <script
+            type="text/partytown"
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B">
+    </script>
+    <script is:inline>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-560FY9ZC2B');
+    </script>
+</head>
 
 <body>
 <Header />

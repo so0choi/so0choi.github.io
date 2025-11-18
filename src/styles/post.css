@@ -6,10 +6,13 @@ a:hover {
   color: var(--accent);
 }
 
-h1,h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   margin-top: 4rem;
   color: var(--accent);
-  font-weight:  bold;
+  font-weight: bold;
 }
 
 ul {
@@ -25,4 +28,46 @@ pre {
 }
 hr {
   margin-bottom: 1rem;
+}
+
+main {
+  width: calc(100% - 2em);
+  max-width: 100%;
+  margin: 0;
+}
+.hero-image {
+  width: 100%;
+}
+.hero-image img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+}
+.prose {
+  width: 800px;
+  max-width: calc(100% - 0.5em);
+  margin: auto;
+  padding: 1em;
+  color: rgb(var(--gray-dark));
+}
+.title {
+  margin-bottom: 1em;
+  padding: 1em 0;
+  text-align: center;
+  line-height: 1;
+}
+.title h1 {
+  margin: 0 0 0.5em 0;
+}
+.date {
+  margin-bottom: 0.5em;
+  color: rgb(var(--gray));
+}
+.last-updated-on {
+  font-style: italic;
+}
+
+pre {
+  font-size: 1rem;
 }

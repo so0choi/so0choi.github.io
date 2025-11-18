@@ -1,0 +1,11 @@
+h1{
+    font-family: "Playfair Display", serif;
+    color: var(--accent);
+    font-style: italic;
+}
+li * {
+    transition: color 0.2s;
+}
+li:hover * {
+    color: var(--accent);
+}

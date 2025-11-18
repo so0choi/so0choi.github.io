@@ -1,0 +1,37 @@
+.headerClass {
+    margin: 0;
+    padding: 0 1em;
+    background: white;
+    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerClass h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.headerClass h2 a,
+.headerClass h2 :global(a.active) {
+    text-decoration: none;
+}
+.headerClass a {
+    padding: 1em 0.5em;
+    color: var(--black);
+    border-bottom: 4px solid transparent;
+    text-decoration: none;
+}
+.headerClass :global(a.active) {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+}
+.headerClass :global(.social-links),
+.headerClass :global(.social-links) a {
+    display: flex;
+}
+@media (max-width: 720px) {
+    .headerClass :global(.social-links) {
+        display: none;
+    }
+}

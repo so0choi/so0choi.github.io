@@ -57,9 +57,10 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.5rem 0;
-  color: rgb(var(--black));
+  margin: 0 0 1rem 0;
+  color: var(--accent);
   line-height: 1.2;
+  font-weight: bold;
 }
 h1 {
   font-size: 2em;
@@ -150,4 +151,16 @@ hr {
   clip-path: inset(50%);
   /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
+}
+
+section {
+  margin-bottom: 5rem;
+}
+
+img {
+  margin: 1em 0;
+}
+
+li {
+  list-style: disc;
 }

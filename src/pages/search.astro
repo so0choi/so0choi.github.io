@@ -1,14 +1,16 @@
 ---
 import Search from "astro-pagefind/components/Search";
-import {SITE_DESCRIPTION, SITE_TITLE} from "../consts";
-
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Search">
-<div>
-    <Search id="search" className="pagefind-ui" uiOptions={{
-        showImages: false
-    }}/>
-</div>
+  <div>
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{
+        showImages: false,
+      }}
+    />
+  </div>
 </BaseLayout>

@@ -10,7 +10,15 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === '/' + (subpath?.[0] || '') || href?.toString().split('/')[1] === pathname.split('/')[0];
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a style={{
+  padding: "1em 0.5em",
+  color: "var(--black)",
+  borderBottom: "4px solid transparent",
+  textDecoration: "none",
+  ...(isActive && {
+    borderBottomColor: "var(--accent)"
+  })
+}} href={href} class:list={[className, { active: isActive, }]} {...props}>
 	<slot />
 </a>
 <style>
