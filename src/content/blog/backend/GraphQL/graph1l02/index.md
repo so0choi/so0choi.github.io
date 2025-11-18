@@ -3,8 +3,13 @@ title: graphql-yoga로 GraphQL 시작하기
 description: '기본 사용법을 익히기 위해 를 사용했다. 서버 열기 서버를 열면서 스키마 파일을 지정하고, resolver 또한 설정해준다. 포트를 따로 지정하지 않으면 4000번 포트로 서버가 열리고 브라우저로 접속시 깔끔한 ui를 가진 플레이그라운드로 간편하게 api를 테스트 해볼 수 있다. 오른쪽에 보이는 , 를 누르면 API 설…'
 heroImage: './2021-01-16-20-40-52.png'
 pubDate: 2021-01-16 19:55:32
-tags: GraphQL
-category: GraphQL
+tags:
+  - GraphQL
+category: backend
+
+
+
+
 
 
 ---
@@ -64,7 +69,7 @@ function User_name(user) {
 
 GraqhQL 서버를 열고 쿼리를 작성할 때는 아래와 같이 사용한다.
 
-```GRAPHql
+```
 {
   me {
     name
@@ -74,7 +79,7 @@ GraqhQL 서버를 열고 쿼리를 작성할 때는 아래와 같이 사용한�
 
 이렇게 `me`와 그 안의 속성 `name`을 명확히 작성해야 제대로 불러온다.
 
-```graphql
+```
 {
   "me": {
     "name": "Luke Skywalker"
@@ -91,7 +96,7 @@ GraqhQL 서버를 열고 쿼리를 작성할 때는 아래와 같이 사용한�
 ```js
 const resolver = {
   Query : {
-    movie = (id) => {
+    movie : (id) => {
           const filteredMovies = movies.filter(movie => String(id) === movie.id);
         return filteredMovies[0];
     }
@@ -101,7 +106,7 @@ const resolver = {
 
 'schema.graphql'
 
-```graphql
+```
 type Query : {
   movie(id: Int!) : Movie
 }

@@ -5,7 +5,10 @@ pubDate: 2020-08-26 23:07:36
 tags:
   - Javascript
   - Javascript30
-category: Javascript
+category: frontend
+
+
+
 
 ---
 

@@ -2,10 +2,13 @@
 title: S3
 description: 'Amazon S imple S torage S ervice 인터넷 스토리지 서비스를 위한 AWS 서비스 구성요소 bucket : container와 같은 개념. 파일이 저장될 프로젝트를 말한다. Data Object : 저장되는 파일. 객체 형식으로 저장된다. 실제 ’파일’과 파일을 설명하는 ’메타데이터’로 구성된다.…'
 pubDate: 2020-10-14 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - S3
+
+
+
 
 ---
 

@@ -2,8 +2,13 @@
 title: JWT(Json Web Token)
 description: 'JWT 토큰 기반 인증방식이다. 제공되는 API를 유지보수 하던 중 jwt를 처음 봤다. 유저와의 인증 작업을 수행하는 어플리케이션은 직접 전체를 만들어본 적이 없기 때문이다. 너무나 흔하게 사용되는 기술이니만큼 잘 알아둬야겠다는 생각이들어 정리한다. Stateless 서버 Stateful 서버 : 클라이언트 상태 정보…'
 pubDate: 2021-06-05 16:44:59
-tags: jwt
-category: CS
+tags:
+  - jwt
+category: cs
+
+
+
+
 
 ---
 

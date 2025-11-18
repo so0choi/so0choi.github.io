@@ -2,7 +2,8 @@
 title: Mac 관리자권한으로 앱 실행하기 (Eclipse)
 description: 'MacOS에서 관리자권한으로 앱을 실행하는 방법은 Windows에 비해 까다롭다. 나의 경우 Eclipse 실행을 관리자권한으로 해야 했다. 시스템 자체에서 root 계정으로 로그인 후 사용하는 방법도 있으나 아래 방식은 한 가지 앱만 superuser 권한으로 실행하는 방법이다. Run an app with super…'
 pubDate: 2023-12-04 09:17:16
-category: Else
+category: misc
+
 
 ---
 

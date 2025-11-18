@@ -5,7 +5,10 @@ pubDate: 2020-10-08 00:10:43
 tags:
   - window.resize
   - Javascript
-category: Javascript
+category: frontend
+
+
+
 
 
 ---

@@ -2,8 +2,13 @@
 title: "[Node.js] POST 처리하기"
 description: 'body parser http 연결에서 클라이언트는 get과 post 방식으로 서버에 요청을 보낼 수 있다. get 방식은 정보를 조회할때 사용되는데, 이미 으로 앞에서도 많이 사용한 적이 있다. post 요청을 처리하는 메서드는 가 있다. get과 비슷한 방식으로 처리한다. post는 html DOM의 form을 통해…'
 pubDate: 2020-08-31 19:08:31
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 ---
 

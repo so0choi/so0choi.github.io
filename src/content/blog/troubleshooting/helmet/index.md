@@ -3,8 +3,13 @@ title: helmet.js 버전업 이슈
 description: 'helmet.js는 Express 앱에 보안을 위한 HTTP 헤더를 추가해 앱을 보호해주는 라이브러리다. 모듈 업데이트가 한참 적용되지 않은 프로젝트를 넘겨받아 업데이트를 진행했는데 버전 3 에서 버전 5로 버전이 확 뛰었다. helmet 버전 4에 추가된 미들웨어들이 앱 동작에 에러를 일으켰다. public asset…'
 heroImage: './2022-07-22-10-11-21.png'
 pubDate: 2022-07-22 10:06:00
-tags: helmet.js
-category: Error
+tags:
+  - helmet.js
+category: troubleshooting
+
+
+
+
 
 
 ---

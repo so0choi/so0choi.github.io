@@ -4,7 +4,10 @@ description: 'Express는 Nest와 달리 정해진 구조가 없기때문에 구�
 pubDate: 2021-12-13 10:52:39
 tags:
   - Express.js
-category: Node.js
+category: backend
+
+
+
 
 ---
 

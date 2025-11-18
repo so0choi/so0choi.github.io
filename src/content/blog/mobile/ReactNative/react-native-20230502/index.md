@@ -3,8 +3,9 @@ title: "[React Native] 배포 및 릴리즈 기록"
 description: 'React Native로 개발한 앱을 여러번의 수정을 거쳐 빌드를 마치고 앱 스토어 심사를 기다리고 있다. 순탄하게 흘러갔던 과정이 단 하나도 없었던 것 같아 기록을 남겨놓으려고 한다. 빌드 iOS iOS는 XCode 사용법이 익숙치 않아 초반에 어려움을 느꼈으나 한 번만 세팅만 잘 맞춰놓으면 그 뒤로 문제가 발생한 적…'
 heroImage: './2023050201.png'
 pubDate: 2023-05-02 08:57:19
-tags:
-category: React Native
+category: mobile
+
+
 
 
 ---

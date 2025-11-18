@@ -4,7 +4,10 @@ description: 'IOS 15 업데이트가 나오고 시뮬레이터에서 하도 많�
 pubDate: 2021-11-18 11:22:47
 tags:
   - Babel
-category: React Native
+category: mobile
+
+
+
 
 ---
 

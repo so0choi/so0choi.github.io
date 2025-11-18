@@ -3,8 +3,9 @@ title: context로 global data 관리
 description: 'React에서는 주로 parent 컴포넌트에서 child 컴포넌트로 를 이용해 데이터를 넘긴다. 이때 많은 데이터에서 공통적으로 필요로하는 데이터가 있다면 props를 통해 데이터를 넘기려면 불편하기도하고 비효율적이라는 생각이 든다. 이럴 때 사용할 수 있는 것이 이다. 직접적으로 props를 통해 데이터를 넘기지 않아…'
 heroImage: './2023032001.png'
 pubDate: 2023-03-20 14:46:19
-category: React
-tags:
+category: frontend
+
+
 
 
 ---

@@ -5,6 +5,11 @@ heroImage: './2022-10-07-01.png'
 pubDate: 2022-03-17 15:15:02
 tags:
   - Kinesis
+category: cloud
+
+
+
+
 
 
 

@@ -6,6 +6,11 @@ pubDate: 2022-03-31 10:40:24
 tags:
   - aws-lambda
   - serverless
+category: cloud
+
+
+
+
 
 
 ---

@@ -3,7 +3,14 @@ title: AWS SAM (Lambda Typescript로 작성하기)
 description: 'SAM은 Serverless Application Model의 줄임말이다. 서버리스 애플리케이션을 빌드하는 데 사용할 수 있는 오픈 소스 프레임워크이다. 서버리스 애플리케이션이란 작업을 수행하는 데 함께 작동하는 Lambda 함수, 이벤트 소스 및 기타 리소스의 조합이다. 단순 Lambda 함수 그 이상으로, API,…'
 heroImage: './2022-03-22-10-54-45.png'
 pubDate: 2022-03-18 14:08:31
-tags: SAM
+tags:
+  - SAM
+category: cloud
+
+
+
+
+
 
 
 ---

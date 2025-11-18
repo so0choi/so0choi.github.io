@@ -3,10 +3,13 @@ title: Data Analytics1 - Athena
 description: '표준 SQL을 사용하여 AWS S3에 저장된 데이터를 쉽게 바로 분석할 수 있는 대화형 쿼리 분석 서비스 특징 사용하기 쉽다. (아테나가 S3 저장소를 가리키도록 하고 스키마를 정의하고 표준 SQL로 쿼리 한다) 서버리스 서비스이다 인프라를 관리할 필요가 없다. 99.999999999%의 객체 내구성을 보장한다. 자동으…'
 heroImage: './2020-11-27-14-25-09.png'
 pubDate: 2020-11-27 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - Data analytics
+
+
+
 
 
 ---

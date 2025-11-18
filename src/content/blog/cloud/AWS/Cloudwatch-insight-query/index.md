@@ -5,7 +5,10 @@ pubDate: 2021-12-13 14:09:59
 tags:
   - AWS
   - Cloudwatch
-category: AWS
+category: cloud
+
+
+
 
 ---
 

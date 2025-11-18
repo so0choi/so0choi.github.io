@@ -6,6 +6,11 @@ tags:
   - CodeCommit
   - CodePipeline
   - ElasticBeanstalk
+category: cloud
+
+
+
+
 
 ---
 

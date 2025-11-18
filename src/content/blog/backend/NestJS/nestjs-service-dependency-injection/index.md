@@ -2,7 +2,8 @@
 title: NestJS Service 상속을 해도 될까? 
 description: '현재 만들고있는 app의 구조를 개선하던중 service 상속과 dependency injection에 대해 고민하게 되었다. 내가 맡은 프로세스는, A 요청시 A 컴포넌트를 실행하고 B 요청시 B 컴포넌트를 실행한다. A와 B는 각각의 설정 방법이 다르지만 공통적으로 사전에 수행되어야하는 작업들이 있다. 코드를 넘겨받…'
 pubDate: 2022-12-27 16:46:19
-category: NestJS
+category: backend
+
 
 ---
 

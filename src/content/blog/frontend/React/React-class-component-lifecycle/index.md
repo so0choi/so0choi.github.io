@@ -5,7 +5,10 @@ pubDate: 2023-09-18 11:19:40
 tags:
   - React
   - Class component
-category: React
+category: frontend
+
+
+
 
 ---
 

@@ -2,13 +2,16 @@
 title: AWS Node.js SDK로 S3 사용해보기 & multer-S3
 description: '설치 자격증명 global credential file을 통해 자격증명을 할 수도 있고 다양한 방법이 있다. 나는 간단하게 파일을 생성하여 사용했다. (IAM 사용자 생성 후 sdk 사용을 위한 키 밸류 값들은 받아놓은 상태) 파일은 다음과 같이 불러올 수 있다. S3 생성 및 리스팅 S3 접근 권한이 있는 계정이라면…'
 pubDate: 2020-10-17 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - S3
   - multer
   - Node.js
   - AWS SDK
+
+
+
 
 ---
 

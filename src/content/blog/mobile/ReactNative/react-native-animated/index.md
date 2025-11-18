@@ -2,8 +2,9 @@
 title: React Native Animated로 애니메이션 구현하기
 description: '란 React Native에서 애니메이션을 구현하기 위해 사용되는 라이브러리이다. Animated는 / 메소드를 사용해 시간에 따른 애니메이션 전환을 실행시킨다. 주요 개념 : 애니메이션을 입힐 컴포넌트에 대한 하나 이상의 style 속성 : 애니메이션을 업데이트 하는 메소드 이 때 애니메이션 value에 직접 접근해서…'
 pubDate: 2023-02-21 16:54:14
-tags:
-category: React Native
+category: mobile
+
+
 
 ---
 

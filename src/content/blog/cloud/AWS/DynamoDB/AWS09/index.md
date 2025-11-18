@@ -2,11 +2,14 @@
 title: AWS - DynamoDB3
 description: 'Dynamodb + Lambda 주의할 점 이전에는 event, context, callback 을 사용했지만 세번째 인자 callback은 더이상 잘 사용되지 않는다고 한다. 현재는 를 포함한 response 구조를 가진 객체를 return 하면 된다. Dynamodb로 작업하기 fetch data 데이터를 가져오는…'
 heroImage: './2020-11-24-13-37-55.png'
-category: AWS
+category: cloud
 pubDate: 2020-11-22 22:27:37
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 
 

@@ -2,9 +2,12 @@
 title: Jest function mocking과 context
 description: '문제 테스트 코드를 작성하던 중 함수가 실행되었는지 테스트하는 부분이 계속 정상적으로 실행되지 않았다. 콘솔을 찍어보면 실행된 것은 확실한데 실행 횟수는 0으로 나오는 상황이었다. original.ts original.spec.ts 에러는 다음과 같았다. 하루를 날려서 알아낸 결과 가 달라서 생긴 문제였다. 으로 moc…'
 pubDate: 2023-02-03 14:37:14
-category: Test
+category: testing
 tags:
   - Jest
+
+
+
 
 ---
 

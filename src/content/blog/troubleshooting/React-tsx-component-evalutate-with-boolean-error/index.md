@@ -2,8 +2,9 @@
 title: "Type 'false | Element' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>> | ComponentType<any> | null | undefined'."
 description: '에러가 발생했던 코드는 아래와 같다. 이 구문은 를 사용하는 inline logical 구문이다. React 공식 문서에서도 찾아볼 수 있다. 코드에 빨간 줄이 뜨긴 하지만 실행은 정상적으로 된다. React는 false를 만난 순간 그 뒤에 나온 코드를 무시하기 때문에 원하는대로 동작하게 할 수 있으나 Typescri…'
 pubDate: 2023-03-27 09:12:57
-category: Error
+category: troubleshooting
 tags: ["React"]
+
 
 ---
 

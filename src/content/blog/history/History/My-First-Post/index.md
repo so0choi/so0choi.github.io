@@ -2,8 +2,13 @@
 title: Github 블로그 Hexo로 만들기
 description: 'Git Page로 블로그를 만들었다 이미 써오던 블로그에 글이 점점 많아져서 더욱더 열심히 쓰고 있었는데 아무리 봐도 <strong github.io</strong 도메인은 너무 멋이난다.. 결국 큰 결심을하고 프레임워크를 이용해 새로 만들기로 결정. 이참에 마크다운 문법이나 제대로 익혀놓으면 좋겠다는 생각도 했다. J…'
 pubDate: 2020-08-14 17:26:46
-tags: Hexo
-category: History
+tags:
+  - Hexo
+category: history
+
+
+
+
 
 ---
 

@@ -6,7 +6,10 @@ pubDate: 2020-08-29 16:32:05
 tags:
   - Javascript
   - Javascript30
-category: Javascript
+category: frontend
+
+
+
 
 
 ---

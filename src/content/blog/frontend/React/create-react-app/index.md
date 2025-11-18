@@ -6,7 +6,10 @@ pubDate: 2022-05-30 11:11:56
 tags: 
   - Error
   - React
-category: ReactJS
+category: frontend
+
+
+
 
 
 ---

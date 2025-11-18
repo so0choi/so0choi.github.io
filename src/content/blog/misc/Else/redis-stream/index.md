@@ -2,9 +2,12 @@
 title: Redis Stream 알아보기
 description: 'Redis stream은 append only 로그와 비슷하게 동작하는 데이터 구조다. O(1)의 랜덤 액세스가 가능하며 컨슈머 그룹이라는 고성능 기능도 탑재되어있다. redis stream을 이용하면 기록과 동시에 실시간으로 이벤트를 소비할 수 있다. 사용 가능한 예시는 다음과 같다. 이벤트 소싱 (유저 액션 트래킹)…'
 pubDate: 2025-09-09 04:29:18
-category: Else
+category: misc
 tags:
   - Redis
+
+
+
 
 ---
 

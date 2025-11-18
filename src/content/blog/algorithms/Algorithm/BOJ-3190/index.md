@@ -5,7 +5,10 @@ pubDate: 2020-09-05 23:33:25
 tags:
   - BOJ
   - 구현
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

@@ -2,7 +2,8 @@
 title: "Node.js 설치 GLIBC_x 에러"
 description: 'node 설치 후 아래와 같은 에러가 발생할 때가 있다. 에러의 발생 원인은 Node.js를 설치한 서버의 Operating System이 설치한 Node.js가 지원하는 것보다 낮은 버전의 GLIBC를 가지고있기 때문이다. 예를 들어 Node v18.x는 GLIBC v2.7 이상을 지원하기 때문에 GLIBC v2.6을…'
 pubDate: 2024-01-10 13:41:49
-category: Error
+category: troubleshooting
+
 
 ---
 

@@ -2,10 +2,13 @@
 title: AWS - DynamoDB6
 description: 'DynamoDB로 집계내기 문제 DynamoDB는 pure ’key value’ NoSQL로 집계와 같은 메서드는 제공하지 않는다. 생각해본 다른 방법 1. Apache Hive 연동 2. 별도 table 두기 3. Amazon Redshift 이용 1. Hive 사용 장점 : RDB에서 사용하는 쿼리문을 그대로 사용할…'
 pubDate: 2020-11-25 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 ---
 

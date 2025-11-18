@@ -2,7 +2,7 @@
 title: Node.js + Lambda + APIGateway + DynamoDB
 description: 'Lambda 람다는 서버리스 코드 실행 컴퓨팅 서비스이다. 항상 가동되는 것이 아니라 필요 시에만 코드를 실행하기 때문에 경제적이다. 또한 사용자는 컴퓨터 자원에 대해서는 고려하지 않아도 되며 오로지 코드에만 책임을 가지기 때문에 상황에 따라 아주 효율적으로 사용될 수 있다. 람다는 다양한 언어로 사용할 수 있다. No…'
 heroImage: './2020-11-13-11-52-08.png'
-category: AWS
+category: cloud
 pubDate: 2020-11-17 22:27:37
 tags:
   - AWS
@@ -10,6 +10,9 @@ tags:
   - Lambda
   - API Gateway
   - DynamoDB
+
+
+
 
 
 ---

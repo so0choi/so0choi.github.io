@@ -2,9 +2,12 @@
 title: React 컴포넌트 테스트 하기
 description: '테스트에 사용한 라이브러리는 과 이다. React 뿐만 아니라 UI 컴포넌트 테스트를 위한 툴을 가지고 있는 패키지이다. test runner는 패키지에 포함되어 있지 않으며 사용자가 원하는 테스트 프레임워크를 사용하면 된다. 를 사용하지 않고도 테스트를 할 수는 있지만 이 라이브러리를 사용하면 테스트에 필요한 세부 코…'
 pubDate: 2024-10-20 17:56:29
-category: React
+category: frontend
 tags:
   - test
+
+
+
 
 ---
 

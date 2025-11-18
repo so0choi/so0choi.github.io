@@ -3,8 +3,9 @@ title: React Native New Architecture
 description: 'React Native는 버전 0.68부터 새로운 구조를 도입했다. 새로운 구조는 기존 구조에 있던 RN의 고질적인 성능 이슈를 해결했다. 하지만 기존 구조를 바탕으로 만들어진 라이브러리가 많기 때문에 기존의 프로젝트를 마이그레이션 하는 것은 충분히 고려해 본 다음 진행해야 할 것 같다. Old Architecture…'
 heroImage: './React-Native-New-Architecture-01.png'
 pubDate: 2023-07-11 10:16:50
-tags:
-category: React Native
+category: mobile
+
+
 
 
 ---

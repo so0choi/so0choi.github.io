@@ -3,7 +3,8 @@ title: OAuth2.0 이란
 description: 'OAuth(Open Authorization)는 클라이언트 디벨로퍼가 다양한 환경에서 개발할 때 더 간단한 인증 플로우를 가질 수 있도록 고안된 개념으로 인증 프레임워크이다. 데스크탑 애플리케이션, 모바일 애플리케이션, 각종 가정용 디바이스 등 클라이언트 환경이 다양해졌기 때문에 공통의 인증 서버를 두게 되면 훨씬 간편…'
 heroImage: './OAuth2-0.png'
 pubDate: 2023-09-25 09:08:59
-category: Else
+category: misc
+
 
 
 ---

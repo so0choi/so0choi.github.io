@@ -3,8 +3,13 @@ title: NestJS란
 description: 'NestJS NestJS? NestJs는 Node.js용 프레임워크이다. Typescript를 전격 지원하고 OOP(Object Oriented Programming), FP(Functional Programming), FRP(Functional Reactive Programming)으로 이루어져있다. NestJS는 N…'
 heroImage: './2021-08-23-21-48-08.png'
 pubDate: 2021-08-23 21:37:25
-category: NestJS
-tags: NestJS
+category: backend
+tags:
+  - NestJS
+
+
+
+
 
 
 ---

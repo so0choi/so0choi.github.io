@@ -2,7 +2,10 @@
 title: Code Deploy 배포 자동화 이슈
 description: '온프레미스 인스턴스에 작업 codedeploy agent config 파일이 없다는 이슈 명령어 사용시 config file이 같은 디렉토리에 생성된다. 명령어 사용시 위치에 파일을 만든다. SSL validation error 시도해본 방법들 certification 경로를 못 불러오는건 아닌가 하여 환경 변수 재설정'
 pubDate: 2022-09-02 15:38:24
-tags:
+category: cloud
+
+
+
 
 ---
 

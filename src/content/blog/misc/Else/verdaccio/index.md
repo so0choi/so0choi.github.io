@@ -2,7 +2,10 @@
 title: verdaccio private npm registry 구축하기
 description: '내부에서 사용하기 위한 npm 라이브러리를 만들게되었다. 테스트를 위해 private npm에 배포하려고 보니 유료 서비스였다. 무료로 해결할 방법을 찾다가 verdaccio를 발견해서 사용해봤는데 사용법이 매우 간편해서 정리해두려한다. registry란 package의 레포지토리이다. yarn, npm, pnpm을 지…'
 pubDate: 2025-04-02 15:05:52
-tags:
+category: misc
+
+
+
 
 ---
 

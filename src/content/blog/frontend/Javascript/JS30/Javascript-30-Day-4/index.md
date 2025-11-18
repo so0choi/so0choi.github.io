@@ -3,9 +3,12 @@ title: Javascript 30 - Day 4
 description: 'Javascript30 Day4 Array Cardio Day 1 Array 자료형에 내장된 여러 유용한 함수들을 사용하면, 일반 반복문으로 해결하던 작업들을 더 간단하게 수행할 수 있기 때문에 잘 활용하는게 좋다. 예제 Data 1. Array.proottype.filter() 지정된 filter function 조건…'
 pubDate: 2020-08-16 15:40:58
 tags:
-    - Javascript
-    - Javascript30
-category: Javascript
+  - Javascript
+  - Javascript30
+category: frontend
+
+
+
 
 ---
 

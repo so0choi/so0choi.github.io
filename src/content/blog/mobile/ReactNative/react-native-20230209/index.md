@@ -2,7 +2,8 @@
 title: React Native 기기 사용 권한 설정하기
 description: 'Application permission 이란 앱에서 장치 수준 기능에 대한 액세스를 제어하고 규제하는 수단이다. 일반적으로는 카메라나 위치 정보 접근과 같은 장치의 하드웨어 기능 및 개인 데이터 액세스 기능과 같이 개인 정보에 영향을 미칠 수 있는 기능이 포함된다. React Native 문서에는 Android 권한을…'
 pubDate: 2023-02-09 10:35:47
-category: React Native
+category: mobile
+
 
 ---
 

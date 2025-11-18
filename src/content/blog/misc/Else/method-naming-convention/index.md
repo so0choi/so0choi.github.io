@@ -2,7 +2,10 @@
 title: Method Naming Convention
 description: 'Apple 개발자 문서를 참고하여 정리한다. 일반적인 Rule 이름은 소문자로 시작한다. 뒤에 붙은 단어의 첫번째 글자는 대문자로 작성한다. , / 등의 문장부호는 이름에 포함시키지 않는다. (camel case 사용) 예외 케이스 통용되는 명칭을 사용하는 경우(ex. PDF) 대문자로 시작할 수 있음 여러 privat…'
 pubDate: 2023-01-31 10:37:48
-tags:
+category: misc
+
+
+
 
 ---
 

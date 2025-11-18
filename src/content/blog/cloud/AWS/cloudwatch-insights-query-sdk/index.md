@@ -2,7 +2,10 @@
 title: cloudwatch log insights query sdk
 description: 'javascript sdk를 사용해 cloudwatch log insight를 사용하는 법을 정리한다. 코드 참고 Stackoverflow'
 pubDate: 2022-12-19 11:18:56
-tags:
+category: cloud
+
+
+
 
 ---
 

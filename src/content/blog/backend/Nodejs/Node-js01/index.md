@@ -2,8 +2,13 @@
 title: "[Node.js] Node.js의 기본 기능"
 description: '노드는 주로 서버 쪽 기능을 담당하는 자바스크립트 기반의 프로그래밍 언어이다. 이벤트 기반으로 동작하는 언어이므로 이벤트를 어떻게 처리하는지 잘 알아둬야 한다. 다른 서버 언어들과의 차이점 세상이 Node.js에 열광한 이유를 찾아보려면 Node.js가 나온 이유에 대해 알아야 한다. 간단히 말하면 HTML을 일일이 고…'
 pubDate: 2020-08-16 22:18:48
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 ---
 

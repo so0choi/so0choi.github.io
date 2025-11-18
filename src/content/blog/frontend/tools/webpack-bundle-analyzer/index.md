@@ -3,7 +3,8 @@ title: Webpack Bundle Analyzer
 description: '페이지 로드 속도는 매우 중요한 요소이다. 페이지 컨텐츠가 전부 그려지지 못하더라도 무언가 화면에 그려지는 first paint 작업은 최대한 빠르게 처리되어야 유저 이탈률이 줄어든다. webpack을 사용해 bundle을 페이지에 붙이는 경우 bundle의 사이즈가 페이지 성능에 큰 영향을 주게 된다. 따라서 bund…'
 heroImage: './webpack-bundle-analyzer.gif'
 pubDate: 2023-11-13 14:08:57
-category: Frontend
+category: frontend
+
 
 
 ---

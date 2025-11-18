@@ -3,8 +3,13 @@ title: Git 명령어 정리
 description: 'Git 명령어 git은 CLI 버젼과 GUI 버젼 두 개의 버젼이 있다. 자신에게 편한 것으로 사용하면 될것 같다. : git으로 버젼관리를 시작하는 명령어다. 명령어를 입력하면 프로젝트 폴더 내부에 이라는 숨은 폴더가 생성된다. : 버젼 관리에 추가될 파일들을 선택할 수 있다. 을 작성해도 되고 폴더 내부의 모든 파일…'
 heroImage: './2020-09-13-17-11-54.png'
 pubDate: 2020-09-13 16:25:04
-tags: Git
-category: Git
+tags:
+  - Git
+category: misc
+
+
+
+
 
 
 ---

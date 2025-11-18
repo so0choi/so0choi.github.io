@@ -4,7 +4,10 @@ description: '🚨 ’이것이 취업을 위한 코딩테스트다’ 교재 �
 pubDate: 2020-08-23 20:03:47
 tags:
   - Algorithm
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

@@ -3,10 +3,16 @@ title: Gulp 사용 오류 정리
 description: 'Gulp 이슈 정리 Gulp 사용 실습을 따라하다 발생한 오류들을 해결했던 방법들을 정리 해놓으려한다. gulp image 설치 이슈 (ENONET) 위 에러가 발생해 이틀동안 원인을 찾았다. 는 이미지 파일을 압축하여 서버에 올려주는 작업을 해주는 라이브러리이다. gulp image npm 설치 페이지에서 다양한 옵션…'
 heroImage: './2020-12-28-00-24-40.png'
 pubDate: 2020-12-28 00:06:52
-tags: 
-- Gulp.js
-- gulp-image
-- gulp-sass
+tags:
+  - Gulp.js
+  - gulp-image
+  - gulp-sass
+category: backend
+
+
+
+
+
 
 
 ---

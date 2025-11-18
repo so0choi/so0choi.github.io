@@ -3,7 +3,8 @@ title: Dependency Injection
 description: 'Understanding dependency injection Dependency injection, 또는 DI는 Angular의 기본 컨셉입니다. DI는 Angular 프레임워크에 결합되어 Components, Directives, Pipes, Injectables과 같은 decorator로 class를 필요에 맞게…'
 heroImage: './dependency-injection.png'
 pubDate: 2022-12-27 13:16:33
-category: Else
+category: misc
+
 
 
 ---

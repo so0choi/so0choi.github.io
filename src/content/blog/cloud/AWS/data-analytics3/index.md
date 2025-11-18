@@ -3,10 +3,13 @@ title: Data analytics3 - Athena, Glue 실습
 description: ': 로그 데이터를 Athena Glue로 분석하기 CloudWatch 로그 데이터를 S3 로 옮기는 방법은 두 가지가 있다. 1. Export log data to S3 directly 2. Using Kinesis Firehose to push log messages from CloudWatch Logs to S3 옵…'
 heroImage: './2020-12-01-16-26-19.png'
 pubDate: 2020-12-04 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - Data analytics
+
+
+
 
 
 ---

@@ -2,8 +2,13 @@
 title: Event handler의 등록 및 삭제
 description: 'Event handler의 등록 및 삭제 이벤트 등록 EventTarget.addEventListener() Argument type: 이벤트 유형을 나타내는 문자열 listner: 이벤트 알림을 받는 function 객체 options capture: 으로 전송하기 전, 등록된 리스너로 이벤트의 전송여부를 나타내는 B…'
 pubDate: 2022-01-12 09:37:21
-tags: Javascript
-category: Javascript
+tags:
+  - Javascript
+category: frontend
+
+
+
+
 
 
 ---

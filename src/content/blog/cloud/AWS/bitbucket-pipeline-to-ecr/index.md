@@ -2,12 +2,15 @@
 title: Bitbucket에서 ECR로 push하는 Pipeline 구축하기 
 pubDate: 2025-11-17 17:29
 heroImage: './img_2.png'
-category: AWS
+category: cloud
 tags:
   - AWS
   - Bitbucket
   - CI/CD
 description: Bitbucket pipeline으로 ECR 자동 배포 구성하는 방법이다. 
+
+
+
 ---
 
 Bitbucket pipeline으로 ECR 자동 배포를 구성하는 방법이다.

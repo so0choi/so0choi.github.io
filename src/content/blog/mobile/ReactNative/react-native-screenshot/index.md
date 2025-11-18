@@ -3,7 +3,8 @@ title: "[React Native] screenshot 다루기"
 description: '보호된 영상 컨텐츠의 스크린샷을 막기위해 리서치를 진행했다. 몇가지 방법을 찾았는데 결론부터 말하자면 IOS / Android 양쪽에서 완벽하게 캡처 동작을 막을수는 없다. 그래도 이벤트를 감지해 후처리를 해줄 수는 있다. react native screen capture secure ScreenCaptureSecure…'
 heroImage: './IMG_1777.PNG'
 pubDate: 2022-02-23 11:02:16
-category: React Native
+category: mobile
+
 
 
 

@@ -2,10 +2,13 @@
 title: Data analytics2 - DataLake
 description: 'DataLake Data lake는 정형화된 그리고 비정형화된 그 어떤 데이터도 모두 저장할 수 있는 중앙화된 집중식 레파지토리이다. 말 그대로 필터링이나 정제화가 진행되지 않은 데이터가 흐르는 강이다. 특징 데이터를 구조화 할 필요 없이, 있는 그대로 저장하여 데이터에 따라 서로 다른 분석 작업을 진행 할 수 있고,…'
 pubDate: 2020-12-01 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - Data analytics
+
+
+
 
 ---
 

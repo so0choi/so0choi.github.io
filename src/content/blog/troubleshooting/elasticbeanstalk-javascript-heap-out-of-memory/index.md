@@ -3,12 +3,15 @@ title: ElasticBeanstalk yarn 적용 및 Javascript heap out of memory 오류
 description: 'ElasticBeanstalk에서 Node.js 엔진을 선택하면 default 패키지 매니저가 npm으로 설정된다. 대부분의 경우 npm이든 yarn이든 문제없이 실행되겠지만 내 프로젝트는 npm 실행시 에러가 발생했다. 관련 내용은 짧게 찾아봤는데 나중에 더 자세히 봐야겠다. 구글링을 하면 yarn을 설치하여 사용하는…'
 heroImage: './2022-08-23-14-13-24.png'
 pubDate: 2022-08-23 14:15:09
-category: Error
+category: troubleshooting
 tags:
   - nest.js
   - ElasticBeanstalk
   - Javascript heap out of memory
   - yarn
+
+
+
 
 
 

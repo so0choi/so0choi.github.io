@@ -2,11 +2,14 @@
 title: "[Javascript] Generator"
 description: 'Generator 는 여러 개의 값을 필요에 따라 하나씩 반환( )할 수 있는 함수이다. 일반 함수는 하나 또는 0개의 값만을 반환할 수 있다는 것이 둘의 차이점이다. 실행되는 순서에 따라 동적으로 값을 반환한다는 것이 핵심이다. 사용법 제너레이터 함수 생성하기 제너레이터 함수는 키워드를 사용해 생성한다. 일반적인 함수…'
 pubDate: 2020-09-20 17:36:47
-category: Javascript
+category: frontend
 tags:
   - Generator
   - ES6
   - Javascript
+
+
+
 
 ---
 

@@ -3,11 +3,14 @@ title: VPC 내부 AWS Lambda DynamoDB 연결하기
 description: 'Elasticache를 사용하려는데 같은 VPC 내부에서만 접근이 가능해서 Lambda를 VPC 내부에 위치시켰다. 그랬더니 DynamoDB로 직접 접근이 되지 않고 무한히 Timeout만 발생했다. 당연히 안되겠지. DynamoDB VPC 엔드포인트 사용을 보고 문제를 해결할 수 있었다. 다만 문서에서는 CLI 명령으…'
 heroImage: './2024030501.png'
 pubDate: 2024-03-05 18:49:12
-category: AWS
+category: cloud
 tags:
   - Lambda
   - DynamoDB
   - VPC
+
+
+
 
 
 ---

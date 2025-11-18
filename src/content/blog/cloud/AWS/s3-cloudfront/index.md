@@ -2,11 +2,14 @@
 title: S3 & CloudFront 연동
 description: 'AWS CloudFront 공식문서 CloudFront html, css, js 및 이미지 파일과 같은 정적 & 동적 웹 컨텐츠를 사용자에게 더 빨리 배포하도록 지원하는 AWS의 웹 서비스이다. 전세계의 엣지 로케이션을 통해 뛰어난 전송 능력을 가지고있다. 파일의 사본이 여러 위치에 보관되므로 안정성과 가용성도 향상된다…'
 pubDate: 2020-10-15 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - S3
   - CloudFront
+
+
+
 
 ---
 

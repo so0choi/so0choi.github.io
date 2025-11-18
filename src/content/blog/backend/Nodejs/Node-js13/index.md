@@ -3,8 +3,13 @@ title: "[Node.js] EventLoop"
 description: 'Node.js 동작 방식 Node.js를 창시한 라이언 달이 노드를 만든 이유로 꼽은 것은, 기존에 많이 사용되고 있는 WAS라고 불리는 Apache, Tomcat 같은 서버들은 오래걸리는 blocking 작업에서 원활한 사용에 문제가 생겨 동시성 프로그래밍을 위해 Node.js를 만들었다고 한다. Node를 사용하는…'
 heroImage: './2020-09-15-15-59-51.png'
 pubDate: 2020-09-15 14:41:47
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 
 ---

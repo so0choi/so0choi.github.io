@@ -2,8 +2,13 @@
 title: "[Node.js] 에러페이지 핸들링"
 description: '에러페이지 핸들링 Node.js의 Express 에서 에러 처리를 하려면 어떡헤 해야 할까? 아래의 방식이 내가 주로 사용하던 에러 핸들링 방식이다. , 를 사용해 에러처리를 하고 있다. 하지만 만약 엔드포인트가 계속해서 많아진다면? 에러 처리를 위해 반복 작성되는 코드가 매우 많아질 것이다. Express는 이를 방지…'
 pubDate: 2020-08-31 21:03:42
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 ---
 

@@ -3,8 +3,13 @@ title: React Native Xcode archive 실패 - Operation not permitted
 description: 'Archieve를 진행하려고 하는데 계속해서 에러가 발생했다. 권한 관련 문제 같아서 설정에서 디스크 접근 권한을 XCode, watchman, webstorm, terminal에 전부 접근 허용을 줘봤는데도 해결이 되지 않았다. 그러다가 watchman 깃허브 이슈에서 요상한 해결책을 찾았다. 디렉토리 내부에 있으면…'
 heroImage: './2023040401.png'
 pubDate: 2023-04-04 11:06:23
-category: Error
-tags: React Native
+category: troubleshooting
+tags:
+  - React Native
+
+
+
+
 
 
 ---

@@ -4,7 +4,10 @@ description: 'AppSync DynamoDB Javascript Resolver에서 update increment, decre
 pubDate: 2024-01-24 16:59:13
 tags:
   - AWS AppSync
-category: AWS
+category: cloud
+
+
+
 
 ---
 

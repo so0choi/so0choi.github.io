@@ -6,7 +6,10 @@ pubDate: 2020-09-13 22:05:27
 tags:
   - Javascript
   - Promise
-category: Javascript
+category: frontend
+
+
+
 
 
 

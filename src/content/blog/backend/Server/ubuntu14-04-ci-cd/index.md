@@ -2,7 +2,10 @@
 title: Ubuntu14.04 CI/CD 구축
 description: 'Codedeploy agent 설치 agent 파일을 설치한다. ruby 설치 후 agent를 설치한다. 이 때 ruby 버전 2 이상이 필요하므로 레포지토리를 따로 추가 후에 설치해야 정상 진행이 가능하다.'
 pubDate: 2022-08-10 15:22:34
-tags:
+category: backend
+
+
+
 
 ---
 

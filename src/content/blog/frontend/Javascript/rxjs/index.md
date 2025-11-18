@@ -2,7 +2,14 @@
 title: Rxjs 알아보기
 description: RxJS는 비동기적이고 이벤트 기반의 프로그램을 다루기 위한 라이브러리이다. RxJS는 observable한 sequence를 사용한다...
 pubDate: 2025-11-16
-tags: Javascript
+tags:
+  - Javascript
+category: frontend
+
+
+
+
+
 ---
 
 RxJS는 비동기적이고 이벤트 기반의 프로그램을 다루기 위한 라이브러리이다. RxJS는 observable한 sequence를 사용한다.

@@ -7,7 +7,10 @@ tags:
   - Programmers
   - 2019 KAKAO
   - Sorting
-category: Algorithm
+category: algorithms
+
+
+
 
 
 ---

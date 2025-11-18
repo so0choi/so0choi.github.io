@@ -2,8 +2,9 @@
 title: "[Javascript] Closure란"
 description: '클로저란 함수의 레퍼런스와 함수를 둘러싼 state, 즉 lexical 환경을 합쳐서 부르는 말이다. 클로저는 내부 함수에서 외부 함수 scope에 접근할 수 있도록 해준다. JavaScript에서 클로저는 함수가 생성될 때마다 함수 생성 시점에 클로저가 생성된다. Lexical scoping 아래 코드를 살펴보자. 은…'
 pubDate: 2023-04-07 10:38:12
-tags:
-category: Javascript
+category: frontend
+
+
 
 ---
 

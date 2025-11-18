@@ -2,7 +2,10 @@
 title: Step Functions 작성하기
 description: '나중에 또 쓸 일이 있을 것 같아서 기록해둔다. SQS에 쌓여있는 Queue를 10초에 한 번씩 처리하도록 했다. Step 10초에 한 번 람다를 실행시키는 Step Functions Stemp Functions 에서 실행시키는 iterator 람다는 아래와 같다.'
 pubDate: 2022-09-02 09:53:13
-tags:
+category: cloud
+
+
+
 
 ---
 

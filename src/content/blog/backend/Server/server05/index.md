@@ -7,6 +7,11 @@ tags:
   - FTP
   - AWS
   - ubuntu18.04
+category: backend
+
+
+
+
 
 
 ---

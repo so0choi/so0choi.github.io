@@ -2,9 +2,12 @@
 title: ConfigService로 환경변수 사용하기
 description: 'ConfigService 사용하기 프로젝트 환경에 관련된 변수들이 있다. 예를들면 DB에 관한 정보라던가 AWS 접근 정보라던가. 이런 정보들을 .env에서 관리하도록 프로젝트를 구성했다면 으로 변수에 접근할 수 있다. 하지만 이렇게 하는 것은 NestJS에서 선호하는 방식은 아니다. NestJS에서는 을 사용하기를 권…'
 pubDate: 2021-05-23 23:01:48
-category: NestJS
+category: backend
 tags:
   - NestJS
+
+
+
 
 ---
 

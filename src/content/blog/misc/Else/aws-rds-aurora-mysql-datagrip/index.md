@@ -3,11 +3,14 @@ title: AWS RDS Aurora MySQL DataGrip으로 접속하기
 description: 'DataGrip이 그렇게 좋다고해서 사용해보려고 설치했는데 연결이 잘 안돼서 좀 헤맷다. 데이터 소스 리스트를 보면 MySQL이 보인다. 선택하고 DB 정보를 입력하고 을 누르면 연결이 잘 되는지 확인할 수 있는데 계속 접속 에러가 났다. 한참 헤맷는데 생각보다 간단하게 해결할 수 있었다. 설정에서 ’MySQL’을 누르…'
 heroImage: './202211071310.png'
 pubDate: 2022-11-07 13:08:10
-category: AWS
+category: misc
 tags:
   - AWS RDS
   - Aurora MySQL
   - DataGrip
+
+
+
 
 
 ---

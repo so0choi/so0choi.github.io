@@ -5,6 +5,11 @@ pubDate: 2022-03-24 11:48:05
 tags:
   - Serverless
   - DynamoDB local
+category: troubleshooting
+
+
+
+
 
 ---
 

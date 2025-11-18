@@ -2,7 +2,8 @@
 title: React에서 setInterval 사용하기
 description: 'React에서 를 사용했는데 설정한 것 보다 여러번 실행되었다. 문제를 찾아보니 컴포넌트가 리로드 될 때마다 hook으로 감싸지지 않은 코드들이 재실행되기 때문이었다. 예를들어 아래와 같이 코드를 작성하는 경우에 그렇게 된다. 원하는 대로 동작하게 하려면 훅으로 감싸주면 된다. 또한 컴포넌트가 unmount 되었을 때…'
 pubDate: 2023-09-21 10:16:31
-category: React.JS
+category: frontend
+
 
 ---
 

@@ -2,10 +2,13 @@
 title: SQS Lambda Trigger
 description: 'SQS Lambda Trigger란 Lambda trigger로 SQS를 등록할 수 있다. Standard 큐와 FIFO 큐 모두 지원한다. Lambda는 큐를 poll하여 가져온 큐 메시지로 동기적으로 Lambda 함수를 실행한다. Lambda는 batch안의 메시지들을 읽고 각 batch당 한 번씩 Lambda 함수…'
 pubDate: 2022-04-14 10:53:17
-category: AWS
+category: cloud
 tags:
   - AWS
   - SQS
+
+
+
 
 ---
 

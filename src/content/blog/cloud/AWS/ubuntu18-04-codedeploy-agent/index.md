@@ -2,7 +2,14 @@
 title: Ubuntu18.04 CodeDeploy agent cli 설치
 description: 'AWS 공식 문서에서는 Codedeploy agent 설치시 AWS Systems Manager를 사용할 것을 권장한다. 하지만 나는 온프레미스 서버에서의 간단한 세팅을 원하기 때문에 그냥 cli로 설치하기로 했다. 🥸 설치 사용중인 Ubuntu 버전에 따라 설치 커맨드가 달라지고 잘못 입력할 경우 패키지를 지웠다 깔…'
 pubDate: 2022-08-24 10:18:17
-tags: CodeDeploy Agent
+tags:
+  - CodeDeploy Agent
+category: cloud
+
+
+
+
+
 
 ---
 

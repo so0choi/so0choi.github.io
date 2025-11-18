@@ -3,10 +3,13 @@ title: AWS ECS
 description: "Amazon ECS(Elastic Container Service)는 컨테이너 애플리케이션을 쉽게 배포하고 관리할 수 있는 완전 관리형 컨테이너 오케스트레이션 서비스이다."
 pubDate: 2025-10-31 09:59:12
 heroImage: ./img_4.png
-category: AWS
+category: cloud
 tags:
   - AWS
   - Fargate
+
+
+
 ---
 
 ## 1. Amazon ECS란?

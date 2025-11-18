@@ -3,8 +3,13 @@ title: "[HTML] 태그"
 description: '태그 구성요소 w head 태그에는 웹페이지에 대한 정보를 담는다. 페이지 인코딩 방식이나 css 파일 링크, 페이지의 제목 등 다양한 데이터를 포함한다. meta 태그는 웹페이지에 대한 메타데이터를 나타내는 태그이다. 메타데이터란 이다. 문서 작성자나 문서 요약과 같은 정보를 담고 있다. 주로 인코딩 방식을 나타내기…'
 heroImage: './2020-08-28-01-07-52.png'
 pubDate: 2020-08-28 00:54:48
-tags: html
-category: Frontend
+tags:
+  - html
+category: frontend
+
+
+
+
 
 
 ---

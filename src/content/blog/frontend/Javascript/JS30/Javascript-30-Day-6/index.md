@@ -3,9 +3,12 @@ title: Javascript 30 - Day 6
 description: 'Javascript30 Day6 Type Ahead fetch를 사용한 서버와의 비동기적 통신을 이용해 필요하 데이터를 불러와 웹페이지에 출력한다. 예제에 사용된 JSON data는 다음 endpoint의 도시별 인구수 데이터를 나타내는 endpoint가 사용된다. 이번에 만들 서비스는 입력한 영문자를 포함하고 있는 도…'
 pubDate: 2020-08-18 10:41:08
 tags:
-    - Javascript
-    - Javascript30
-category: Javascript
+  - Javascript
+  - Javascript30
+category: frontend
+
+
+
 
 ---
 

@@ -2,7 +2,14 @@
 title: CodeDeploy
 description: 'CodeDeploy는 Amazon EC2 인스턴스, 온프레미스 인스턴스, 서버리스 Lambda 함수 또는 ECS 서비스로 애플리케이션 배포를 자동화하는 배포 서비스이다. 기존 코드 변경 없이도 사용이 가능하다. 장점 신속한 새 기능 출시 애플리케이션 배포 시 가동 중지 방지 수동 배포와 관련된 다양한 위험 없이 애플리케…'
 pubDate: 2022-03-21 12:20:26
-tags: CodeDeploy
+tags:
+  - CodeDeploy
+category: cloud
+
+
+
+
+
 
 ---
 

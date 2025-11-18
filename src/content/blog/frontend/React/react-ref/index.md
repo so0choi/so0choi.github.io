@@ -3,8 +3,9 @@ title: "[React] ref 전달하기"
 description: 'React에서 자식 컴포넌트에 ref를 전달하려고 하면 오류가 발생한다. 위 코드를 실행하면 의도한대로 동작하지 않는 것을 볼 수 있다. 이런식으로 가리키게 하려고 한 것이나 실패한다. warning은 다음과 같다. warning에도 나와있듯 이런 경우 를 사용해야한다. forwardRef 는 고차원 컴포넌트에서 ref…'
 heroImage: './2023042001.png'
 pubDate: 2023-04-20 13:18:38
-tags:
-category: React
+category: frontend
+
+
 
 
 ---

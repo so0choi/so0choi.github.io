@@ -2,8 +2,13 @@
 title: "[AWS] SQS batch item failures"
 description: 'Snowball anti patterns SQS에서 실패 처리된 메세지 핸들링은 매우 중요하다. 보통의 경우 Lambda가 batch를 처리하다 에러가 발생하는 경우 전체 메세지가 큐에 다시 들어가게 된다. 예를 들어 배치 크기가 100인 경우 한 번에 100개의 메세지가 처리되는 건데 77번째 메세지 처리 중 에러가…'
 pubDate: 2023-05-23 11:41:23
-tags: SQS
-category: AWS
+tags:
+  - SQS
+category: cloud
+
+
+
+
 
 ---
 

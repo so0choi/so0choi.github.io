@@ -3,7 +3,10 @@ title: Wowza Streaming Engine으로 LL-HLS 스트리밍 하기
 description: 'HLS와 LL HLS LL HLS는 기존의 HLS를 확장한 프로토콜이다. HLS는 미디어를 segment라는 쪼개진 단위로 잘라 전송하는 프로토콜인데 segment duration 만큼의 latency가 발생할 수 밖에 없는 한계점을 가지고있다. HLS가 처음 발표되었을 때 기본 스펙에서는 30초의 latency를 가지…'
 heroImage: './202306191323.png'
 pubDate: 2023-06-19 09:26:19
-tags:
+category: misc
+
+
+
 
 
 ---

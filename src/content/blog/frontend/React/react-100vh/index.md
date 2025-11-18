@@ -3,8 +3,9 @@ title: React 모바일 디바이스 100vh 사용하기
 description: '브라우저는 정책이 시시때때로 바뀌어서 언제 에러가 발생할지 모른다. 모바일 디바이스의 경우 iPhone은 하단바 때문에 를 사용해 전체 화면에 적용하려고 하면 하단 부분이 잘리는 경우가 있다. 대부분 최신 브라우저에서 사용 가능한 속성이 새로 나왔다고는 하지만 나의 경우 잘 적용되지 않았다. 이를 해결해주는 라이브러리가…'
 heroImage: './react-100vh.png'
 pubDate: 2024-10-22 15:41:15
-category: React
-tags:
+category: frontend
+
+
 
 
 ---

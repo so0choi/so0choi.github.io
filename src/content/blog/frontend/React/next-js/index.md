@@ -3,9 +3,12 @@ title: Next.js란
 description: 'Next.js란 풀스택 애플리케이션을 만들 수 있게 해주는 React 프레임워크이다. React를 사용해 프론트를 개발한 뒤 Next.js의 추가 기능을 사용해 더욱 간편하게 개발을 하거나 최적화를 할 수 있다. Next.js는 자동으로 React에 필요한 번들링, 컴파일링 등의 작업들을 수행해준다. 따라서 사용자는 개…'
 heroImage: './202401081134.png'
 pubDate: 2023-09-05 09:51:04
-category: ReactJS
+category: frontend
 tags:
   - Next.js
+
+
+
 
 
 ---

@@ -2,7 +2,10 @@
 title: rollup.js
 description: 'rollup.js는 javascript module 번들러이다. 번들링 라이브러리라는 면에서 webpack과 같은 역할을 한다고 볼 수 있는데, 보통 webpack은 애플리케이션 번들링에 사용하고 라이브러리 제작에는 rollup을 사용하는 것이 일반적이라고 한다. rollup 또한 webpack 처럼 모든 기능을 자체적…'
 pubDate: 2025-03-11 10:17:29
-tags:
+category: misc
+
+
+
 
 ---
 

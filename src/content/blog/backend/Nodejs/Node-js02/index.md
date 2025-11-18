@@ -4,7 +4,10 @@ description: 'fs module File System 파일을 읽고 쓰는데 필요한 많은 
 pubDate: 2020-08-18 22:20:37
 tags: 
   - Node.js
-category: Node.js
+category: backend
+
+
+
 
 ---
 

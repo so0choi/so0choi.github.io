@@ -2,8 +2,13 @@
 title: 'webpack 빌드 속도 향상시키기'
 description: 'webpack 빌드가 갑자기 너무 느려져서 개발 속도가 정체되었다. 최근 webpack 옵션을 바꾼 적이 있었는데 그 때문인가 하고 성능과 관련된 옵션들을 살펴보다 잘못 사용하고 있던 부분을 발견했다. devtool 옵션 devtool 옵션은 webpack의 소스맵 생성 여부를 제어한다. 나는 처음 생성할 때 되어있던…'
 pubDate: 2023-08-31 15:19:46
-tags: webpack
-category: Else
+tags:
+  - webpack
+category: misc
+
+
+
+
 
 ---
 

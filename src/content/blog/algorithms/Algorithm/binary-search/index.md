@@ -2,8 +2,13 @@
 title: Binary Search
 description: '🚨 ’이것이 취업을 위한 코딩테스트다’ 교재 정리 이진탐색 이진탐색은 데이터의 크기가 클 때 효율적인 탐색 알고리즘이다. 한번 탐색 할 때 마다 탐색 범위를 반 씩 줄여나가면서 값을 찾기 때문에 속도가 매우 빠르다. 이진탐색은 정렬된 자료에 대해서만 사용할 수 있다. 코딩테스트에 자주 출제되는데, 문제에서 탐색해야 할…'
 pubDate: 2020-08-28 20:30:20
-tags: Algorithm
-category: Algorithm
+tags:
+  - Algorithm
+category: algorithms
+
+
+
+
 
 ---
 

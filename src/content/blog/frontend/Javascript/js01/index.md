@@ -6,7 +6,10 @@ tags:
   - Javascript
   - closer
   - curring
-category: Javascript
+category: frontend
+
+
+
 
 ---
 

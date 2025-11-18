@@ -5,7 +5,10 @@ pubDate: 2020-09-18 23:13:55
 tags:
   - Javascript
   - ES6
-category: Javascript
+category: frontend
+
+
+
 
 ---
 

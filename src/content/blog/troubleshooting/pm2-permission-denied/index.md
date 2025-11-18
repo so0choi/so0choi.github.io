@@ -2,11 +2,14 @@
 title: pm2 permission denied 에러
 description: 'pm2로 프로세스를 시작하려고 했는데 에러가 발생했다. 를 사용해 root 사용자로 사용하고 있었다. 권한 문제인 것 같아 root가 아닌 다른 사용자로 프로세스를 시작하려고 했는데 아래와 같은 에러가 나타났다. 서치해보니 root 사용자가 아닌 사용자는 1024 이하 포트를 열 수 없다고 한다. (참고) 프로세스는 r…'
 pubDate: 2022-11-17 15:26:48
-category: Node.js
+category: troubleshooting
 tags:
   - pm2
   - nvm
   - node
+
+
+
 
 ---
 

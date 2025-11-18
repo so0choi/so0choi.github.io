@@ -5,7 +5,10 @@ pubDate: 2023-05-15 10:17:23
 tags:
   - serverless
   - DynamoDB
-category: Error
+category: troubleshooting
+
+
+
 
 ---
 

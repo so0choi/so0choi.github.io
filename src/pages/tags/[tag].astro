@@ -11,8 +11,9 @@ export async function getStaticPaths() {
     const filteredPosts = allPosts
       .filter((post) => post.data.tags?.includes(tag))
       .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    const slug = encodeURIComponent(tag);
     return {
-      params: { tag },
+      params: { tag: slug },
       props: { tag, posts: filteredPosts },
     };
   });

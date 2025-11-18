@@ -3,8 +3,13 @@ title: AWS AppSync & AWS Amplify
 description: 'AWS AppSync AWS AppSync는 AWS의 Managed GraphQL 및 Pub/Sub API 서비스이다. 서버리스 WebSocket을 통해 이벤트 소스의 데이터를 구독해 실시간 환경을 만들 수 있다. 단일 엔드포인트를 통해 애플리케이션 개발을 간소화하는 서버리스 GraphQL 및 게시/구독 API를 생성하…'
 heroImage: './AWS-AppSync.png'
 pubDate: 2024-01-11 16:43:48
-tags: GraphQL
-category: AWS
+tags:
+  - GraphQL
+category: backend
+
+
+
+
 
 
 ---

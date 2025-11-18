@@ -3,8 +3,12 @@ title: AWS SAM init 에러
 description: '에러 명령어로 stage stack을 생성하던 중 에러가 발생했다. 해결법 정해진 해결법은 없다. 구글링을 하면 aws credential이 잘못 설정된 문제라고 하기도 하고 cloud formation에서 생성이 실패한 스택을 직접 삭제 후 재배포 하면 된다는 글도 있었다. 나는 두 가지 방법으로는 해결되지 않았고 c…'
 heroImage: './2022-03-18-16-30-28.png'
 pubDate: 2022-03-18 16:25:05
-tags: SAM
-category: Error
+tags: 
+  - SAM
+category: troubleshooting
+
+
+
 
 
 ---

@@ -5,7 +5,10 @@ pubDate: 2020-08-21 18:53:51
 tags:
   - Algorithm
   - Greedy
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

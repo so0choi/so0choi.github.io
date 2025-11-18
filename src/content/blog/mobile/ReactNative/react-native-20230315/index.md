@@ -3,7 +3,8 @@ title: React Native 폰트 적용하기 (native-base)
 description: '폰트 적용하는데 꽤 어려움을 겪었다. 그래서 내용을 정리 해놓으려 한다. iOS와 Android 각각 적용해야 한다. 구글링을 하다보니 을 쓰는 방법도 있는 것 같은데 나는 아래의 방법으로 적용했다. 참고한 블로그들이 정말 도움이 많이 되었다. iOS 폴더를 만들어서 그 안에 폰트 파일을 복사한다. xcode를 실행하고…'
 heroImage: './React-Native-font-01.png'
 pubDate: 2023-03-15 09:09:27
-category: React Native
+category: mobile
+
 
 
 ---

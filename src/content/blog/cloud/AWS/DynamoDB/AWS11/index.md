@@ -2,10 +2,13 @@
 title: AWS - DynamoDB5
 description: 'DynamoDB 설계 키 설계 DynamoDB는 NoSQL이기 때문에 어떤 쿼리를 사용하게 될 지 생각해보고 해당 작업을 빠르게 할 수 있는 키를 설정하는 것이 매우 중요하다. DynamoDB의 기본키는 ’파티션 키’와 ’정렬 키’로 이루어진다. 새 테이블을 만들 때 기본키는 무조건 지정해야 한다. 기본키 기본키는 테이…'
 pubDate: 2020-11-24 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 ---
 

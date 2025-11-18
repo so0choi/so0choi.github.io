@@ -7,6 +7,11 @@ tags:
   - SSR
   - CSR
   - SPA
+category: frontend
+
+
+
+
 
 
 ---

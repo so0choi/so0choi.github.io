@@ -2,8 +2,13 @@
 title: AWS cli credential helper로 codecommit 인증하기
 description: '이미 저장된 Codecommit credential이 있어서 다른 계정의 codecommit을 이용하려 할 때 credential helper 팝업이 뜨지 않아 이용이 불가능했다. 멀티 계정으로 codecommit을 이용하기 위해 AWS cli credential helper를 등록해 문제를 해결할 수 있었다. 사용 방…'
 pubDate: 2024-03-29 10:40:54
-tags: codecommit
-category: AWS
+tags:
+  - codecommit
+category: cloud
+
+
+
+
 
 ---
 

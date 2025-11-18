@@ -6,7 +6,10 @@ tags:
   - Flask
   - uwsgi
   - AWS
-category: Server
+category: backend
+
+
+
 
 ---
 

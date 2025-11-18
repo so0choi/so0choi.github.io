@@ -3,8 +3,13 @@ title: GraphQL 이란
 description: '<style img + em { display: block; text align: center; } </style GraphQL은 페이스북에서 만든 쿼리언어이다. 등장한지 얼마 안됐음에도 불구하고 인기가 매우 가파르게 올라가고 있지만 아직 GraphQL을 이용한 open API를 제공하는 곳은 국내 및 해외를 포함해도…'
 heroImage: './2021-01-16-19-52-52.png'
 pubDate: 2021-01-14 00:15:40
-tags: GraphQL
-category: GraphQL
+tags:
+  - GraphQL
+category: backend
+
+
+
+
 
 
 ---

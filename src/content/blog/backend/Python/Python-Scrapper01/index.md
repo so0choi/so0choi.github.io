@@ -4,7 +4,10 @@ description: 'Web Scrappping 이란 웹페이지에서 데이터를 수집하는
 pubDate: 2020-08-29 02:28:06
 tags:
   - Python
-category: Python
+category: backend
+
+
+
 
 ---
 

@@ -3,9 +3,12 @@ title: serverless esbuild로 패키지 사이즈 줄이기
 description: 'serverless로 AWS Lambda를 패키징 하다보니 코드가 늘어날 수록 패키징 및 deploy 시간이 점점 더 늘어났다. 이대로 안되겠다 싶어 방법을 찾아보던 중 를 발견해 적용해보았는데 결과는 대만족! 설치 공식 홈페이지에서 자세한 옵션과 설치 및 적용 방법을 볼 수 있다. 적용 방법은 너무너무 간단하다. 그리…'
 heroImage: './202411121606.png'
 pubDate: 2024-11-12 15:41:39
-category: AWS
+category: cloud
 tags:
   - serverless
+
+
+
 
 
 

@@ -2,13 +2,16 @@
 title: Dockerfile과 Multi-stage
 description: 'Dockerfile과 Multi stage 도커파일은 도커 이미지를 생성하기 위한 선언형 스크립트다. 기본 규칙만 익혀두면 다른 프로젝트의 Dockerfile도 빠르게 읽고 이해할 수 있다. Format 도커파일의 기본 작성 포맷은 아래와 같다. 명령문(instruction)은 대소문자를 구분하지 않지만 편의상 대문자로…'
 pubDate: 2025-10-22 10:50:27
-category: Docker
+category: cloud
 tags:
   - Docker
   - Dockerfile
   - Multi-stage
   - Build
   - Best Practices
+
+
+
 
 
 ---

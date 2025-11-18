@@ -6,7 +6,10 @@ tags:
   - Algorithm
   - BOJ
   - BFS/DFS
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

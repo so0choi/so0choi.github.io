@@ -5,7 +5,10 @@ pubDate: 2020-09-18 19:13:39
 tags:
   - BOJ
   - BFS/DFS
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

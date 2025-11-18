@@ -3,8 +3,13 @@ title: "[AWS] aws-sdk v3 마이그레이션 (Node.js 18.x 런타임)"
 description: 'serverless로 Labmda를 컴파일하는데 aws sdk v3를 사용하라는 warning이 계속 나타나서 이참에 업그레이드를 하기로 했다. AWS에서 sdk v3로 코드를 바꿔주는 커맨드가 있긴한데 난 그걸로는 부족해서 이참에 리팩토링도 진행했다. v3로 버전업 되면서 달라진 점이 몇 가지 있는데 장점이 많아 업그…'
 heroImage: './202305181146.png'
 pubDate: 2023-05-18 11:13:58
-tags: DynamoDB
-category: AWS
+tags:
+  - DynamoDB
+category: cloud
+
+
+
+
 
 
 ---

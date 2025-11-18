@@ -4,7 +4,10 @@ description: '모바일 디바이스에서 더블탭 동작 시 화면인 줌인
 pubDate: 2022-08-10 10:03:21
 tags:
   - html
-category: Frontend
+category: frontend
+
+
+
 
 ---
 

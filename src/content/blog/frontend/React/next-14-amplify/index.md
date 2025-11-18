@@ -2,8 +2,13 @@
 title: NextJS 14 AWS Amplify로 배포하기
 description: 'Amplify로 새 애플리케이션을 만들고 자동으로 선택되는 이미지는 Node v16을 사용해 Next.js 빌드 과정에서 에러가 발생한다. 이를 해결하기 위해서는 콘솔의 의 빌드 이미지를 수정하면 된다. 2024.01.15 기준으로 Amazon Linux:2023 을 사용하면 Node.js 버전 관련 에러가 발생하지 않…'
 pubDate: 2024-01-15 15:22:03
-tags: NextJS
-category: Frontend
+tags:
+  - NextJS
+category: frontend
+
+
+
+
 
 ---
 

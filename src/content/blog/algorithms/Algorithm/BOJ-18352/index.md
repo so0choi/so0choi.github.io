@@ -5,7 +5,10 @@ pubDate: 2020-09-09 15:00:15
 tags:
   - BFS
   - Algorithm
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

@@ -3,8 +3,13 @@ title: Windows에서 WSL 사용하기
 description: ':rotating light: \ nomadecoders의 윈도우 세팅 강좌 정리 내용 WSL : Windows Subsystem for Linux WSL은 Windows10 2004 업데이트 부터 지원되는 기능이다. 2020년에 나온 업데이트 버젼인데 왜 이름을 이렇게 붙였는지는 모르겠다. Linux 환경에서 뭔가 설…'
 heroImage: './2020-08-22-01-53-18.png'
 pubDate: 2020-08-22 00:44:40
-tags: Windows
-category: OS
+tags:
+  - Windows
+category: misc
+
+
+
+
 
 
 ---

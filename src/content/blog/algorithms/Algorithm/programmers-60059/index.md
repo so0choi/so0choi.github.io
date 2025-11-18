@@ -5,7 +5,10 @@ pubDate: 2020-08-30 23:38:20
 tags:
   - Programmers
   - Algorithm
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

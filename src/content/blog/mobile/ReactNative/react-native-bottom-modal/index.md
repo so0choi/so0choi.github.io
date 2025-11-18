@@ -3,8 +3,9 @@ title: React Native bottom modal 넣기
 description: '내가 선택한 라이브러리는 @gorhom/bottom sheet이다. 위클리 다운로드 10만을 넘는 라이브러리로 깔끔한 도큐먼트 페이지도 있어 믿고 사용할 수 있었다. (공식 홈페이지) ) Installation 작성일 기준 설치방법이다. 추가로 설치가 필요한 라이브러리가 있다. expo 사용하지 않는 경우 expo 사용…'
 heroImage: './React-Native-bottom-modal.png'
 pubDate: 2023-03-07 14:31:07
-category: React Native
-tags:
+category: mobile
+
+
 
 
 

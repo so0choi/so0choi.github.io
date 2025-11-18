@@ -2,8 +2,7 @@
 title: Linux tail 명령어 - 실시간 로그 출력
 description: "Linux tail 명령어"
 pubDate: 2025-11-07 11:50
-category: Else
-
+category: misc
 
 ---
 

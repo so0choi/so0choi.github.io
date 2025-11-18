@@ -2,8 +2,9 @@
 title: serverless environment variable
 description: 'serverless 프레임워크에서 환경 변수를 사용하는 방법은 여러가지가 있다. 그중 가장 간단하다고 생각되는 방법은 비교적 나중에 추가된 기능인 파일을 그대로 읽어오도록 하는 방법이다. 적용 방법 serverless.yml serverless.yml 파일에 옵션을 true로 넣어주면 된다. serverless에서 지원…'
 pubDate: 2024-03-25 10:50:50
-tags:
-category: AWS
+category: cloud
+
+
 
 ---
 

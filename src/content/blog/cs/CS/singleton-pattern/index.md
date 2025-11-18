@@ -3,8 +3,9 @@ title: "[CS] Singleton pattern(JS)"
 description: 'Singleton pattern은 생성자가 여러 차례 호출되더라도 실제 생성되는 객체는 하나이고 최초 생성 이후에 호출된 생성자는 최초 생성자가 생성한 객체를 리턴하는 디자인 유형이다. 주로 공통된 객체를 여러개 생성해 사용하는 Database Connection Pool과 같은 상황에서 많이 사용된다. 몇 가지 단점도…'
 heroImage: './202305181147.png'
 pubDate: 2023-05-16 09:45:44
-tags:
-category: CS 
+category: cs
+
+
 
 
 ---

@@ -2,8 +2,13 @@
 title: Heroku deploy error - devDependency module 설치 이상
 description: 'Heroku devDependency Module ’not found’ Error Problem GraphQL yoga로 만든 간단한 api 서버를 heroku에 deploy하려는데 계속 오류가 발생했다. 에러 메세지는 아래와 같다. 파일에서 모듈은 devDependency에 들어가있었다. ’package.json’ 다…'
 pubDate: 2021-03-27 19:42:32
-tags: heroku
-category: Error
+tags:
+  - heroku
+category: troubleshooting
+
+
+
+
 
 ---
 

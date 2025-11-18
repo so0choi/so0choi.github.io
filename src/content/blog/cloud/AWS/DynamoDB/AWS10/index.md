@@ -3,10 +3,13 @@ title: AWS - DynamoDB4
 description: 'DynammoDB 요금 정책 요금 정책에는 두 가지가 있다. 1. 온디맨드 용량 모드 요금 해당 APP이 테이블에서 수행하는 데이터 READ/WRITE에 대해 요금이 부과된다. 워크로드의 확장/축소를 DB가 알아서 처리하기 때문에 읽기 및 쓰기 처리량을 지정할 필요가 없다. APP의 트래픽 처리량을 예측하기 힘든 경우…'
 heroImage: './2020-11-24-17-00-47.png'
 pubDate: 2020-11-23 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 
 

@@ -2,7 +2,8 @@
 title: SOLID 원칙
 description: 'SRP (Single Responsibility Principle) ’클래스를 변경하는 이유가 한 가지 이상 있어서는 안 된다.’는 말이 있다. 한 개의 클래스가 한 가지 일만 하도록 하는 것은 매우 중요하다. 클래스의 기능이 많아질수록 역할이 불분명해지고 의존하고 있는 모듈들에 어떤 영향을 끼칠지 알 수 없기 때문이다…'
 pubDate: 2022-09-15 10:31:14
-category: CS
+category: cs
+
 
 ---
 

@@ -3,9 +3,12 @@ title: Javascript 30 - Day 3
 description: 'Javascript30 Day3 CSS Variables css 속성을 웹 페이지에서 실시간으로 수정하는 기능을 자바스크립트로 구현했다. 여기서 쓰이는 가장 중요한 요소는 custom css, 사용자 지정 css 속성이다. Mozilla 설명 사용자 지정 css 정의: 접근: 사용하는 이유: 같은 속성값이 여러번 사용…'
 pubDate: 2020-08-16 00:40:58
 tags:
-    - Javascript
-    - Javascript30
-category: Javascript
+  - Javascript
+  - Javascript30
+category: frontend
+
+
+
 
 ---
 

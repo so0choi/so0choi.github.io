@@ -2,10 +2,13 @@
 title: Git submodule 추가
 description: 'hexo로 블로그를 생성해 테마를 설치해서 사용하면 다른 로컬 환경에서 블로그 프로젝트를 clone 했을 때 디렉토리 내부의 테마 디렉토리들이 비어있는 상태로 받아지는 것을 볼 수 있다. 내부에 git 레파지토리가 따로 구성되어있기 때문인데 다른 컴퓨터에서도 원활하게 사용할 수 있도록 submodule을 설정해줬다. s…'
 pubDate: 2021-12-06 16:25:02
-category: Else
+category: misc
 tags:
   - hexo
   - git submodule
+
+
+
 
 ---
 

@@ -4,7 +4,10 @@ description: 'Nest.js Entity 파일과 dto의 동기화 typeorm방식으로 Enti
 pubDate: 2021-05-13 02:09:39
 tags:
   - NestJS
-category: NestJS
+category: backend
+
+
+
 
 ---
 

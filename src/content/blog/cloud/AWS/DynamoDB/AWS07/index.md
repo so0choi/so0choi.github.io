@@ -2,10 +2,13 @@
 title: AWS - DynamoDB
 description: 'DynamoDB AWS의 종합 관리형 NoSQL DB 서비스이다. 원활한 확장성과 성능을 제공한다. NoSQL vs RDBMS RDBMS : 데이터를 유연하게 쿼리할 수 있지만, 쿼리 비용이 상대적으로 높아 트래픽이 많은 상황에서는 확장성이 떨어진다. 유연성을 목표로 설계하는 것이 중요하고 정규화가 중요하다. NoSQL…'
 pubDate: 2020-11-20 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 ---
 

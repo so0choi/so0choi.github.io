@@ -2,7 +2,8 @@
 title: Nest.js dependency injection constructor & property based
 description: 'NestJS에는 dependency injection을 하는 다양한 방법이 존재한다. base service를 상속받는 구조로 작성하던 중 construction의 코드가 계속해서 반복되는 현상(bolerplate code)이 나타나 대안을 찾아보니 property based injection을 사용하면 코드 반복을 없…'
 pubDate: 2023-08-10 13:34:33
-category: NestJS
+category: backend
+
 
 ---
 

@@ -2,7 +2,8 @@
 title: React Native 절대경로 설정
 description: '점점 더 지저분해지는 import 경로를 도저히 볼 수 없어서 절대경로를 추가하기로 했다. 우우.. 👎 리팩토링을 진행하면서 컴포넌트를 더 잘게 쪼개다보니 path level이 너무 깊어졌다. 이대로는 안되겠다 싶었다. 적용 방법 babel plugin module resolver를 설치한다. 프로젝트 root 경로에…'
 pubDate: 2023-10-06 16:04:31
-category: React Native
+category: mobile
+
 
 ---
 

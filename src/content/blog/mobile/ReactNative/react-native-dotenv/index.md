@@ -2,7 +2,8 @@
 title: "[React Native] dotenv 사용하기"
 description: 'dotenv를 쓰려고 추가하다가 생각지도 못하게 시간을 잡아먹어서 정리해놓으려고 한다. 모듈을 사용하면 된다. react native dotenv Installation react native dotenv 모듈을 다운받는다. Configuration 이 모듈은 babel plugin 이라 설정 파일에 추가해줘야 한다.…'
 pubDate: 2022-02-25 13:46:59
-category: React Native
+category: mobile
+
 
 ---
 

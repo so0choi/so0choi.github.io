@@ -5,7 +5,10 @@ pubDate: 2020-09-10 01:06:02
 tags:
   - BOJ
   - Algorithm
-category: Algorithm
+category: algorithms
+
+
+
 
 ---
 

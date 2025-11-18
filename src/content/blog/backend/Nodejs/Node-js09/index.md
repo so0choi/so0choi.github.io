@@ -3,8 +3,13 @@ title: "[Node.js] Nunjucks"
 description: 'View Engine Nunjucks Node.js로 응답 페이지를 구성하는 방법은 여러가지가 있다. 그 중 하나는 아래 코드처럼 로 html을 하나씩 써주는것이다. 이렇게 한줄씩 쓸 수는 있지만 모든 작업을 이렇게 한다고 생각하면 정말 막막할 것이다. 이를 대신해서 쓸 수 있는 방법이, 데이터 처리 로직 부분 과 화면…'
 heroImage: './2020-08-31-16-41-38.png'
 pubDate: 2020-08-31 15:47:25
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 
 ---

@@ -3,11 +3,14 @@ title: CodeCommit
 description: 'CodeCommit AWS CodeCommit은 클라우드에서 asset을 비공개로 저장하여 관리할 수 있도록 AWS에서 호스팅되는 버전 관리 서비스이다. Git의 표준 기능을 지원하므로 기존 Git 기반 도구와도 원활하게 연동된다. CodeCommit이 지원하는 기능들 AWS가 호스팅하여 종합 관리 서비스를 제공함 암호…'
 heroImage: './2020-10-21-16-41-37.png'
 pubDate: 2020-10-20 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - CodeCommit
   - git
+
+
+
 
 
 

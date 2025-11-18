@@ -3,8 +3,13 @@ title: "[AWS] DLQ(Dead Letter Queue) 리드라이브"
 description: 'DLQ SQS에서 란 성공적으로 처리되지 않은 메세지를 담고있는 큐를 말한다. DLQ는 자동으로 설정되는 것은 아니고, 일단 큐를 생성한 후 해당 큐를 다른 큐의 DLQ로 설정하여 사용할 수 있다. DLQ도 소스 큐와 같은 유형의 큐여야 한다. FIFO 큐의 DLQ는 FIFO 큐가 되어야 하는 것이다. (스탠다드 큐도…'
 heroImage: './202306191107.png'
 pubDate: 2023-05-23 10:48:52
-category: AWS
-tags: SQS
+category: cloud
+tags:
+  - SQS
+
+
+
+
 
 
 ---

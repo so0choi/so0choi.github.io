@@ -3,8 +3,13 @@ title: "[Node.js] Routing과 Middleware"
 description: 'Routing Node.js의 는 전역 변수이다. 이 변수를 사용해 Express 프로젝트 또한 모듈화로 깔끔하게 관리할 수 있다. ( 라는 전역 변수도 존재하는데 와는 다른 개념이니 혼동해서는 안된다) Routing 이라는 용어 자체의 넓은 의미는 ’어떤 네트워크 안에서 통신 데이터를 보낼 때 최적의 경로를 선택하는…'
 heroImage: './2020-08-31-18-10-43.png'
 pubDate: 2020-08-31 00:44:12
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 
 ---

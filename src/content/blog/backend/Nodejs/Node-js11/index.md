@@ -2,8 +2,13 @@
 title: "[Node.js] Global Variable"
 description: '전역 변수 설정하기 서비스의 전체 페이지에서 접근해야 하는 변수들이 있다. 예를 들면, 사용자가 로그인한 상태를 나타내는 bool type의 같은 변수가 그렇다. 이런 값들을 전역 변수로 설정하지 않는다면, 다음 요청을 진행할 때 마다 계속해서 값을 전달해야하고 (내 예전 프로젝트 처럼..) 이는 정말정말 비효율적이고…'
 pubDate: 2020-08-31 20:45:33
-tags: Node.js
-category: Node.js
+tags:
+  - Node.js
+category: backend
+
+
+
+
 
 ---
 

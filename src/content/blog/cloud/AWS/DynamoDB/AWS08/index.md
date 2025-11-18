@@ -3,10 +3,13 @@ title: AWS - DynamoDB2
 description: 'DynamoDB 활용가능성 DynamoDB를 사용할 수 있는지 계속해서 활용방안을 생각해보고있다. 현 상황 재생량을 전송하는 작업에서 uuid로 구분되는 MySQL(RDBMS) 로그 데이터 테이블에 insert와 update가 빈번하게 발생하고 있다. 이를 개선시키고자 한다. 이슈 1. 재생량 전송 처리 서버를 분리한다…'
 heroImage: './2020-11-18-15-18-43.png'
 pubDate: 2020-11-20 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - DynamoDB
+
+
+
 
 
 

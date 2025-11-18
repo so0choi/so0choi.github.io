@@ -3,12 +3,15 @@ title: Github page AWS Route53 custom domain으로 서비스하기
 description: 'Route53은 AWS의 클라우드 DNS 웹 서비스 이다. DNS 서비스를 제공하는 다른 서비스들도 많지만 Route53을 사용할 경우 EC2 또는 CloudFront 등 AWS에서 실행되는 인프라에 효과적으로 연결된다. 이번에는 Route53에서 도메인을 사서 github page로 연결시켜보았다. 다른 더 저렴한 같…'
 heroImage: './2020-10-19-10-56-54.png'
 pubDate: 2020-10-16 22:27:37
-category: AWS
+category: cloud
 tags:
   - AWS
   - S3
   - Route53
   - github page
+
+
+
 
 
 ---

@@ -2,8 +2,13 @@
 title: React useRef hook 사용하기
 description: '는 렌더링이 될 필요 없는 값을 참조하기 위한 리액트 훅이다. 사용법 는 라는 한 개의 프로퍼티를 가지는 object를 반환한다. 초기 값은 값이 된다. 값을 저장하고 있다는 점에서 와 비슷하게 느껴지지만 와 다르게 useRef는 프로퍼티를 수정하여 값을 바꿀 수 있다. (useState는 setValue 함수를 사용해…'
 pubDate: 2023-02-20 09:42:04
-tags: React hooks
-category: ReactJS
+tags:
+  - React hooks
+category: frontend
+
+
+
+
 
 ---
 

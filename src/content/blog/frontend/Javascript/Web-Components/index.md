@@ -5,7 +5,10 @@ heroImage: './202211291126.png'
 pubDate: 2022-11-18 11:02:45
 tags:
   - Javascript
-category: Javascript
+category: frontend
+
+
+
 
 
 ---

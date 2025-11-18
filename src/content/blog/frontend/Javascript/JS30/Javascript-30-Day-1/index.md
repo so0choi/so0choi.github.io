@@ -2,11 +2,15 @@
 title: Javascript 30 - Day 1
 description: 'Javascript 30? Javascript30 위 링크에서 누구나 무료로 들을 수 있는 30여개의 자바스크립트 강의 동영상이다. 프로젝트를 몇가지 해봤지만 Node.js로 취업을 하기로 결심한 이상 자바스크립트를 좀 더 자유자재로 편하게 다룰 수 있어야 한다고 생각했다. 몇 달 전에 처음 발견하고, 학기가 끝나면 해…'
 pubDate: 2020-08-15 22:18:06
+
+category: frontend
 tags:
-    - Javascript30
-    - Javascript
-category:
-    - Javascript
+  - Javascript30
+  - Javascript
+
+
+
+
 
 ---
 
@@ -44,5 +48,4 @@ window.addEventListener('keydown',playSound);
     ```javascript
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     ```
-    
     

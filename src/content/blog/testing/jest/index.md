@@ -2,10 +2,13 @@
 title: Jest 경로 에러
 description: '테스트 코드를 실행하려고하는데 아래와 같은 에러가 발생했다. 서치를 좀 하다가 Jest 설정을 수정했는데 아래와 같은 에러도 발생했다. 결론적으로는 같은 원인으로 발생한 문제였다. 해결법 파일의 Jest 설정을 바꿔주면 된다. 참고 How to fix the ‘Cannot find module’ when importin…'
 pubDate: 2022-07-21 11:29:48
-category: Test
+category: testing
 tags: 
   - Jest
   - Error
+
+
+
 
 ---
 
