@@ -164,3 +164,7 @@ img {
 li {
   list-style: disc;
 }
+
+hr {
+  margin: 1rem 0;
+}

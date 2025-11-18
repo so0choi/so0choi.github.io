@@ -1,0 +1,29 @@
+section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+h1 {
+  margin-bottom: 0.25rem;
+  text-transform: capitalize;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li + li {
+  margin-top: 1.5rem;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(var(--gray), 0.3);
+}
+a:hover {
+}
+.meta {
+  margin: 0;
+  color: rgb(var(--gray));
+}
