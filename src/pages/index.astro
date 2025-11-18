@@ -6,7 +6,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About">
-  <Image src={ProfileImage} height={500} width={450} alt="profile" />
+  <div class="flex justify-end">
+  <button id="toggle-lang" class="text-gray-500 cursor-pointer bg-gray-200 h-fit p-2 rounded-xl hover:bg-gray-300 text-xs transition-all ">
+     English ver.
+  </button>
+  </div>
+  <div class="flex items-center gap-4">
+    <Image class="w-full max-w-[450px] h-auto rounded-xl" src={ProfileImage} height={500} width={450} alt="profile" />
+  </div>
+
+  <div id="resume-ko">
   <p>문제를 빠르게 진단하고 구조적으로 해결하는 개발자, 최소영입니다.</p>
   <section>
     <h2>About</h2>
@@ -32,7 +41,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section>
     <h2>Skill</h2>
     <hr />
-    <table>
+    <div class="overflow-x-auto">
+    <table class="min-w-full">
       <thead>
         <tr>
           <th>분야</th>
@@ -72,6 +82,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </tr>
       </tbody>
     </table>
+    </div>
   </section>
 
   <section>
@@ -119,4 +130,128 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         >https://github.com/so0choi</a>
     </p>
   </section>
+  </div>
+
+  <div id="resume-en" style="display:none">
+    <p>I’m Soyoung Choi, a developer who diagnoses issues quickly and solves them systematically.</p>
+    <section>
+      <h2>About</h2>
+      <hr />
+      <p>Node.js software engineer with 5 years of experience.</p>
+      <p>
+        Experienced with high-traffic services on Node.js and NestJS. Improved response time by up to 60% through serverless architecture design and Redis-based caching.
+      </p>
+      <p>
+        Skilled at pinpointing bottlenecks and production issues, with hands-on experience across both backend and, when needed, frontend work.
+      </p>
+      <p>
+        I choose tools pragmatically, not dogmatically—using what best solves the problem.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <hr />
+      <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Stack</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Language</td>
+            <td>TypeScript, JavaScript, Python</td>
+          </tr>
+          <tr>
+            <td>Backend</td>
+            <td>Node.js, NestJS</td>
+          </tr>
+          <tr>
+            <td>Frontend</td>
+            <td>React, Next.js</td>
+          </tr>
+          <tr>
+            <td>Infra</td>
+            <td>AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td>
+          </tr>
+          <tr>
+            <td>DB</td>
+            <td>DynamoDB, Redis</td>
+          </tr>
+          <tr>
+            <td>DevOps</td>
+            <td>CloudWatch, Slack Alerting, CI/CD (Bitbucket Pipelines)</td>
+          </tr>
+          <tr>
+            <td>Etc.</td>
+            <td>Real-time log collection, cost-optimization architecture</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Work Experience</h2>
+      <hr />
+      <p>
+        <a href="https://www.kinx.net/" target="_blank" rel="noopener">KINX</a>
+        CDN Development Group Manager: 2020 – Present · Software Engineer
+      </p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <hr />
+      <ul>
+        <li><strong>2015 – 2020</strong> Dankook University, Software Engineering</li>
+        <li><strong>2018 – 2019</strong> English Language Program, Canada</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <hr />
+      <ul>
+        <li>AWS Certified Developer – Associate</li>
+        <li>AWS Solutions Architect</li>
+        <li>AWS Certified Cloud Practitioner</li>
+        <li>SQLD</li>
+        <li>Engineer Information Processing (Korea)</li>
+        <li>OPIC – IH</li>
+        <li>CILISAT (Community Interpreter Language and Interpreting Skills Assessment Tool)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contacts</h2>
+      <hr />
+      <p>✉️ Email — <em>simc2644@gmail.com</em></p>
+      <h3>🐱 Github</h3>
+      <p>
+        <a class="underline" href="https://github.com/so0choi" target="_blank" rel="noopener">https://github.com/so0choi</a>
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggle-lang');
+    const ko = document.getElementById('resume-ko');
+    const en = document.getElementById('resume-en');
+    btn?.addEventListener('click', () => {
+      const enVisible = en && en.style.display !== 'none';
+      if (enVisible) {
+        en.style.display = 'none';
+        ko.style.display = '';
+        btn.textContent = 'English ver.';
+      } else {
+        en.style.display = '';
+        ko.style.display = 'none';
+        btn.textContent = 'Korean ver.';
+      }
+    });
+  </script>
 </BaseLayout>

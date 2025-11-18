@@ -1,11 +1,14 @@
-h1{
-    font-family: "Playfair Display", serif;
-    color: var(--accent);
-    font-style: italic;
+h1 {
+  font-family: "Playfair Display", serif;
+  color: var(--accent);
+  font-style: italic;
 }
 li * {
-    transition: color 0.2s;
+  transition: color 0.2s;
+}
+.post-title {
+  color: var(--black);
 }
 li:hover * {
-    color: var(--accent);
+  color: var(--accent) !important;
 }

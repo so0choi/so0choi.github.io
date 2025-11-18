@@ -16,7 +16,6 @@ const tags = Array.from(
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 			<section class="areas">
-				<a href="/tags">All Areas</a>
 				{tags.map((a) => (
 					<a href={`/tags/${encodeURIComponent(a)}/`}>{a}</a>
 				))}
