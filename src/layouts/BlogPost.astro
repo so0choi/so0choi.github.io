@@ -5,58 +5,67 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
-import "../styles/post.css";
 import CalendarIcon from "@public/icons/calendar.svg";
 import BaseLayout from "./BaseLayout.astro";
 
+import "../styles/post.css";
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-<article>
-  <div class="flex justify-center">
-    {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-  </div>
-  <div class="prose">
-    <div class="title">
-      <div class="date flex items-center justify-center gap-2">
-        <CalendarIcon fill="gray" height={20} />
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-      </div>
-      <h1>{title}</h1>
-      <hr />
+  <article>
+    <div class="flex justify-center">
+      {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
     </div>
-    <slot />
-
-  </div>
-  <div id="disqus_thread"></div>
-  <script>
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
+    <div class="prose">
+      <div class="title">
+        <div class="date flex items-center justify-center gap-2">
+          <CalendarIcon fill="gray" height={20} />
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <div class="last-updated-on">
+                Last updated on <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
+        </div>
+        <h1>{title}</h1>
+        <hr />
+      </div>
+      <slot />
+    </div>
+    <div class="mt-24" id="disqus_thread"></div>
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+      /*
     var disqus_config = function () {
     this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
     this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     */
-    (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
-      s.src = 'https://so0github-blog-1.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', + new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</article>
-  <script is:inline id="dsq-count-scr" src="//so0github-blog-1.disqus.com/count.js" async></script>
-</BaseLayout >
+      (function () {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement("script");
+        s.src = "https://so0github-blog-1.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript
+      >Please enable JavaScript to view the <a
+        href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a
+      ></noscript
+    >
+  </article>
+  <script
+    is:inline
+    id="dsq-count-scr"
+    src="//so0github-blog-1.disqus.com/count.js"
+    async></script>
+</BaseLayout>

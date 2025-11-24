@@ -42,6 +42,7 @@ h1 {
   margin-bottom: 1rem;
   text-transform: capitalize;
 }
+
 @media (max-width: 720px) {
   li {
     width: 100%;

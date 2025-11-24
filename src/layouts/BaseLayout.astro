@@ -1,32 +1,48 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-const { title,description } = Astro.props;
-import '@styles/global.css'
+const { title, description } = Astro.props;
+import "@styles/global.css";
 ---
-<html lang="en">
-<head>
-    <BaseHead title={title} description={description} image={{src:"favicon.png", width: 300, height:300, format: 'png'}}/>
+
+<html class="h-full">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={{ src: "favicon.png", width: 300, height: 300, format: "png" }}
+    />
     <!-- Google tag (gtag.js) -->
     <script
-            type="text/partytown"
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B">
-    </script>
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B"></script>
     <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-560FY9ZC2B');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-560FY9ZC2B");
     </script>
-</head>
+  </head>
 
-<body>
-<Header />
-<main>
-    <slot />
-</main>
-<Footer />
-</body>
+  <body class="h-full">
+    <div class="wrapper">
+      <Header />
+      <main class="w-full p-10 sm:px-14 md:px-32 lg:px-52">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
+
+<style>
+  .wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+</style>
