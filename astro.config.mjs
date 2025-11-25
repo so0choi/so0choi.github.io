@@ -21,6 +21,11 @@ export default defineConfig({
         cssVariable: "--font-playfair-display",
         provider: fontProviders.google(),
       },
+      {
+        name: "Science Gothic",
+        cssVariable: "--font-science-gothic",
+        provider: fontProviders.google(),
+      },
     ],
   },
   vite: {

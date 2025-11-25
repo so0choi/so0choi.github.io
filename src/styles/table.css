@@ -30,7 +30,7 @@ td {
 }
 
 a {
-  color: #73685d;
+  color: var(--accent);
 }
 
 @media all and (max-width: 768px) {
