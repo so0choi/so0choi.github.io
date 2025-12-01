@@ -1,19 +1,15 @@
 ul {
-  list-style: none;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
-}
-ul li {
-  list-style: none;
 }
 
 li a {
   font-family: "Science Gothic", serif;
 }
 
-h1 {
+.areas-title {
   font-family: "Playfair Display", Pretendard, serif;
   color: var(--accent);
   font-style: italic;
