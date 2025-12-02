@@ -1,7 +1,8 @@
 ---
 title: NestJS - Serialization
-description: somthing
+description: Serialization 즉 직렬화다. 한국어로 놓고 보면 의미가 잘 와닿지 않는다. 직렬화란 네트워크 응답을 보내기 전에 발생하는 과정이다. 클라이언트에게 데이터를 전송하기 전에 정해진 규칙에 맞게 데이터를 변환하고 정제화 하는 작업을 말한다.
 heroImage: something
+pubDate: 2025-12-01  11:00:00
 tags:
   - NestJS
 category: backend
