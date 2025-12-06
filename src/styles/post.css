@@ -1,3 +1,17 @@
+/* Container */
+.prose {
+  max-width: 72ch;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.65;
+  padding-inline: 0.5rem;
+}
+
+/* Typography */
+p {
+  margin: 0 0 1.2em 0;
+}
+
 a {
   text-decoration-line: underline;
   transition: color 0.2s;
@@ -10,25 +24,30 @@ h1,
 h2,
 h3,
 h4 {
-  margin-top: 4rem;
-  margin-bottom:1rem;
+  margin: 2.5rem 0 1.1rem;
   color: var(--accent);
-  font-weight: bold;
+  font-weight: 700;
+}
+h1 {
+  font-size: 2.2em;
+}
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.2em;
 }
 
-ul {
-  margin-bottom: 1rem;
+ul,
+ol {
+  margin: 0 0 1.2em 1.25em;
+  padding: 0;
 }
 li {
   list-style: disc;
-  padding: 0.1rem;
-}
-
-pre {
-  margin-bottom: 2rem;
-}
-hr {
-  margin-bottom: 1rem;
 }
 
 .hero-image {
@@ -59,7 +78,57 @@ hr {
   font-style: italic;
 }
 
+/* Code & blockquotes */
 pre {
-  font-size: 1rem;
+  margin: 0 0 2rem;
+  padding: 1.25rem;
+  background: #f5f7fb;
+  border: 1px solid rgb(var(--gray-light));
+  border-radius: 10px;
+  font-size: 0.95rem;
+  overflow-x: auto;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+}
+code {
+  background-color: rgb(var(--gray-light));
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
 }
 
+blockquote {
+  margin: 1em 0;
+  padding: 0 0 0 20px;
+}
+
+hr {
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 640px) {
+  .prose {
+    max-width: 100%;
+    padding-inline: 1.1rem;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 1.9em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.35em;
+  }
+  h4 {
+    font-size: 1.15em;
+  }
+
+  pre {
+    font-size: 0.9rem;
+  }
+}

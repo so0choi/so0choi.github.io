@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../../consts";
 import "@styles/areas.css";
-import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PostListLayout from "../../../layouts/PostListLayout.astro";
 import { Font } from "astro:assets";
 
 const posts = await getCollection("blog");
@@ -11,8 +11,7 @@ const areas = Array.from(new Set(posts.map((p) => p.id.split("/")[0]))).sort();
 
 <Font cssVariable="--font-science-gothic" preload />
 
-<BaseLayout title={`${SITE_TITLE} — Areas`} description={SITE_DESCRIPTION}>
-  <h1 class="areas-title">Browse by Category</h1>
+<PostListLayout title="Browse by Category" description={SITE_DESCRIPTION}>
   <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     {
       areas.map((area) => (
@@ -27,4 +26,4 @@ const areas = Array.from(new Set(posts.map((p) => p.id.split("/")[0]))).sort();
       ))
     }
   </ul>
-</BaseLayout>
+</PostListLayout>

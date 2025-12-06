@@ -1,32 +1,28 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import BaseHead from "@components/BaseHead.astro";
-import Footer from "@components/Footer.astro";
 import FormattedDate from "@components/FormattedDate.astro";
-import Header from "@components/Header.astro";
 
 import CalendarIcon from "@public/icons/calendar.svg";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-import BaseLayout from "../../layouts/BaseLayout.astro";
 
-import "@styles/blog_index.css";
+import PostListLayout from "../../layouts/PostListLayout.astro";
 const all = await getCollection("blog");
 const posts = all.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<BaseLayout description={SITE_DESCRIPTION} title={SITE_TITLE}>
-  <div class="flex w-full items-center justify-between">
-    <h1>All posts</h1>
-    <a href="/blog/areas">
-      <button
-        class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
+<PostListLayout
+  description={SITE_DESCRIPTION}
+  title={SITE_TITLE}
+>
+    <a href="/blog/areas" slot="category-btn">
+        <button
+                class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
         >Categories ></button
-      >
+        >
     </a>
-  </div>
   <div class="mt-5">
     <span class="text-sm text-gray-400">LATEST</span>
     <ul>
@@ -59,4 +55,4 @@ const posts = all.sort(
       }
     </ul>
   </div>
-</BaseLayout>
+</PostListLayout>

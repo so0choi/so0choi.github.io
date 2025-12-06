@@ -1,0 +1,32 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { title, description, action } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="flex w-full items-center justify-between">
+    <h1 class="post-list-title">{title}</h1>
+
+    <div class="shrink-0">
+      <slot name="category-btn" />
+    </div>
+  </div>
+
+  <div class="post-list-body">
+    <slot />
+  </div>
+</BaseLayout>
+
+<style>
+  .post-list-title {
+    font-family: var(--font-playfair-display), "Pretendard", serif;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* Smooth color transitions for list contents */
+  .post-list-body :global(li *) {
+    transition: color 0.2s;
+  }
+</style>

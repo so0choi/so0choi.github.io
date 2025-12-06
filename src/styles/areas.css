@@ -4,9 +4,3 @@ ul {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
-
-.areas-title {
-  font-family: "Playfair Display", Pretendard, serif;
-  color: var(--accent);
-  font-style: italic;
-}

@@ -8,7 +8,7 @@ tags:
   - S3
   - multer
   - Node.js
-  - AWS SDK
+  - AWSSDK
 
 
 

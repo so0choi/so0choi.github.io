@@ -1,36 +1,32 @@
 ---
 title: AWS AppSync DynamoDB Resolver update Add 사용
-description: 'AppSync DynamoDB Javascript Resolver에서 update increment, decrement는 이미 존재하는 row에 대해서만 작동하기 때문에 에러가 발생한다. 이는 update의 increment 사용시 DynamoDB 요청으로 변형되기 때문이다. 아래는 increment를 사용한 Javas…'
+description: "AppSync DynamoDB Javascript Resolver에서 update increment, decrement는 이미 존재하는 row에 대해서만 작동하기 때문에 에러가 발생한다. 이는 update의 increment 사용시 DynamoDB 요청으로 변형되기 때문이다. 아래는 increment를 사용한 Javas…"
 pubDate: 2024-01-24 16:59:13
 tags:
   - AWS AppSync
 category: cloud
-
-
-
-
 ---
-
 
 AppSync DynamoDB Javascript Resolver에서 update increment, decrement는 이미 존재하는 row에 대해서만 작동하기 때문에 에러가 발생한다. 이는 update의 increment 사용시 DynamoDB `SET` 요청으로 변형되기 때문이다. 아래는 increment를 사용한 Javascript resolver의 요청 mapping template이다.
 
 ### javscript resolver
+
 ```js
-import { util } from '@aws-appsync/utils';
-import * as ddb from '@aws-appsync/utils/dynamodb';
+import { util } from "@aws-appsync/utils";
+import * as ddb from "@aws-appsync/utils/dynamodb";
 
 export function request(ctx) {
   const { streamId } = ctx.args.input;
 
   return ddb.update({
     key: { streamId },
-    update: { currentView: ddb.operations.decrement(1)},
+    update: { currentView: ddb.operations.decrement(1) },
   });
 }
 
 export function response(ctx) {
   const { error, result } = ctx;
-  console.log(result, error)
+  console.log(result, error);
   if (error) {
     util.appendError(error.message, error.type);
   }
@@ -39,6 +35,7 @@ export function response(ctx) {
 ```
 
 ### request mapping template
+
 ```json
 {
   "update": {
@@ -120,4 +117,3 @@ vtl resolver를 작성하고 테스트 Input을 아래와 같이 입력한다.
   }
 }
 ```
-
