@@ -110,7 +110,7 @@ hr {
 @media (max-width: 640px) {
   .prose {
     max-width: 100%;
-    padding-inline: 0.75rem;
+    padding-inline: 0.5rem;
     font-size: 17px;
     line-height: 1.6;
   }

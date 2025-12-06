@@ -17,8 +17,7 @@ import "@styles/global.css";
     <script
       type="text/partytown"
       async
-      src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B">
-    </script>
+      src="https://www.googletagmanager.com/gtag/js?id=G-560FY9ZC2B"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -31,7 +30,7 @@ import "@styles/global.css";
   <body class="h-full">
     <div class="wrapper">
       <Header />
-      <main class="p-10 sm:px-14 md:px-32 lg:px-52 min-w-0">
+      <main class="min-w-0 p-4 sm:px-14 md:px-32 lg:px-52">
         <slot />
       </main>
       <Footer />
@@ -45,5 +44,4 @@ import "@styles/global.css";
     display: grid;
     grid-template-rows: auto 1fr auto;
   }
-
 </style>
