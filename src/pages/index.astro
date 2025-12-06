@@ -7,145 +7,165 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="About">
   <div class="flex justify-end">
-  <button id="toggle-lang" class="text-gray-500 cursor-pointer bg-gray-200 h-fit p-2 rounded-xl hover:bg-gray-300 text-xs transition-all ">
-     English ver.
-  </button>
+    <button
+      id="toggle-lang"
+      class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
+    >
+      English ver.
+    </button>
   </div>
   <div class="flex items-center gap-4">
-    <Image class="w-full max-w-[450px] h-auto rounded-xl" src={ProfileImage} height={500} width={450} alt="profile" />
+    <Image
+      class="h-auto max-w-[450px] rounded-xl"
+      src={ProfileImage}
+      height={500}
+      width={450}
+      alt="profile"
+    />
   </div>
 
   <div id="resume-ko">
-  <p>문제를 빠르게 진단하고 구조적으로 해결하는 개발자, 최소영입니다.</p>
-  <section>
-    <h2>About</h2>
-    <hr />
-    <p>5년 차 Node.js 소프트웨어 엔지니어입니다.</p>
-    <p>
-      Node.js와 Nest.js 기반으로 대규모 트래픽에 대응한 경험이 있으며, 서버리스
-      아키텍처 설계와 Redis 캐시 시스템 도입을 통해 응답 속도를 최대 60% 개선한
-      바 있습니다.
-    </p>
-    <p>
-      트래픽 이슈, 병목 현상 등을 빠르게 진단하고 구조적으로 해결하는 실전
-      감각을 갖추고 있으며, 필요에 따라 프론트엔드 개발도 주도적으로 참여해
-      왔습니다.
-    </p>
-    <p>
-      특정 언어나 기술에 국한되지 않고, 문제 해결을 위해 가장 적합한 도구를
-      유연하게 선택하려 노력합니다. 다양한 분야에 대한 관심과 경험을 통해 꾸준히
-      성장하는 개발자가 되고자 합니다.
-    </p>
-  </section>
+    <p>문제를 빠르게 진단하고 구조적으로 해결하는 개발자, 최소영입니다.</p>
+    <section>
+      <h2>About</h2>
+      <hr />
+      <p>5년 차 Node.js 소프트웨어 엔지니어입니다.</p>
+      <p>
+        Node.js와 Nest.js 기반으로 대규모 트래픽에 대응한 경험이 있으며,
+        서버리스 아키텍처 설계와 Redis 캐시 시스템 도입을 통해 응답 속도를 최대
+        60% 개선한 바 있습니다.
+      </p>
+      <p>
+        트래픽 이슈, 병목 현상 등을 빠르게 진단하고 구조적으로 해결하는 실전
+        감각을 갖추고 있으며, 필요에 따라 프론트엔드 개발도 주도적으로 참여해
+        왔습니다.
+      </p>
+      <p>
+        특정 언어나 기술에 국한되지 않고, 문제 해결을 위해 가장 적합한 도구를
+        유연하게 선택하려 노력합니다. 다양한 분야에 대한 관심과 경험을 통해
+        꾸준히 성장하는 개발자가 되고자 합니다.
+      </p>
+    </section>
 
-  <section>
-    <h2>Skill</h2>
-    <hr />
-    <div class="overflow-x-auto">
-    <table class="min-w-full">
-      <thead>
-        <tr>
-          <th>분야</th>
-          <th>스택</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Language</td>
-          <td>TypeScript, JavaScript, Python</td>
-        </tr>
-        <tr>
-          <td>Backend</td>
-          <td>Node.js, Nest.js</td>
-        </tr>
-        <tr>
-          <td>Frontend</td>
-          <td>React.js, Next.js</td>
-        </tr>
-        <tr>
-          <td>Infra</td>
-          <td
-            >AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td
-          >
-        </tr>
-        <tr>
-          <td>DB</td>
-          <td>DynamoDB, Redis</td>
-        </tr>
-        <tr>
-          <td>DevOps</td>
-          <td>CloudWatch, Slack Alert, CI/CD (Bitbucket Pipelines)</td>
-        </tr>
-        <tr>
-          <td>기타</td>
-          <td>실시간 로그 수집, 비용 최적화 설계 경험 다수</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </section>
+    <section>
+      <h2>Skill</h2>
+      <hr />
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead>
+            <tr>
+              <th>분야</th>
+              <th>스택</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Language</td>
+              <td>TypeScript, JavaScript, Python</td>
+            </tr>
+            <tr>
+              <td>Backend</td>
+              <td>Node.js, Nest.js</td>
+            </tr>
+            <tr>
+              <td>Frontend</td>
+              <td>React.js, Next.js</td>
+            </tr>
+            <tr>
+              <td>Infra</td>
+              <td
+                >AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td
+              >
+            </tr>
+            <tr>
+              <td>DB</td>
+              <td>DynamoDB, Redis</td>
+            </tr>
+            <tr>
+              <td>DevOps</td>
+              <td>CloudWatch, Slack Alert, CI/CD (Bitbucket Pipelines)</td>
+            </tr>
+            <tr>
+              <td>기타</td>
+              <td>실시간 로그 수집, 비용 최적화 설계 경험 다수</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <section>
-    <h2>Work Experience</h2>
-    <hr />
-    <p>
-      <a href="https://www.kinx.net/" target="_blank" rel="noopener">KINX</a>
-      CDN 개발 그룹 매니저: 2020 ~ · 소프트웨어 개발 엔지니어
-    </p>
-  </section>
+    <section>
+      <h2>Work Experience</h2>
+      <hr />
+      <p>
+        <a href="https://www.kinx.net/" target="_blank" rel="noopener">KINX</a>
+        CDN 개발 그룹 매니저: 2020 ~ · 소프트웨어 개발 엔지니어
+      </p>
+    </section>
 
-  <section>
-    <h2>Education</h2>
-    <hr />
-    <ul>
-      <li><strong>2015 - 2020</strong> 단국대학교 소프트웨어공학과</li>
-      <li><strong>2018 - 2019</strong> 캐나다 어학연수</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Education</h2>
+      <hr />
+      <ul>
+        <li><strong>2015 - 2020</strong> 단국대학교 소프트웨어공학과</li>
+        <li><strong>2018 - 2019</strong> 캐나다 어학연수</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Certification</h2>
-    <hr />
-    <ul>
-      <li>AWS Certified Developer - Associate</li>
-      <li>AWS Solutions Architecture</li>
-      <li>AWS Practitioner</li>
-      <li>SQLD</li>
-      <li>정보처리기사</li>
-      <li>OPIC - IH</li>
-      <li>
-        CILISAT (Community Interpreter Language and Interpreting Skills
-        Assessment Tool)
-      </li>
-    </ul>
-  </section>
+    <section>
+      <h2>Certification</h2>
+      <hr />
+      <ul>
+        <li>AWS Certified Developer - Associate</li>
+        <li>AWS Solutions Architecture</li>
+        <li>AWS Practitioner</li>
+        <li>SQLD</li>
+        <li>정보처리기사</li>
+        <li>OPIC - IH</li>
+        <li>
+          CILISAT (Community Interpreter Language and Interpreting Skills
+          Assessment Tool)
+        </li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Contacts</h2>
-    <hr />
-    <p>✉️ Email - <em>simc2644@gmail.com</em></p>
-    <h3>🐱 Github</h3>
-    <p>
-      <a class="underline" href="https://github.com/so0choi" target="_blank" rel="noopener"
-        >https://github.com/so0choi</a>
-    </p>
-  </section>
+    <section>
+      <h2>Contacts</h2>
+      <hr />
+      <p>✉️ Email - <em>simc2644@gmail.com</em></p>
+      <h3>🐱 Github</h3>
+      <p>
+        <a
+          class="underline"
+          href="https://github.com/so0choi"
+          target="_blank"
+          rel="noopener">https://github.com/so0choi</a
+        >
+      </p>
+    </section>
   </div>
 
   <div id="resume-en" style="display:none">
-    <p>I’m Soyoung Choi, a developer who diagnoses issues quickly and solves them systematically.</p>
+    <p>
+      I’m Soyoung Choi, a developer who diagnoses issues quickly and solves them
+      systematically.
+    </p>
     <section>
       <h2>About</h2>
       <hr />
       <p>Node.js software engineer with 5 years of experience.</p>
       <p>
-        Experienced with high-traffic services on Node.js and NestJS. Improved response time by up to 60% through serverless architecture design and Redis-based caching.
+        Experienced with high-traffic services on Node.js and NestJS. Improved
+        response time by up to 60% through serverless architecture design and
+        Redis-based caching.
       </p>
       <p>
-        Skilled at pinpointing bottlenecks and production issues, with hands-on experience across both backend and, when needed, frontend work.
+        Skilled at pinpointing bottlenecks and production issues, with hands-on
+        experience across both backend and, when needed, frontend work.
       </p>
       <p>
-        I choose tools pragmatically, not dogmatically—using what best solves the problem.
+        I choose tools pragmatically, not dogmatically—using what best solves
+        the problem.
       </p>
     </section>
 
@@ -153,44 +173,46 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2>Skills</h2>
       <hr />
       <div class="overflow-x-auto">
-      <table class="min-w-full">
-        <thead>
-          <tr>
-            <th>Field</th>
-            <th>Stack</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Language</td>
-            <td>TypeScript, JavaScript, Python</td>
-          </tr>
-          <tr>
-            <td>Backend</td>
-            <td>Node.js, NestJS</td>
-          </tr>
-          <tr>
-            <td>Frontend</td>
-            <td>React, Next.js</td>
-          </tr>
-          <tr>
-            <td>Infra</td>
-            <td>AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td>
-          </tr>
-          <tr>
-            <td>DB</td>
-            <td>DynamoDB, Redis</td>
-          </tr>
-          <tr>
-            <td>DevOps</td>
-            <td>CloudWatch, Slack Alerting, CI/CD (Bitbucket Pipelines)</td>
-          </tr>
-          <tr>
-            <td>Etc.</td>
-            <td>Real-time log collection, cost-optimization architecture</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="min-w-full">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Stack</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Language</td>
+              <td>TypeScript, JavaScript, Python</td>
+            </tr>
+            <tr>
+              <td>Backend</td>
+              <td>Node.js, NestJS</td>
+            </tr>
+            <tr>
+              <td>Frontend</td>
+              <td>React, Next.js</td>
+            </tr>
+            <tr>
+              <td>Infra</td>
+              <td
+                >AWS Lambda, S3, CloudFront, DynamoDB, ElastiCache, AppSync, SQS</td
+              >
+            </tr>
+            <tr>
+              <td>DB</td>
+              <td>DynamoDB, Redis</td>
+            </tr>
+            <tr>
+              <td>DevOps</td>
+              <td>CloudWatch, Slack Alerting, CI/CD (Bitbucket Pipelines)</td>
+            </tr>
+            <tr>
+              <td>Etc.</td>
+              <td>Real-time log collection, cost-optimization architecture</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
@@ -207,7 +229,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2>Education</h2>
       <hr />
       <ul>
-        <li><strong>2015 – 2020</strong> Dankook University, Software Engineering</li>
+        <li>
+          <strong>2015 – 2020</strong> Dankook University, Software Engineering
+        </li>
         <li><strong>2018 – 2019</strong> English Language Program, Canada</li>
       </ul>
     </section>
@@ -222,7 +246,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <li>SQLD</li>
         <li>Engineer Information Processing (Korea)</li>
         <li>OPIC – IH</li>
-        <li>CILISAT (Community Interpreter Language and Interpreting Skills Assessment Tool)</li>
+        <li>
+          CILISAT (Community Interpreter Language and Interpreting Skills
+          Assessment Tool)
+        </li>
       </ul>
     </section>
 
@@ -232,25 +259,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p>✉️ Email — <em>simc2644@gmail.com</em></p>
       <h3>🐱 Github</h3>
       <p>
-        <a class="underline" href="https://github.com/so0choi" target="_blank" rel="noopener">https://github.com/so0choi</a>
+        <a
+          class="underline"
+          href="https://github.com/so0choi"
+          target="_blank"
+          rel="noopener">https://github.com/so0choi</a
+        >
       </p>
     </section>
   </div>
 
   <script>
-    const btn = document.getElementById('toggle-lang');
-    const ko = document.getElementById('resume-ko');
-    const en = document.getElementById('resume-en');
-    btn?.addEventListener('click', () => {
-      const enVisible = en && en.style.display !== 'none';
+    const btn = document.getElementById("toggle-lang");
+    const ko = document.getElementById("resume-ko");
+    const en = document.getElementById("resume-en");
+    btn?.addEventListener("click", () => {
+      const enVisible = en && en.style.display !== "none";
       if (enVisible) {
-        en.style.display = 'none';
-        ko.style.display = '';
-        btn.textContent = 'English ver.';
+        en.style.display = "none";
+        ko.style.display = "";
+        btn.textContent = "English ver.";
       } else {
-        en.style.display = '';
-        ko.style.display = 'none';
-        btn.textContent = 'Korean ver.';
+        en.style.display = "";
+        ko.style.display = "none";
+        btn.textContent = "Korean ver.";
       }
     });
   </script>

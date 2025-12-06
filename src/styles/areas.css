@@ -5,10 +5,6 @@ ul {
   gap: 1rem;
 }
 
-li a {
-  font-family: "Science Gothic", serif;
-}
-
 .areas-title {
   font-family: "Playfair Display", Pretendard, serif;
   color: var(--accent);

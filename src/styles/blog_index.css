@@ -6,9 +6,3 @@ h1 {
 li * {
   transition: color 0.2s;
 }
-.post-title {
-  color: var(--black);
-}
-li:hover * {
-  color: var(--accent) !important;
-}

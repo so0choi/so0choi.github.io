@@ -27,16 +27,13 @@ const posts = all.sort(
       >
     </a>
   </div>
-  <div class="mt-10">
+  <div class="mt-5">
     <span class="text-sm text-gray-400">LATEST</span>
     <ul>
       {
         posts.map((post) => (
-          <li class="list-none!">
-            <a
-              href={`/blog/${post.id}/`}
-              class="flex gap-7 border-b border-gray-200 py-10"
-            >
+          <li class="p-4 transition-all hover:shadow">
+            <a href={`/blog/${post.id}/`} class="flex items-center gap-7 py-10">
               <Image
                 width={150}
                 height={100}
@@ -44,7 +41,9 @@ const posts = all.sort(
                 alt={post.id}
               />
               <div class="flex flex-col">
-                <h3 class="post-title">{post.data.title}</h3>
+                <h3 class="hover:text-accent mb-4 text-gray-700!">
+                  {post.data.title}
+                </h3>
                 <div class="mb-2 flex gap-2 text-[13px]">
                   <CalendarIcon fill="gray" height={20} />
                   <FormattedDate date={post.data.pubDate} />
@@ -55,6 +54,7 @@ const posts = all.sort(
               </div>
             </a>
           </li>
+            <hr />
         ))
       }
     </ul>
