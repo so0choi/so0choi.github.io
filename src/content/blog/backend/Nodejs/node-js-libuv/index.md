@@ -1,8 +1,9 @@
 ---
 title: "Node.js libuv 알아보기"
-description: "Node.js libuv 알아보기"
+description: "libuv는 Node.js에 포함되어 있는 C로 작성된 크로스 플랫폼 저수준 라이브러리이다. 개발자가 이를 직접 쓸 일은 없고 Node의 내부 엔진이 사용한다. libuv를 한 문장으로 표현하면, 'OS마다 다른 비동기 I/O 방식을 하나의 공통 인터페이스로 감싸 제공하는 라이브러리'이다. "
 pubDate: 2025-12-18 11:03:18
 category: backend
+heroImage: img.png
 tags:
   - Node.js
 ---
