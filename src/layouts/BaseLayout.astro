@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-const { title, description } = Astro.props;
+const { title, description, image } = Astro.props;
 import "@styles/global.css";
 ---
 
@@ -11,7 +11,7 @@ import "@styles/global.css";
     <BaseHead
       title={title}
       description={description}
-      image={{ src: "favicon.png", width: 300, height: 300, format: "png" }}
+      image={image ?? { src: "/favicon.png", width: 300, height: 300, format: "png" }}
     />
     <!-- Google tag (gtag.js) -->
     <script

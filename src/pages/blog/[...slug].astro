@@ -15,6 +15,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} ogImage={`/open-graph/${post.id}.png`}>
   <Content />
 </BlogPost>
