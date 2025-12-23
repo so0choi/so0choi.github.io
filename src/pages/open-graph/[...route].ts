@@ -1,26 +1,24 @@
-import { getCollection } from "astro:content";
 import { OGImageRoute } from "astro-og-canvas";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-const collectionEntries = await getCollection("blog");
-const pages = Object.fromEntries(
-  collectionEntries.map(({ id, data }) => [id, data]),
-);
-export const { getStaticPaths, GET } = OGImageRoute({
-  // the name of dynamic route segment.
+type BlogEntry = CollectionEntry<"blog">;
+const posts: BlogEntry[] = await getCollection("blog");
+
+export const { GET, getStaticPaths } = OGImageRoute({
   param: "route",
+  pages: posts.map((post) => ({
+    route: post.id.split("/"),
+    title: post.data.title,
+    description: post.data.description,
+    category: post.data.category,
+  })),
 
-  // A collection of pages to generate images for.
-  // The keys of this object are used to generate the path for that image.
-  // In this example, we generate one image at `/open-graph/example.png`.
-  pages: pages,
-
-  // For each page, this callback will be used to customize the OpenGraph image.
+  // Canvas 옵션
   getImageOptions: (path, page) => ({
     title: page.title,
-    description: page.description,
-    logo: {
-      // Use site favicon (or replace with a specific site logo)
-      path: new URL("../../../public/favicon.png", import.meta.url).pathname,
-    },
+    description: page.description ?? "",
+    subtitle: page.category ? `#${page.category}` : "",
+    width: 1200,
+    height: 630,
   }),
 });
