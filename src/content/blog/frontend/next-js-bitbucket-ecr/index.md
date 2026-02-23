@@ -1,6 +1,6 @@
 ---
 title: "yarn peer dependency 에러 바로잡기"
-description: "yarn peer dependency 에러를 드디어 고쳐보자"
+description: "yarn peer dependency 에러를 고쳐보자"
 pubDate: 2026-02-20 10:17:07
 category: frontend
 tags:
