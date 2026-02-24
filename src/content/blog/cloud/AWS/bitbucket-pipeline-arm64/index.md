@@ -107,6 +107,53 @@ pipelines:
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
 ```
 
+잘 되는 듯 했다. 하지만 실행해봤더니 .. yarn install 실행 중 FETCH 과정에서 타임아웃이 발생했다. pipeline을 다시 실행해봤지만 이번엔 out ot memory 에러가 발생했다. EC2 인스턴스 크기가 이 모든 프로세스를 실행하기에 성능이 역부족인 것 같았다.
+
+## 시도 4. AWS codebuild로 이사하기
+
+ec2 인스턴스 사양을 올리면 해결되는 문제였지만 비용을 최소화하면서 문제를 해결해보고 싶었다. aws codebuild에는 arm64 cpu 빌드 머신을 선택할 수 있다는 것을 발견해 시도해보기로 했다.
+bitbucket pipeline 구성 파일은 삭제하고 레포지토리 세팅에서도 pipeline 기능은 disable 시켰다.
+그리고 CodeBuild 페이지로 와서 소스 공급자를 Bitbucket으로 설정했다.
+
+![img_4.png](img_4.png)
+
+개발 계정이라 dev 브랜치를 보도록 설정했다. webhook 이벤트는 단일 빌드로 했고 환경은 아래와 같이 설정했다.
+
+- 관리형 이미지
+- 컨테이너
+- Amazon Linux
+- Standard
+- aws/codebuild/amazonlinux-aarch64-standard:3.0
+- 최신 이미지 사용
+
+buildspec.yml 파일을 사용하게 했고 ECR로 이미지를 푸시할 것이기 때문에 '아티팩트 없음'을 설정했다.
+서비스 역할 권한은 새로 생성했고 ECR push, secret manager등 접근이 필요한 서비스들에 알맞은 권한을 부여했다.
+
+### buildspec.yml
+```yaml
+version: 0.2
+
+# Environment variables set in CodeBuild project configuration:
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+
+  build:
+    commands:
+      - echo Docker build started on `date`
+      - export DOCKER_BUILDKIT=1
+      - docker build -f Dockerfile -t $ECR_REPOSITORY .
+      - docker tag $ECR_REPOSITORY:latest $ECR_REPOSITORY:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - docker push $ECR_REPOSITORY:$IMAGE_TAG
+```
+
 
 
 ## 참고
