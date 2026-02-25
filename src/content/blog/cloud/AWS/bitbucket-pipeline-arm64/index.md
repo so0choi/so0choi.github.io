@@ -154,6 +154,10 @@ phases:
       - docker push $ECR_REPOSITORY:$IMAGE_TAG
 ```
 
+그리하여 결국 빌드에 성공했다..
+![img_5.png](img_5.png)
+
+다음으로는 서버에서 ECR 이미지를 받아오는 작업을 자동화해야 한다.
 
 
 ## 참고
