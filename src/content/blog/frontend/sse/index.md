@@ -3,7 +3,7 @@ title: "sse 알아보기"
 description: "sse vs polling vs socket"
 pubDate: 2026-02-25 11:32:00
 category: frontend
-heroImage: "img_1"
+heroImage: "img_1.png"
 ---
 
 ## HTTP 요청의 일반적 흐름
