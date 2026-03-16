@@ -1,5 +1,5 @@
 ---
-title: Dockerfile과 Multi-stage
+title: Docker & Dockerfile 그리고 Multi-stage
 description: 'Dockerfile과 Multi stage 도커파일은 도커 이미지를 생성하기 위한 선언형 스크립트다. 기본 규칙만 익혀두면 다른 프로젝트의 Dockerfile도 빠르게 읽고 이해할 수 있다. Format 도커파일의 기본 작성 포맷은 아래와 같다. 명령문(instruction)은 대소문자를 구분하지 않지만 편의상 대문자로…'
 pubDate: 2025-10-22 10:50:27
 category: cloud
@@ -9,43 +9,79 @@ tags:
   - Multi-stage
   - Build
   - Best Practices
-
-
-
-
-
 ---
 
+도커는 애플리케이션 개발, 배포를 위한 오픈소스 플랫폼이다. VM과 달리 호스트 OS 커널을 공유하며 격리된 공간을 생성해 그 안에서 앱을 실행하게 해줘 소프트웨어 배포를 빠르게 할 수 있도록 해준다. 도커를 사용하면 개발 환경과 같은 환경에서 앱을 관리할 수 있게되고 개발 환경과 배포 환경 사이에 생기는 간극을 줄여준다. Docker 엔진은 주로 Go로 작성되었으며 Linux 커널의 namespaces, cgroups 등의 기능들을 활용해 컨테이너를 구현한다.
+
+## Docker 구조
+
+![img.png](img.png)
+
+도커는 client-server 구조를 사용한다. docker 클라이언트가 docker daemon에 요청을 보내는 식이다. 둘은 REST API로 요청을 주고받는다. 
+
+- Docker daemon(`dockerd`): Docker API 요청을 처리하고 도커 이미지, 컨테이너, 네트워크와 볼륨을 관리한다. 
+- Docker client(`docker`): 도커를 사용함에 있어 가장 메인이 되는 요소다. `docker run`과 같은 커맨드를 실행하면 클라이언트는 `dockerd`로 요청을 보낸다. 
+- Docker desktop: Mac, Windows, Linux등 운영체제에 설치되어 도커를 쉽게 관리할 수 있게 해주는 애플리케이션이다. 앱 안에서는 Docker daemon과 Docker client, Docker compose, Kubernetes 등이 포함되어있다.
+- Docker registries: 도커 이미지 저장소이다. Docker Hub는 퍼블릭 레지스트리로 누구나 사용할 수 있다. 도커는 기본적으로 Docker hub에서 이미지를 찾는다. private registry도 사용할 수 있다. `docker pull` 또는 `docker run` 커맨드를 실행하면 도커는 설정된 레지스트리에서 이미지를 가져온다. 로컬에 저장된 이미지 또한 레지스트리에 올릴 수 있다.
 
 
-도커파일은 도커 이미지를 생성하기 위한 선언형 스크립트다. 기본 규칙만 익혀두면 다른 프로젝트의 Dockerfile도 빠르게 읽고 이해할 수 있다.
+## Dockerfile
 
-## Format
+도커파일은 도커 이미지를 생성하기 위한 선언형 스크립트다. 기본 규칙만 익혀두면 프로젝트 환경이 바뀌어도 Dockerfile을 필요에 맞게 작성할 수 있다.
+
+### 기본 개념
+
+- Image: 실행 가능한 파일 시스템 스냅샷 (Node.js v22 등)
+- Container: 이미지 실행 인스턴스
+- Layer: Dockerfile 명령마다 생성되는 파일시스템 레이어
+- Volume: 컨테이너 외부 데이터 저장소
+- Network: 컨테이너 간 통신
+
+`FROM`문으로 새로운 레이어가 생성된다고 보면 된다. 
+
+### Format
 
 도커파일의 기본 작성 포맷은 아래와 같다.
 
 ```dockerfile
-INSTRUCTION arguments
-# 주석입니다
+INSTRUCTION args
+# 주석
 ```
 
 명령문(instruction)은 대소문자를 구분하지 않지만 편의상 대문자로 쓰는 것이 보편적이다.
 도커는 도커파일에 작성된 명령문들을 위에서부터 차례대로 실행한다. 
 도커파일은 반드시 `FROM` 명령으로 시작한다. `FROM`은 현재 만드는 컨테이너의 베이스 이미지를 뜻한다.
 
-추가로, `.dockerignore` 파일을 활용해 불필요한 파일(예: `.git`, `node_modules`, 빌드 산출물 등)이 빌드 컨텍스트에 포함되지 않도록 하면 빌드 속도와 캐시 효율이 크게 좋아진다.
+> `.dockerignore`: 이 파일에 명시한 파일들은 빌드 컨텍스트에 포함되지 않는다. 빌드 속도와 캐시 효율이 좋아진다. (예: `.git`, `node_modules`, 빌드 산출물 등) 
+
+### Instructions
+
+자주 사용되는 명령어 몇 가지만 정리하면 다음과 같다.
+
+| instruction | meaning                       |
+| --- |-------------------------------|
+| FROM | 베이스 이미지 선언을 통한 새로운 빌드 스테이지 생성 |
+|COPY| 파일 복사                         | 
+|ADD | local 또는 remote 파일을 추         |
+|RUN | build 시 실행                    |
+| CMD | 컨테이너 실행 커맨드                   |
+| ENV | 환경 변수                         |
+| ARG | 빌드에 사용되는 변수 선언                |
+|EXPOSE | 포트 설명                         |
 
 
-## 최소 실행 이미지
+### 최소 실행 이미지
 
 - `scratch`: 가장 작지만 라이브러리/쉘이 전혀 없음. Go의 정적 바이너리와 궁합이 좋다.
 - `distroless`: 실행에 필요한 런타임만 포함, 쉘 없음. 보안/크기 균형 좋음.
-- `alpine`: 매우 작고 쉘/패키지 매니저 제공. glibc가 아닌 musl 기반인 점 유의.
+- `alpine`: 매우 작고 쉘/패키지 매니저 제공. node:20 보다 node:20-alpine이 예시 코드에서 많이 보이는 이유이다.
+
+이미지 
 
 ## 빌드 인수와 환경변수
 
 ```dockerfile
-ARG GO_VERSION=1.24
+ARG NODE_VERSION=1.24
 FROM golang:${GO_VERSION} AS build
 ENV CGO_ENABLED=0
 # ...
@@ -114,7 +150,7 @@ CMD ["/bin/hello"]
 
 ### build stage 이름 붙이기
 
-숫자 인덱스 대신 스테이지에 이름을 붙이면 의도가 더 명확해진다.
+위 처럼 `FROM`문만 사용하는 경우 각 스테이지에는 숫자 인덱스가 생긴다. 숫자 인덱스 대신 스테이지에 `AS`를 사용해 이름을 붙이면 의도가 더 명확해진다.
 
 ``````Dockerfile
 # syntax=docker/dockerfile:1
