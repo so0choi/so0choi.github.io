@@ -8,9 +8,9 @@ tags:
 
 ---
 
-# docker compose volume
+컨테이너 내부 데이터는 기본적으로 컨테이너를 종료하면 모두 유실된다. 컨테이너 생성 여부에 관계없이 유지되어야 하는 데이터들이 있을 것이다. 예를 들면 프로세스의 실행 로그가 그렇다. 로그를 계속해서 모니터링 해야하는데 컨테이너를 재시작하면 삭제되는 것은 곤란하다. docker-compose 파일의 volume을 사용해 이런 문제를 해결할 수 있다. 이를 컨테이너가 종료되어도 유지할 데이터 위치를 설정할 수 있다.
 
-컨테이너가 종료되어도 유지할 데이터 위치를 설정할 수 있다.
+## 사용 방법
 
 ```dockerfile
 
@@ -57,6 +57,8 @@ nginx-logs:/data/logs/nginx
 | 예시 | ./logs:/app/logs | logs-volume:/app/logs |
 
 bind mount는 위에 나온 named mount와 다른 유형 즉 위에서 봤던 현재 pc 파일을 컨테이너로 mount하는 형식의 volume을 뜻한다. bind mount는 docker container에 수정 사항을 바로 변경해야할때 사용되는 것으로 보통 개발 환경을 세팅할 때 사용한다. 컨테이너의 데이터를 영속적으로 보관하기 위해서는 named mount를 사용한다.
+
+## 주의할 점
 
 docker compose down을 사용해도 생성된 volume은 사라지지 않는다. 컨테이너만 사라지고 volume 데이터는 유지된다. volume도 함께 삭제하려면 `-v` 명령어를 사용해야 한다.
 
