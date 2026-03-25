@@ -21,17 +21,17 @@ dotenv에서는 # 이후 문자를 주석으로 처리하므로 꼭 따옴표로
 
 몇 가지 해결 방법이 존재한다.
 
-1. docker run을 사용하면서 env 변수 내에 `#` 문자를 사용하지 않는다.
+### 1. docker run을 사용하면서 env 변수 내에 `#` 문자를 사용하지 않는다.
 
 가장 쉽고 간단한 방법이다. ㅎㅎ
 
-2. shell 환경변수로 넘겨 docker run을 실행한다.
+### 2. shell 환경변수로 넘겨 docker run을 실행한다.
 
 ```shell
 export DB_PASS="password#" docker run -e DB_PASS=$DB_PASS hello-world
 ```
 
-3. docker compose 사용 (채택)
+### 3. docker compose 사용 - 채택 ✅
 
 `docker-compose`는 `dotenv` 방식으로 env 파일을 파싱해서 따옴표를 올바르게 제거한다. 
 
