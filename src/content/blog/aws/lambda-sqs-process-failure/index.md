@@ -1,6 +1,6 @@
 ---
-title: "Lambda SQS process failure"
-description: "Lambda SQS process failure"
+title: "Lambda + SQS 실패 처리 설계: 재시도, DLQ, partial batch response"
+description: "Lambda와 SQS를 함께 쓸 때 실패 메시지를 어떻게 다룰지, 설계 전에 답해야 할 5가지 질문과 maxReceiveCount·DLQ·partial batch response·멱등성·알람 기준을 정리했다."
 pubDate: 2026-07-07 12:12:26
 category: aws
 

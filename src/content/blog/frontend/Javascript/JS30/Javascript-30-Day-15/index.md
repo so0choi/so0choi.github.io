@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 15
+series: "Javascript 30"
+seriesOrder: 14
 description: 'Day 15 Local Storage local storage에 값을 저장해 새로고침을 해도 데이터가 유지되는 페이지를 만든다. 에 이벤트 등록 이렇게 생긴 폼이 있을 때, 보통은 button에 이벤트를 등록할 것이다. 하지만 대신 에 이벤트를 걸어주면 동작 뿐만이 아니라 로 들어오는 submit 작업 등 다양한 방식에…'
 heroImage: './2020-08-30-17-11-05.png'
 pubDate: 2020-08-30 17:04:39

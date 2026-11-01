@@ -1,6 +1,6 @@
 ---
 title: "DRM 알아보기"
-description: "hls, drm, cmaf 정리하기"
+description: "영상 스트리밍의 DRM이 무엇이고 Widevine·FairPlay·PlayReady가 어떤 플랫폼과 프로토콜(HLS, DASH, CMAF)을 지원하는지, 암호화된 영상이 재생되기까지의 흐름을 정리했다."
 pubDate: 2026-02-26 17:25:25
 category: misc
 heroImage: "./img.png"

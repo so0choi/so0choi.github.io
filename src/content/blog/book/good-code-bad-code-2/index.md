@@ -1,5 +1,7 @@
 ---
 title: "Good code bad code 정리 - 2장: 추상화 계층"
+series: "Good code bad code 정리"
+seriesOrder: 2
 description: "코드 작성의 본질적인 목적은 ‘문제 해결’이다. 큰 문제는 하위 수준의 작은 문제들로 쪼개진다. 문제를 해결하기 위해 코드를 어떻게 구성하는가는 개발자에게 달린 문제다."
 pubDate: 2025-12-06 18:48:16
 category: book

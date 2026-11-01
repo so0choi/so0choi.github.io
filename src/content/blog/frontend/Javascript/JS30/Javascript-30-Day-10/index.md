@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 10
+series: "Javascript 30"
+seriesOrder: 9
 description: 'Javascript30 Day10<br Hold Shif and Check Checkboxes 프로그램 기능 구현해야 하는 기능은 하나의 체크 박스를 선택하고 키를 누른 상태로 위/아래의 다른 체크 박스를 선택하면 그 사이에 있는 모든 체크 박스가 함께 선택되는 기능이다. 이런 기능은 다양한 프로그램에서 사용되는 기능이…'
 heroImage: './2020-08-23-15-51-31.png'
 pubDate: 2020-08-23 15:50:05

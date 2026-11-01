@@ -1,5 +1,7 @@
 ---
 title: "Good code bad code 정리 - 3장: 코드 계약"
+series: "Good code bad code 정리"
+seriesOrder: 3
 description: "소프트웨어 개발은 보통 팀 단위로 이루어진다. 1장에서 언급된 코드 품질의 핵심 요소에 있었던 ‘예측 가능하고, 오용하기 어렵게 만들어라’ 이 두 항목은 다른 개발자와 상호작용 할 때 발생할 수 있는 문제와 관련이 있다."
 pubDate: 2025-12-06 18:51:52
 category: book

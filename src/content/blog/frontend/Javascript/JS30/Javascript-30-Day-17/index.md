@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 17
+series: "Javascript 30"
+seriesOrder: 16
 description: 'Day 17 Sort Without Articles Articles : 관사, 즉 관사 없이 영어 문자열을 배열하는 방법이다. 완성본 기존 데이터 sorting 이후 소스 코드 sort를 하기 위해서 를 사용한다. 는 두개의 인자를 받는다. , 를 받는다고 했을 때 가 더 크면 을 반환하고 그렇지 않은 경우 을 반환한다…'
 heroImage: './2020-10-03-21-20-31.png'
 pubDate: 2020-10-03 21:17:55

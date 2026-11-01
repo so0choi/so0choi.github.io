@@ -1,5 +1,7 @@
 ---
 title: graphql-yoga로 GraphQL 시작하기
+series: "GraphQL 시작하기"
+seriesOrder: 2
 description: '기본 사용법을 익히기 위해 를 사용했다. 서버 열기 서버를 열면서 스키마 파일을 지정하고, resolver 또한 설정해준다. 포트를 따로 지정하지 않으면 4000번 포트로 서버가 열리고 브라우저로 접속시 깔끔한 ui를 가진 플레이그라운드로 간편하게 api를 테스트 해볼 수 있다. 오른쪽에 보이는 , 를 누르면 API 설…'
 heroImage: './2021-01-16-20-40-52.png'
 pubDate: 2021-01-16 19:55:32

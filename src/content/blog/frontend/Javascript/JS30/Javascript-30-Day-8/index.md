@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 - Day 8
+series: "Javascript 30"
+seriesOrder: 7
 description: 'Javascript30 Day8 Fun with HTML5 Canvas W3C 튜토리얼 HTML element는 웹 페이지에서 그래픽을 그리기 위해 사용하는 요소이다. 아래 캔버스에서 테스트 해볼 수 있다! (우클릭으로 캔버스 비우기) <canvas id="draw" width="700" height="300" styl…'
 pubDate: 2020-08-20 23:55:29
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "lottie 다중 이벤트 애니메이션 출력 느려지는 이슈"
-description: "lottie multi event"
+description: "같은 애니메이션 JSON을 여러 Lottie 컴포넌트가 공유하면 두 번째 재생부터 requestAnimationFrame 지연으로 멈추는 문제를, 컴포넌트마다 structuredClone으로 데이터를 복제해 해결했다."
 pubDate: 2025-12-23 14:07:53
 category: frontend
 tags:

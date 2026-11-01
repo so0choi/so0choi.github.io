@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 14
+series: "Javascript 30"
+seriesOrder: 13
 description: 'Day 14 Javascript References vs Copying value copy & reference copy 어느 프로그래밍 언어를 공부해도 공통적으로 들어있는 내용이 있다. 얕은 복사(shallow copy)와 깊은 복사(deep copy)이다. 보통 변수 값을 복사하면 변수가 가진 value가 복사되는…'
 pubDate: 2020-08-30 14:54:38
 tags:

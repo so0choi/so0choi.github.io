@@ -1,5 +1,7 @@
 ---
 title: "[Node.js] Node.js의 CRUD"
+series: "Node.js 기초"
+seriesOrder: 2
 description: 'fs module File System 파일을 읽고 쓰는데 필요한 많은 메서드가 포함되어있는 모듈이다. CRUD 프로그래밍에서 CRUD란 정보를 처리하는 4가지의 기본 기능을 말한다. CRUD를 할 수 있다는 것은 그 언어의 75%는 섭렵했다고 봐도 무방하다. C Create R Read U Update D Delete…'
 pubDate: 2020-08-18 22:20:37
 tags: 

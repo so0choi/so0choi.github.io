@@ -1,5 +1,7 @@
 ---
 title: NestJS Entity 파일과 dto의 동기화
+series: "NestJS 시작하기"
+seriesOrder: 3
 description: 'Nest.js Entity 파일과 dto의 동기화 typeorm방식으로 Entity.ts 파일을 사용해 graphql 스키마와 DB Table 스키마를 동시에 만들어낼 수 있었다. 문제는 이에 접근하는 방식인 dto의 정의였는데, entity에 개체와 dto의 내용에 차이가 있다고해도 dto 스키마에 맞게 쿼리를 작성하…'
 pubDate: 2021-05-13 02:09:39
 tags:

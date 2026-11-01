@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 - Day 7
+series: "Javascript 30"
+seriesOrder: 6
 description: 'Javascript30 Day7 Array Cardio Day 2 Array 자료형의 유용한 메서드를 공부한다. test data는 아래와 같다. Array.prototype.some() function을 인자로 받아 조건을 만족하는 원소가 Array에 적어도 하나 있는지를 bool 형식으로 반환한다. Is at lea…'
 pubDate: 2020-08-20 22:40:34
 tags:

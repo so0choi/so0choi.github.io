@@ -1,5 +1,7 @@
 ---
 title: NestJS, Graphql 연동
+series: "NestJS 시작하기"
+seriesOrder: 2
 description: 'NestJS + Graphql 함께 사용해보기 \ \ Mutations\ \ Mutation은 GraphQL에서 서버 사이드 데이터를 modify 하는 방식이다. REST에서 GET 메서드의 요청은 데이터 수정을 하지 못하도록 하는게 원칙인 것 처럼 Query로 들어온 요청은 데이터를 수정하지 못한다. Nest에서는 데…'
 pubDate: 2021-05-10 00:57:43
 tags:

@@ -1,6 +1,6 @@
 ---
-title: "AWS CodeBuild 429 error"
-description: "aws codebuild 429 error"
+title: "AWS CodeBuild docker pull 429 에러 (Docker Hub rate limit) 해결"
+description: "CodeBuild에서 베이스 이미지를 받다 간헐적으로 나는 429 에러의 원인인 Docker Hub pull rate limit과, Docker Hub 로그인·ECR Public·private ECR로 피하는 세 가지 방법을 정리했다."
 pubDate: 2026-06-19 14:44:27
 category: aws
 tags: 

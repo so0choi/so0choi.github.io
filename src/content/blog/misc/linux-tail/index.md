@@ -1,6 +1,6 @@
 ---
 title: Linux tail 명령어 - 실시간 로그 출력
-description: "Linux tail 명령어"
+description: "파일의 마지막 부분만 보여주는 Linux tail 명령어의 사용법과 -n, -c, -f 같은 옵션, tail -f로 로그를 실시간으로 따라가는 방법을 정리했다."
 pubDate: 2025-11-07 11:50
 category: misc
 

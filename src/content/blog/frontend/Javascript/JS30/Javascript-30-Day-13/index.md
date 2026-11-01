@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 13
+series: "Javascript 30"
+seriesOrder: 12
 description: '13. Slide in on Scroll 스크롤을 내릴 때 마다 본문에 포함된 이미지들에 없어져다가 나타나는 효과를 적용한다. Debouncing 스크롤을 내리는 동작은 한 번 휠을 굴릴 때 마다 엄청나게 많은 이벤트를 발생시킨다. 이는 높은 가능성으로 성능저하를 발생시킬 수 있다. 이를 방지하고자 이벤트를 제한 하는…'
 heroImage: './2020-08-30-02-18-56.png'
 pubDate: 2020-08-29 16:32:05

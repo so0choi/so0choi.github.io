@@ -1,6 +1,6 @@
 ---
 title: "k6를 이용한 라이브 스트리밍 플레이어 테스트 기록"
-description: "k6로 성능 테스트하기"
+description: "k6로 실제 브라우저 시청자를 여러 명 띄워 라이브 스트리밍 플레이어를 장시간 재생 테스트한 기록. 설치부터 browser 시나리오 작성, k6 cloud 실행까지 정리했다."
 pubDate: 2026-02-24 14:29:03
 category: backend
 heroImage: './img.png'

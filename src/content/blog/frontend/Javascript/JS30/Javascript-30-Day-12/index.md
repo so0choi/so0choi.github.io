@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 12
+series: "Javascript 30"
+seriesOrder: 11
 description: 'Key Sequence Detection(KONAMI CODE) Konami Code 위키피디아 Konami Code란 몇몇 웹 사이트에서 동작하는 비밀 코드이다. 일련의 코드를 키보드로 입력하면 동작한다. 오늘은 이런 Konami Code를 동작시키기 위한 유저의 key sequence를 감지하는 기능을 자바스크립트로…'
 heroImage: './2020-08-27-22-40-09.png'
 pubDate: 2020-08-27 22:27:45

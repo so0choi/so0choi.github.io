@@ -1,6 +1,8 @@
 ---
 title: Javascript 30 - Day 11
-description: 'Javascript30 Day11 Custom Video Player <br/ <link href="/images/test.css" rel="stylesheet" <div class="player" <video autoplay class="player video viewer" src="/images/652333414.m…'
+series: "Javascript 30"
+seriesOrder: 10
+description: "Javascript30 Day 11. video 요소로 재생/일시정지 토글, 건너뛰기, progress bar를 갖춘 커스텀 비디오 플레이어를 직접 구현했다."
 pubDate: 2020-08-26 23:07:36
 tags:
   - JavaScript

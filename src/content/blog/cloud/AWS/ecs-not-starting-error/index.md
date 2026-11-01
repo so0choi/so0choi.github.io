@@ -1,6 +1,6 @@
 ---
 title: "ECS 태스크가 시작되지 않을 때: TaskFailedToStart & EMPTY CAPACITY PROVIDER"
-description: "ecs not starting error"
+description: "ECS 서비스는 떴는데 태스크가 실행되지 않고 TaskFailedToStart: EMPTY CAPACITY PROVIDER가 반복될 때, ECS Agent 확인부터 task definition과 EC2 인스턴스의 아키텍처(x86_64/arm64) 불일치를 찾아낸 과정."
 pubDate: 2026-01-22 11:27:11
 category: cloud
 

@@ -1,6 +1,6 @@
 ---
-title: "sse 알아보기"
-description: "sse vs polling vs socket"
+title: "SSE(Server-Sent Events) 알아보기"
+description: "서버가 클라이언트로 데이터를 계속 흘려보내는 SSE(Server-Sent Events)의 동작 방식과 EventSource 사용 예제, polling·WebSocket과의 차이를 정리했다."
 pubDate: 2026-02-25 11:32:00
 category: frontend
 heroImage: "img_1.png"

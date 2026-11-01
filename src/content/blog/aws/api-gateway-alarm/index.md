@@ -1,12 +1,11 @@
 ---
-title: "api gateway alarm"
-description: "api gateway alarm"
+title: "API Gateway 응답 지연 알람 만들기 (CloudWatch + Lambda + SNS)"
+description: "API Gateway 사용자 지정 액세스 로그를 CloudWatch Logs로 남기고, 지연 임계값을 넘은 요청만 Lambda로 조회해 SNS 이메일로 받는 알람 구성을 정리했다."
 pubDate: 2026-03-31 16:42:20
 category: aws
 
 ---
 
-# api gateway alarm
 
 API Gateway에 threshold를 생성해 늦게 처리된 요청에 한해 요청 정보를 이메일로 전송하도록 했다.
 구성은,

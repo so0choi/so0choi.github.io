@@ -1,5 +1,7 @@
 ---
 title: "[Node.js] 동기 & 비동기"
+series: "Node.js 기초"
+seriesOrder: 3
 description: 'Synchronous & Asynchronous 동기 vs 비동기 ’동기’와 ’비동기’는 그 이름 그대로 동작한다. 동기적 작업 방식은 작업이 순차적으로 진행된다. A B C 가 호출이 되면, 각각의 작업이 하나씩 끝날 때 마다 다음 작업이 시작되는 것이다. 반면에 비동기적 작업 방식은 비동기적으로 동시에 작업이 진행된…'
 pubDate: 2020-08-19 00:37:06
 tags:

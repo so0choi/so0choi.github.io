@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 - Day 9
+series: "Javascript 30"
+seriesOrder: 8
 description: 'Javascript30 Day9 Dev Tools Domination Javascript로 수행하는 동작을 확인하기 위해서는 data들을 콘솔 창에 출력해봐야 한다. 주로 가 사용되는데 개발에 도움이 되는 비슷한 여러 함수들이 있다. console.log() 콘솔 창에 인자로 받은 문자열을 그대로 출력한다. 키워드를 사…'
 pubDate: 2020-08-21 22:39:25
 tags:

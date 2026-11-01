@@ -1,5 +1,7 @@
 ---
 title: TypeORM
+series: "NestJS 시작하기"
+seriesOrder: 7
 description: 'TypeORM TypeORM 은 다양한 플랫폼에서 TypeScript와 JS로 실행되는 ORM이다. ORM이란 ’Object Relational Mapping’의 줄임말이다. 최신 JS를 지원하고 DB로의 작업을 효율적으로 수행할 수 있도록 도와준다. Entity Entity는 DB에 저장되는 데이터의 형태를 보여주는…'
 pubDate: 2021-08-30 23:21:38
 tags:

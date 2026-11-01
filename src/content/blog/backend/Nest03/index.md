@@ -1,5 +1,7 @@
 ---
 title: InputType vs ArgsType
+series: "NestJS 시작하기"
+seriesOrder: 4
 description: 'InputType vs ArgsType InputType GraphQL의 Mutaion 인자로 object를 받아야 하는 경우 input type 을 사용한다. 아래와 같이 사용한다. Mutation을 구현하는 resolver 에서 Input type을 사용하기 위해서는 의 인자로 이름 을 넘겨줘야한다. 이렇게 작성한…'
 pubDate: 2021-05-16 18:31:24
 category: backend

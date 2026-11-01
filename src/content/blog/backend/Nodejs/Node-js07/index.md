@@ -1,5 +1,7 @@
 ---
 title: "[Node.js] Express.js"
+series: "Node.js 기초"
+seriesOrder: 7
 description: 'Express.js Express란? Node.js로 개발을 할 때 가장 많이 사용되는 웹 프레임워크이다. 2020 Node.js popular web framework statistics 웹 프레임워크 란 웹 서비스를 개발하기 위해 사용되는, 그 이름 그대로 틀 이다. 프레임워크 없이도 개발을 할 수는 있지만 프레임워…'
 pubDate: 2020-08-30 23:40:29
 tags:

@@ -1,0 +1,72 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  id: string;
+  series: string;
+  posts: CollectionEntry<"blog">[];
+  // "list": every part above the body; "pager": prev/next links below it.
+  variant: "list" | "pager";
+}
+
+const { id, series, posts, variant } = Astro.props;
+const index = posts.findIndex((p) => p.id === id);
+const prev = posts[index - 1];
+const next = posts[index + 1];
+---
+
+{
+  variant === "list" && (
+    <details data-series-nav class="mb-10 rounded border border-line px-4 py-3 text-sm">
+      <summary class="cursor-pointer font-mono text-muted">
+        <span class="text-accent">$</span> series "{series}"{" "}
+        <span class="text-dim">
+          ({index + 1}/{posts.length})
+        </span>
+      </summary>
+      <ol class="mt-3 flex list-decimal flex-col gap-1.5 pl-6 marker:font-mono marker:text-dim">
+        {posts.map((p) => (
+          <li class:list={[p.id === id ? "text-accent" : "text-muted"]}>
+            {p.id === id ? (
+              <span aria-current="page">{p.data.title}</span>
+            ) : (
+              <a href={`/blog/${p.id}/`} class="hover:text-fg">
+                {p.data.title}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+{
+  variant === "pager" && (prev || next) && (
+    <nav
+      data-series-nav
+      aria-label={`${series} 시리즈`}
+      class="mt-16 grid gap-3 border-t border-line pt-8 sm:grid-cols-2"
+    >
+      {prev ? (
+        <a
+          href={`/blog/${prev.id}/`}
+          class="group rounded border border-line px-4 py-3 hover:border-accent"
+        >
+          <span class="block font-mono text-xs text-dim">← 이전 글</span>
+          <span class="mt-1 block text-fg group-hover:text-accent">{prev.data.title}</span>
+        </a>
+      ) : (
+        <span class="hidden sm:block" />
+      )}
+      {next && (
+        <a
+          href={`/blog/${next.id}/`}
+          class="group rounded border border-line px-4 py-3 text-right hover:border-accent"
+        >
+          <span class="block font-mono text-xs text-dim">다음 글 →</span>
+          <span class="mt-1 block text-fg group-hover:text-accent">{next.data.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

@@ -86,6 +86,10 @@ const POST = article
                   heading: a.textContent.trim(),
                   toc_variant: toc.dataset.toc,
                 });
+              } else if (a.closest("[data-series-nav]")) {
+                gtag("event", "series_click", { link_url: a.pathname });
+              } else if (a.closest("[data-related]")) {
+                gtag("event", "related_click", { link_url: a.pathname });
               } else if (a.pathname === "/rss.xml") {
                 gtag("event", "rss_click");
               }

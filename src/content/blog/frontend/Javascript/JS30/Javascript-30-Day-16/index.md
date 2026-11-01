@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 Day 16
+series: "Javascript 30"
+seriesOrder: 15
 description: 'Day 16 Mouse Move Shadow 마우스 이동에 따라 텍스트에 그림자 효과 주기 완성본 <style .hero { display: flex; justify content: center; align items: center; color: black; min height: 40vh; } </style <div c…'
 pubDate: 2020-10-03 19:24:44
 tags:

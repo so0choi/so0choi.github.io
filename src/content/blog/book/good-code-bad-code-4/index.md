@@ -1,6 +1,8 @@
 ---
 title: "Good code bad code 정리 - 4장: 오류"
-description: "Good code bad code 정리 - 4장: 오류"
+series: "Good code bad code 정리"
+seriesOrder: 4
+description: "오류는 복구 가능한 것과 불가능한 것으로 나뉜다. Good code bad code 4장의 빠르게·요란하게 실패하기, 기본값이나 널 객체로 오류를 숨기면 안 되는 이유를 정리했다."
 pubDate: 2025-12-06 22:10:18
 category: book
 heroImage: img.png

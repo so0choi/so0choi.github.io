@@ -1,6 +1,6 @@
 ---
-title: "codebuild insecure registry"
-description: "codebuild insecure registry"
+title: "CodeBuild에서 사설 인증서 레지스트리(insecure registry)로 이미지 push하기"
+description: "x509: certificate signed by unknown authority 에러가 나는 Harbor 같은 사설 레지스트리에, CodeBuild 권한 모드와 daemon.json insecure-registries 설정으로 이미지를 push한 과정을 정리했다."
 pubDate: 2026-04-09 11:57:17
 category: backend
 tags:

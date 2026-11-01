@@ -15,6 +15,9 @@ const blog = defineCollection({
       heroImage: image().optional(),
       tags: z.array(z.string()).default([]),
       category: z.string().optional(),
+      // Posts sharing a series name get a parts list and prev/next links, ordered by seriesOrder.
+      series: z.string().optional(),
+      seriesOrder: z.number().optional(),
     }),
 });
 

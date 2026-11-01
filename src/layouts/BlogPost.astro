@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+import SeriesNav from "../components/SeriesNav.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import BaseLayout from "./BaseLayout.astro";
 
@@ -10,10 +12,24 @@ type Props = CollectionEntry<"blog">["data"] & {
   id: string;
   headings: MarkdownHeading[];
   ogImage?: string;
+  seriesPosts: CollectionEntry<"blog">[];
+  relatedPosts: CollectionEntry<"blog">[];
 };
 
-const { id, title, description, pubDate, updatedDate, heroImage, tags, headings, ogImage } =
-  Astro.props as Props;
+const {
+  id,
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  tags,
+  headings,
+  ogImage,
+  series,
+  seriesPosts,
+  relatedPosts,
+} = Astro.props as Props;
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 const category = id.split("/")[0];
 ---
@@ -60,12 +76,15 @@ const category = id.split("/")[0];
         </div>
       )
     }
+    {series && <SeriesNav id={id} series={series} posts={seriesPosts} variant="list" />}
     <div class="lg:hidden">
       <TableOfContents headings={headings} variant="inline" />
     </div>
     <div class="prose">
       <slot />
     </div>
+    {series && <SeriesNav id={id} series={series} posts={seriesPosts} variant="pager" />}
+    <RelatedPosts posts={relatedPosts} />
     <div class="mt-24" id="disqus_thread"></div>
     <script>
       (function () {

@@ -1,6 +1,6 @@
 ---
 title: "Bitbucket Pipeline + Docker 삽질 기록"
-description: "bitbucket pipeline arm64"
+description: "Next.js 앱을 Bitbucket Pipelines(x86_64)에서 빌드해 ARM64 EC2(Graviton)에 배포하며 만난 yarn peer dependency 에러, --immutable fetch 실패, exec format error를 self-hosted runner로 해결한 과정."
 pubDate: 2026-02-20 17:45:22
 category: backend
 

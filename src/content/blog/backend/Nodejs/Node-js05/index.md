@@ -1,5 +1,7 @@
 ---
 title: "[Node.js] API 구현하기"
+series: "Node.js 기초"
+seriesOrder: 5
 description: 'API API : Application Programming Interface 프로그램은 여러가지 모듈을 이용해 만들어진다. 이러한 라이브러리를 만든 개발자와 이를 사용해 프로그램을 개발하는 개발자 간의 약속 을 바로 Interface 라고 부른다. 또한 애플리케이션 프로그램을 만들기 위해 만들어진 약속들을 API 라고…'
 pubDate: 2020-08-20 01:32:25
 tags:

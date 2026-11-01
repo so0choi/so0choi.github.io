@@ -1,5 +1,7 @@
 ---
 title: Javascript 30 - Day 5
+series: "Javascript 30"
+seriesOrder: 4
 description: 'Javascript30 Day5 Flex Panel Gallery Flex box를 다루는 방법을 공부한다. Flex flex 속성을 줄 경우 수직으로 정렬된다. 속성 : 모든 child element들이 주어진 컨테이너 공간을 모두 같은 너비로 나눠 쓰게 된다. 속성 : 해당 element가 나머지 element들 보…'
 heroImage: './js30_05.PNG'
 pubDate: 2020-08-18 00:52:31

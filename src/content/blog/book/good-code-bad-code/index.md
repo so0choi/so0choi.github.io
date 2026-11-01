@@ -1,5 +1,7 @@
 ---
 title: "Good code bad code 정리 - 1장: 코드 품질"
+series: "Good code bad code 정리"
+seriesOrder: 1
 description: "코드 품질이 좋아야 하는 이유는 여러가지이다. 고품질의 코드는 신뢰할 수 있고, 유지보수가 쉬우며, 버그가 적다. 개발자는 코드를 작성해 문제를 해결하는 직업이다. 개발자가 작성한 코드가 프로덕트가 되기까지는 일련의 과정을 거친다."
 pubDate: 2025-12-06 16:59:13
 heroImage: img.png

@@ -1,5 +1,7 @@
 ---
 title: "[Node.js] Module Pattern"
+series: "Node.js 기초"
+seriesOrder: 6
 description: 'Module Pattern 모든 코드를 App.js 에 몰아넣기 보다는 기능에 맞게 모듈화 하여 분리해 관리하는 것이 전체 프로젝트를 관리하기에 훨 씬 좋다. 모듈화 작업은 나중에 리팩토링 하려 하지 말고 처음부터 잡아놓는 것이 좋은 것 같다. 이후에 하려고 하면 복잡하다. Node.js의 standard 모듈화 방법은…'
 pubDate: 2020-08-29 01:40:00
 tags:

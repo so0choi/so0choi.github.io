@@ -1,20 +1,36 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
+import { getRelatedPosts, getSeriesPosts } from "../../utils/posts";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
     params: { slug: post.id },
-    props: post,
+    props: {
+      post,
+      seriesPosts: getSeriesPosts(post, posts),
+      relatedPosts: getRelatedPosts(post, posts),
+    },
   }));
 }
-type Props = CollectionEntry<"blog">;
+type Props = {
+  post: CollectionEntry<"blog">;
+  seriesPosts: CollectionEntry<"blog">[];
+  relatedPosts: CollectionEntry<"blog">[];
+};
 
-const post = Astro.props;
+const { post, seriesPosts, relatedPosts } = Astro.props;
 const { Content, headings } = await render(post);
 ---
 
-<BlogPost {...post.data} id={post.id} headings={headings} ogImage={`/open-graph/${post.id}.png`}>
+<BlogPost
+  {...post.data}
+  id={post.id}
+  headings={headings}
+  ogImage={`/open-graph/${post.id}.png`}
+  seriesPosts={seriesPosts}
+  relatedPosts={relatedPosts}
+>
   <Content />
 </BlogPost>
