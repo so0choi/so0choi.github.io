@@ -14,38 +14,35 @@ const pages = Array.from({ length: last }, (_, i) => i + 1);
   last > 1 && (
     <nav
       aria-label="Pagination"
-      class="mt-10 flex flex-wrap items-center justify-center gap-1 text-sm"
+      class="mt-10 flex flex-wrap items-center gap-1 font-mono text-sm"
     >
-      {current > 1 && (
-        <a
-          href={href(current - 1)}
-          class="rounded-md px-3 py-1.5 text-gray-600 no-underline! hover:bg-gray-100"
-        >
-          ← Prev
-        </a>
-      )}
+      <span class="mr-2 text-dim">page</span>
       {pages.map((n) => (
         <a
           href={href(n)}
           aria-current={n === current ? "page" : undefined}
           class:list={[
-            "min-w-9 rounded-md px-2 py-1.5 text-center no-underline!",
+            "min-w-8 rounded px-2 py-1 text-center",
             n === current
-              ? "bg-accent font-bold text-white!"
-              : "text-gray-600 hover:bg-gray-100",
+              ? "bg-fg font-bold text-bg"
+              : "text-muted hover:bg-surface hover:text-fg",
           ]}
         >
           {n}
         </a>
       ))}
-      {current < last && (
-        <a
-          href={href(current + 1)}
-          class="rounded-md px-3 py-1.5 text-gray-600 no-underline! hover:bg-gray-100"
-        >
-          Next →
-        </a>
-      )}
+      <span class="ml-auto flex gap-4">
+        {current > 1 && (
+          <a href={href(current - 1)} class="text-muted hover:text-fg">
+            &lt;-- prev
+          </a>
+        )}
+        {current < last && (
+          <a href={href(current + 1)} class="text-accent hover:text-accent-dark">
+            next --&gt;
+          </a>
+        )}
+      </span>
     </nav>
   )
 }

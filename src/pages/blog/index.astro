@@ -1,32 +1,25 @@
 ---
-import { getCollection } from "astro:content";
+import CategoryChips from "@components/CategoryChips.astro";
 import Pagination from "@components/Pagination.astro";
 import PostListItem from "@components/PostListItem.astro";
-import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
-
+import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_INTRO, SITE_TITLE } from "../../consts";
 import PostListLayout from "../../layouts/PostListLayout.astro";
-const all = await getCollection("blog");
-const posts = all.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import { getSortedPosts } from "../../utils/posts";
+
+const posts = await getSortedPosts();
 const lastPage = Math.ceil(posts.length / POSTS_PER_PAGE);
 ---
 
 <PostListLayout
-  description={SITE_DESCRIPTION}
   title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  command="ls -lt posts/ | head"
+  heading={SITE_TITLE}
+  intro={`${SITE_INTRO} ${posts.length} posts.`}
 >
-    <a href="/blog/areas" slot="category-btn">
-        <button
-                class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
-        >Categories ></button
-        >
-    </a>
-  <div class="mt-5">
-    <span class="text-sm text-gray-400">LATEST</span>
-    <ul class="m-0 p-0">
-      {posts.slice(0, POSTS_PER_PAGE).map((post) => <PostListItem post={post} />)}
-    </ul>
-    <Pagination current={1} last={lastPage} />
-  </div>
+  <CategoryChips slot="filters" total={posts.length} />
+  <ul class="m-0 list-none border-t border-line p-0">
+    {posts.slice(0, POSTS_PER_PAGE).map((post) => <PostListItem post={post} />)}
+  </ul>
+  <Pagination current={1} last={lastPage} />
 </PostListLayout>

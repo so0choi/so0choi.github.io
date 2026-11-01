@@ -1,14 +1,12 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import '@styles/tag.css';
+import { getCollection, type CollectionEntry } from "astro:content";
+import PostListItem from "@components/PostListItem.astro";
+import PostListLayout from "../../layouts/PostListLayout.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const allPosts = await getCollection("blog");
   const tags = Array.from(new Set(allPosts.flatMap((p) => p.data.tags ?? [])));
 
-  console.log()
   return tags.map((tag) => {
     const filteredPosts = allPosts
       .filter((post) => post.data.tags?.includes(tag))
@@ -23,34 +21,20 @@ export async function getStaticPaths() {
 
 type Props = {
   tag: string;
-  posts: CollectionEntry<'blog'>[];
+  posts: CollectionEntry<"blog">[];
 };
 
 const { tag, posts } = Astro.props as Props;
 ---
 
-<BaseLayout title={`Tag: ${tag}`}>
-  <section class="tag-page">
-    <h1># {tag}</h1>
-    <p>Posts tagged with {tag}</p>
-    {
-      posts.length ? (
-        <ul class="tag-posts">
-          {posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>
-                <h4>{post.data.title}</h4>
-                <p class="meta">
-                  <FormattedDate date={post.data.pubDate} />
-                </p>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No posts have been tagged with {tag} yet.</p>
-      )
-    }
-  </section>
-
-</BaseLayout>
+<PostListLayout
+  title={`Tag: ${tag}`}
+  command={`grep -rl "#${tag}" posts/`}
+  heading={`#${tag}`}
+  intro={`${posts.length} posts tagged with ${tag}.`}
+>
+  <ul class="m-0 list-none border-t border-line p-0">
+    {posts.map((post) => <PostListItem post={post} />)}
+  </ul>
+  <a href="/tags" class="mt-10 inline-block font-mono text-sm text-muted hover:text-fg">&lt;-- all tags</a>
+</PostListLayout>

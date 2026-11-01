@@ -6,21 +6,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About">
-  <div class="flex justify-end">
-    <button
-      id="toggle-lang"
-      class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
-    >
-      English ver.
-    </button>
-  </div>
-  <div class="flex items-center gap-4">
+  <div class="mb-14 flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="mb-3 font-mono text-sm text-muted">
+        <span class="text-accent">$</span> whoami
+      </p>
+      <h1 class="mb-4 font-mono text-3xl font-bold tracking-tight md:text-5xl">
+        soyeong choi<span class="text-accent">_</span>
+      </h1>
+      <p class="mb-6 font-mono text-sm text-muted">
+        Node.js software engineer · Seoul
+      </p>
+      <button
+        id="toggle-lang"
+        class="cursor-pointer rounded border border-line px-3 py-1.5 font-mono text-xs text-muted transition-colors hover:border-accent hover:text-accent"
+      >
+        --lang=en
+      </button>
+    </div>
     <Image
-      class="h-auto max-w-[450px] rounded-xl"
+      class="h-auto w-40 rounded-lg border border-line grayscale-[30%] md:w-52"
       src={ProfileImage}
-      height={500}
-      width={450}
-      alt="profile"
+      width={416}
+      loading="eager"
+      alt="최소영 프로필 사진"
     />
   </div>
 
@@ -280,12 +289,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       if (enVisible) {
         en.style.display = "none";
         ko.style.display = "";
-        btn.textContent = "English ver.";
+        btn.textContent = "--lang=en";
       } else {
         en.style.display = "";
         ko.style.display = "none";
-        btn.textContent = "Korean ver.";
+        btn.textContent = "--lang=ko";
       }
     });
   </script>
 </BaseLayout>
+
+<style>
+  #resume-ko,
+  #resume-en {
+    max-width: 72ch;
+    color: #d3ddd8;
+  }
+  #resume-ko > :global(p),
+  #resume-en > :global(p),
+  section {
+    margin-bottom: 3.5rem;
+  }
+  section :global(h2) {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-mono-stack);
+    font-size: 1rem;
+    color: var(--accent);
+  }
+  section :global(h2)::before {
+    content: "## ";
+    color: var(--dim);
+  }
+  section :global(h3) {
+    margin: 1.25rem 0 0.25rem;
+    font-size: 1rem;
+  }
+  section :global(hr) {
+    margin: 0 0 1.25rem;
+  }
+  section :global(p) {
+    margin: 0 0 0.9em;
+  }
+  section :global(ul) {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+  section :global(li) {
+    list-style: "- ";
+    margin-bottom: 0.3em;
+  }
+  section :global(li::marker) {
+    color: var(--dim);
+  }
+  section :global(a) {
+    color: var(--accent);
+  }
+</style>

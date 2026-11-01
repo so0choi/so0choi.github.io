@@ -1,35 +1,29 @@
 ---
-import { getCollection } from "astro:content";
+import CategoryChips from "@components/CategoryChips.astro";
 import PostListItem from "@components/PostListItem.astro";
 import { SITE_DESCRIPTION } from "../../../consts";
 import PostListLayout from "../../../layouts/PostListLayout.astro";
+import { getCategories, getSortedPosts } from "../../../utils/posts";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
-
-  const areas = Array.from(new Set(posts.map((p) => p.id.split("/")[0])));
-  return areas.map((a) => ({ params: { area: a } }));
+  const categories = await getCategories();
+  return categories.map((c) => ({ params: { area: c.name } }));
 }
 
 const { area } = Astro.params;
-const all = await getCollection("blog");
-const posts = all
-  .filter((p) => p.id.startsWith(`${area}/`))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const areaLabel = area
-  ? `${area[0].toUpperCase()}${area.slice(1)}`
-  : "Category";
-
+const all = await getSortedPosts();
+const posts = all.filter((p) => p.id.startsWith(`${area}/`));
 ---
 
 <PostListLayout
-  title={`Category | ${areaLabel}`}
+  title={`Category | ${area}`}
   description={SITE_DESCRIPTION}
+  command={`ls -lt posts/${area}/`}
+  heading={area}
+  intro={`${posts.length} posts in ${area}.`}
 >
-  <div class="mt-5">
-    <span class="text-gray-400 text-sm">LATEST</span>
-    <ul class="m-0 p-0">
-      {posts.map((post) => <PostListItem post={post} />)}
-    </ul>
-  </div>
+  <CategoryChips slot="filters" active={area} total={all.length} />
+  <ul class="m-0 list-none border-t border-line p-0">
+    {posts.map((post) => <PostListItem post={post} />)}
+  </ul>
 </PostListLayout>

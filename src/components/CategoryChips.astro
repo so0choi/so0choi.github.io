@@ -1,0 +1,35 @@
+---
+import { getCategories } from "../utils/posts";
+
+interface Props {
+  // Category name, or undefined for "all".
+  active?: string;
+  total: number;
+}
+
+const { active, total } = Astro.props;
+const categories = await getCategories();
+const base = "shrink-0 whitespace-nowrap rounded px-3 py-1.5 transition-colors";
+const on = "bg-accent font-bold text-bg";
+const off = "border border-line text-muted hover:border-dim hover:text-fg";
+---
+
+<nav aria-label="Categories" class="-mx-6 mb-10 flex gap-2 overflow-x-auto px-6 pb-1 font-mono text-[13px] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+  <a
+    href="/blog"
+    aria-current={active ? undefined : "page"}
+    class:list={[base, active ? off : on]}>*all<span class="opacity-70">({total})</span></a
+  >
+  {
+    categories.map((c) => (
+      <a
+        href={`/blog/areas/${c.name}`}
+        aria-current={active === c.name ? "page" : undefined}
+        class:list={[base, active === c.name ? on : off]}
+      >
+        {c.name}
+        <span class:list={[active === c.name ? "opacity-70" : "text-dim"]}>({c.count})</span>
+      </a>
+    ))
+  }
+</nav>

@@ -6,7 +6,7 @@ const { title, description, image } = Astro.props;
 import "@styles/global.css";
 ---
 
-<html class="h-full">
+<html lang="ko" class="h-full">
   <head>
     <BaseHead
       title={title}
@@ -30,7 +30,7 @@ import "@styles/global.css";
   <body class="h-full">
     <div class="wrapper">
       <Header />
-      <main class="min-w-0 p-4 sm:px-14 md:px-32 lg:px-52">
+      <main class="mx-auto w-full max-w-5xl min-w-0 px-6 pt-12 pb-20 md:pt-16">
         <slot />
       </main>
       <Footer />

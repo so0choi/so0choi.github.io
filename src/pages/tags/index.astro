@@ -1,24 +1,39 @@
 ---
-import { getCollection } from 'astro:content';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import '@styles/tags.css';
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { SITE_DESCRIPTION } from "../../consts";
+import PostListLayout from "../../layouts/PostListLayout.astro";
 
-const all = await getCollection('blog');
-
-const tags = Array.from(
-  new Set(
-	  all
-      .flatMap((p) => p.data.tags)
-  )
-).sort();
+const all = await getCollection("blog");
+const counts = new Map<string, number>();
+for (const tag of all.flatMap((p) => p.data.tags)) {
+  counts.set(tag, (counts.get(tag) ?? 0) + 1);
+}
+const tags = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-			<section class="areas">
-				{tags.map((a) => (
-					<a href={`/tags/${encodeURIComponent(a)}/`}>{a}</a>
-				))}
-			</section>
-
-</BaseLayout>
+<PostListLayout
+  title="Tags"
+  description={SITE_DESCRIPTION}
+  command="grep -h '^tags' posts/**/*.md | sort | uniq -c"
+  heading="tags"
+  intro={`${tags.length} tags.`}
+>
+  <ul class="m-0 flex list-none flex-wrap gap-2 p-0 font-mono text-[13px]">
+    {
+      tags.map(([tag, n]) => (
+        <li>
+          <a
+            href={`/tags/${encodeURIComponent(tag)}/`}
+            class:list={[
+              "block rounded border px-3 py-1.5 transition-colors hover:border-accent hover:text-accent",
+              n >= 5 ? "border-dim text-fg" : "border-line text-muted",
+            ]}
+          >
+            #{tag}
+            <span class="text-dim">{n}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</PostListLayout>

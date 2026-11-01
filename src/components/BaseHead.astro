@@ -35,7 +35,7 @@ const { title, description, image = Placeholder  } = Astro.props;
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/Pretendard-Regular.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/Pretendard-Bold.woff" as="font" type="font/woff" crossorigin />
-<Font cssVariable='--font-playfair-display'/>
+<Font cssVariable='--font-jetbrains-mono' preload />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

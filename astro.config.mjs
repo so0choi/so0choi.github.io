@@ -17,14 +17,10 @@ export default defineConfig({
   experimental: {
     fonts: [
       {
-        name: "Playfair Display",
-        cssVariable: "--font-playfair-display",
+        name: "JetBrains Mono",
+        cssVariable: "--font-jetbrains-mono",
         provider: fontProviders.google(),
-      },
-      {
-        name: "Science Gothic",
-        cssVariable: "--font-science-gothic",
-        provider: fontProviders.google(),
+        weights: [400, 700],
       },
     ],
   },

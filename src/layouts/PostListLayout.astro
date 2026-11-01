@@ -1,32 +1,27 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { title, description, action } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  // Shell command shown above the heading, e.g. "ls -lt posts/".
+  command: string;
+  heading: string;
+  intro?: string;
+}
+
+const { title, description, command, heading, intro } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="flex w-full items-center justify-between">
-    <h1 class="post-list-title">{title}</h1>
-
-    <div class="shrink-0">
-      <slot name="category-btn" />
-    </div>
-  </div>
-
-  <div class="post-list-body">
-    <slot />
-  </div>
+  <p class="mb-3 font-mono text-sm text-muted">
+    <span class="text-accent">$</span>
+    {command}
+  </p>
+  <h1 class="mb-3 font-mono text-3xl font-bold tracking-tight md:text-5xl">
+    {heading}<span class="text-accent">_</span>
+  </h1>
+  {intro && <p class="mb-10 max-w-2xl text-muted">{intro}</p>}
+  <slot name="filters" />
+  <slot />
 </BaseLayout>
-
-<style>
-  .post-list-title {
-    font-family: var(--font-playfair-display), "Pretendard", serif;
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  /* Smooth color transitions for list contents */
-  .post-list-body :global(li *) {
-    transition: color 0.2s;
-  }
-</style>

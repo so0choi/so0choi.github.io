@@ -1,25 +1,27 @@
 ---
-import { getCollection } from "astro:content";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../../consts";
+import { SITE_DESCRIPTION } from "../../../consts";
 import PostListLayout from "../../../layouts/PostListLayout.astro";
-import { Font } from "astro:assets";
+import { getCategories } from "../../../utils/posts";
 
-const posts = await getCollection("blog");
-const areas = Array.from(new Set(posts.map((p) => p.id.split("/")[0]))).sort();
+const categories = await getCategories();
 ---
 
-<Font cssVariable="--font-science-gothic" preload />
-
-<PostListLayout title="Browse by Category" description={SITE_DESCRIPTION}>
-  <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+<PostListLayout
+  title="Categories"
+  description={SITE_DESCRIPTION}
+  command="ls posts/"
+  heading="categories"
+>
+  <ul class="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 md:grid-cols-3">
     {
-      areas.map((area) => (
-        <li class="block list-none rounded-lg border border-gray-200 bg-white p-4 font-medium text-gray-800 shadow-sm transition-all hover:border-blue-300 hover:bg-blue-50 hover:shadow-md">
+      categories.map((c) => (
+        <li>
           <a
-            class="block w-full font-medium tracking-tight text-gray-800!"
-            href={`/blog/areas/${area}`}
+            href={`/blog/areas/${c.name}`}
+            class="flex items-baseline justify-between rounded border border-line px-4 py-3 font-mono text-sm transition-colors hover:border-accent hover:text-accent"
           >
-            {area && area[0].toUpperCase() + area.slice(1, area.length)}
+            <span>{c.name}/</span>
+            <span class="text-dim">{c.count}</span>
           </a>
         </li>
       ))

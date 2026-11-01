@@ -1,17 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import Header from "../components/Header.astro";
-import CalendarIcon from "@public/icons/calendar.svg";
 import BaseLayout from "./BaseLayout.astro";
 
 import "../styles/post.css";
-type Props = CollectionEntry<"blog">["data"] & { ogImage?: string };
+type Props = CollectionEntry<"blog">["data"] & { id: string; ogImage?: string };
 
-const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.props as Props;
+const { id, title, description, pubDate, updatedDate, heroImage, tags, ogImage } =
+  Astro.props as Props;
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const category = id.split("/")[0];
 ---
 
 <BaseLayout
@@ -19,10 +17,30 @@ const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.p
   description={description}
   image={ogImage ? { src: ogImage, width: 1200, height: 630, format: "png" } : undefined}
 >
-  <article>
-    <div class="flex justify-center">
-      {
-        heroImage && (
+  <article class="mx-auto max-w-[72ch]">
+    <header class="mb-10 border-b border-line pb-8">
+      <p class="mb-4 font-mono text-sm text-muted">
+        <span class="text-accent">$</span> cat posts/{id}.md
+      </p>
+      <h1 class="mb-5 text-3xl leading-tight font-bold tracking-tight md:text-4xl">
+        {title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[13px] text-dim">
+        <time datetime={pubDate.toISOString()}>{iso(pubDate)}</time>
+        {updatedDate && <span>updated {iso(updatedDate)}</span>}
+        <a href={`/blog/areas/${category}`} class="text-accent hover:underline">[{category}]</a>
+        {
+          tags.map((t) => (
+            <a href={`/tags/${encodeURIComponent(t)}/`} class="text-muted hover:text-fg">
+              #{t}
+            </a>
+          ))
+        }
+      </div>
+    </header>
+    {
+      heroImage && (
+        <div class="mb-10 flex justify-center">
           <Image
             class="h-auto max-h-[420px] w-auto max-w-full object-contain"
             width={1020}
@@ -31,40 +49,15 @@ const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.p
             src={heroImage}
             alt=""
           />
-        )
-      }
-    </div>
-    <div class="prose">
-      <div class="title">
-        <div class="date flex items-center justify-center gap-2">
-          <CalendarIcon fill="gray" height={20} />
-          <FormattedDate date={pubDate} />
-          {
-            updatedDate && (
-              <div class="last-updated-on">
-                Last updated on <FormattedDate date={updatedDate} />
-              </div>
-            )
-          }
         </div>
-        <h1 class="text-[1.5rem]! md:text-[2rem]!">{title}</h1>
-        <hr />
-      </div>
+      )
+    }
+    <div class="prose">
       <slot />
     </div>
     <div class="mt-24" id="disqus_thread"></div>
     <script>
-      /**
-       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-      /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
       (function () {
-        // DON'T EDIT BELOW THIS LINE
         var d = document,
           s = d.createElement("script");
         s.src = "https://so0github-blog-1.disqus.com/embed.js";

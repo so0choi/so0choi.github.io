@@ -1,16 +1,15 @@
 ---
 import type { GetStaticPaths, Page } from "astro";
-import { type CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import CategoryChips from "@components/CategoryChips.astro";
 import Pagination from "@components/Pagination.astro";
 import PostListItem from "@components/PostListItem.astro";
 import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "../../../consts";
 import PostListLayout from "../../../layouts/PostListLayout.astro";
+import { getSortedPosts } from "../../../utils/posts";
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const all = await getCollection("blog");
-  const posts = all.sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-  );
+  const posts = await getSortedPosts();
   // Page 1 is rendered by /blog itself.
   return paginate(posts, { pageSize: POSTS_PER_PAGE }).filter(
     (p) => p.params.page !== "1",
@@ -21,20 +20,14 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"blog">> };
 ---
 
 <PostListLayout
+  title={`${SITE_TITLE} · page ${page.currentPage}`}
   description={SITE_DESCRIPTION}
-  title={SITE_TITLE}
+  command={`ls -lt posts/ | sed -n ${page.start + 1},${page.end + 1}p`}
+  heading={SITE_TITLE}
 >
-  <a href="/blog/areas" slot="category-btn">
-    <button
-      class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
-      >Categories ></button
-    >
-  </a>
-  <div class="mt-5">
-    <span class="text-sm text-gray-400">PAGE {page.currentPage}</span>
-    <ul class="m-0 p-0">
-      {page.data.map((post) => <PostListItem post={post} />)}
-    </ul>
-    <Pagination current={page.currentPage} last={page.lastPage} />
-  </div>
+  <CategoryChips slot="filters" total={page.total} />
+  <ul class="m-0 list-none border-t border-line p-0">
+    {page.data.map((post) => <PostListItem post={post} />)}
+  </ul>
+  <Pagination current={page.currentPage} last={page.lastPage} />
 </PostListLayout>
