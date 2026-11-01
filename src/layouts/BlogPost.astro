@@ -1,12 +1,18 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
+import TableOfContents from "../components/TableOfContents.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 import "../styles/post.css";
-type Props = CollectionEntry<"blog">["data"] & { id: string; ogImage?: string };
+type Props = CollectionEntry<"blog">["data"] & {
+  id: string;
+  headings: MarkdownHeading[];
+  ogImage?: string;
+};
 
-const { id, title, description, pubDate, updatedDate, heroImage, tags, ogImage } =
+const { id, title, description, pubDate, updatedDate, heroImage, tags, headings, ogImage } =
   Astro.props as Props;
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 const category = id.split("/")[0];
@@ -17,7 +23,8 @@ const category = id.split("/")[0];
   description={description}
   image={ogImage ? { src: ogImage, width: 1200, height: 630, format: "png" } : undefined}
 >
-  <article class="mx-auto max-w-[72ch]">
+  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:gap-12">
+  <article class="mx-auto max-w-[72ch] min-w-0 lg:mx-0">
     <header class="mb-10 border-b border-line pb-8">
       <p class="mb-4 font-mono text-sm text-muted">
         <span class="text-accent">$</span> cat posts/{id}.md
@@ -52,6 +59,9 @@ const category = id.split("/")[0];
         </div>
       )
     }
+    <div class="lg:hidden">
+      <TableOfContents headings={headings} variant="inline" />
+    </div>
     <div class="prose">
       <slot />
     </div>
@@ -71,6 +81,10 @@ const category = id.split("/")[0];
       ></noscript
     >
   </article>
+  <aside class="hidden pt-2 lg:block">
+    <TableOfContents headings={headings} variant="sidebar" />
+  </aside>
+  </div>
   <script
     is:inline
     id="dsq-count-scr"
