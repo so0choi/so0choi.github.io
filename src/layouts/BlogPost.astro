@@ -22,6 +22,7 @@ const category = id.split("/")[0];
   title={title}
   description={description}
   image={ogImage ? { src: ogImage, width: 1200, height: 630, format: "png" } : undefined}
+  article={{ publishedTime: pubDate, modifiedTime: updatedDate, section: category, tags }}
 >
   <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:gap-12">
   <article class="mx-auto max-w-[72ch] min-w-0 lg:mx-0">

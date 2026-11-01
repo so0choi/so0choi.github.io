@@ -1,11 +1,25 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
+import BaseHead, { type ArticleMeta } from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-const { title, description, image } = Astro.props;
+const { title, description, image, article } = Astro.props as {
+  title: string;
+  description: string;
+  image?: ImageMetadata;
+  article?: ArticleMeta;
+};
 import "@styles/global.css";
 
 const GA_ID = "G-560FY9ZC2B";
+// Sent with page_view so GA can break traffic down by post. Register each as an
+// event-scoped custom dimension in GA Admin to see them in reports.
+const POST = article
+  ? {
+      category: article.section,
+      tags: article.tags.join(","),
+      published: article.publishedTime.toISOString(),
+    }
+  : null;
 ---
 
 <html lang="ko" class="h-full">
@@ -14,6 +28,7 @@ const GA_ID = "G-560FY9ZC2B";
       title={title}
       description={description}
       image={image ?? { src: "/favicon.png", width: 300, height: 300, format: "png" }}
+      article={article}
     />
     {
       /* Google tag (gtag.js), production builds only so local dev sends no hits. */
@@ -24,14 +39,79 @@ const GA_ID = "G-560FY9ZC2B";
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           />
-          <script is:inline define:vars={{ GA_ID }}>
+          <script is:inline define:vars={{ GA_ID, POST }}>
             window.dataLayer = window.dataLayer || [];
             function gtag() {
               dataLayer.push(arguments);
             }
             window.gtag = gtag;
             gtag("js", new Date());
-            gtag("config", GA_ID);
+            gtag(
+              "config",
+              GA_ID,
+              POST
+                ? {
+                    post_category: POST.category,
+                    post_tags: POST.tags,
+                    post_age_days: Math.floor(
+                      (Date.now() - new Date(POST.published).getTime()) / 86400000,
+                    ),
+                  }
+                : {},
+            );
+
+            // Read depth on posts: fires once each at 25/50/75/100% of the article body.
+            // The body isn't parsed yet when this head script runs, so look it up on scroll.
+            if (POST) {
+              const marks = [25, 50, 75, 100];
+              const onScroll = () => {
+                const prose = document.querySelector(".prose");
+                if (!prose) return;
+                const rect = prose.getBoundingClientRect();
+                const read = ((window.innerHeight - rect.top) / rect.height) * 100;
+                while (marks.length && read >= marks[0]) {
+                  gtag("event", "read_progress", { percent: marks.shift() });
+                }
+                if (!marks.length) window.removeEventListener("scroll", onScroll);
+              };
+              window.addEventListener("scroll", onScroll, { passive: true });
+            }
+
+            document.addEventListener("click", (e) => {
+              const a = e.target instanceof Element && e.target.closest("a");
+              if (!a) return;
+              const toc = a.closest("[data-toc]");
+              if (toc) {
+                gtag("event", "toc_click", {
+                  heading: a.textContent.trim(),
+                  toc_variant: toc.dataset.toc,
+                });
+              } else if (a.pathname === "/rss.xml") {
+                gtag("event", "rss_click");
+              }
+            });
+
+            document.addEventListener("copy", () => {
+              const node = document.getSelection()?.anchorNode;
+              const pre = node && (node.nodeType === 1 ? node : node.parentElement)?.closest("pre");
+              if (pre) {
+                gtag("event", "code_copy", {
+                  language: pre.dataset.language || "unknown",
+                });
+              }
+            });
+
+            // Pagefind runs client-side and never puts the query in the URL, so
+            // enhanced measurement can't see it; report settled queries as GA's search event.
+            let searchTimer;
+            document.addEventListener("input", (e) => {
+              if (!(e.target instanceof Element) || !e.target.matches(".pagefind-ui__search-input"))
+                return;
+              clearTimeout(searchTimer);
+              const term = e.target.value.trim();
+              if (term.length < 2) return;
+              searchTimer = setTimeout(() => gtag("event", "search", { search_term: term }), 1500);
+            });
           </script>
         </>
       )
