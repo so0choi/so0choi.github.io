@@ -9,4 +9,4 @@ export const AUTHOR_NAME = 'Soyeong Choi';
 export const AUTHOR_URL = 'https://github.com/so0choi';
 // Search engine ownership tokens. Paste the content value from each console; empty means the tag is not rendered.
 export const GOOGLE_SITE_VERIFICATION = 'Ox8IuW5KA6BahaDT12MkKMpHVCMsjY0QkybRa-sQOEQ';
-export const NAVER_SITE_VERIFICATION = '';
+export const NAVER_SITE_VERIFICATION = '8d9e4abde7a7e809090a2f7b60cc18966a9adeef';
