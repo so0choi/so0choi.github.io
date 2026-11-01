@@ -5,7 +5,7 @@ heroImage: './2022-08-23-14-13-24.png'
 pubDate: 2022-08-23 14:15:09
 category: troubleshooting
 tags:
-  - nest.js
+  - NestJS
   - ElasticBeanstalk
   - Javascript heap out of memory
   - yarn

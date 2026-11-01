@@ -4,7 +4,7 @@ description: 'Synchronous & Asynchronous 동기 vs 비동기 ’동기’와 ’
 pubDate: 2020-08-19 00:37:06
 tags:
   - Node.js
-  - Javascript
+  - JavaScript
 category: backend
 
 

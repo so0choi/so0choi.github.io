@@ -4,7 +4,7 @@ description: 'Key Sequence Detection(KONAMI CODE) Konami Code 위키피디아 Ko
 heroImage: './2020-08-27-22-40-09.png'
 pubDate: 2020-08-27 22:27:45
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

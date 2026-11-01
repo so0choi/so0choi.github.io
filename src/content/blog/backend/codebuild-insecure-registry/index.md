@@ -5,7 +5,7 @@ pubDate: 2026-04-09 11:57:17
 category: backend
 tags:
   - AWS
-  - AWS Codebuild
+  - CodeBuild
 heroImage: "./img_2.png"
 ---
 

@@ -3,7 +3,7 @@ title: ES6 문법
 description: 'ES6 ES5에서 ES6로 넘어오면서 표준안이 생기게 되었고 많은 문법상 변화가 생겼다. 편리한 기능이 많이 추가되었고 최근에 나오는 많은 JS 문서의 코드들이 ES6 문법으로 쓰여진 경우를 많이 봤다. 기업에서도 ES6사용을 선호하고 있기 때문에 달라진 문법들을 잘 알아두는 것이 좋겠다. W3C ES6? 오래된 브라우…'
 pubDate: 2020-09-18 23:13:55
 tags:
-  - Javascript
+  - JavaScript
   - ES6
 category: frontend
 

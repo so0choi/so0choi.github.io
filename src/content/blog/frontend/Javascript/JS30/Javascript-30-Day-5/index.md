@@ -4,7 +4,7 @@ description: 'Javascript30 Day5 Flex Panel Gallery Flex box를 다루는 방법�
 heroImage: './js30_05.PNG'
 pubDate: 2020-08-18 00:52:31
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

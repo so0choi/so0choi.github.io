@@ -4,7 +4,7 @@ description: 'Cloudwatch Log Insights는 로그 그룹을 쿼리하는 데 사�
 pubDate: 2021-12-13 14:09:59
 tags:
   - AWS
-  - Cloudwatch
+  - CloudWatch
 category: cloud
 
 

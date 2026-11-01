@@ -4,7 +4,7 @@ description: '태그 구성요소 w head 태그에는 웹페이지에 대한 정
 heroImage: './2020-08-28-01-07-52.png'
 pubDate: 2020-08-28 00:54:48
 tags:
-  - html
+  - HTML
 category: frontend
 
 

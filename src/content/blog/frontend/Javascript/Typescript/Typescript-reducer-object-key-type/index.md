@@ -4,7 +4,7 @@ description: '문제 를 이용해 빈 객체에 대상 배열의 string 값을 
 pubDate: 2023-09-05 09:41:47
 category: frontend
 tags:
-  - typescript
+  - TypeScript
 
 
 

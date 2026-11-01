@@ -4,8 +4,8 @@ description: 'Serverless는 개발 프로세스를 단순화하기 위해 만들
 heroImage: './2022-03-31-10-42-55.png'
 pubDate: 2022-03-31 10:40:24
 tags:
-  - aws-lambda
-  - serverless
+  - Lambda
+  - Serverless
 category: cloud
 
 

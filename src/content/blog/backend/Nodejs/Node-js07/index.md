@@ -4,7 +4,7 @@ description: 'Express.js Express란? Node.js로 개발을 할 때 가장 많이 
 pubDate: 2020-08-30 23:40:29
 tags:
   - Node.js
-  - Javascript
+  - JavaScript
 category: backend
 
 

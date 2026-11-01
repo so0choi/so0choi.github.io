@@ -4,7 +4,7 @@ description: 'Web Components는 재사용이 가능한 커스텀 element를 만�
 heroImage: './202211291126.png'
 pubDate: 2022-11-18 11:02:45
 tags:
-  - Javascript
+  - JavaScript
 category: frontend
 
 

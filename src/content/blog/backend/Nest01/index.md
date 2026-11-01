@@ -4,7 +4,7 @@ description: 'NestJS + Graphql 함께 사용해보기 \ \ Mutations\ \ Mutation�
 pubDate: 2021-05-10 00:57:43
 tags:
   - NestJS
-  - graphQL
+  - GraphQL
 category: backend
 
 

@@ -3,7 +3,7 @@ title: Javascript 30 - Day 11
 description: 'Javascript30 Day11 Custom Video Player <br/ <link href="/images/test.css" rel="stylesheet" <div class="player" <video autoplay class="player video viewer" src="/images/652333414.m…'
 pubDate: 2020-08-26 23:07:36
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

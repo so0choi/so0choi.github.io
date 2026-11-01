@@ -4,7 +4,7 @@ description: 'Javascript30 Day10<br Hold Shif and Check Checkboxes 프로그램 
 heroImage: './2020-08-23-15-51-31.png'
 pubDate: 2020-08-23 15:50:05
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

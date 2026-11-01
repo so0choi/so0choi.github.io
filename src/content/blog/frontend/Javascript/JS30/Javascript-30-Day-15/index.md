@@ -4,7 +4,7 @@ description: 'Day 15 Local Storage local storage에 값을 저장해 새로고�
 heroImage: './2020-08-30-17-11-05.png'
 pubDate: 2020-08-30 17:04:39
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

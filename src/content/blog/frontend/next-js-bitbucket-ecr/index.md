@@ -4,7 +4,7 @@ description: "yarn peer dependency 에러를 고쳐보자"
 pubDate: 2026-02-20 10:17:07
 category: frontend
 tags:
-  - Javascript
+  - JavaScript
 ---
 
 bitbucket pipeline으로 배포하려는데 자꾸 npm module 설치 과정에서 에러가 났다.

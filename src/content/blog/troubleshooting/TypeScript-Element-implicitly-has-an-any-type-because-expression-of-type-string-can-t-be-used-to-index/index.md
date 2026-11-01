@@ -3,7 +3,7 @@ title: "TypeScript : Element implicitly has an 'any' type because expression of 
 description: '타입스크립트 에러가 발생했다. 실행에는 문제가 없었지만 빨간 줄이 너무 거슬렸다. index signature 관련 에러였다. Index Signature Javascript에서 Object에 문자열로 접근할 수 있다. 이 때 암묵적으로 을 호출하기 때문에 Typescript는 이 때 오류를 발생시킨다. 에러를 보면 알…'
 pubDate: 2023-03-22 10:00:51
 tags:
-  - Typescript
+  - TypeScript
 category: troubleshooting
 
 

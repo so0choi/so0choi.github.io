@@ -4,7 +4,7 @@ description: '는 이미 다른 파일에서 정의된 변수를 사용할 때 t
 pubDate: 2023-02-02 14:28:06
 category: frontend
 tags:
-  - typescript
+  - TypeScript
 
 
 

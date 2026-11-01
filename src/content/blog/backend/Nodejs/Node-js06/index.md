@@ -4,7 +4,7 @@ description: 'Module Pattern 모든 코드를 App.js 에 몰아넣기 보다는 
 pubDate: 2020-08-29 01:40:00
 tags:
   - Node.js
-  - Javascript
+  - JavaScript
 category: backend
 
 

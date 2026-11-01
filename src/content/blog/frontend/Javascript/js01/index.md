@@ -3,9 +3,9 @@ title: closer / curring
 description: ':rotating light: 초보자를 위한 Node.js 200제 정리 내용 closer 클로저 클로저는 내부함수가 참조하는 외부함수의 지역변수 가, 외부함수가 리턴된 이후에도 유효성이 유지될 때 , 이 내부함수를 부르는 단어이다. 와 함수는 각자 지역변수를 가지고 있고 ( , ) 또다른 함수를 return 하고 있다…'
 pubDate: 2020-09-21 14:41:15
 tags:
-  - Javascript
+  - JavaScript
   - closer
-  - curring
+  - Currying
 category: frontend
 
 

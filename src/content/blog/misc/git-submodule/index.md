@@ -4,7 +4,7 @@ description: 'hexo로 블로그를 생성해 테마를 설치해서 사용하면
 pubDate: 2021-12-06 16:25:02
 category: misc
 tags:
-  - hexo
+  - Hexo
   - git submodule
 
 

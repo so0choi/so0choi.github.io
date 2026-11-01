@@ -7,7 +7,7 @@ category: cloud
 tags:
   - AWS
   - CodeCommit
-  - git
+  - Git
 
 
 

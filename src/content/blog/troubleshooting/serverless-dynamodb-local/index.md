@@ -3,7 +3,7 @@ title: "[Error] Serverless DynamoDB local 설치 이슈"
 description: '테스트를 위해 local DynamoDB를 serverless에 설치하려는데 에러가 발생했다. 설치 명령어를 입력하면 아래 에러가 발생하며 설치가 실행되지 않았다. 검색해보니 이미 많은 사람들이 겪고있는 문제였다. (Error getting DynamoDb local latest tar.gz location undefi…'
 pubDate: 2023-05-15 10:17:23
 tags:
-  - serverless
+  - Serverless
   - DynamoDB
 category: troubleshooting
 

@@ -6,7 +6,7 @@ pubDate: 2020-08-15 22:18:06
 category: frontend
 tags:
   - Javascript30
-  - Javascript
+  - JavaScript
 
 
 

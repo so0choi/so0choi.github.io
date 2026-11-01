@@ -5,7 +5,7 @@ pubDate: 2026-06-19 14:44:27
 category: aws
 tags: 
   - AWS
-  - Codebuild
+  - CodeBuild
 ---
 
 Codebuild를 실행하던 중 docker pull로 베이스 이미지를 받아오는 과정에서 간헐적으로 에러가 발생했다.

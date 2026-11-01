@@ -4,7 +4,7 @@ description: 'Day 17 Sort Without Articles Articles : 관사, 즉 관사 없이 
 heroImage: './2020-10-03-21-20-31.png'
 pubDate: 2020-10-03 21:17:55
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

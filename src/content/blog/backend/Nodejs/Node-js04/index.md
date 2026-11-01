@@ -4,7 +4,7 @@ description: '패키지 매니저와 PM2 Node.js를 사용하다보면 다양한
 pubDate: 2020-08-19 13:28:26
 tags:
   - Node.js
-  - Javascript
+  - JavaScript
 category: backend
 
 

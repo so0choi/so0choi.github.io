@@ -4,7 +4,7 @@ description: '13. Slide in on Scroll 스크롤을 내릴 때 마다 본문에 �
 heroImage: './2020-08-30-02-18-56.png'
 pubDate: 2020-08-29 16:32:05
 tags:
-  - Javascript
+  - JavaScript
   - Javascript30
 category: frontend
 

@@ -4,7 +4,7 @@ description: 'Promise 는 비동기 로직을 구현할 때 유용하게 사용�
 heroImage: './2020-09-13-22-17-53.png'
 pubDate: 2020-09-13 22:05:27
 tags:
-  - Javascript
+  - JavaScript
   - Promise
 category: frontend
 

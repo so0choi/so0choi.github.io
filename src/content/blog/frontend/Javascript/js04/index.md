@@ -4,7 +4,7 @@ description: 'window.resize throttle 설정 이벤트에 리스너를 걸게되�
 pubDate: 2020-10-08 00:10:43
 tags:
   - window.resize
-  - Javascript
+  - JavaScript
 category: frontend
 
 

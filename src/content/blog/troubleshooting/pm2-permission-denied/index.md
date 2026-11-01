@@ -6,7 +6,7 @@ category: troubleshooting
 tags:
   - pm2
   - nvm
-  - node
+  - Node.js
 
 
 

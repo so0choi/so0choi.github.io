@@ -6,7 +6,7 @@ category: frontend
 tags:
   - Generator
   - ES6
-  - Javascript
+  - JavaScript
 
 
 

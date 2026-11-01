@@ -4,7 +4,7 @@ description: 'API API : Application Programming Interface 프로그램은 여러
 pubDate: 2020-08-20 01:32:25
 tags:
   - Node.js
-  - Javascript
+  - JavaScript
 category: backend
 
 
