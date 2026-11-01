@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "@components/FormattedDate.astro";
+import CalendarIcon from "@public/icons/calendar.svg";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, heroImage } = post.data;
+---
+
+<li class="list-none border-b border-gray-200">
+  <a
+    href={`/blog/${post.id}/`}
+    class="group flex items-center gap-5 py-5 no-underline!"
+  >
+    <div class="flex min-w-0 flex-1 flex-col gap-1">
+      <h3
+        class="m-0! text-lg! leading-snug text-gray-800! transition-colors group-hover:text-accent! md:text-xl!"
+      >
+        {title}
+      </h3>
+      {
+        description && (
+          <p class="m-0! line-clamp-2 text-[15px] leading-relaxed text-gray-500">
+            {description}
+          </p>
+        )
+      }
+      <div class="flex items-center gap-1.5 text-[13px] text-gray-400">
+        <CalendarIcon fill="currentColor" height={14} />
+        <FormattedDate date={pubDate} />
+      </div>
+    </div>
+    {
+      heroImage && (
+        <Image
+          class="m-0! hidden h-20 w-28 shrink-0 rounded-md object-cover sm:block"
+          width={224}
+          height={160}
+          src={heroImage}
+          alt=""
+        />
+      )
+    }
+  </a>
+</li>

@@ -1,3 +1,5 @@
+/* All rules are scoped to .prose so they don't leak into the header/footer. */
+
 /* Container */
 .prose {
   max-width: 72ch;
@@ -8,78 +10,67 @@
 }
 
 /* Typography */
-p {
+.prose p {
   margin: 0 0 1.2em 0;
 }
 
-a {
+.prose a {
   text-decoration-line: underline;
   transition: color 0.2s;
 }
-a:hover {
+.prose a:hover {
   color: var(--accent);
 }
 
-h1,
-h2,
-h3,
-h4 {
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
   margin: 2.5rem 0 1.1rem;
   color: var(--accent);
   font-weight: 700;
 }
-h1 {
+.prose h1 {
   font-size: 2.2em;
 }
-h2 {
+.prose h2 {
   font-size: 1.8em;
 }
-h3 {
+.prose h3 {
   font-size: 1.5em;
 }
-h4 {
+.prose h4 {
   font-size: 1.2em;
 }
 
-ul,
-ol {
+.prose ul,
+.prose ol {
   margin: 0 0 1.2em 1.25em;
   padding: 0;
 }
-li {
+.prose li {
   list-style: disc;
 }
 
-.hero-image {
-  width: 100%;
-}
-
-.hero-image img {
-  display: block;
-  margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: var(--box-shadow);
-}
-
-.title {
+.prose .title {
   margin-bottom: 1em;
   padding: 1em 0;
   text-align: center;
   line-height: 1;
 }
-.title h1 {
+.prose .title h1 {
   margin: 0 0 0.5em 0;
 }
-.date {
+.prose .date {
   margin-bottom: 0.5em;
   color: rgb(var(--gray));
 }
-.last-updated-on {
+.prose .last-updated-on {
   font-style: italic;
 }
 
 /* Code & blockquotes */
-pre {
+.prose pre {
   margin: 0 0 2rem;
   padding: 1.25rem;
   background: #f5f7fb;
@@ -88,23 +79,27 @@ pre {
   font-size: 0.95rem;
   overflow-x: auto;
 }
-pre code {
+.prose pre code {
   background: transparent;
   padding: 0;
 }
-code {
+.prose code {
   background-color: rgb(var(--gray-light));
   padding: 0.15em 0.4em;
   border-radius: 4px;
 }
 
-blockquote {
+.prose blockquote {
   margin: 1em 0;
   padding: 0 0 0 20px;
 }
 
-hr {
+.prose hr {
   margin: 1.5rem 0;
+}
+
+.prose table {
+  margin-bottom: 2rem;
 }
 
 @media (max-width: 640px) {
@@ -115,28 +110,24 @@ hr {
     line-height: 1.6;
   }
 
-  h1 {
+  .prose h1 {
     font-size: 1.9em;
     margin-top: 2rem;
   }
-  h2 {
+  .prose h2 {
     font-size: 1.6em;
     margin-top: 1.8rem;
   }
-  h3 {
+  .prose h3 {
     font-size: 1.35em;
     margin-top: 1.6rem;
   }
-  h4 {
+  .prose h4 {
     font-size: 1.15em;
     margin-top: 1.4rem;
   }
 
-  pre {
+  .prose pre {
     font-size: 0.9rem;
   }
-}
-
-table {
-  margin-bottom: 2rem;
 }

@@ -30,7 +30,7 @@ const { tag, posts } = Astro.props as Props;
 ---
 
 <BaseLayout title={`Tag: ${tag}`}>
-  <section>
+  <section class="tag-page">
     <h1># {tag}</h1>
     <p>Posts tagged with {tag}</p>
     {

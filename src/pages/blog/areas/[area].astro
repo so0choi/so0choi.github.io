@@ -1,9 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import FormattedDate from "@components/FormattedDate.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../../../consts";
-import CalendarIcon from "../../../../public/icons/calendar.svg";
+import PostListItem from "@components/PostListItem.astro";
+import { SITE_DESCRIPTION } from "../../../consts";
 import PostListLayout from "../../../layouts/PostListLayout.astro";
 
 export async function getStaticPaths() {
@@ -30,37 +28,8 @@ const areaLabel = area
 >
   <div class="mt-5">
     <span class="text-gray-400 text-sm">LATEST</span>
-    <ul>
-      {
-        posts.map((post) => (
-          <li class="p-4 transition-all hover:shadow">
-            <a
-              href={`/blog/${post.id}/`}
-              class="flex flex-col md:flex-row items-center gap-7 py-10"
-            >
-              <Image
-                width={150}
-                height={100}
-                src={post.data.heroImage || "/favicon.png"}
-                alt={post.id}
-              />
-              <div class="flex flex-col">
-                <h3 class="hover:text-accent mb-4 text-gray-700!">
-                  {post.data.title}
-                </h3>
-                <div class="text-[13px] flex gap-2 mb-2">
-                  <CalendarIcon fill="gray" height={20} />
-                  <FormattedDate date={post.data.pubDate} />
-                </div>
-                <p class="text-gray-500 text-[15px]">
-                  {post.data.description.slice(0, 70)}...
-                </p>
-              </div>
-            </a>
-          </li>
-          <hr />
-        ))
-      }
+    <ul class="m-0 p-0">
+      {posts.map((post) => <PostListItem post={post} />)}
     </ul>
   </div>
 </PostListLayout>

@@ -21,7 +21,18 @@ const { title, description, pubDate, updatedDate, heroImage, ogImage } = Astro.p
 >
   <article>
     <div class="flex justify-center">
-      {heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+      {
+        heroImage && (
+          <Image
+            class="h-auto max-h-[420px] w-auto max-w-full object-contain"
+            width={1020}
+            loading="eager"
+            fetchpriority="high"
+            src={heroImage}
+            alt=""
+          />
+        )
+      }
     </div>
     <div class="prose">
       <div class="title">

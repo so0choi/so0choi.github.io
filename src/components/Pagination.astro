@@ -1,0 +1,51 @@
+---
+interface Props {
+  current: number;
+  last: number;
+}
+
+const { current, last } = Astro.props;
+// Page 1 lives at /blog, the rest at /blog/page/N.
+const href = (n: number) => (n === 1 ? "/blog" : `/blog/page/${n}`);
+const pages = Array.from({ length: last }, (_, i) => i + 1);
+---
+
+{
+  last > 1 && (
+    <nav
+      aria-label="Pagination"
+      class="mt-10 flex flex-wrap items-center justify-center gap-1 text-sm"
+    >
+      {current > 1 && (
+        <a
+          href={href(current - 1)}
+          class="rounded-md px-3 py-1.5 text-gray-600 no-underline! hover:bg-gray-100"
+        >
+          ← Prev
+        </a>
+      )}
+      {pages.map((n) => (
+        <a
+          href={href(n)}
+          aria-current={n === current ? "page" : undefined}
+          class:list={[
+            "min-w-9 rounded-md px-2 py-1.5 text-center no-underline!",
+            n === current
+              ? "bg-accent font-bold text-white!"
+              : "text-gray-600 hover:bg-gray-100",
+          ]}
+        >
+          {n}
+        </a>
+      ))}
+      {current < last && (
+        <a
+          href={href(current + 1)}
+          class="rounded-md px-3 py-1.5 text-gray-600 no-underline! hover:bg-gray-100"
+        >
+          Next →
+        </a>
+      )}
+    </nav>
+  )
+}

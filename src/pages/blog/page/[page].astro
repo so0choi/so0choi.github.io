@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths, Page } from "astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+import Pagination from "@components/Pagination.astro";
+import PostListItem from "@components/PostListItem.astro";
+import { POSTS_PER_PAGE, SITE_DESCRIPTION, SITE_TITLE } from "../../../consts";
+import PostListLayout from "../../../layouts/PostListLayout.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const all = await getCollection("blog");
+  const posts = all.sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+  // Page 1 is rendered by /blog itself.
+  return paginate(posts, { pageSize: POSTS_PER_PAGE }).filter(
+    (p) => p.params.page !== "1",
+  );
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: Page<CollectionEntry<"blog">> };
+---
+
+<PostListLayout
+  description={SITE_DESCRIPTION}
+  title={SITE_TITLE}
+>
+  <a href="/blog/areas" slot="category-btn">
+    <button
+      class="h-fit cursor-pointer rounded-xl bg-gray-200 p-2 text-xs text-gray-500 transition-all hover:bg-gray-300"
+      >Categories ></button
+    >
+  </a>
+  <div class="mt-5">
+    <span class="text-sm text-gray-400">PAGE {page.currentPage}</span>
+    <ul class="m-0 p-0">
+      {page.data.map((post) => <PostListItem post={post} />)}
+    </ul>
+    <Pagination current={page.currentPage} last={page.lastPage} />
+  </div>
+</PostListLayout>

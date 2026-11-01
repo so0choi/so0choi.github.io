@@ -3,3 +3,4 @@
 
 export const SITE_TITLE = 'SY Tech Blog';
 export const SITE_DESCRIPTION = 'Welcome to Soyeong Choi\'s Tech Blog';
+export const POSTS_PER_PAGE = 20;
