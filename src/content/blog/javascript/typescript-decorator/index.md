@@ -287,6 +287,7 @@ NestJS가 `Injectable` 메타데이터를 읽으면 `UserService`를 만들 때 
 
 다만 `Injectable`은 NestJS가 제공하는 데코레이터고 `design:paramtypes`는 TypeScript 컴파일러가 생성하는 메타데이터이다. `Injectable`이 아니더라도 NestJS DI는 가능하다. 다른 커스텀 데코레이터나 `Inject`를 통한 명시적 토큰 지정 등 다양한 방식으로 사용할 수 있다.
 
+
 ## 참고
 
 - [TypeScript Handbook - Decorators](https://www.typescriptlang.org/docs/handbook/decorators.html)
